@@ -1,0 +1,1849 @@
+﻿feature: Transactions
+description: >
+  Point-of-sale order entry, tender, refund/void, payouts, discounts, and receipt
+  flows under 2.0.x/Transactions. One atomic case per code anchor
+  (message/action/toggle/permission/calc); composites chain realistic flows.
+  Locators are referenced from existing recordings, never fabricated.
+source_paths:
+  - 2.0.x/Transactions
+flavors: []
+
+test_cases:
+  # ------------------------------------------------------------------------
+  # frmRefund.cs - refund / void an order, refund tender, recreate order
+  # ------------------------------------------------------------------------
+  - id: TXN-0001
+    title: "frmRefund: Warning - Failed to load order"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open Refund and request an order id that cannot be loaded
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Failed to load order # : {MainID}"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund order lookup control at line 354
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 354, text: "Failed to load order # : {MainID}" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0002
+    title: "frmRefund: Warning - Order is marked as"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Load an order whose status blocks refund (marked-as state)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Order is marked as \""
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 374
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 374, text: "Order is marked as \"" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0003
+    title: "frmRefund: Warning - Order balance $0.00."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Load an order with a zero balance and attempt refund
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Order balance $0.00."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 386
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 386, text: "Order balance $0.00." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0004
+    title: "frmRefund: Warning - Order past (refund window)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Load an order outside the allowed refund window
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Order past "
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 399
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 399, text: "Order past " }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0005
+    title: "frmRefund: Warning - order has no payments attached"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Attempt to refund an order with no payments attached
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Error found, order doesn't have any payments attached."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 520
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 520, text: "Error found, order doesn't have any payments attached." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0006
+    title: "frmRefund: Warning - Gift certificate cannot be refunded"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Attempt to refund an order where a gift certificate was used
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Gift certificate was used.\nCannot be refunded."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 683
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 683, text: "Gift certificate was used.\nCannot be refunded." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0007
+    title: "frmRefund: Warning - Credit card payment(s) not completed."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Attempt to refund while a credit card payment is not completed
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Credit card payment(s) not completed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 744
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 744, text: "Credit card payment(s) not completed." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0008
+    title: "frmRefund: Refund button requires Register.Refund right"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - As a user WITHOUT the Register.Refund right, open frmRefund
+      - Attempt to use Refund (btnRefund)
+    expected:
+      - Action is blocked / a permission prompt for Register.Refund is required
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnRefund at line 858
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 858, text: "perm:Register.Refund" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0009
+    title: "frmRefund: Void button requires Register.VoidOrder right"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - As a user WITHOUT the Register.VoidOrder right, open frmRefund
+      - Attempt to use Void (btnVoid)
+    expected:
+      - Action is blocked / a permission prompt for Register.VoidOrder is required
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnVoid at line 859
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 859, text: "perm:Register.VoidOrder" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0010
+    title: "frmRefund: Clear action (btnClearClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Invoke Clear (btnClearClick)
+    expected:
+      - btnClearClick runs and the Clear action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnClear at line 1558
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1558, text: "btnClearClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0011
+    title: "frmRefund: Close action (btnCancelClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Invoke Close (btnCancelClick)
+    expected:
+      - btnCancelClick runs and the Close action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnCancel at line 1563
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1563, text: "btnCancelClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0012
+    title: "frmRefund: Find Order action (btnFindOrderClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Invoke Find Order (btnFindOrderClick)
+    expected:
+      - btnFindOrderClick runs and the Find Order action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: RefundFindOrder
+    new_controls:
+      - frmRefund btnFindOrder at line 1581
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1581, text: "btnFindOrderClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0013
+    title: "frmRefund: Item Search action (btnItemSearchClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Invoke Item Search (btnItemSearchClick)
+    expected:
+      - btnItemSearchClick runs and the item search action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnItemSearch at line 1594
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1594, text: "btnItemSearchClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0014
+    title: "frmRefund: Open Ended Refund action (btnOpenClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Invoke Open Ended Refund (btnOpenClick)
+    expected:
+      - btnOpenClick runs and the Open Ended Refund action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnOpen at line 1603
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1603, text: "btnOpenClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0015
+    title: "frmRefund: Warning - Offline mode cannot process debit or EBT (1686)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - With the terminal offline, attempt a debit or EBT refund
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Terminal is on Offline mode.\nCannot process debit or EBT card."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 1686
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1686, text: "Terminal is on Offline mode.\nCannot process debit or EBT card." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0016
+    title: "frmRefund: Warning - Error occurred processing."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Drive the refund into a processing error
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Error occurred processing."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 1752
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1752, text: "Error occurred processing." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0017
+    title: "frmRefund: Success - Refund completed."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Load a refundable order and complete a refund
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Refund completed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: RefundFindOrder
+    new_controls:
+      - frmRefund control at line 1872
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1872, text: "Refund completed." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0018
+    title: "frmRefund: Refund action (btnRefundClick)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund with a refundable order
+      - Invoke Refund (btnRefundClick)
+    expected:
+      - btnRefundClick runs and the Refund action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnRefund at line 1875
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 1875, text: "btnRefundClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0019
+    title: "frmRefund: Warning - Gift Certification disabled as a Refund Option."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Attempt a refund to gift certificate when that option is disabled
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Gift Certification disabled as a Refund Option."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2111
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2111, text: "Gift Certification disabled as a Refund Option." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0020
+    title: "frmRefund: Warning - eGift disabled as a Refund Option."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Attempt a refund to eGift when that option is disabled
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: eGift disabled as a Refund Option."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2128
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2128, text: "eGift disabled as a Refund Option." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0021
+    title: "frmRefund: Warning - Refund to Gift Card was cancelled. (2136)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Begin a refund to gift card and cancel it (path at line 2136)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Refund to Gift Card was cancelled."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2136
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2136, text: "Refund to Gift Card was cancelled." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0022
+    title: "frmRefund: Warning - Refund to Gift Card was cancelled. (2159)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Begin a refund to gift card and cancel it (path at line 2159)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Refund to Gift Card was cancelled."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2159
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2159, text: "Refund to Gift Card was cancelled." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0023
+    title: "frmRefund: Warning - Offline mode cannot process debit or EBT (2287)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - With the terminal offline, attempt a debit or EBT refund (path at line 2287)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Terminal is on Offline mode.\nCannot process debit or EBT card."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2287
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2287, text: "Terminal is on Offline mode.\nCannot process debit or EBT card." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0024
+    title: "frmRefund: Success - Transaction successful."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Complete a refund card transaction successfully
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Transaction successful."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2328
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2328, text: "Transaction successful." }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0025
+    title: "frmRefund: Warning - Gift Card (2629)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Drive the gift card refund branch at line 2629
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Gift Card "
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2629
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2629, text: "Gift Card " }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0026
+    title: "frmRefund: Warning - Gift Card (2675)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Drive the gift card refund branch at line 2675
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Gift Card "
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund control at line 2675
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 2675, text: "Gift Card " }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0027
+    title: "frmRefund: Tips action (btnTipClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Invoke Tips (btnTipClick)
+    expected:
+      - btnTipClick runs and the Tips action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund btnTip at line 3036
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 3036, text: "btnTipClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0028
+    title: "frmRefund: toggle chk (chkCheckedChanged) changes behavior"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Toggle chk
+      - Observe the dependent behavior change
+    expected:
+      - Dependent UI / behavior reflects the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund chk at line 3059
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 3059, text: "chkCheckedChanged" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0029
+    title: "frmRefund: toggle chkTip (chkTipCheckedChanged) changes behavior"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Toggle chkTip
+      - Observe the dependent behavior change
+    expected:
+      - Dependent UI / behavior reflects the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund chkTip at line 3064
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 3064, text: "chkTipCheckedChanged" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0030
+    title: "frmRefund: toggle chkReCreate (Recreate Order) changes behavior"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund
+      - Toggle chkReCreate (Recreate Order)
+      - Observe the dependent behavior change
+    expected:
+      - Dependent UI / behavior reflects the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund chkReCreate at line 3082
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 3082, text: "chkReCreateCheckedChanged" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0031
+    title: "frmRefund: Detail grid cell click (dgvDetailsCellClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmRefund with order details loaded
+      - Click a cell in dgvDetails (dgvDetailsCellClick)
+    expected:
+      - dgvDetailsCellClick runs and the detail-grid selection action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRefund dgvDetails at line 3093
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence:
+      - { file: 2.0.x/Transactions/frmRefund.cs, line: 3093, text: "dgvDetailsCellClick" }
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ------------------------------------------------------------------------
+  # frmBank.cs - open / save / void / duplicate a cash bank (Bank)
+  # ------------------------------------------------------------------------
+  - id: TXN-0032
+    title: "frmBank: Close action (btnCancelClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Invoke Close (btnCancelClick)
+    expected:
+      - btnCancelClick runs and the Close action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank btnCancel at line 144
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 144, text: "btnCancelClick" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0033
+    title: "frmBank: Duplicate Bank action (btnDuplicateClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Invoke Duplicate Bank (btnDuplicateClick)
+    expected:
+      - btnDuplicateClick runs and the Duplicate Bank action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank btnDuplicate at line 153
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 153, text: "btnDuplicateClick" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0034
+    title: "frmBank: Success - Saved successfully. (187)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank and save a valid bank
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 187
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 187, text: "Saved successfully." }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0035
+    title: "frmBank: Open Drawer action (btnOpenDrawerClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Invoke Open Drawer (btnOpenDrawerClick)
+    expected:
+      - btnOpenDrawerClick runs and the Open Drawer action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank btnOpenDrawer at line 190
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 190, text: "btnOpenDrawerClick" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0036
+    title: "frmBank: Print action (btnPrintClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Invoke Print (btnPrintClick)
+    expected:
+      - btnPrintClick runs and the Print action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank btnPrint at line 195
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 195, text: "btnPrintClick" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0037
+    title: "frmBank: Reset action (btnResetClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Invoke Reset (btnResetClick)
+    expected:
+      - btnResetClick runs and the Reset action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank btnReset at line 200
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 200, text: "btnResetClick" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0038
+    title: "frmBank: Save action (btnOKClick)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Invoke Save (btnOKClick)
+    expected:
+      - btnOKClick runs and the Save action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank btnOK at line 205
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 205, text: "btnOKClick" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0039
+    title: "frmBank: Warning - Nothing changed. (224)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Save frmBank without making changes (path at line 224)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Nothing changed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 224
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 224, text: "Nothing changed." }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0040
+    title: "frmBank: Warning - Selection error."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Trigger the selection-error branch in frmBank (line 230)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Selection error."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 230
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 230, text: "Selection error." }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0041
+    title: "frmBank: Warning - Please add a note before saving."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Save frmBank in a state that requires a note, with none entered
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Please add a note before saving."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 238
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 238, text: "Please add a note before saving." }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0042
+    title: "frmBank: Warning - Nothing changed. (244)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Save frmBank without making changes (path at line 244)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Nothing changed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 244
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 244, text: "Nothing changed." }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0043
+    title: "frmBank: Success - Saved successfully. (306)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Save frmBank successfully (path at line 306)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 306
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 306, text: "Saved successfully." }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0044
+    title: "frmBank: Void Bank action (btnVoidBankClick)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Invoke Void Bank (btnVoidBankClick)
+    expected:
+      - btnVoidBankClick runs and the Void Bank action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank btnVoidBank at line 309
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 309, text: "btnVoidBankClick" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0045
+    title: "frmBank: Success - Voided successfully."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Void a bank successfully (path at line 334)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Voided successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 334
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 334, text: "Voided successfully." }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0046
+    title: "frmBank: toggle cbo (cboSelectedIndexChanged) changes behavior"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBank
+      - Change the cbo selection (cboSelectedIndexChanged)
+      - Observe the dependent behavior change
+    expected:
+      - Dependent UI / behavior reflects the selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank cbo at line 337
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 337, text: "cboSelectedIndexChanged" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0047
+    title: "frmBank: Warning - Improper amount for currency"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmBank
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Enter an improper currency amount in frmBank (line 475)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Improper amount for currency"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBank control at line 475
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBank.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBank.cs, line: 475, text: "Improper amount for currency" }
+    flow_hash: "1C7D05CFB6A004BF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ------------------------------------------------------------------------
+  # frmBankClose.cs - close a shift bank (Bank)
+  # ------------------------------------------------------------------------
+  - id: TXN-0048
+    title: "frmBankClose: Close Shift action (btnOKClick)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBankClose
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBankClose
+      - Invoke Close Shift (btnOKClick)
+    expected:
+      - btnOKClick runs and the Close Shift action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankClose btnOK at line 126
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankClose.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankClose.cs, line: 126, text: "btnOKClick" }
+    flow_hash: "E341BDF3EBD1E280"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0049
+    title: "frmBankClose: Success - Successful."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBankClose
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Close the shift bank successfully
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Successful."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankClose control at line 166
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankClose.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankClose.cs, line: 166, text: "Successful." }
+    flow_hash: "E341BDF3EBD1E280"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0050
+    title: "frmBankClose: Close action (btnCancelClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBankClose
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBankClose
+      - Invoke Close (btnCancelClick)
+    expected:
+      - btnCancelClick runs and the Close action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankClose btnCancel at line 170
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankClose.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankClose.cs, line: 170, text: "btnCancelClick" }
+    flow_hash: "E341BDF3EBD1E280"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0051
+    title: "frmBankClose: Warning - Improper amount for currency"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmBankClose
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Enter an improper currency amount in frmBankClose (line 216)
+      - Observe the dialog text
+    expected:
+      - "Dialog text is: Improper amount for currency"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankClose control at line 216
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankClose.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankClose.cs, line: 216, text: "Improper amount for currency" }
+    flow_hash: "E341BDF3EBD1E280"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ------------------------------------------------------------------------
+  # frmBankDuplicate.cs / frmBankSwap.cs - duplicate/swap a bank (Bank)
+  # ------------------------------------------------------------------------
+  - id: TXN-0052
+    title: "frmBankDuplicate: Cancel action (btnCancelClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBankDuplicate
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBankDuplicate
+      - Invoke Cancel (btnCancelClick)
+    expected:
+      - btnCancelClick runs and the Cancel action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankDuplicate btnCancel at line 21
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankDuplicate.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankDuplicate.cs, line: 21, text: "btnCancelClick" }
+    flow_hash: "B2F396FF79EF1AB7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0053
+    title: "frmBankDuplicate: OK action (btnOkClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBankDuplicate
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBankDuplicate
+      - Invoke OK (btnOkClick)
+    expected:
+      - btnOkClick runs and the OK action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankDuplicate btnOk at line 26
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankDuplicate.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankDuplicate.cs, line: 26, text: "btnOkClick" }
+    flow_hash: "B2F396FF79EF1AB7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0054
+    title: "frmBankSwap: Close action (btnCancelClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBankSwap
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBankSwap
+      - Invoke Close (btnCancelClick)
+    expected:
+      - btnCancelClick runs and the Close action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankSwap btnCancel at line 33
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankSwap.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankSwap.cs, line: 33, text: "btnCancelClick" }
+    flow_hash: "087F9F736F0E5479"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-0055
+    title: "frmBankSwap: Swap action (btnOKClick)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBankSwap
+      entity: Order
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Open frmBankSwap
+      - Invoke Swap (btnOKClick)
+    expected:
+      - btnOKClick runs and the Swap action completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBankSwap btnOK at line 38
+    source_files:
+      - 2.0.x/Transactions/Bank/frmBankSwap.cs
+    evidence:
+      - { file: 2.0.x/Transactions/Bank/frmBankSwap.cs, line: 38, text: "btnOKClick" }
+    flow_hash: "087F9F736F0E5479"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ------------------------------------------------------------------------
+  # Composite end-to-end flows (chain atomic ids; add no new anchors)
+  # ------------------------------------------------------------------------
+  - id: TXN-C001
+    title: "End-to-end: find a refundable order and complete a refund"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRefund
+      entity: Order
+    chains: [TXN-0012, TXN-0031, TXN-0018, TXN-0017]
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Run the chained atomic cases in order
+    expected:
+      - Each chained case passes; the find-order to refund-completed flow finishes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: RefundFindOrder
+    new_controls: []
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence: []
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: TXN-C002
+    title: "End-to-end: refund guard rails block an ineligible order"
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmRefund
+      entity: Order
+    chains: [TXN-0003, TXN-0005, TXN-0007]
+    preconditions:
+      - Logged in as admin
+    steps:
+      - Run the chained atomic cases in order
+    expected:
+      - Each guard fires; an ineligible order cannot be refunded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Transactions/frmRefund.cs
+    evidence: []
+    flow_hash: "62AFD06190E8C738"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
