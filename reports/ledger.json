@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  833,
-    "grandUncovered":  1767,
-    "grandPct":  32,
+    "grandCovered":  1179,
+    "grandUncovered":  1421,
+    "grandPct":  45.3,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Items",
-                      "layer":  "e2e",
-                      "total":  346,
-                      "covered":  0,
-                      "uncovered":  346,
-                      "pct":  0,
-                      "catalog":  false
-                  },
                   {
                       "area":  "Settings",
                       "layer":  "e2e",
@@ -118,6 +109,15 @@
                       "layer":  "e2e",
                       "total":  51,
                       "covered":  51,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Items",
+                      "layer":  "e2e",
+                      "total":  346,
+                      "covered":  346,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true
