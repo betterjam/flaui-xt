@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0269
+    title: "frmSchedEmail: Reset action (btnResetClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSchedEmail, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmSchedEmail", "Invoke Reset (btnResetClick)"]
+    expected: ["btnResetClick runs and the action completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSchedEmail btnReset at line 93]
+    source_files: [2.0.x/Reports/frmSchedEmail.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmSchedEmail.cs, line: 93, text: "btnResetClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

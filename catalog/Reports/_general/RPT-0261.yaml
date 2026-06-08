@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0261
+    title: "frmSales: Toggle - cboGroup (1690)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmSales, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmSales", "Toggle cboGroup (cboGroupSelectedIndexChanged)", "Observe the dependent behavior change, then toggle back"]
+    expected: ["Toggling cboGroup changes the dependent behavior; toggling back reverts it"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSales cboGroup at line 1690]
+    source_files: [2.0.x/Reports/frmSales.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmSales.cs, line: 1690, text: "cboGroupSelectedIndexChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

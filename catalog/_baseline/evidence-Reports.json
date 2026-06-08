@@ -1,0 +1,2113 @@
+﻿{
+    "feature":  "Reports",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Reports"
+                    ],
+    "formCount":  15,
+    "anchorTotal":  295,
+    "byType":  {
+                   "calc":  2,
+                   "permission":  8,
+                   "action":  202,
+                   "message":  70,
+                   "toggle":  13
+               },
+    "forms":  [
+                  {
+                      "form":  "csPrint",
+                      "file":  "2.0.x\\Reports\\csPrint.cs",
+                      "anchorCount":  38,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  4241,
+                                          "kind":  "Warning",
+                                          "text":  "Error creating preview image."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  4454,
+                                          "kind":  "Warning",
+                                          "text":  "No stream to print."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  4486,
+                                          "kind":  "Warning",
+                                          "text":  "Can\u0027t find the default printer."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  4566,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  4953,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  4984,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5036,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5087,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5123,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5158,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5194,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5233,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5258,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5283,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "calc",
+                                          "line":  5306,
+                                          "expr":  "SELECT \u0027 Gross Sales\u0027, @Total, IIF(@Total=0, 0, ROUND((IIF(@LaborCost=0, @Total, @LaborCost)/@Total), 4)), \u00270.00%\u0027, 1"
+                                      },
+                                      {
+                                          "type":  "calc",
+                                          "line":  5308,
+                                          "expr":  "SELECT \u0027 Net Sales\u0027, @SubTotal, IIF(@SubTotal=0, 0, ROUND((IIF(@LaborCost=0, @SubTotal, @LaborCost)/@SubTotal), 4)), \u00270."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5318,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5358,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5398,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5453,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5508,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5609,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5631,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5652,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5673,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5693,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5711,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5779,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5859,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  5917,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  6034,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  6107,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  6166,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  6249,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  6358,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  6903,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  6951,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  7186,
+                                          "kind":  "Warning",
+                                          "text":  "Report cancelled by the user."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "csReport",
+                      "file":  "2.0.x\\Reports\\csReport.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  111,
+                                          "kind":  "Warning",
+                                          "text":  "Error creating {mName} Query."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  120,
+                                          "kind":  "Warning",
+                                          "text":  "Report canceled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  129,
+                                          "kind":  "Warning",
+                                          "text":  "Bad report criteria, please try again."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  148,
+                                          "kind":  "Warning",
+                                          "text":  "Report canceled by the user."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  772,
+                                          "kind":  "Warning",
+                                          "text":  "Check internet connection."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  945,
+                                          "kind":  "Warning",
+                                          "text":  "Error creating report."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  952,
+                                          "kind":  "Success",
+                                          "text":  "Report saved successfully."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1020,
+                                          "kind":  "Success",
+                                          "text":  "Emailed successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCustomers",
+                      "file":  "2.0.x\\Reports\\frmCustomers.cs",
+                      "anchorCount":  12,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  23,
+                                          "handler":  "btnByZipCodeClick",
+                                          "control":  "btnByZipCode",
+                                          "label":  "Sales By Zipcode"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  40,
+                                          "handler":  "btnClubClick",
+                                          "control":  "btnClub",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  46,
+                                          "handler":  "btnClubReNewClick",
+                                          "control":  "btnClubReNew",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  52,
+                                          "handler":  "btnClubsClick",
+                                          "control":  "btnClubs",
+                                          "label":  "Membership Clubs"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  58,
+                                          "handler":  "btnCustomersClick",
+                                          "control":  "btnCustomers",
+                                          "label":  "Customers"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  64,
+                                          "handler":  "btnLoyaltyClick",
+                                          "control":  "btnLoyalty",
+                                          "label":  "Loyalty Summary"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  75,
+                                          "handler":  "btnTopClick",
+                                          "control":  "btnTop",
+                                          "label":  "Top Customers"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  81,
+                                          "handler":  "btnVisitsClick",
+                                          "control":  "btnVisits",
+                                          "label":  "Customer Visits"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  87,
+                                          "handler":  "btnNoShowClick",
+                                          "control":  "btnNoShow",
+                                          "label":  "No Show"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  93,
+                                          "handler":  "btnSCustomerClick",
+                                          "control":  "btnSCustomer",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  108,
+                                          "handler":  "btnSCustomerAltClick",
+                                          "control":  "btnSCustomerAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  115,
+                                          "handler":  "btnAgeVerifyClick",
+                                          "control":  "btnAgeVerify",
+                                          "label":  "Age Verification"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDelivery",
+                      "file":  "2.0.x\\Reports\\frmDelivery.cs",
+                      "anchorCount":  20,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  130,
+                                          "handler":  "btnCriteriaNameClick",
+                                          "control":  "btnCriteriaName",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  144,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate name"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  164,
+                                          "kind":  "Warning",
+                                          "text":  "Select a report from the dropdown."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  167,
+                                          "handler":  "btnDeliveryServiceClick",
+                                          "control":  "btnDeliveryService",
+                                          "label":  "Delivery Service"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  174,
+                                          "handler":  "btnInHouseClick",
+                                          "control":  "btnInHouse",
+                                          "label":  "In House Delivery"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  180,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  187,
+                                          "handler":  "btnRunClick",
+                                          "control":  "btnRun",
+                                          "label":  "Run\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  254,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  278,
+                                          "kind":  "Warning",
+                                          "text":  "Name already exists,\\nplease choose another name."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  301,
+                                          "handler":  "btnSCustomerAltClick",
+                                          "control":  "btnSCustomerAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  310,
+                                          "handler":  "btnSCustomerClick",
+                                          "control":  "btnSCustomer",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  328,
+                                          "handler":  "cboSavedSelectedIndexChanged",
+                                          "control":  "cboSaved",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  340,
+                                          "kind":  "Warning",
+                                          "text":  "Error deserializing ReportFields."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  376,
+                                          "handler":  "btnReset_Click",
+                                          "control":  "btnReset_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  401,
+                                          "handler":  "btnServiceStatus_Click",
+                                          "control":  "btnServiceStatus_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  407,
+                                          "handler":  "btnStatusReportClick",
+                                          "control":  "btnStatusReport",
+                                          "label":  "Status Report"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  413,
+                                          "handler":  "cboDeliveryBySelectedIndexChanged",
+                                          "control":  "cboDeliveryBy",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  419,
+                                          "handler":  "cboDeliveryServiceSelectedIndexChanged",
+                                          "control":  "cboDeliveryService",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  425,
+                                          "handler":  "cboStaffSelectedIndexChanged",
+                                          "control":  "cboStaff",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  431,
+                                          "handler":  "cboStatusSelectedIndexChanged",
+                                          "control":  "cboStatus",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmEmail",
+                      "file":  "2.0.x\\Reports\\frmEmail.cs",
+                      "anchorCount":  12,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  119,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid email address."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  128,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  133,
+                                          "handler":  "btnCopyClick",
+                                          "control":  "btnCopy",
+                                          "label":  "Copy"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  139,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  143,
+                                          "kind":  "Warning",
+                                          "text":  "Name cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  152,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid time."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  164,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid day."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  177,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  190,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  247,
+                                          "kind":  "Success",
+                                          "text":  "Report scheduled successfully.\\n\\nReminder: If Exatouch is logged off or powered down, scheduled emails will not be sent."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  251,
+                                          "handler":  "btnSendClick",
+                                          "control":  "btnSend",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  259,
+                                          "handler":  "cboReportSelectedIndexChanged",
+                                          "control":  "cboReport",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmFileType",
+                      "file":  "2.0.x\\Reports\\frmFileType.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  40,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  45,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmItems",
+                      "file":  "2.0.x\\Reports\\frmItems.cs",
+                      "anchorCount":  44,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  195,
+                                          "handler":  "btnCategoryClick",
+                                          "control":  "btnCategory",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  201,
+                                          "handler":  "btnCriteriaNameClick",
+                                          "control":  "btnCriteriaName",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  216,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate name"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  236,
+                                          "kind":  "Warning",
+                                          "text":  "Select a report from the dropdown."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  240,
+                                          "handler":  "btnInventoryAuditClick",
+                                          "control":  "btnInventoryAudit",
+                                          "label":  "Inventory\\r\\nAudit"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  247,
+                                          "handler":  "btnInventoryValueClick",
+                                          "control":  "btnInventoryValue",
+                                          "label":  "Inventory\\r\\nValuation"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  254,
+                                          "handler":  "btnHistoricClick",
+                                          "control":  "btnHistoric",
+                                          "label":  "Historical\\r\\nPrice"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  261,
+                                          "handler":  "btnItemsClick",
+                                          "control":  "btnItems",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  268,
+                                          "handler":  "btnMovClick",
+                                          "control":  "btnMov",
+                                          "label":  "Inventory\\r\\nMovement"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  285,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  298,
+                                          "handler":  "btnRunClick",
+                                          "control":  "btnRun",
+                                          "label":  "Run\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  488,
+                                          "kind":  "Warning",
+                                          "text":  "Missing range value"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  498,
+                                          "kind":  "Warning",
+                                          "text":  "Missing range values"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  508,
+                                          "kind":  "Warning",
+                                          "text":  "Missing range value"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  521,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  545,
+                                          "kind":  "Warning",
+                                          "text":  "Name already exists,\\nplease choose another name."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  568,
+                                          "handler":  "btnSColorAltClick",
+                                          "control":  "btnSColorAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  580,
+                                          "handler":  "btnSColorClick",
+                                          "control":  "btnSColor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  600,
+                                          "handler":  "btnSCustFld1AltClick",
+                                          "control":  "btnSCustFld1Alt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  612,
+                                          "handler":  "btnSCustFld1Click",
+                                          "control":  "btnSCustFld1",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  631,
+                                          "handler":  "btnSCustFld2AltClick",
+                                          "control":  "btnSCustFld2Alt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  639,
+                                          "handler":  "btnSCustFld2Click",
+                                          "control":  "btnSCustFld2",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  657,
+                                          "handler":  "btnSCustFld3AltClick",
+                                          "control":  "btnSCustFld3Alt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  665,
+                                          "handler":  "btnMatrix_Click",
+                                          "control":  "btnMatrix_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  672,
+                                          "handler":  "btnHistoricalCostClick",
+                                          "control":  "btnHistoricalCost",
+                                          "label":  "Historical\\r\\nCost\\r\\n"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  679,
+                                          "handler":  "btnStockLocationClick",
+                                          "control":  "btnStockLocation",
+                                          "label":  "Stock Location"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  686,
+                                          "handler":  "btnSCustFld3Click",
+                                          "control":  "btnSCustFld3",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  704,
+                                          "handler":  "btnServCategoryClick",
+                                          "control":  "btnServCategory",
+                                          "label":  "Service\\r\\nCategories"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  710,
+                                          "handler":  "btnServicesClick",
+                                          "control":  "btnServices",
+                                          "label":  "Services"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  717,
+                                          "handler":  "btnSimpleClick",
+                                          "control":  "btnSimple",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  722,
+                                          "handler":  "btnSItemAltClick",
+                                          "control":  "btnSItemAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  734,
+                                          "handler":  "btnSItemClick",
+                                          "control":  "btnSItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  750,
+                                          "handler":  "btnSMfgAltClick",
+                                          "control":  "btnSMfgAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  762,
+                                          "handler":  "btnSMfgClick",
+                                          "control":  "btnSMfg",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  783,
+                                          "handler":  "btnSService_Click",
+                                          "control":  "btnSService_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  804,
+                                          "handler":  "btnSServiceAltClick",
+                                          "control":  "btnSServiceAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  819,
+                                          "handler":  "btnSSize_Click",
+                                          "control":  "btnSSize_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  840,
+                                          "handler":  "btnSSizeAltClick",
+                                          "control":  "btnSSizeAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  852,
+                                          "handler":  "btnSVendor_Click",
+                                          "control":  "btnSVendor_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  872,
+                                          "handler":  "btnSVendorAltClick",
+                                          "control":  "btnSVendorAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  883,
+                                          "handler":  "cboGroupSelectedIndexChanged",
+                                          "control":  "cboGroup",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  966,
+                                          "handler":  "cboRangeSelectedIndexChanged",
+                                          "control":  "cboRange",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  978,
+                                          "handler":  "cboSavedSelectedIndexChanged",
+                                          "control":  "cboSaved",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  990,
+                                          "kind":  "Warning",
+                                          "text":  "Error deserializing ReportFields."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Reports\\frmMenu.cs",
+                      "anchorCount":  16,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  14,
+                                          "control":  "btnCustomer",
+                                          "right":  "Report.Customers",
+                                          "label":  "Customer"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  15,
+                                          "control":  "btnEmailSchedule",
+                                          "right":  "Report.Email",
+                                          "label":  "Email"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  16,
+                                          "control":  "btnItems",
+                                          "right":  "Report.Items",
+                                          "label":  "Items"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  17,
+                                          "control":  "btnDelivery",
+                                          "right":  "Report.Delivery",
+                                          "label":  "Delivery"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  18,
+                                          "control":  "btnPurchasing",
+                                          "right":  "Report.Purchasing",
+                                          "label":  "Purchasing"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  19,
+                                          "control":  "btnSales",
+                                          "right":  "Report.Sales",
+                                          "label":  "Sales"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  20,
+                                          "control":  "btnSchedule",
+                                          "right":  "Report.Schedule",
+                                          "label":  "Appt`s"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  21,
+                                          "control":  "btnStaff",
+                                          "right":  "Report.Staff",
+                                          "label":  "Staff"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  24,
+                                          "handler":  "btnCustomerClick",
+                                          "control":  "btnCustomer",
+                                          "label":  "Customer"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  29,
+                                          "handler":  "btnEmailScheduleClick",
+                                          "control":  "btnEmailSchedule",
+                                          "label":  "Email"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  36,
+                                          "handler":  "btnItemClick",
+                                          "control":  "btnItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  41,
+                                          "handler":  "btnPurchasingClick",
+                                          "control":  "btnPurchasing",
+                                          "label":  "Purchasing"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  46,
+                                          "handler":  "btnSalesClick",
+                                          "control":  "btnSales",
+                                          "label":  "Sales"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  51,
+                                          "handler":  "btnScheduleClick",
+                                          "control":  "btnSchedule",
+                                          "label":  "Appt`s"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  56,
+                                          "handler":  "btnStaffClick",
+                                          "control":  "btnStaff",
+                                          "label":  "Staff"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  61,
+                                          "handler":  "btnDeliveryClick",
+                                          "control":  "btnDelivery",
+                                          "label":  "Delivery"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPrintLabel",
+                      "file":  "2.0.x\\Reports\\frmPrintLabel.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  39,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  53,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Print"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPurchasing",
+                      "file":  "2.0.x\\Reports\\frmPurchasing.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  21,
+                                          "handler":  "btnVendorsClick",
+                                          "control":  "btnVendors",
+                                          "label":  "Vendors"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  27,
+                                          "handler":  "btnSVendorClick",
+                                          "control":  "btnSVendor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  46,
+                                          "handler":  "btnSVendorAltClick",
+                                          "control":  "btnSVendorAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  53,
+                                          "handler":  "btnPOsClick",
+                                          "control":  "btnPOs",
+                                          "label":  "POs"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  59,
+                                          "handler":  "btnVendorItemsClick",
+                                          "control":  "btnVendorItems",
+                                          "label":  "Vendor Items"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  65,
+                                          "handler":  "btnReorderClick",
+                                          "control":  "btnReorder",
+                                          "label":  "Low Level Items"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  71,
+                                          "handler":  "btnSuggested_Click",
+                                          "control":  "btnSuggested_",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmReport",
+                      "file":  "2.0.x\\Reports\\frmReport.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  156,
+                                          "handler":  "btnBackClick",
+                                          "control":  "btnBack",
+                                          "label":  "Back"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  161,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  166,
+                                          "handler":  "btnExcelClick",
+                                          "control":  "btnExcel",
+                                          "label":  "Excel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  171,
+                                          "handler":  "btnFileClick",
+                                          "control":  "btnFile",
+                                          "label":  "File"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  176,
+                                          "handler":  "btnFirstClick",
+                                          "control":  "btnFirst",
+                                          "label":  "First"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  181,
+                                          "handler":  "btnLastClick",
+                                          "control":  "btnLast",
+                                          "label":  "Last"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  186,
+                                          "handler":  "btnNextClick",
+                                          "control":  "btnNext",
+                                          "label":  "Next"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  191,
+                                          "handler":  "btnPDFClick",
+                                          "control":  "btnPDF",
+                                          "label":  "PDF"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  196,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  201,
+                                          "handler":  "btnWordClick",
+                                          "control":  "btnWord",
+                                          "label":  "Word"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSales",
+                      "file":  "2.0.x\\Reports\\frmSales.cs",
+                      "anchorCount":  94,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  335,
+                                          "handler":  "btnAdvanceClick",
+                                          "control":  "btnAdvance",
+                                          "label":  "Advanced\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  345,
+                                          "handler":  "btnBizOverviewClick",
+                                          "control":  "btnBizOverview",
+                                          "label":  "Business\\r\\nOverview"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  352,
+                                          "handler":  "btnBottleClick",
+                                          "control":  "btnBottle",
+                                          "label":  "Bottle Return Details"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  361,
+                                          "handler":  "btnDepartmentalSalesClick",
+                                          "control":  "btnDepartmentalSales",
+                                          "label":  "Departmental Sales Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  367,
+                                          "handler":  "btnCardFeeClick",
+                                          "control":  "btnCardFee",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  373,
+                                          "handler":  "btnCategoryClick",
+                                          "control":  "btnCategory",
+                                          "label":  "Categories"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  381,
+                                          "handler":  "btnCatMarginClick",
+                                          "control":  "btnCatMargin",
+                                          "label":  "Category\\r\\nMargin"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  387,
+                                          "handler":  "btnColorClick",
+                                          "control":  "btnColor",
+                                          "label":  "Color"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  395,
+                                          "handler":  "btnCriteriaNameClick",
+                                          "control":  "btnCriteriaName",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  408,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate name."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  430,
+                                          "kind":  "Warning",
+                                          "text":  "Select a report from the dropdown."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  433,
+                                          "handler":  "btnCustomerBalClick",
+                                          "control":  "btnCustomerBal",
+                                          "label":  "Customers\\r\\nBalance"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  441,
+                                          "handler":  "btnCustomersClick",
+                                          "control":  "btnCustomers",
+                                          "label":  "Customers"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  449,
+                                          "handler":  "btnCustomersDetClick",
+                                          "control":  "btnCustomersDet",
+                                          "label":  "Customers\\r\\nDetailed"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  457,
+                                          "handler":  "btnDateClick",
+                                          "control":  "btnDate",
+                                          "label":  "Date"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  465,
+                                          "handler":  "btnDeletedClick",
+                                          "control":  "btnDeleted",
+                                          "label":  "Voided\\r\\nOpen Orders"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  471,
+                                          "handler":  "btnDeletedItemsClick",
+                                          "control":  "btnDeletedItems",
+                                          "label":  "Deleted\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  479,
+                                          "handler":  "btnDeliveryClick",
+                                          "control":  "btnDelivery",
+                                          "label":  "Delivery"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  485,
+                                          "handler":  "btnDiscountClick",
+                                          "control":  "btnDiscount",
+                                          "label":  "Tender Disc \u0026\\r\\nFees"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  491,
+                                          "handler":  "btnExchangeClick",
+                                          "control":  "btnExchange",
+                                          "label":  "Exchange Details"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  500,
+                                          "handler":  "btnField1Click",
+                                          "control":  "btnField1",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  508,
+                                          "handler":  "btnField2Click",
+                                          "control":  "btnField2",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  516,
+                                          "handler":  "btnField3Click",
+                                          "control":  "btnField3",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  524,
+                                          "handler":  "btnGiftCardsClick",
+                                          "control":  "btnGiftCards",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  530,
+                                          "handler":  "btnItemClick",
+                                          "control":  "btnItem",
+                                          "label":  "Item"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  538,
+                                          "handler":  "btnItemCodeClick",
+                                          "control":  "btnItemCode",
+                                          "label":  "Item\\r\\nCode"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  547,
+                                          "handler":  "btnItemMarginClick",
+                                          "control":  "btnItemMargin",
+                                          "label":  "Margin"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  555,
+                                          "handler":  "btnLocationStaffClick",
+                                          "control":  "btnLocationStaff",
+                                          "label":  "Location\\r\\nBy Staff"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  563,
+                                          "handler":  "btnMatrixSizeClick",
+                                          "control":  "btnMatrixSize",
+                                          "label":  "Matrix\\r"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  571,
+                                          "handler":  "btnMfgClick",
+                                          "control":  "btnMfg",
+                                          "label":  "Manufacturer"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  579,
+                                          "handler":  "btnMiscClick",
+                                          "control":  "btnMisc",
+                                          "label":  "Misc Item"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  587,
+                                          "handler":  "btnOpenClick",
+                                          "control":  "btnOpen",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  593,
+                                          "handler":  "btnPaymentClick",
+                                          "control":  "btnPayment",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  599,
+                                          "handler":  "btnPaymentTransClick",
+                                          "control":  "btnPaymentTrans",
+                                          "label":  "Payment\\r\\nTransactions"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  605,
+                                          "handler":  "btnPayOutClick",
+                                          "control":  "btnPayOut",
+                                          "label":  "Pay In/Out"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  611,
+                                          "handler":  "btnPromoClick",
+                                          "control":  "btnPromo",
+                                          "label":  "Promos\\r\\n\u0026\\r\\nDiscounts"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  617,
+                                          "handler":  "btnRefPaymentsClick",
+                                          "control":  "btnRefPayments",
+                                          "label":  "Refund/Void\\r\\nPayments"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  623,
+                                          "handler":  "btnRefundsClick",
+                                          "control":  "btnRefunds",
+                                          "label":  "Refunds/\\r\\nVoids"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  629,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  642,
+                                          "handler":  "btnRunClick",
+                                          "control":  "btnRun",
+                                          "label":  "Run\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  927,
+                                          "kind":  "Warning",
+                                          "text":  "Staff Items Report Coming Soon."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  951,
+                                          "kind":  "Warning",
+                                          "text":  "Staff Items Report Coming Soon."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1048,
+                                          "handler":  "btnOfflineClick",
+                                          "control":  "btnOffline",
+                                          "label":  "Offline\\r\\nSales"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1054,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1078,
+                                          "kind":  "Warning",
+                                          "text":  "Name already exists,\\nplease choose another name."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1101,
+                                          "handler":  "btnRatingClick",
+                                          "control":  "btnRating",
+                                          "label":  "Ratings"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1107,
+                                          "handler":  "btnSColorAltClick",
+                                          "control":  "btnSColorAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1119,
+                                          "handler":  "btnSColorClick",
+                                          "control":  "btnSColor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1140,
+                                          "handler":  "btnSCustFld1AltClick",
+                                          "control":  "btnSCustFld1Alt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1152,
+                                          "handler":  "btnSCustFld1Click",
+                                          "control":  "btnSCustFld1",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1174,
+                                          "handler":  "btnSCustFld2AltClick",
+                                          "control":  "btnSCustFld2Alt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1186,
+                                          "handler":  "btnSCustFld2Click",
+                                          "control":  "btnSCustFld2",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1208,
+                                          "handler":  "btnSCustFld3AltClick",
+                                          "control":  "btnSCustFld3Alt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1219,
+                                          "handler":  "btnSCustFld3Click",
+                                          "control":  "btnSCustFld3",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1241,
+                                          "handler":  "btnSCustomerAltClick",
+                                          "control":  "btnSCustomerAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1250,
+                                          "handler":  "btnSCustomerClick",
+                                          "control":  "btnSCustomer",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1268,
+                                          "handler":  "btnServiceClick",
+                                          "control":  "btnService",
+                                          "label":  "Service"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1276,
+                                          "handler":  "btnSettlementClick",
+                                          "control":  "btnSettlement",
+                                          "label":  "Settlement"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1282,
+                                          "handler":  "btnSFormAltClick",
+                                          "control":  "btnSFormAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1294,
+                                          "handler":  "btnSFormClick",
+                                          "control":  "btnSForm",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1316,
+                                          "handler":  "btnSimpleClick",
+                                          "control":  "btnSimple",
+                                          "label":  "Simple\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1325,
+                                          "handler":  "btnSItemAltClick",
+                                          "control":  "btnSItemAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1339,
+                                          "handler":  "btnSItemClick",
+                                          "control":  "btnSItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1355,
+                                          "handler":  "btnSizeClick",
+                                          "control":  "btnSize",
+                                          "label":  "Size"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1363,
+                                          "handler":  "btnSKUClick",
+                                          "control":  "btnSKU",
+                                          "label":  "SKU"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1371,
+                                          "handler":  "btnSMfgAltClick",
+                                          "control":  "btnSMfgAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1383,
+                                          "handler":  "btnSMfgClick",
+                                          "control":  "btnSMfg",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1404,
+                                          "handler":  "btnSnapshotClick",
+                                          "control":  "btnSnapshot",
+                                          "label":  "Snapshot"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1446,
+                                          "handler":  "btnSServiceAltClick",
+                                          "control":  "btnSServiceAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1463,
+                                          "handler":  "btnSServiceClick",
+                                          "control":  "btnSService",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1485,
+                                          "handler":  "btnSSizeAltClick",
+                                          "control":  "btnSSizeAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1497,
+                                          "handler":  "btnSSizeClick",
+                                          "control":  "btnSSize",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1518,
+                                          "handler":  "btnStaffItemsClick",
+                                          "control":  "btnStaffItems",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1525,
+                                          "handler":  "btnStaffLocationClick",
+                                          "control":  "btnStaffLocation",
+                                          "label":  "Staff\\r\\nBy Location"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1533,
+                                          "handler":  "btnStaffServicesClick",
+                                          "control":  "btnStaffServices",
+                                          "label":  "Staff\\r\\nServices"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1541,
+                                          "handler":  "btnStyleClick",
+                                          "control":  "btnStyle",
+                                          "label":  "Style"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1549,
+                                          "handler":  "btnSUserAltClick",
+                                          "control":  "btnSUserAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1564,
+                                          "handler":  "btnSUserClick",
+                                          "control":  "btnSUser",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1585,
+                                          "handler":  "btnSVendorAltClick",
+                                          "control":  "btnSVendorAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1599,
+                                          "handler":  "btnCustomerTransactions_Click",
+                                          "control":  "btnCustomerTransactions_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1605,
+                                          "handler":  "btnSVendorClick",
+                                          "control":  "btnSVendor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1626,
+                                          "handler":  "btnTaxClick",
+                                          "control":  "btnTax",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1632,
+                                          "handler":  "btnTopSellCatClick",
+                                          "control":  "btnTopSellCat",
+                                          "label":  "Top Selling\\r\\n By Category"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1641,
+                                          "handler":  "btnTopSellingClick",
+                                          "control":  "btnTopSelling",
+                                          "label":  "Top Selling\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1650,
+                                          "handler":  "btnTransactionsClick",
+                                          "control":  "btnTransactions",
+                                          "label":  "Sales\\r\\nTransactions"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1656,
+                                          "handler":  "btnUserClick",
+                                          "control":  "btnUser",
+                                          "label":  "User"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1664,
+                                          "handler":  "btnVendorClick",
+                                          "control":  "btnVendor",
+                                          "label":  "Vendor"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1672,
+                                          "handler":  "btnZeroMoveClick",
+                                          "control":  "btnZeroMove",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1681,
+                                          "handler":  "btnZeroMoveStockClick",
+                                          "control":  "btnZeroMoveStock",
+                                          "label":  "Zero Move\\r\\nIn Stock"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1690,
+                                          "handler":  "cboGroupSelectedIndexChanged",
+                                          "control":  "cboGroup",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1792,
+                                          "handler":  "cboSavedSelectedIndexChanged",
+                                          "control":  "cboSaved",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1805,
+                                          "kind":  "Warning",
+                                          "text":  "Error deserializing ReportFields."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1955,
+                                          "handler":  "cboSortSelectedIndexChanged",
+                                          "control":  "cboSort",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1962,
+                                          "handler":  "chkDeliveryCheckedChanged",
+                                          "control":  "chkDelivery",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSchedEmail",
+                      "file":  "2.0.x\\Reports\\frmSchedEmail.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  62,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  78,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  83,
+                                          "handler":  "btnResetAllClick",
+                                          "control":  "btnResetAll",
+                                          "label":  "Reset\\r\\nAll"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  93,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  113,
+                                          "handler":  "dgvReportsCellClick",
+                                          "control":  "dgvReports",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSchedule",
+                      "file":  "2.0.x\\Reports\\frmSchedule.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  25,
+                                          "handler":  "btnByClick",
+                                          "control":  "btnBy",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  42,
+                                          "handler":  "btnFindCustAltClick",
+                                          "control":  "btnFindCustAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  49,
+                                          "handler":  "btnFindCustClick",
+                                          "control":  "btnFindCust",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  66,
+                                          "handler":  "btnFindServAltClick",
+                                          "control":  "btnFindServAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  73,
+                                          "handler":  "btnFindServClick",
+                                          "control":  "btnFindServ",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  90,
+                                          "handler":  "btnFindStaffAltClick",
+                                          "control":  "btnFindStaffAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  97,
+                                          "handler":  "btnFindStaffClick",
+                                          "control":  "btnFindStaff",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmStaff",
+                      "file":  "2.0.x\\Reports\\frmStaff.cs",
+                      "anchorCount":  18,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  27,
+                                          "handler":  "btnActivityLogClick",
+                                          "control":  "btnActivityLog",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  34,
+                                          "handler":  "btnBankClick",
+                                          "control":  "btnBank",
+                                          "label":  "Bank Summary"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  41,
+                                          "handler":  "btnManagerShiftClick",
+                                          "control":  "btnManagerShift",
+                                          "label":  "Approving Manager\\r\\nShift"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  48,
+                                          "handler":  "btnPayClick",
+                                          "control":  "btnPay",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  55,
+                                          "handler":  "btnPayrollClick",
+                                          "control":  "btnPayroll",
+                                          "label":  "Payroll"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  62,
+                                          "handler":  "btnRatingClick",
+                                          "control":  "btnRating",
+                                          "label":  "Ratings"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  68,
+                                          "handler":  "btnScheduleClick",
+                                          "control":  "btnSchedule",
+                                          "label":  "Work Schedules"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  75,
+                                          "handler":  "btnServicesClick",
+                                          "control":  "btnServices",
+                                          "label":  "Staff Services"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  81,
+                                          "handler":  "btnShiftClick",
+                                          "control":  "btnShift",
+                                          "label":  "Detailed\\r\\nShift"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  95,
+                                          "handler":  "btnSnapClick",
+                                          "control":  "btnSnap",
+                                          "label":  "Staff Shift"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  98,
+                                          "kind":  "Warning",
+                                          "text":  "Please select a staff member."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  103,
+                                          "kind":  "Warning",
+                                          "text":  "Please select a begin and end date before continuing."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  119,
+                                          "handler":  "btnStaffClick",
+                                          "control":  "btnStaff",
+                                          "label":  "Staff"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  125,
+                                          "handler":  "btnSVendorAltClick",
+                                          "control":  "btnSVendorAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  132,
+                                          "handler":  "btnSVendorClick",
+                                          "control":  "btnSVendor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  148,
+                                          "handler":  "btnTimeClockClick",
+                                          "control":  "btnTimeClock",
+                                          "label":  "Time Clock"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  155,
+                                          "handler":  "btnTimeDetailsClick",
+                                          "control":  "btnTimeDetails",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  162,
+                                          "handler":  "btnWeekClick",
+                                          "control":  "btnWeek",
+                                          "label":  "Weekly Work\\r\\nSchedules"
+                                      }
+                                  ]
+                  }
+              ]
+}

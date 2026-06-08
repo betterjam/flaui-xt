@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0011
+    title: "csPrint: Warning - Report cancelled by the user. (5194)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: csPrint, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open csPrint and trigger the Warning condition", "Observe the dialog text"]
+    expected: ["Dialog text is: Report cancelled by the user."]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [csPrint control at line 5194]
+    source_files: [2.0.x/Reports/csPrint.cs]
+    evidence:
+      - { file: 2.0.x/Reports/csPrint.cs, line: 5194, text: "Report cancelled by the user." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

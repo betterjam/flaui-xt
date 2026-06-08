@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0041
+    title: "csReport: Warning - Bad report criteria, please try (129)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: csReport, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open csReport and trigger the Warning condition", "Observe the dialog text"]
+    expected: ["Dialog text is: Bad report criteria, please try again."]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [csReport control at line 129]
+    source_files: [2.0.x/Reports/csReport.cs]
+    evidence:
+      - { file: 2.0.x/Reports/csReport.cs, line: 129, text: "Bad report criteria, please try again." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

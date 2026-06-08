@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0300
+    title: "frmSales: build a Categories report, save it, run it (end-to-end)"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSales, entity: Report }
+    chains: [RPT-0177, RPT-0215, RPT-0211]
+    preconditions: [Logged in as admin]
+    steps: ["Open the Sales report builder, select Categories, save the criteria, then run the report"]
+    expected: ["Each chained step passes and the end-to-end flow completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Reports/frmSales.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

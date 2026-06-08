@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0301
+    title: "frmStaff: staff/date guards then run the Staff Shift snapshot (end-to-end)"
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmStaff, entity: Report }
+    chains: [RPT-0288, RPT-0289, RPT-0287]
+    preconditions: [Logged in as admin]
+    steps: ["Attempt a staff report with no staff selected, then no dates, then select both and run the Staff Shift snapshot"]
+    expected: ["Each chained step passes and the end-to-end flow completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Reports/frmStaff.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

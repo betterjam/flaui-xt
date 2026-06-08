@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  1179,
-    "grandUncovered":  1421,
-    "grandPct":  45.3,
+    "grandCovered":  1522,
+    "grandUncovered":  1078,
+    "grandPct":  58.5,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Settings",
-                      "layer":  "e2e",
-                      "total":  343,
-                      "covered":  0,
-                      "uncovered":  343,
-                      "pct":  0,
-                      "catalog":  false
-                  },
                   {
                       "area":  "Reports",
                       "layer":  "e2e",
@@ -96,6 +87,15 @@
                       "catalog":  false
                   },
                   {
+                      "area":  "Calendar",
+                      "layer":  "e2e",
+                      "total":  51,
+                      "covered":  51,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
                       "area":  "Transactions",
                       "layer":  "e2e",
                       "total":  738,
@@ -105,10 +105,10 @@
                       "catalog":  true
                   },
                   {
-                      "area":  "Calendar",
+                      "area":  "Settings",
                       "layer":  "e2e",
-                      "total":  51,
-                      "covered":  51,
+                      "total":  343,
+                      "covered":  343,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true

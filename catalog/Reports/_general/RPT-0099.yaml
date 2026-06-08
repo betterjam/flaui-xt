@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0099
+    title: "frmItems: Historical Price action (btnHistoricClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmItems, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmItems", "Invoke Historical Price (btnHistoricClick)"]
+    expected: ["btnHistoricClick runs and the action completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmItems btnHistoric at line 254]
+    source_files: [2.0.x/Reports/frmItems.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmItems.cs, line: 254, text: "btnHistoricClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

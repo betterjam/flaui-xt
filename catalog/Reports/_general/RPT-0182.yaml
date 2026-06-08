@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0182
+    title: "frmSales: Warning - Select a report from the dropdown. (430)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmSales, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmSales and trigger the Warning condition", "Observe the dialog text"]
+    expected: ["Dialog text is: Select a report from the dropdown."]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSales control at line 430]
+    source_files: [2.0.x/Reports/frmSales.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmSales.cs, line: 430, text: "Select a report from the dropdown." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

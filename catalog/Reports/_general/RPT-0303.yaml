@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0303
+    title: "frmEmail: schedule a report email successfully (end-to-end)"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmEmail, entity: Report }
+    chains: [RPT-0090, RPT-0088]
+    preconditions: [Logged in as admin]
+    steps: ["Open the Email scheduler, pick a report from the dropdown, fill valid scheduling fields, and save the schedule"]
+    expected: ["Each chained step passes and the end-to-end flow completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Reports/frmEmail.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

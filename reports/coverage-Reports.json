@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Reports",
+    "anchorsTotal":  295,
+    "covered":  295,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  303,
+    "atomic":  295,
+    "composite":  8,
+    "uncoveredAnchors":  [
+
+                         ]
+}

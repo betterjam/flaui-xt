@@ -1,0 +1,7 @@
+C:\Dev\Exatouch\qa-ai\scripts\coverage.ps1 : No catalog for 'Reports'.
+At C:\Dev\Exatouch\qa-ai\scripts\weekend-runner.ps1:168 char:9
++         & (Join-Path $scripts 'coverage.ps1') -Feature $area *> $null
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,coverage.ps1
+ 

@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0277
+    title: "frmSchedule: btnFindStaffClick action (btnFindStaffClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSchedule, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmSchedule", "Invoke btnFindStaff (btnFindStaffClick)"]
+    expected: ["btnFindStaffClick runs and the action completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSchedule btnFindStaff at line 97]
+    source_files: [2.0.x/Reports/frmSchedule.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmSchedule.cs, line: 97, text: "btnFindStaffClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

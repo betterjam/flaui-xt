@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0130
+    title: "frmItems: btnSSizeAltClick action (btnSSizeAltClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmItems, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmItems", "Invoke btnSSizeAlt (btnSSizeAltClick)"]
+    expected: ["btnSSizeAltClick runs and the action completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmItems btnSSizeAlt at line 840]
+    source_files: [2.0.x/Reports/frmItems.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmItems.cs, line: 840, text: "btnSSizeAltClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

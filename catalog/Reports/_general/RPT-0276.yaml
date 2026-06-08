@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0276
+    title: "frmSchedule: btnFindStaffAltClick action (btnFindStaffAltClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSchedule, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmSchedule", "Invoke btnFindStaffAlt (btnFindStaffAltClick)"]
+    expected: ["btnFindStaffAltClick runs and the action completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSchedule btnFindStaffAlt at line 90]
+    source_files: [2.0.x/Reports/frmSchedule.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmSchedule.cs, line: 90, text: "btnFindStaffAltClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

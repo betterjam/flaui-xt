@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0204
+    title: "frmSales: btnPayment action (btnPaymentClick)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSales, entity: Report }
+    preconditions: [Logged in as admin]
+    steps: ["Open frmSales", "Invoke btnPayment (btnPaymentClick)"]
+    expected: ["btnPaymentClick runs and the action completes"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSales btnPayment at line 593]
+    source_files: [2.0.x/Reports/frmSales.cs]
+    evidence:
+      - { file: 2.0.x/Reports/frmSales.cs, line: 593, text: "btnPaymentClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

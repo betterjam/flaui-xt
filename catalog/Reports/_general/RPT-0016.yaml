@@ -1,0 +1,28 @@
+﻿# Generated from catalog/features/Reports.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Reports
+test_case:
+  - id: RPT-0016
+    title: "csPrint: Calculation (5308)"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: calculation, ui_area: csPrint, entity: Report }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Exercise the code path that computes the Net Sales labor-cost ratio"
+      - "Assert the computed value matches the formula"
+    expected:
+      - "The result equals the SELECT ' Net Sales' ratio expression"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Reports/csPrint.cs]
+    evidence:
+      - { file: 2.0.x/Reports/csPrint.cs, line: 5308, text: "SELECT ' Net Sales', @SubTotal, IIF(@SubTotal=0, 0, ROUND((IIF(@LaborCost=0, @SubTotal, @LaborCost)/@SubTotal), 4)), '0." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

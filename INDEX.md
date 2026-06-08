@@ -4,23 +4,23 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**4.8% complete** - 126 / 2600 testable code anchors covered. Complete: **NO**.
+**58.5% complete** - 1522 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
+| Transactions | e2e | 738 | 738 | 100% | yes |
 | Calendar | e2e | 51 | 51 | 100% | yes |
+| Settings | e2e | 343 | 343 | 100% | yes |
+| Items | e2e | 346 | 346 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
-| Transactions | e2e | 31 | 738 | 4.2% | yes |
+| Reports | e2e | 0 | 249 | 0% | - |
+| Utility | e2e | 0 | 56 | 0% | - |
+| Customers | e2e | 0 | 95 | 0% | - |
+| Main | e2e | 0 | 104 | 0% | - |
+| Integrations | e2e | 0 | 235 | 0% | - |
 | Staff | e2e | 0 | 88 | 0% | - |
 | SysForms | e2e | 0 | 91 | 0% | - |
-| Items | e2e | 0 | 346 | 0% | - |
-| Customers | e2e | 0 | 95 | 0% | - |
-| Utility | e2e | 0 | 56 | 0% | - |
-| Integrations | e2e | 0 | 235 | 0% | - |
-| Reports | e2e | 0 | 249 | 0% | - |
-| Main | e2e | 0 | 104 | 0% | - |
 | Managers | unit | 0 | 93 | 0% | - |
-| Settings | e2e | 0 | 343 | 0% | - |
 
 ## Tests by area
 
@@ -80,6 +80,361 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `CAL-018` Double-click look-up reassigns the appointment to a different customer  _( P3 / frmCreate / Appointment / needs-recording )_
 - `CAL-017` Delete Line removes the selected service from the appointment  _( P2 / frmCreate / Appointment / needs-recording )_
 
+### Items  (350 tests: 346 atomic, 4 composite)
+
+**(uncategorized)** (350)
+
+- `ITEM-308` Selecting a grid row selects the matrix item  _( P2 / frmMatrixList / Item / needs-recording )_
+- `ITEM-309` Clicking a column header sorts the matrix list  _( P3 / frmMatrixList / Item / needs-recording )_
+- `ITEM-307` Advanced Matrix Search button opens advanced search  _( P2 / frmMatrixList / Item / needs-recording )_
+- `ITEM-305` Print List button prints the matrix list  _( P3 / frmMatrixList / Item / needs-recording )_
+- `ITEM-306` Report button opens the matrix report  _( P3 / frmMatrixList / Item / needs-recording )_
+- `ITEM-330` Close member items form via Close button  _( P3 / frmMember / Item / needs-recording )_
+- `ITEM-331` Select a member items grid row via cell content click  _( P3 / frmMember / Item / needs-recording )_
+- `ITEM-322` Pick a vendor filter on matrix list search  _( P3 / frmMatrixListSearch / Item / needs-recording )_
+- `ITEM-320` Close matrix list search form via Close button  _( P2 / frmMatrixListSearch / Item / needs-recording )_
+- `ITEM-321` Run matrix list search via Search button  _( P2 / frmMatrixListSearch / Item / needs-recording )_
+- `ITEM-304` Modify All List Matrix button opens bulk matrix modify  _( P2 / frmMatrixList / Item / needs-recording )_
+- `ITEM-293` Print labels via Print button  _( P2 / frmLabel / Label / needs-recording )_
+- `ITEM-294` Reset the label list via Reset List button  _( P3 / frmLabel / Label / needs-recording )_
+- `ITEM-292` Search for an item to add to the label list  _( P2 / frmLabel / Label / needs-recording )_
+- `ITEM-290` Printing a label for an invalid SKU shows invalid-UPC warning  _( P2 / frmLabel / Label / needs-recording )_
+- `ITEM-291` Delete a label line via Delete Line button  _( P2 / frmLabel / Label / needs-recording )_
+- `ITEM-302` Report button gated by Report.Items permission  _( P2 / frmMatrixList / Item / needs-recording )_
+- `ITEM-303` Clear Search Results button empties the matrix list  _( P3 / frmMatrixList / Item / needs-recording )_
+- `ITEM-301` Modify All List Matrix button gated by Items.Item permission  _( P2 / frmMatrixList / Item / needs-recording )_
+- `ITEM-295` Select a label grid row via cell click  _( P3 / frmLabel / Label / needs-recording )_
+- `ITEM-300` Matrix list access gated by Items.Item permission  _( P2 / frmMatrixList / Item / needs-recording )_
+- `ITEM-340` Categories button gated by Items.Categories access right  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-355` New Service button opens Service Details  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-356` Fresh Sheet button opens the Fresh Sheet  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-354` Service List button opens the service list  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-352` Promos button opens Promos  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-353` Reactivate button opens Reactivate Items  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-363` Adding an already inserted promo item via second path is blocked  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-364` Add Member button adds a member item to the promo  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-362` Adding a promo item via second path succeeds with confirmation message  _( P1 / frmPromo / Promotion / needs-recording )_
+- `ITEM-360` Adding a promo member item succeeds with confirmation message  _( P1 / frmPromo / Promotion / needs-recording )_
+- `ITEM-361` Adding an already inserted promo member item is blocked with notice  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-351` Matrix button opens Matrix Inventory  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-344` Reactivate button gated by Items.Item access right  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-345` Service List button gated by Items.Services access right  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-343` Promos button gated by Items.Promos access right  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-341` Count button gated by Items.Count.Access access right  _( P1 / frmMenu / Item / needs-recording )_
+- `ITEM-342` Labels button gated by Items.Labels access right  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-349` New Item button opens a new item form  _( P1 / frmMenu / Item / needs-recording )_
+- `ITEM-350` Labels button opens Labels  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-348` Item List button opens the item list  _( P1 / frmMenu / Item / needs-recording )_
+- `ITEM-346` Categories button opens Categories  _( P2 / frmMenu / Item / needs-recording )_
+- `ITEM-347` Count button opens Item Count  _( P1 / frmMenu / Item / needs-recording )_
+- `ITEM-279` Clicking a historic price grid cell selects the historic price entry  _( P3 / frmItemsMod / Item / needs-recording )_
+- `ITEM-250` Close the Modify All List Items form via Close button  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-251` Clear all pending modifications via Clear button  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-243` Pick a vendor filter on items list search  _( P3 / frmItemsListSearch / Item / needs-recording )_
+- `ITEM-241` Run items list search via Search button  _( P2 / frmItemsListSearch / Item / needs-recording )_
+- `ITEM-242` Reset items list search criteria via Reset button  _( P3 / frmItemsListSearch / Item / needs-recording )_
+- `ITEM-255` Delete operation shows success confirmation message  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-256` Commit all modifications via OK button  _( P1 / frmItemsMod / Item / needs-recording )_
+- `ITEM-254` Delete pending cost modification via Delete button  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-252` Update Cost on all selected items via Update Cost button  _( P1 / frmItemsMod / Item / needs-recording )_
+- `ITEM-253` Update Cost shows success confirmation message  _( P1 / frmItemsMod / Item / needs-recording )_
+- `ITEM-240` Close items list search form via Close button  _( P2 / frmItemsListSearch / Item / needs-recording )_
+- `ITEM-225` Get All Prices warns when M.L. Price URL is missing  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-226` Modify All List Items button opens bulk modify  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-224` Get All Prices button retrieves prices for listed items  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-222` Report button gated by Report.Items permission  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-223` Clear Search Results button empties the item list  _( P3 / frmItemsList / Item / needs-recording )_
+- `ITEM-230` Selecting a grid row selects the list item  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-231` Clicking a column header sorts the item list  _( P3 / frmItemsList / Item / needs-recording )_
+- `ITEM-229` Advanced Item Search button opens advanced search  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-227` Print List button prints the item list  _( P3 / frmItemsList / Item / needs-recording )_
+- `ITEM-228` Report button opens the items report  _( P3 / frmItemsList / Item / needs-recording )_
+- `ITEM-257` Applying with no changes warns Nothing changed  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-272` Toggling Price checkbox enables/disables price modification  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-273` Toggling RJ Reynolds Scan Data checkbox updates scan data setting  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-271` Toggling EBT checkbox updates EBT eligibility setting  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-269` Toggling Cost checkbox enables/disables cost modification  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-270` Toggling Dynamic Reordering checkbox updates reorder setting  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-277` Toggling Show On Register checkbox updates visibility setting  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-278` Clicking a historic cost grid cell selects the historic cost entry  _( P3 / frmItemsMod / Item / needs-recording )_
+- `ITEM-276` Enabling Altria Scan Data warns it only updates items with all three Pack Sizes  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-274` Enabling RJ Reynolds Scan Data warns it only updates items with all three Pack Sizes  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-275` Toggling Altria Scan Data checkbox updates scan data setting  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-268` Changing Tax Type warns it only updates items with all three Pack Sizes  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-261` Apply set/group modification via Set button  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-262` Apply update via Update button  _( P1 / frmItemsMod / Item / needs-recording )_
+- `ITEM-260` Request item update via Req Item button  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-258` Applying modifications shows success confirmation message  _( P1 / frmItemsMod / Item / needs-recording )_
+- `ITEM-259` Request item alternate update via Req Item Alt button  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-266` Changing Stock Type warns about Inventory list items restriction  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-267` Selecting a Tax Type option toggles related fields  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-265` Selecting a Stock Type option toggles related fields  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-263` Update button shows success confirmation message  _( P1 / frmItemsMod / Item / needs-recording )_
+- `ITEM-264` Selecting a Price/Qty prompt option toggles related fields  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-365` Cancel button closes the promo editor  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-450` Block access to Services list when Customers.Customer permission is denied  _( P1 / frmServicesList / Service / needs-recording )_
+- `ITEM-451` Gate Modify All List Services on Items.Services permission  _( P1 / frmServicesList / Service / needs-recording )_
+- `ITEM-446` Confirm success message after saving the service successfully  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-444` Save the service via the navigation Save action  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-445` Reject save when the service time is invalid  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-455` Print List produces the Services list printout  _( P3 / frmServicesList / Service / needs-recording )_
+- `ITEM-456` Report button generates the Services report  _( P3 / frmServicesList / Service / needs-recording )_
+- `ITEM-454` Successful bulk update of services shows confirmation message  _( P1 / frmServicesList / Service / needs-recording )_
+- `ITEM-452` Clear Search Results resets the Services list search  _( P2 / frmServicesList / Service / needs-recording )_
+- `ITEM-453` Modify All List Services opens the bulk modify dialog  _( P2 / frmServicesList / Service / needs-recording )_
+- `ITEM-443` Select a staff row by clicking a cell in the staff grid  _( P2 / frmServices / Service / needs-recording )_
+- `ITEM-436` Block service deletion when open appointments use the service  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-437` Confirm success message after a service is deleted  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-435` Delete a service via the Delete button  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-433` Confirm success message when a staff member is added to the service  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-434` Add a staff member to the service via the Add button  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-441` Toggle the Exclude From Promotions checkbox for the service  _( P2 / frmServices / Service / needs-recording )_
+- `ITEM-442` Toggle the Visible On Register checkbox for the service  _( P2 / frmServices / Service / needs-recording )_
+- `ITEM-440` Toggle the All Staff checkbox for the service  _( P2 / frmServices / Service / needs-recording )_
+- `ITEM-438` Remove a staff member from the service via the Delete Staff button  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-439` Duplicate a service via the Duplicate button  _( P2 / frmServices / Service / needs-recording )_
+- `ITEM-457` Advanced Services Search filters the Services list  _( P2 / frmServicesList / Service / needs-recording )_
+- `ITEM-489` Checking a service row marks it for bulk modification  _( P2 / frmServicesMod / Service / needs-recording )_
+- `ITEM-490` Toggling Visible On Register updates the service visibility flag  _( P2 / frmServicesMod / Service / needs-recording )_
+- `ITEM-488` Successful price update shows confirmation message  _( P1 / frmServicesMod / Service / needs-recording )_
+- `ITEM-486` Set button applies the chosen value to selected services  _( P2 / frmServicesMod / Service / needs-recording )_
+- `ITEM-487` Update Price applies the new price to selected services  _( P1 / frmServicesMod / Service / needs-recording )_
+- `ITEM-902` Build a fresh sheet then save it  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-903` Create a service then bulk-update its price via Modify All List Services  _( P2 / frmServicesMod / Service / needs-recording )_
+- `ITEM-901` Create an item, then bulk-update its price via Modify All List Items  _( P2 / frmItemsMod / Item / needs-recording )_
+- `ITEM-491` Selecting a historic grid row loads the service history entry  _( P3 / frmServicesMod / Service / needs-recording )_
+- `ITEM-900` Create a category then create an item assigned to it  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-485` Warn when applying bulk modify with no changes made  _( P2 / frmServicesMod / Service / needs-recording )_
+- `ITEM-471` Run services list search via Search button  _( P2 / frmServicesListSearch / Service / needs-recording )_
+- `ITEM-472` Reset services list search criteria via Reset button  _( P3 / frmServicesListSearch / Service / needs-recording )_
+- `ITEM-470` Close services list search form via Close button  _( P2 / frmServicesListSearch / Service / needs-recording )_
+- `ITEM-458` Selecting a Services list grid row loads the service  _( P2 / frmServicesList / Service / needs-recording )_
+- `ITEM-459` Clicking a Services grid column header sorts the list  _( P3 / frmServicesList / Service / needs-recording )_
+- `ITEM-483` Successful bulk modify save shows confirmation message  _( P1 / frmServicesMod / Service / needs-recording )_
+- `ITEM-484` OK applies bulk service modifications and closes the dialog  _( P1 / frmServicesMod / Service / needs-recording )_
+- `ITEM-482` Delete removes the selected services in bulk modify  _( P1 / frmServicesMod / Service / needs-recording )_
+- `ITEM-480` Clear button resets pending bulk service modifications  _( P2 / frmServicesMod / Service / needs-recording )_
+- `ITEM-481` Close button dismisses the bulk modify services dialog  _( P2 / frmServicesMod / Service / needs-recording )_
+- `ITEM-432` Warn when adding a staff member that is already added to the service  _( P2 / frmServices / Service / needs-recording )_
+- `ITEM-380` Member item validation blocks save with an item warning  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-381` Saving a valid promo confirms saved successfully  _( P1 / frmPromo / Promotion / needs-recording )_
+- `ITEM-379` Mix and match validation blocks save with a mix and match warning  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-377` Saving with invalid mix and match dates warns to check those dates  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-378` Saving a mix and match row with no day of week selected warns  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-385` Coupon toggle changes promo coupon behavior  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-386` Active toggle enables or disables the promo discount  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-384` Apply to All toggle changes promo scope behavior  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-382` List button opens the Promo Report  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-383` Changing discount type updates the promo form fields  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-376` Saving a happy hour row with no day of week selected warns  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-369` Item List button opens the item list to pick members  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-370` New button starts a new promo  _( P1 / frmPromo / Promotion / needs-recording )_
+- `ITEM-368` Delete Member button removes the selected member item  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-366` Coupon button opens the coupon editor  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-367` Delete All Members button removes all member items  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-374` Discount percent over 100 is rejected on save  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-375` Saving with invalid happy hour dates warns to check happy hour dates  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-373` Saving a promo row with invalid dates warns to check dates  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-371` OK button saves the promo  _( P1 / frmPromo / Promotion / needs-recording )_
+- `ITEM-372` Saving with no changes warns nothing changed  _( P2 / frmPromo / Promotion / needs-recording )_
+- `ITEM-387` Show Deleted toggle changes the displayed discount rows  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-409` Selecting a grid row selects the item for insert  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-420` New Service button requires Items.Services permission  _( P1 / frmSearchServices / Service / needs-recording )_
+- `ITEM-408` Need To Order toggle filters the item list  _( P3 / frmSearch / Item / needs-recording )_
+- `ITEM-406` OK button inserts the selected item  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-407` Vendor Items button opens vendor item lookup  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-430` Restrict the Reclassify action by the Settings Preference permission  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-431` Restrict the Delete action by the Items Services permission  _( P1 / frmServices / Service / needs-recording )_
+- `ITEM-423` Select a services grid row via cell click  _( P3 / frmSearchServices / Service / needs-recording )_
+- `ITEM-421` Close search services form via Close button  _( P2 / frmSearchServices / Service / needs-recording )_
+- `ITEM-422` Create a new service via New Service button  _( P2 / frmSearchServices / Service / needs-recording )_
+- `ITEM-405` Add New Item button opens the new item editor  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-391` Order toggle changes order-level promo behavior  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-392` Single toggle changes single-use promo behavior  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-390` Manufacturer toggle changes manufacturer coupon behavior  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-388` Group Active toggle filters active promo groups  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-389` Group Inactive toggle filters inactive promo groups  _( P3 / frmPromo / Promotion / needs-recording )_
+- `ITEM-403` Successful item insert shows Added successfully confirmation  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-404` Close button dismisses the item search form  _( P3 / frmSearch / Item / needs-recording )_
+- `ITEM-402` Insert All button inserts all listed items  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-400` Add New Item button gated by Items.Item permission (line 72)  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-401` Add New Item button gated by Items.Item permission (line 111)  _( P2 / frmSearch / Item / needs-recording )_
+- `ITEM-097` Add Items opens the item finder and adds a selected item to the grid  _( P1 / frmInventory / Item / needs-recording )_
+- `ITEM-098` Select None clears all grid row selections  _( P3 / frmInventory / Item / needs-recording )_
+- `ITEM-096` Delete Line removes the selected grid row  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-094` Select All marks every grid row  _( P3 / frmInventory / Item / needs-recording )_
+- `ITEM-095` Close dismisses the inventory count/reconcile form  _( P3 / frmInventory / Item / needs-recording )_
+- `ITEM-102` Reconcile with no rows selected warns "No items selected.  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-103` Reconcile with an empty required field warns "Empty field.  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-101` Reconcile commits the counted inventory adjustments  _( P1 / frmInventory / Item / needs-recording )_
+- `ITEM-099` Save persists the current inventory count  _( P1 / frmInventory / Item / needs-recording )_
+- `ITEM-100` Saving a valid count confirms "Saved successfully.  _( P1 / frmInventory / Item / needs-recording )_
+- `ITEM-093` Sold-by type guard blocks unsupported item type from the count module  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-074` Confirming item group with third required field empty shows empty-field warning  _( P2 / frmGroupManager / ItemGroup / needs-recording )_
+- `ITEM-075` Confirming item group with minimum greater than maximum shows range warning  _( P2 / frmGroupManager / ItemGroup / needs-recording )_
+- `ITEM-073` Confirming item group with second required field empty shows empty-field warning  _( P2 / frmGroupManager / ItemGroup / needs-recording )_
+- `ITEM-071` Confirm item group via OK button  _( P2 / frmGroupManager / ItemGroup / needs-recording )_
+- `ITEM-072` Confirming item group with first required field empty shows empty-field warning  _( P2 / frmGroupManager / ItemGroup / needs-recording )_
+- `ITEM-091` Adding an item not found warns "Not found.  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-092` Sold-by unit-of-measure item is blocked from the count module  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-090` Reset button is gated by Items.Count.Reconcile permission  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-080` Close item history form via Close button  _( P3 / frmHistory / Item / needs-recording )_
+- `ITEM-081` Open selected history record via Open button  _( P3 / frmHistory / Item / needs-recording )_
+- `ITEM-104` Reconcile validation re-checks empty selection warns "No items selected.  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-121` Find Group lookup for group assignment  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-122` Find Link (alternate) lookup for linked item  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-120` Find Group (alternate) lookup for group assignment  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-118` Delete removes the selected modifier  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-119` New CRV button creates a container redemption value record  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-126` Go To member with no row selected warns the user  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-127` Go To Modifier navigates to the modifier item  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-125` Go To member navigates to the selected member item  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-123` Find Link lookup for linked item  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-124` Go To Group navigates to the group item  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-117` Delete All removes all modifiers  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-110` Inventory Adjustment tab gated by Items.Count.ManualEntry permission  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-111` Add Category button opens category assignment  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-107` Clicking a grid cell selects the item row  _( P3 / frmInventory / Item / needs-recording )_
+- `ITEM-105` Successful reconcile confirms "Reconciled successfully.  _( P1 / frmInventory / Item / needs-recording )_
+- `ITEM-106` Reset clears the current inventory count session  _( P2 / frmInventory / Item / needs-recording )_
+- `ITEM-115` Delete button removes the current item  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-116` Successful delete confirmation message  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-114` Clone button duplicates the current item  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-112` Add Member button adds a matrix member  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-113` Adding an already-inserted item warns the user  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-070` Close group manager form via Close button  _( P2 / frmGroupManager / ItemGroup / needs-recording )_
+- `ITEM-015` Confirm success message after saving categories successfully  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-016` Assign selection via the Set button  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-014` Reject save when a subcategory selection error occurs  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-012` Reject save when a category selection error occurs  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-013` Reject save when a subcategory Description is blank  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-020` Select a category row by clicking a cell in the grid  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-021` Reject blank Description in the secondary category validation path  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-019` Toggle the Visible On Register checkbox for a category  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-017` Move a category up in the ordering via the Up button  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-018` Toggle the category active/checked checkbox  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-011` Reject save when a category Description is blank  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-004` Reject duplicate category name on row edit  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-005` Reject duplicate subcategory name on row edit  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-003` Delete a category via the Delete Category button  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-001` Reject new category save when Description is blank  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-002` Cancel button closes the Category editor without saving  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-009` Reject save when a duplicate category name is detected  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-010` Reject save when a duplicate subcategory name is detected  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-008` Save category changes via the OK button  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-006` Move a category down in the ordering via the Down button  _( P2 / frmCategory / Category / needs-recording )_
+- `ITEM-007` Create a new category via the New Category button  _( P1 / frmCategory / Category / needs-recording )_
+- `ITEM-030` Close coupon form via Close button  _( P2 / frmCoupon / Coupon / needs-recording )_
+- `ITEM-062` Close fresh sheet form via Close button  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-063` Delete all entries from fresh sheet via Delete All button  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-061` Add services to fresh sheet via Add Services button  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-056` Toggle Tax Included checkbox on CRV form  _( P2 / frmDRV / CRV / needs-recording )_
+- `ITEM-060` Add items to fresh sheet via Add Items button  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-067` Saving the fresh sheet shows saved-successfully confirmation  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-068` Move a fresh sheet entry up via Up button  _( P3 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-066` Save fresh sheet via Save button  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-064` Delete a selected entry from fresh sheet via Delete button  _( P2 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-065` Move a fresh sheet entry down via Down button  _( P3 / frmFreshSheet / FreshSheet / needs-recording )_
+- `ITEM-055` Saving a CRV record shows saved-successfully confirmation  _( P2 / frmDRV / CRV / needs-recording )_
+- `ITEM-042` Confirm date range via OK button  _( P2 / frmDateRange / Item / needs-recording )_
+- `ITEM-043` Confirming date range without an item shows please-select warning  _( P2 / frmDateRange / Item / needs-recording )_
+- `ITEM-041` Find item from date range form  _( P2 / frmDateRange / Item / needs-recording )_
+- `ITEM-031` Confirm coupon form via OK button  _( P2 / frmCoupon / Coupon / needs-recording )_
+- `ITEM-040` Cancel date range form via Cancel button  _( P2 / frmDateRange / Item / needs-recording )_
+- `ITEM-053` Deleting a CRV record shows deleted-successfully confirmation  _( P2 / frmDRV / CRV / needs-recording )_
+- `ITEM-054` Save CRV record via Save button  _( P2 / frmDRV / CRV / needs-recording )_
+- `ITEM-052` Delete CRV record via Delete button  _( P2 / frmDRV / CRV / needs-recording )_
+- `ITEM-050` Toggle EBT checkbox on CRV form  _( P2 / frmDRV / CRV / needs-recording )_
+- `ITEM-051` Close CRV form via Close button  _( P2 / frmDRV / CRV / needs-recording )_
+- `ITEM-128` Manage Group opens the group manager  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-187` Save blocked when a required attribute is missing (guard B)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-188` Save warns when price is below the defined minimum margin  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-186` Save blocked when a required attribute is missing (guard A)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-184` Save blocked when pack unit size is blank  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-185` Save blocked when pack unit amount is blank or zero  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-192` Save blocked when pack unit amount is 0.00  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-193` Save blocked when liquid pack unit is invalid (guard A)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-191` Save blocked when pack size is blank  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-189` Save blocked when future price has no effective date  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-190` Group item cannot be a member  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-183` Save blocked when pack unit type is blank  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-176` Save blocked with invalid primary SKU length/check digit  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-177` Save blocked when SKU is blank  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-175` Save blocked when price is blank (second price guard)  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-173` Save blocked with invalid group (price validation context)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-174` Save blocked when price is blank (first price guard)  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-181` Duplicate alternate SKUs not permitted (guard B)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-182` Duplicate stock location not permitted  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-180` Duplicate alternate SKUs not permitted (guard A)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-178` Alternate SKU cannot equal the primary SKU  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-179` Save blocked with invalid alternate SKU length/check digit  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-194` Save blocked when members have no size defined  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-209` Reorder quantity must be at least the minimum order quantity  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-210` Required modifier row validation warning  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-208` Inventory adjustment requires a reason  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-206` Save blocked when liquid pack unit is invalid (guard B)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-207` Inventory adjustment blocked on insufficient quantity  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-220` Item list access gated by Items.Item permission  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-221` Modify All List Items button gated by Items.Item permission  _( P2 / frmItemsList / Item / needs-recording )_
+- `ITEM-213` Item saved successfully  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-211` Required modifier minimum quantity validation  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-212` Required modifier maximum quantity validation  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-205` Save blocked on duplicate color, size and form  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-198` Save blocked when members have a duplicate SKU  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-199` Save blocked when members have a duplicate SKU in alternate SKU  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-197` Save blocked when a member UPC is not correct  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-195` Save blocked when members have no color defined  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-196` Save blocked when members have no style defined  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-203` Save blocked with invalid color  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-204` Save blocked with invalid style  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-202` Save blocked with invalid size  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-200` Save blocked on duplicate member size/color/style (save-time guard)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-201` Save blocked with invalid group (matrix save guard)  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-172` Save blocked when PLU code is not unique  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-143` Exclude From Promotions toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-144` Allow Sale Qty Less Than One toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-142` Dynamic Reordering toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-140` Changing price quantity prompt updates behavior  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-141` Discontinued toggle marks item discontinued  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-148` Modifier Price Rollup toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-149` Sold By Weight toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-147` Modifier toggle marks item as a modifier  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-145` Markup By toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-146` Markup toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-139` Changing pack unit updates dependent fields  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-132` Inventory Movement report opens for the item  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-133` Required modifier (alternate) lookup  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-131` Manual Refresh reloads the item view  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-129` New Member creates a fresh matrix member  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-130` New Order creates a purchase order for the item  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-137` Set button applies the selected value  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-138` SKU1 button assigns/generates the primary SKU  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-136` Search button opens item search  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-134` Required modifier lookup  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-135` Item cannot be its own required modifier  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-150` Show Inactive Members toggle  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-165` Adding a duplicate vendor warns  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-166` Cannot convert to Non-Inventory while quantity is not zero  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-164` Clicking a vendor cell selects the row  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-162` Invalid parent and/or child item warns  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-163` Clicking a stock location cell selects the row  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-170` Save blocked when no department assigned  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-171` Save blocked when sold by weight is on without valid pack unit  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-169` Save blocked when cost is required  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-167` Cannot convert item while on an open purchase order or receiver  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-168` Save via navigation control persists the item  _( P1 / frmItems / Item / needs-recording )_
+- `ITEM-161` Insufficient quantity for parent movement warns  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-154` Clicking a member cell selects the member row  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-155` Members with duplicate size/color/style warns on member grid interaction  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-153` Clicking an alternate SKU cell selects/edits the row  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-151` Tax Included toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-152` Show On Register toggle  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-159` Double-clicking a parent cell opens that item  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-160` Parent item marked as not an inventory item warns  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-158` Cannot define the same item multiple times in parent grid  _( P2 / frmItems / Item / needs-recording )_
+- `ITEM-156` Clicking a modifier cell selects the modifier row  _( P3 / frmItems / Item / needs-recording )_
+- `ITEM-157` Clicking a parent (required item) cell selects the row  _( P3 / frmItems / Item / needs-recording )_
+
 ### Purchasing  (47 tests: 44 atomic, 3 composite)
 
 **(uncategorized)** (47)
@@ -132,66 +487,1413 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `PUR-017` Completing a PO marks it received successfully  _( P1 / frmPO / PurchaseOrder / needs-recording )_
 - `PUR-016` Auto-generate PO warns when nothing is below reorder level  _( P2 / frmPO / PurchaseOrder / needs-recording )_
 
-### Transactions  (57 tests: 55 atomic, 2 composite)
+### Reports  (303 tests: 295 atomic, 8 composite)
 
-**(uncategorized)** (57)
+**(uncategorized)** (303)
 
-- `TXN-0039` frmBank: Warning - Nothing changed. (224)  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0038` frmBank: Save action (btnOKClick)  _( P1 / frmBank / Order / needs-recording )_
-- `TXN-0037` frmBank: Reset action (btnResetClick)  _( P3 / frmBank / Order / needs-recording )_
-- `TXN-0040` frmBank: Warning - Selection error.  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0043` frmBank: Success - Saved successfully. (306)  _( P1 / frmBank / Order / needs-recording )_
-- `TXN-0042` frmBank: Warning - Nothing changed. (244)  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0041` frmBank: Warning - Please add a note before saving.  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0032` frmBank: Close action (btnCancelClick)  _( P3 / frmBank / Order / needs-recording )_
-- `TXN-0031` frmRefund: Detail grid cell click (dgvDetailsCellClick)  _( P3 / frmRefund / Order / needs-recording )_
-- `TXN-0030` frmRefund: toggle chkReCreate (Recreate Order) changes behavior  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0033` frmBank: Duplicate Bank action (btnDuplicateClick)  _( P3 / frmBank / Order / needs-recording )_
-- `TXN-0036` frmBank: Print action (btnPrintClick)  _( P3 / frmBank / Order / needs-recording )_
-- `TXN-0035` frmBank: Open Drawer action (btnOpenDrawerClick)  _( P3 / frmBank / Order / needs-recording )_
-- `TXN-0034` frmBank: Success - Saved successfully. (187)  _( P1 / frmBank / Order / needs-recording )_
-- `TXN-0053` frmBankDuplicate: OK action (btnOkClick)  _( P3 / frmBankDuplicate / Order / needs-recording )_
-- `TXN-0052` frmBankDuplicate: Cancel action (btnCancelClick)  _( P3 / frmBankDuplicate / Order / needs-recording )_
-- `TXN-0051` frmBankClose: Warning - Improper amount for currency  _( P2 / frmBankClose / Order / needs-recording )_
-- `TXN-0054` frmBankSwap: Close action (btnCancelClick)  _( P3 / frmBankSwap / Order / needs-recording )_
+- `RPT-0202` frmSales: Misc Item action (btnMiscClick)  _( P3 / needs-recording )_
+- `RPT-0203` frmSales: btnOpen action (btnOpenClick)  _( P3 / needs-recording )_
+- `RPT-0200` frmSales: Matrix action (btnMatrixSizeClick)  _( P3 / needs-recording )_
+- `RPT-0201` frmSales: Manufacturer action (btnMfgClick)  _( P3 / needs-recording )_
+- `RPT-0204` frmSales: btnPayment action (btnPaymentClick)  _( P3 / needs-recording )_
+- `RPT-0207` frmSales: Promos & Discounts action (btnPromoClick)  _( P3 / needs-recording )_
+- `RPT-0208` frmSales: Refund/Void Payments action (btnRefPaymentsClick)  _( P3 / needs-recording )_
+- `RPT-0205` frmSales: Payment Transactions action (btnPaymentTransClick)  _( P3 / needs-recording )_
+- `RPT-0206` frmSales: Pay In/Out action (btnPayOutClick)  _( P3 / needs-recording )_
+- `RPT-0193` frmSales: btnField2 action (btnField2Click)  _( P3 / needs-recording )_
+- `RPT-0194` frmSales: btnField3 action (btnField3Click)  _( P3 / needs-recording )_
+- `RPT-0191` frmSales: Exchange Details action (btnExchangeClick)  _( P3 / needs-recording )_
+- `RPT-0192` frmSales: btnField1 action (btnField1Click)  _( P3 / needs-recording )_
+- `RPT-0195` frmSales: btnGiftCards action (btnGiftCardsClick)  _( P3 / needs-recording )_
+- `RPT-0198` frmSales: Margin action (btnItemMarginClick)  _( P3 / needs-recording )_
+- `RPT-0199` frmSales: Location By Staff action (btnLocationStaffClick)  _( P3 / needs-recording )_
+- `RPT-0196` frmSales: Item action (btnItemClick)  _( P3 / needs-recording )_
+- `RPT-0197` frmSales: Item Code action (btnItemCodeClick)  _( P3 / needs-recording )_
+- `RPT-0209` frmSales: Refunds/ Voids action (btnRefundsClick)  _( P3 / needs-recording )_
+- `RPT-0221` frmSales: btnSCustFld1Click action (btnSCustFld1Click)  _( P3 / needs-recording )_
+- `RPT-0222` frmSales: btnSCustFld2AltClick action (btnSCustFld2AltClick)  _( P3 / needs-recording )_
+- `RPT-0219` frmSales: btnSColorClick action (btnSColorClick)  _( P3 / needs-recording )_
+- `RPT-0220` frmSales: btnSCustFld1AltClick action (btnSCustFld1AltClick)  _( P3 / needs-recording )_
+- `RPT-0223` frmSales: btnSCustFld2Click action (btnSCustFld2Click)  _( P3 / needs-recording )_
+- `RPT-0226` frmSales: btnSCustomerAltClick action (btnSCustomerAltClick)  _( P3 / needs-recording )_
+- `RPT-0227` frmSales: btnSCustomerClick action (btnSCustomerClick)  _( P3 / needs-recording )_
+- `RPT-0224` frmSales: btnSCustFld3AltClick action (btnSCustFld3AltClick)  _( P3 / needs-recording )_
+- `RPT-0225` frmSales: btnSCustFld3Click action (btnSCustFld3Click)  _( P3 / needs-recording )_
+- `RPT-0212` frmSales: Warning - Staff Items Report Coming Soon. (927)  _( P2 / needs-recording )_
+- `RPT-0213` frmSales: Warning - Staff Items Report Coming Soon. (951)  _( P2 / needs-recording )_
+- `RPT-0210` frmSales: Reset action (btnResetClick)  _( P3 / needs-recording )_
+- `RPT-0211` frmSales: Run Report action (btnRunClick)  _( P3 / needs-recording )_
+- `RPT-0214` frmSales: Offline Sales action (btnOfflineClick)  _( P3 / needs-recording )_
+- `RPT-0217` frmSales: Ratings action (btnRatingClick)  _( P3 / needs-recording )_
+- `RPT-0218` frmSales: btnSColorAlt action (btnSColorAltClick)  _( P3 / needs-recording )_
+- `RPT-0215` frmSales: Save Report action (btnOKClick)  _( P3 / needs-recording )_
+- `RPT-0216` frmSales: Warning - Name already exists,\\nplease choose ano (1078)  _( P2 / needs-recording )_
+- `RPT-0190` frmSales: Tender Disc & Fees action (btnDiscountClick)  _( P3 / needs-recording )_
+- `RPT-0164` frmReport: Excel action (btnExcelClick)  _( P3 / needs-recording )_
+- `RPT-0165` frmReport: File action (btnFileClick)  _( P3 / needs-recording )_
+- `RPT-0162` frmReport: Back action (btnBackClick)  _( P3 / needs-recording )_
+- `RPT-0163` frmReport: Close action (btnCancelClick)  _( P3 / needs-recording )_
+- `RPT-0166` frmReport: First action (btnFirstClick)  _( P3 / needs-recording )_
+- `RPT-0169` frmReport: PDF action (btnPDFClick)  _( P3 / needs-recording )_
+- `RPT-0170` frmReport: Print action (btnPrintClick)  _( P3 / needs-recording )_
+- `RPT-0167` frmReport: Last action (btnLastClick)  _( P3 / needs-recording )_
+- `RPT-0168` frmReport: Next action (btnNextClick)  _( P3 / needs-recording )_
+- `RPT-0155` frmPurchasing: Vendors action (btnVendorsClick)  _( P3 / needs-recording )_
+- `RPT-0156` frmPurchasing: btnSVendorClick action (btnSVendorClick)  _( P3 / needs-recording )_
+- `RPT-0153` frmPrintLabel: Cancel action (btnCancelClick)  _( P3 / needs-recording )_
+- `RPT-0154` frmPrintLabel: Print action (btnOKClick)  _( P3 / needs-recording )_
+- `RPT-0157` frmPurchasing: btnSVendorAltClick action (btnSVendorAltClick)  _( P3 / needs-recording )_
+- `RPT-0160` frmPurchasing: Low Level Items action (btnReorderClick)  _( P3 / needs-recording )_
+- `RPT-0161` frmPurchasing: btnSuggested_Click action (btnSuggested_Click)  _( P3 / needs-recording )_
+- `RPT-0158` frmPurchasing: POs action (btnPOsClick)  _( P3 / needs-recording )_
+- `RPT-0159` frmPurchasing: Vendor Items action (btnVendorItemsClick)  _( P3 / needs-recording )_
+- `RPT-0171` frmReport: Word action (btnWordClick)  _( P3 / needs-recording )_
+- `RPT-0183` frmSales: Customers Balance action (btnCustomerBalClick)  _( P3 / needs-recording )_
+- `RPT-0184` frmSales: Customers action (btnCustomersClick)  _( P3 / needs-recording )_
+- `RPT-0181` frmSales: Warning - Duplicate name. (408)  _( P2 / needs-recording )_
+- `RPT-0182` frmSales: Warning - Select a report from the dropdown. (430)  _( P2 / needs-recording )_
+- `RPT-0185` frmSales: Customers Detailed action (btnCustomersDetClick)  _( P3 / needs-recording )_
+- `RPT-0188` frmSales: Deleted Items action (btnDeletedItemsClick)  _( P3 / needs-recording )_
+- `RPT-0189` frmSales: Delivery action (btnDeliveryClick)  _( P3 / needs-recording )_
+- `RPT-0186` frmSales: Date action (btnDateClick)  _( P3 / needs-recording )_
+- `RPT-0187` frmSales: Voided Open Orders action (btnDeletedClick)  _( P3 / needs-recording )_
+- `RPT-0174` frmSales: Bottle Return Details action (btnBottleClick)  _( P3 / needs-recording )_
+- `RPT-0175` frmSales: Departmental Sales Report action (btnDepartmentalSalesClick)  _( P3 / needs-recording )_
+- `RPT-0172` frmSales: Advanced Report action (btnAdvanceClick)  _( P3 / needs-recording )_
+- `RPT-0173` frmSales: Business Overview action (btnBizOverviewClick)  _( P3 / needs-recording )_
+- `RPT-0176` frmSales: btnCardFee action (btnCardFeeClick)  _( P3 / needs-recording )_
+- `RPT-0179` frmSales: Color action (btnColorClick)  _( P3 / needs-recording )_
+- `RPT-0180` frmSales: btnCriteriaName action (btnCriteriaNameClick)  _( P3 / needs-recording )_
+- `RPT-0177` frmSales: Categories action (btnCategoryClick)  _( P3 / needs-recording )_
+- `RPT-0178` frmSales: Category Margin action (btnCatMarginClick)  _( P3 / needs-recording )_
+- `RPT-0228` frmSales: Service action (btnServiceClick)  _( P3 / needs-recording )_
+- `RPT-0278` frmStaff: btnActivityLogClick action (btnActivityLogClick)  _( P3 / needs-recording )_
+- `RPT-0279` frmStaff: Bank Summary action (btnBankClick)  _( P3 / needs-recording )_
+- `RPT-0276` frmSchedule: btnFindStaffAltClick action (btnFindStaffAltClick)  _( P3 / needs-recording )_
+- `RPT-0277` frmSchedule: btnFindStaffClick action (btnFindStaffClick)  _( P3 / needs-recording )_
+- `RPT-0280` frmStaff: Approving Manager Shift action (btnManagerShiftClick)  _( P3 / needs-recording )_
+- `RPT-0283` frmStaff: Ratings action (btnRatingClick)  _( P3 / needs-recording )_
+- `RPT-0284` frmStaff: Work Schedules action (btnScheduleClick)  _( P3 / needs-recording )_
+- `RPT-0281` frmStaff: btnPayClick action (btnPayClick)  _( P3 / needs-recording )_
+- `RPT-0282` frmStaff: Payroll action (btnPayrollClick)  _( P3 / needs-recording )_
+- `RPT-0269` frmSchedEmail: Reset action (btnResetClick)  _( P3 / needs-recording )_
+- `RPT-0270` frmSchedEmail: dgvReportsCellClick action (dgvReportsCellClick)  _( P3 / needs-recording )_
+- `RPT-0267` frmSchedEmail: Close action (btnCancelClick)  _( P3 / needs-recording )_
+- `RPT-0268` frmSchedEmail: Reset All action (btnResetAllClick)  _( P3 / needs-recording )_
+- `RPT-0271` frmSchedule: btnByClick action (btnByClick)  _( P3 / needs-recording )_
+- `RPT-0274` frmSchedule: btnFindServAltClick action (btnFindServAltClick)  _( P3 / needs-recording )_
+- `RPT-0275` frmSchedule: btnFindServClick action (btnFindServClick)  _( P3 / needs-recording )_
+- `RPT-0272` frmSchedule: btnFindCustAltClick action (btnFindCustAltClick)  _( P3 / needs-recording )_
+- `RPT-0273` frmSchedule: btnFindCustClick action (btnFindCustClick)  _( P3 / needs-recording )_
+- `RPT-0285` frmStaff: Staff Services action (btnServicesClick)  _( P3 / needs-recording )_
+- `RPT-0297` frmCustomers: open and run customer reports (end-to-end)  _( P2 / needs-recording )_
+- `RPT-0298` frmDelivery: pick a report, save it, then run it (end-to-end)  _( P2 / needs-recording )_
+- `RPT-0295` frmStaff: Weekly Work Schedules action (btnWeekClick)  _( P3 / needs-recording )_
+- `RPT-0296` csReport: save then email an executed report (end-to-end)  _( P2 / needs-recording )_
+- `RPT-0299` frmItems: choose Inventory Audit, save criteria, run report (end-to-end)  _( P2 / needs-recording )_
+- `RPT-0302` frmMenu: Sales report permission gate then navigation (end-to-end)  _( P2 / needs-recording )_
+- `RPT-0303` frmEmail: schedule a report email successfully (end-to-end)  _( P1 / needs-recording )_
+- `RPT-0300` frmSales: build a Categories report, save it, run it (end-to-end)  _( P1 / needs-recording )_
+- `RPT-0301` frmStaff: staff/date guards then run the Staff Shift snapshot (end-to-end)  _( P2 / needs-recording )_
+- `RPT-0288` frmStaff: Warning - Please select a staff member. (98)  _( P2 / needs-recording )_
+- `RPT-0289` frmStaff: Warning - Please select a begin and end date b (103)  _( P2 / needs-recording )_
+- `RPT-0286` frmStaff: Detailed Shift action (btnShiftClick)  _( P3 / needs-recording )_
+- `RPT-0287` frmStaff: Staff Shift action (btnSnapClick)  _( P3 / needs-recording )_
+- `RPT-0290` frmStaff: Staff action (btnStaffClick)  _( P3 / needs-recording )_
+- `RPT-0293` frmStaff: Time Clock action (btnTimeClockClick)  _( P3 / needs-recording )_
+- `RPT-0294` frmStaff: btnTimeDetailsClick action (btnTimeDetailsClick)  _( P3 / needs-recording )_
+- `RPT-0291` frmStaff: btnSVendorAltClick action (btnSVendorAltClick)  _( P3 / needs-recording )_
+- `RPT-0292` frmStaff: btnSVendorClick action (btnSVendorClick)  _( P3 / needs-recording )_
+- `RPT-0266` frmSchedEmail: btnClick action (btnClick)  _( P3 / needs-recording )_
+- `RPT-0240` frmSales: btnSServiceAltClick action (btnSServiceAltClick)  _( P3 / needs-recording )_
+- `RPT-0241` frmSales: btnSServiceClick action (btnSServiceClick)  _( P3 / needs-recording )_
+- `RPT-0238` frmSales: btnSMfgClick action (btnSMfgClick)  _( P3 / needs-recording )_
+- `RPT-0239` frmSales: Snapshot action (btnSnapshotClick)  _( P3 / needs-recording )_
+- `RPT-0242` frmSales: btnSSizeAltClick action (btnSSizeAltClick)  _( P3 / needs-recording )_
+- `RPT-0245` frmSales: Staff By Location action (btnStaffLocationClick)  _( P3 / needs-recording )_
+- `RPT-0246` frmSales: Staff Services action (btnStaffServicesClick)  _( P3 / needs-recording )_
+- `RPT-0243` frmSales: btnSSizeClick action (btnSSizeClick)  _( P3 / needs-recording )_
+- `RPT-0244` frmSales: btnStaffItemsClick action (btnStaffItemsClick)  _( P3 / needs-recording )_
+- `RPT-0231` frmSales: btnSFormClick action (btnSFormClick)  _( P3 / needs-recording )_
+- `RPT-0232` frmSales: Simple Report action (btnSimpleClick)  _( P3 / needs-recording )_
+- `RPT-0229` frmSales: Settlement action (btnSettlementClick)  _( P3 / needs-recording )_
+- `RPT-0230` frmSales: btnSFormAltClick action (btnSFormAltClick)  _( P3 / needs-recording )_
+- `RPT-0233` frmSales: btnSItemAltClick action (btnSItemAltClick)  _( P3 / needs-recording )_
+- `RPT-0236` frmSales: SKU action (btnSKUClick)  _( P3 / needs-recording )_
+- `RPT-0237` frmSales: btnSMfgAltClick action (btnSMfgAltClick)  _( P3 / needs-recording )_
+- `RPT-0234` frmSales: btnSItemClick action (btnSItemClick)  _( P3 / needs-recording )_
+- `RPT-0235` frmSales: Size action (btnSizeClick)  _( P3 / needs-recording )_
+- `RPT-0247` frmSales: Style action (btnStyleClick)  _( P3 / needs-recording )_
+- `RPT-0259` frmSales: btnZeroMoveClick action (btnZeroMoveClick)  _( P3 / needs-recording )_
+- `RPT-0260` frmSales: Zero Move In Stock action (btnZeroMoveStockClick)  _( P3 / needs-recording )_
+- `RPT-0257` frmSales: User action (btnUserClick)  _( P3 / needs-recording )_
+- `RPT-0258` frmSales: Vendor action (btnVendorClick)  _( P3 / needs-recording )_
+- `RPT-0261` frmSales: Toggle - cboGroup (1690)  _( P2 / needs-recording )_
+- `RPT-0264` frmSales: Toggle - cboSort (1955)  _( P2 / needs-recording )_
+- `RPT-0265` frmSales: Toggle - chkDelivery (1962)  _( P2 / needs-recording )_
+- `RPT-0262` frmSales: Toggle - cboSaved (1792)  _( P2 / needs-recording )_
+- `RPT-0263` frmSales: Warning - Error deserializing ReportFields. (1805)  _( P2 / needs-recording )_
+- `RPT-0250` frmSales: btnSVendorAltClick action (btnSVendorAltClick)  _( P3 / needs-recording )_
+- `RPT-0251` frmSales: btnCustomerTransactions_Click action (btnCustomerTransactions_Click)  _( P3 / needs-recording )_
+- `RPT-0248` frmSales: btnSUserAltClick action (btnSUserAltClick)  _( P3 / needs-recording )_
+- `RPT-0249` frmSales: btnSUserClick action (btnSUserClick)  _( P3 / needs-recording )_
+- `RPT-0252` frmSales: btnSVendorClick action (btnSVendorClick)  _( P3 / needs-recording )_
+- `RPT-0255` frmSales: Top Selling Items action (btnTopSellingClick)  _( P3 / needs-recording )_
+- `RPT-0256` frmSales: Sales Transactions action (btnTransactionsClick)  _( P3 / needs-recording )_
+- `RPT-0253` frmSales: btnTaxClick action (btnTaxClick)  _( P3 / needs-recording )_
+- `RPT-0254` frmSales: Top Selling By Category action (btnTopSellCatClick)  _( P3 / needs-recording )_
+- `RPT-0152` frmMenu: Delivery action (btnDeliveryClick)  _( P3 / needs-recording )_
+- `RPT-0050` frmCustomers: Membership Clubs action (btnClubsClick)  _( P3 / needs-recording )_
+- `RPT-0051` frmCustomers: Customers action (btnCustomersClick)  _( P3 / needs-recording )_
+- `RPT-0048` frmCustomers: btnClubClick action (btnClubClick)  _( P3 / needs-recording )_
+- `RPT-0049` frmCustomers: btnClubReNewClick action (btnClubReNewClick)  _( P3 / needs-recording )_
+- `RPT-0052` frmCustomers: Loyalty Summary action (btnLoyaltyClick)  _( P3 / needs-recording )_
+- `RPT-0055` frmCustomers: No Show action (btnNoShowClick)  _( P3 / needs-recording )_
+- `RPT-0056` frmCustomers: btnSCustomerClick action (btnSCustomerClick)  _( P3 / needs-recording )_
+- `RPT-0053` frmCustomers: Top Customers action (btnTopClick)  _( P3 / needs-recording )_
+- `RPT-0054` frmCustomers: Customer Visits action (btnVisitsClick)  _( P3 / needs-recording )_
+- `RPT-0041` csReport: Warning - Bad report criteria, please try (129)  _( P2 / needs-recording )_
+- `RPT-0042` csReport: Warning - Report canceled by the user. (148)  _( P2 / needs-recording )_
+- `RPT-0039` csReport: Warning - Error creating {mName} Query. (111)  _( P2 / needs-recording )_
+- `RPT-0040` csReport: Warning - Report canceled by the user. (120)  _( P2 / needs-recording )_
+- `RPT-0043` csReport: Warning - Check internet connection. (772)  _( P2 / needs-recording )_
+- `RPT-0046` csReport: Success - Emailed successfully. (1020)  _( P1 / needs-recording )_
+- `RPT-0047` frmCustomers: Sales By Zipcode action (btnByZipCodeClick)  _( P3 / needs-recording )_
+- `RPT-0044` csReport: Warning - Error creating report. (945)  _( P2 / needs-recording )_
+- `RPT-0045` csReport: Success - Report saved successfully. (952)  _( P1 / needs-recording )_
+- `RPT-0057` frmCustomers: btnSCustomerAltClick action (btnSCustomerAltClick)  _( P3 / needs-recording )_
+- `RPT-0069` frmDelivery: btnSCustomerClick action (btnSCustomerClick)  _( P3 / needs-recording )_
+- `RPT-0070` frmDelivery: Toggle - cboSaved (328)  _( P2 / needs-recording )_
+- `RPT-0067` frmDelivery: Warning - Name already exists,\\nplease choose ano (278)  _( P2 / needs-recording )_
+- `RPT-0068` frmDelivery: btnSCustomerAltClick action (btnSCustomerAltClick)  _( P3 / needs-recording )_
+- `RPT-0071` frmDelivery: Warning - Error deserializing ReportFields. (340)  _( P2 / needs-recording )_
+- `RPT-0074` frmDelivery: Status Report action (btnStatusReportClick)  _( P3 / needs-recording )_
+- `RPT-0075` frmDelivery: Toggle - cboDeliveryBy (413)  _( P2 / needs-recording )_
+- `RPT-0072` frmDelivery: btnReset_Click action (btnReset_Click)  _( P3 / needs-recording )_
+- `RPT-0073` frmDelivery: btnServiceStatus_Click action (btnServiceStatus_Click)  _( P3 / needs-recording )_
+- `RPT-0060` frmDelivery: Warning - Duplicate name (144)  _( P2 / needs-recording )_
+- `RPT-0061` frmDelivery: Warning - Select a report from the dropdown. (164)  _( P2 / needs-recording )_
+- `RPT-0058` frmCustomers: Age Verification action (btnAgeVerifyClick)  _( P3 / needs-recording )_
+- `RPT-0059` frmDelivery: btnCriteriaNameClick action (btnCriteriaNameClick)  _( P3 / needs-recording )_
+- `RPT-0062` frmDelivery: Delivery Service action (btnDeliveryServiceClick)  _( P3 / needs-recording )_
+- `RPT-0065` frmDelivery: Run Report action (btnRunClick)  _( P3 / needs-recording )_
+- `RPT-0066` frmDelivery: Save Report action (btnOKClick)  _( P3 / needs-recording )_
+- `RPT-0063` frmDelivery: In House Delivery action (btnInHouseClick)  _( P3 / needs-recording )_
+- `RPT-0064` frmDelivery: Reset action (btnResetClick)  _( P3 / needs-recording )_
+- `RPT-0038` csPrint: Warning - Report cancelled by the user. (7186)  _( P2 / needs-recording )_
+- `RPT-0012` csPrint: Warning - Report cancelled by the user. (5233)  _( P2 / needs-recording )_
+- `RPT-0013` csPrint: Warning - Report cancelled by the user. (5258)  _( P2 / needs-recording )_
+- `RPT-0010` csPrint: Warning - Report cancelled by the user. (5158)  _( P2 / needs-recording )_
+- `RPT-0011` csPrint: Warning - Report cancelled by the user. (5194)  _( P2 / needs-recording )_
+- `RPT-0014` csPrint: Warning - Report cancelled by the user. (5283)  _( P2 / needs-recording )_
+- `RPT-0017` csPrint: Warning - Report cancelled by the user. (5318)  _( P2 / needs-recording )_
+- `RPT-0018` csPrint: Warning - Report cancelled by the user. (5358)  _( P2 / needs-recording )_
+- `RPT-0015` csPrint: Calculation (5306)  _( P1 / needs-recording )_
+- `RPT-0016` csPrint: Calculation (5308)  _( P1 / needs-recording )_
+- `RPT-0003` csPrint: Warning - Can't find the default printer. (4486)  _( P2 / needs-recording )_
+- `RPT-0004` csPrint: Warning - Report cancelled by the user. (4566)  _( P2 / needs-recording )_
+- `RPT-0001` csPrint: Warning - Error creating preview image. (4241)  _( P2 / needs-recording )_
+- `RPT-0002` csPrint: Warning - No stream to print. (4454)  _( P2 / needs-recording )_
+- `RPT-0005` csPrint: Warning - Report cancelled by the user. (4953)  _( P2 / needs-recording )_
+- `RPT-0008` csPrint: Warning - Report cancelled by the user. (5087)  _( P2 / needs-recording )_
+- `RPT-0009` csPrint: Warning - Report cancelled by the user. (5123)  _( P2 / needs-recording )_
+- `RPT-0006` csPrint: Warning - Report cancelled by the user. (4984)  _( P2 / needs-recording )_
+- `RPT-0007` csPrint: Warning - Report cancelled by the user. (5036)  _( P2 / needs-recording )_
+- `RPT-0019` csPrint: Warning - Report cancelled by the user. (5398)  _( P2 / needs-recording )_
+- `RPT-0031` csPrint: Warning - Report cancelled by the user. (6034)  _( P2 / needs-recording )_
+- `RPT-0032` csPrint: Warning - Report cancelled by the user. (6107)  _( P2 / needs-recording )_
+- `RPT-0029` csPrint: Warning - Report cancelled by the user. (5859)  _( P2 / needs-recording )_
+- `RPT-0030` csPrint: Warning - Report cancelled by the user. (5917)  _( P2 / needs-recording )_
+- `RPT-0033` csPrint: Warning - Report cancelled by the user. (6166)  _( P2 / needs-recording )_
+- `RPT-0036` csPrint: Warning - Report cancelled by the user. (6903)  _( P2 / needs-recording )_
+- `RPT-0037` csPrint: Warning - Report cancelled by the user. (6951)  _( P2 / needs-recording )_
+- `RPT-0034` csPrint: Warning - Report cancelled by the user. (6249)  _( P2 / needs-recording )_
+- `RPT-0035` csPrint: Warning - Report cancelled by the user. (6358)  _( P2 / needs-recording )_
+- `RPT-0022` csPrint: Warning - Report cancelled by the user. (5609)  _( P2 / needs-recording )_
+- `RPT-0023` csPrint: Warning - Report cancelled by the user. (5631)  _( P2 / needs-recording )_
+- `RPT-0020` csPrint: Warning - Report cancelled by the user. (5453)  _( P2 / needs-recording )_
+- `RPT-0021` csPrint: Warning - Report cancelled by the user. (5508)  _( P2 / needs-recording )_
+- `RPT-0024` csPrint: Warning - Report cancelled by the user. (5652)  _( P2 / needs-recording )_
+- `RPT-0027` csPrint: Warning - Report cancelled by the user. (5711)  _( P2 / needs-recording )_
+- `RPT-0028` csPrint: Warning - Report cancelled by the user. (5779)  _( P2 / needs-recording )_
+- `RPT-0025` csPrint: Warning - Report cancelled by the user. (5673)  _( P2 / needs-recording )_
+- `RPT-0026` csPrint: Warning - Report cancelled by the user. (5693)  _( P2 / needs-recording )_
+- `RPT-0076` frmDelivery: Toggle - cboDeliveryService (419)  _( P2 / needs-recording )_
+- `RPT-0126` frmItems: btnSMfgClick action (btnSMfgClick)  _( P3 / needs-recording )_
+- `RPT-0127` frmItems: btnSService_Click action (btnSService_Click)  _( P3 / needs-recording )_
+- `RPT-0124` frmItems: btnSItemClick action (btnSItemClick)  _( P3 / needs-recording )_
+- `RPT-0125` frmItems: btnSMfgAltClick action (btnSMfgAltClick)  _( P3 / needs-recording )_
+- `RPT-0128` frmItems: btnSServiceAltClick action (btnSServiceAltClick)  _( P3 / needs-recording )_
+- `RPT-0131` frmItems: btnSVendor_Click action (btnSVendor_Click)  _( P3 / needs-recording )_
+- `RPT-0132` frmItems: btnSVendorAltClick action (btnSVendorAltClick)  _( P3 / needs-recording )_
+- `RPT-0129` frmItems: btnSSize_Click action (btnSSize_Click)  _( P3 / needs-recording )_
+- `RPT-0130` frmItems: btnSSizeAltClick action (btnSSizeAltClick)  _( P3 / needs-recording )_
+- `RPT-0117` frmItems: Historical Cost action (btnHistoricalCostClick)  _( P3 / needs-recording )_
+- `RPT-0118` frmItems: Stock Location action (btnStockLocationClick)  _( P3 / needs-recording )_
+- `RPT-0115` frmItems: btnSCustFld3AltClick action (btnSCustFld3AltClick)  _( P3 / needs-recording )_
+- `RPT-0116` frmItems: btnMatrix_Click action (btnMatrix_Click)  _( P3 / needs-recording )_
+- `RPT-0119` frmItems: btnSCustFld3Click action (btnSCustFld3Click)  _( P3 / needs-recording )_
+- `RPT-0122` frmItems: btnSimpleClick action (btnSimpleClick)  _( P3 / needs-recording )_
+- `RPT-0123` frmItems: btnSItemAltClick action (btnSItemAltClick)  _( P3 / needs-recording )_
+- `RPT-0120` frmItems: Service Categories action (btnServCategoryClick)  _( P3 / needs-recording )_
+- `RPT-0121` frmItems: Services action (btnServicesClick)  _( P3 / needs-recording )_
+- `RPT-0133` frmItems: Toggle - cboGroup (883)  _( P2 / needs-recording )_
+- `RPT-0145` frmMenu: Customer action (btnCustomerClick)  _( P3 / needs-recording )_
+- `RPT-0146` frmMenu: Email action (btnEmailScheduleClick)  _( P3 / needs-recording )_
+- `RPT-0143` frmMenu: Permission - Appt`s (Report.Schedule)  _( P2 / needs-recording )_
+- `RPT-0144` frmMenu: Permission - Staff (Report.Staff)  _( P2 / needs-recording )_
+- `RPT-0147` frmMenu: btnItemClick action (btnItemClick)  _( P3 / needs-recording )_
+- `RPT-0150` frmMenu: Appt`s action (btnScheduleClick)  _( P3 / needs-recording )_
+- `RPT-0151` frmMenu: Staff action (btnStaffClick)  _( P3 / needs-recording )_
+- `RPT-0148` frmMenu: Purchasing action (btnPurchasingClick)  _( P3 / needs-recording )_
+- `RPT-0149` frmMenu: Sales action (btnSalesClick)  _( P3 / needs-recording )_
+- `RPT-0136` frmItems: Warning - Error deserializing ReportFields. (990)  _( P2 / needs-recording )_
+- `RPT-0137` frmMenu: Permission - Customer (Report.Customers)  _( P2 / needs-recording )_
+- `RPT-0134` frmItems: Toggle - cboRange (966)  _( P2 / needs-recording )_
+- `RPT-0135` frmItems: Toggle - cboSaved (978)  _( P2 / needs-recording )_
+- `RPT-0138` frmMenu: Permission - Email (Report.Email)  _( P2 / needs-recording )_
+- `RPT-0141` frmMenu: Permission - Purchasing (Report.Purchasing)  _( P2 / needs-recording )_
+- `RPT-0142` frmMenu: Permission - Sales (Report.Sales)  _( P2 / needs-recording )_
+- `RPT-0139` frmMenu: Permission - Items (Report.Items)  _( P2 / needs-recording )_
+- `RPT-0140` frmMenu: Permission - Delivery (Report.Delivery)  _( P2 / needs-recording )_
+- `RPT-0114` frmItems: btnSCustFld2Click action (btnSCustFld2Click)  _( P3 / needs-recording )_
+- `RPT-0088` frmEmail: Success - Report scheduled successfully. (247)  _( P1 / needs-recording )_
+- `RPT-0089` frmEmail: btnSendClick action (btnSendClick)  _( P3 / needs-recording )_
+- `RPT-0086` frmEmail: Warning - Invalid date. (177)  _( P2 / needs-recording )_
+- `RPT-0087` frmEmail: Warning - Invalid date. (190)  _( P2 / needs-recording )_
+- `RPT-0090` frmEmail: Toggle - cboReport (259)  _( P2 / needs-recording )_
+- `RPT-0093` frmItems: btnCategoryClick action (btnCategoryClick)  _( P3 / needs-recording )_
+- `RPT-0094` frmItems: btnCriteriaNameClick action (btnCriteriaNameClick)  _( P3 / needs-recording )_
+- `RPT-0091` frmFileType: Close action (btnCancelClick)  _( P3 / needs-recording )_
+- `RPT-0092` frmFileType: btnOKClick action (btnOKClick)  _( P3 / needs-recording )_
+- `RPT-0079` frmEmail: Warning - Invalid email address. (119)  _( P2 / needs-recording )_
+- `RPT-0080` frmEmail: Close action (btnCancelClick)  _( P3 / needs-recording )_
+- `RPT-0077` frmDelivery: Toggle - cboStaff (425)  _( P2 / needs-recording )_
+- `RPT-0078` frmDelivery: Toggle - cboStatus (431)  _( P2 / needs-recording )_
+- `RPT-0081` frmEmail: Copy action (btnCopyClick)  _( P3 / needs-recording )_
+- `RPT-0084` frmEmail: Warning - Invalid time. (152)  _( P2 / needs-recording )_
+- `RPT-0085` frmEmail: Warning - Invalid day. (164)  _( P2 / needs-recording )_
+- `RPT-0082` frmEmail: Save action (btnOKClick)  _( P3 / needs-recording )_
+- `RPT-0083` frmEmail: Warning - Name cannot be blank. (143)  _( P2 / needs-recording )_
+- `RPT-0095` frmItems: Warning - Duplicate name (216)  _( P2 / needs-recording )_
+- `RPT-0107` frmItems: Save Report action (btnOKClick)  _( P3 / needs-recording )_
+- `RPT-0108` frmItems: Warning - Name already exists,\\nplease choose anot (545)  _( P2 / needs-recording )_
+- `RPT-0105` frmItems: Warning - Missing range values (498)  _( P2 / needs-recording )_
+- `RPT-0106` frmItems: Warning - Missing range value (508)  _( P2 / needs-recording )_
+- `RPT-0109` frmItems: btnSColorAltClick action (btnSColorAltClick)  _( P3 / needs-recording )_
+- `RPT-0112` frmItems: btnSCustFld1Click action (btnSCustFld1Click)  _( P3 / needs-recording )_
+- `RPT-0113` frmItems: btnSCustFld2AltClick action (btnSCustFld2AltClick)  _( P3 / needs-recording )_
+- `RPT-0110` frmItems: btnSColorClick action (btnSColorClick)  _( P3 / needs-recording )_
+- `RPT-0111` frmItems: btnSCustFld1AltClick action (btnSCustFld1AltClick)  _( P3 / needs-recording )_
+- `RPT-0098` frmItems: Inventory Valuation action (btnInventoryValueClick)  _( P3 / needs-recording )_
+- `RPT-0099` frmItems: Historical Price action (btnHistoricClick)  _( P3 / needs-recording )_
+- `RPT-0096` frmItems: Warning - Select a report from the dropdown. (236)  _( P2 / needs-recording )_
+- `RPT-0097` frmItems: Inventory Audit action (btnInventoryAuditClick)  _( P3 / needs-recording )_
+- `RPT-0100` frmItems: btnItemsClick action (btnItemsClick)  _( P3 / needs-recording )_
+- `RPT-0103` frmItems: Run Report action (btnRunClick)  _( P3 / needs-recording )_
+- `RPT-0104` frmItems: Warning - Missing range value (488)  _( P2 / needs-recording )_
+- `RPT-0101` frmItems: Inventory Movement action (btnMovClick)  _( P3 / needs-recording )_
+- `RPT-0102` frmItems: Reset action (btnResetClick)  _( P3 / needs-recording )_
+
+### Settings  (351 tests: 343 atomic, 8 composite)
+
+**(uncategorized)** (351)
+
+- `SET-0235` frmPrinter: toggle chkOrderOnSave (Print Order On Save)  _( P2 / needs-recording )_
+- `SET-0236` frmQuickPick: Success - Service added successfully.  _( P1 / needs-recording )_
+- `SET-0234` frmPrinter: toggle chkSticky  _( P2 / needs-recording )_
+- `SET-0232` frmPrinter: toggle chkStaffChild  _( P2 / needs-recording )_
+- `SET-0233` frmPrinter: toggle chkTemporaryMsg (Temporary Message)  _( P2 / needs-recording )_
+- `SET-0240` frmQuickPick: action btnDelAll (Delete All)  _( P2 / needs-recording )_
+- `SET-0241` frmQuickPick: action btnDel (Delete)  _( P2 / needs-recording )_
+- `SET-0239` frmQuickPick: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0237` frmQuickPick: action btnAddItem (Add Items)  _( P2 / needs-recording )_
+- `SET-0238` frmQuickPick: action btnAddMisc (Add Misc)  _( P2 / needs-recording )_
+- `SET-0231` frmPrinter: toggle chkStaff (Sales By Staff)  _( P2 / needs-recording )_
+- `SET-0224` frmPrinter: toggle chkSales (All)  _( P2 / needs-recording )_
+- `SET-0225` frmPrinter: toggle chkSalesChild  _( P2 / needs-recording )_
+- `SET-0223` frmPrinter: toggle chkRemoteOnSave (Print On Save)  _( P2 / needs-recording )_
+- `SET-0221` frmPrinter: toggle chkReceiptPrompt (Receipt Prompt)  _( P2 / needs-recording )_
+- `SET-0222` frmPrinter: toggle chkRemoteCC (Print Delivery Receipt On:)  _( P2 / needs-recording )_
+- `SET-0229` frmPrinter: toggle chkSSSales (All)  _( P2 / needs-recording )_
+- `SET-0230` frmPrinter: toggle chkSSSalesChil  _( P2 / needs-recording )_
+- `SET-0228` frmPrinter: toggle chkSSPayTransChild  _( P2 / needs-recording )_
+- `SET-0226` frmPrinter: toggle chkSecond (Print Customer Receipt)  _( P2 / needs-recording )_
+- `SET-0227` frmPrinter: toggle chkSSPayTrans (All)  _( P2 / needs-recording )_
+- `SET-0242` frmQuickPick: action btnDown  _( P3 / needs-recording )_
+- `SET-0257` frmRegPref: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0258` frmRegPref: action btnPromo (Disable All Promo)  _( P2 / needs-recording )_
+- `SET-0256` frmRegPref: Success - Saved. Restart required for setting change  _( P1 / needs-recording )_
+- `SET-0254` frmRegPref: Warning - Tab Auth cannot be enabled with a zero minimun charge.  _( P2 / needs-recording )_
+- `SET-0255` frmRegPref: Warning - The tip percent exceeds the allowed percentage.  _( P2 / needs-recording )_
+- `SET-0262` frmRegPref: toggle chkAutoTip (Automatic By:)  _( P2 / needs-recording )_
+- `SET-0263` frmRegPref: toggle chkCustomLabel (Custom Label)  _( P2 / needs-recording )_
+- `SET-0261` frmRegPref: toggle chkAllowCheck (Allow Customer Check)  _( P2 / needs-recording )_
+- `SET-0259` frmRegPref: action btnQuickPick (Quick Pick)  _( P2 / needs-recording )_
+- `SET-0260` frmRegPref: action btnTender (Custom Tenders)  _( P2 / needs-recording )_
+- `SET-0253` frmRegPref: Warning - Custom prompt cannot be enabled with a blank prompt message.  _( P2 / needs-recording )_
+- `SET-0246` frmRegPref: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0247` frmRegPref: action btnCustom (Custom Buttons)  _( P2 / needs-recording )_
+- `SET-0245` frmQuickPick: action btnUp  _( P3 / needs-recording )_
+- `SET-0243` frmQuickPick: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0244` frmQuickPick: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0251` frmRegPref: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0252` frmRegPref: Warning - Either eGift or Gift certificate must be selected to proceed.  _( P2 / needs-recording )_
+- `SET-0250` frmRegPref: action btnDRVItem  _( P3 / needs-recording )_
+- `SET-0248` frmRegPref: action btnDelivery (Delivery)  _( P2 / needs-recording )_
+- `SET-0249` frmRegPref: action btnDRVItemAlt  _( P3 / needs-recording )_
+- `SET-0220` frmPrinter: toggle chkReceiptMessage (Receipt Message)  _( P2 / needs-recording )_
+- `SET-0191` frmPreference: action btnRemove  _( P2 / needs-recording )_
+- `SET-0192` frmPreference: action btnUpdateCosts (Update All Items)  _( P2 / needs-recording )_
+- `SET-0190` frmPreference: Success - Saved successfully. (774)  _( P1 / needs-recording )_
+- `SET-0188` frmPreference: Warning - Invalid email Smtp settings.  _( P2 / needs-recording )_
+- `SET-0189` frmPreference: Success - Saved. Restart required for setting change  _( P1 / needs-recording )_
+- `SET-0196` frmPreference: toggle chkOneTimePIN (One-Time Supervisor PINs)  _( P2 / needs-recording )_
+- `SET-0197` frmPreference: toggle chkOSK (On-Screen Keyboard)  _( P2 / needs-recording )_
+- `SET-0195` frmPreference: toggle chkCFDTotal (Display Total)  _( P2 / needs-recording )_
+- `SET-0193` frmPreference: Warning - All items on inventory must have 0 quantity to convert to non-inventory  _( P2 / needs-recording )_
+- `SET-0194` frmPreference: Success - Saved successfully. (873)  _( P1 / needs-recording )_
+- `SET-0187` frmPreference: Success - Test email sent successfully.  _( P1 / needs-recording )_
+- `SET-0180` frmPreference: Warning - Empty field. (459)  _( P2 / needs-recording )_
+- `SET-0181` frmPreference: Warning - Empty field. (466)  _( P2 / needs-recording )_
+- `SET-0179` frmPreference: Warning - Selection error.  _( P2 / needs-recording )_
+- `SET-0177` frmPreference: action btnManage (Custom Vars)  _( P2 / needs-recording )_
+- `SET-0178` frmPreference: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0185` frmPreference: Warning - No internet connection found. (519)  _( P2 / needs-recording )_
+- `SET-0186` frmPreference: Warning - Invalid email pop3 settings.  _( P2 / needs-recording )_
+- `SET-0184` frmPreference: Warning - No internet connection found. (510)  _( P2 / needs-recording )_
+- `SET-0182` frmPreference: Warning - Empty field. (473)  _( P2 / needs-recording )_
+- `SET-0183` frmPreference: Warning - Minimum cannot be greater than maximum  _( P2 / needs-recording )_
+- `SET-0198` frmPreference: toggle chkQuickLock (Quick Lock)  _( P2 / needs-recording )_
+- `SET-0213` frmPrinter: toggle chkGoRemote (Print On Accepted Payment)  _( P2 / needs-recording )_
+- `SET-0214` frmPrinter: toggle chkNoReceipt (Don't Print QSR Receipts)  _( P2 / needs-recording )_
+- `SET-0212` frmPrinter: toggle chkEachTender (Print Receipt For Each Tender)  _( P2 / needs-recording )_
+- `SET-0210` frmPrinter: toggle chkDayPart (Day Part)  _( P2 / needs-recording )_
+- `SET-0211` frmPrinter: toggle chkDefaultToEmail (Print Default To Email)  _( P2 / needs-recording )_
+- `SET-0218` frmPrinter: toggle chkPayTransChild  _( P2 / needs-recording )_
+- `SET-0219` frmPrinter: toggle chkPrintLabel  _( P2 / needs-recording )_
+- `SET-0217` frmPrinter: toggle chkPayTrans (All)  _( P2 / needs-recording )_
+- `SET-0215` frmPrinter: toggle chkNoSigRequired (No Signature Required Receipts)  _( P2 / needs-recording )_
+- `SET-0216` frmPrinter: toggle chkOnlySign (Signature Copy Only)  _( P2 / needs-recording )_
+- `SET-0209` frmPrinter: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0202` frmPreference: action dgvImgSelectedCell  _( P3 / needs-recording )_
+- `SET-0203` frmPrinter: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0201` frmPreference: action dgvImgListCell  _( P3 / needs-recording )_
+- `SET-0199` frmPreference: toggle chkSignature (Sign on Screen)  _( P2 / needs-recording )_
+- `SET-0200` frmPreference: toggle chkTimeOut (PIN Timeout)  _( P2 / needs-recording )_
+- `SET-0207` frmPrinter: Warning - Check (305)  _( P2 / needs-recording )_
+- `SET-0208` frmPrinter: Warning - Check (324)  _( P2 / needs-recording )_
+- `SET-0206` frmPrinter: Warning - Check (300)  _( P2 / needs-recording )_
+- `SET-0204` frmPrinter: action btnManagePrinters (Manage Printers)  _( P2 / needs-recording )_
+- `SET-0205` frmPrinter: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0264` frmRegPref: toggle chkFullGift (Allow Refunds To Gift Certs/eGift)  _( P2 / needs-recording )_
+- `SET-0323` frmSettingsProfile: action btnLoadProfile  _( P2 / needs-recording )_
+- `SET-0324` frmSettingsProfile: Warning - Error deserializing Settings profile.  _( P2 / needs-recording )_
+- `SET-0322` frmSettingsProfile: action btnDelete (Delete)  _( P2 / needs-recording )_
+- `SET-0320` frmSettingsProfile: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0321` frmSettingsProfile: action btnCurrent (Save Current Settings)  _( P2 / needs-recording )_
+- `SET-0328` frmSetup: action btnRemote (Remote Support)  _( P3 / needs-recording )_
+- `SET-0329` frmSystem: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0327` frmSetup: action btnCancel (Decline)  _( P3 / needs-recording )_
+- `SET-0325` frmSettingsProfile: action btnRename (Rename)  _( P2 / needs-recording )_
+- `SET-0326` frmSetup: action btnOK (Accept)  _( P2 / needs-recording )_
+- `SET-0319` frmSettingsProfile: Warning - Profile name already exists, choose another.  _( P2 / needs-recording )_
+- `SET-0312` frmReserved: Warning - FrontEnd Merchant MID required to be set in Settings  _( P2 / needs-recording )_
+- `SET-0313` frmReserved: Success - Files Download Completed Succesfully.  _( P1 / needs-recording )_
+- `SET-0311` frmReserved: action btnTransferSetupFiles (Transfer Setup Files)  _( P2 / needs-recording )_
+- `SET-0309` frmReserved: action btnExportDB (Export DB)  _( P2 / needs-recording )_
+- `SET-0310` frmReserved: Warning - File name must be 12 or less digits in length  _( P2 / needs-recording )_
+- `SET-0317` frmReserved: Success - Sales Summary Report Completed Successfully  _( P1 / needs-recording )_
+- `SET-0318` frmReserved: Warning - Sales Summary Report Failed with Error Message  _( P2 / needs-recording )_
+- `SET-0316` frmReserved: action btnSendSummary_  _( P2 / needs-recording )_
+- `SET-0314` frmReserved: toggle cboCFD  _( P2 / needs-recording )_
+- `SET-0315` frmReserved: toggle cboScale  _( P2 / needs-recording )_
+- `SET-0330` frmSystem: action btnFindServer  _( P2 / needs-recording )_
+- `SET-0345` End-to-end: open frmAccount, configure tender fee and save  _( P2 / needs-recording )_
+- `SET-0346` End-to-end: open frmCompany, edit business details and save  _( P2 / needs-recording )_
+- `SET-0344` End-to-end: open frmAccessProfiles, exercise its controls and messages  _( P2 / needs-recording )_
+- `SET-0342` frmUpdate: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0343` frmUpdate: action btnOK (Update)  _( P2 / needs-recording )_
+- `SET-0350` End-to-end: open frmPrinter, configure receipt toggles and save  _( P2 / needs-recording )_
+- `SET-0351` End-to-end: open frmTaxes, edit a tax group and save  _( P2 / needs-recording )_
+- `SET-0349` End-to-end: open frmRegPref, toggle register options and save  _( P2 / needs-recording )_
+- `SET-0347` End-to-end: open frmDelivery, add a zone account and save  _( P2 / needs-recording )_
+- `SET-0348` End-to-end: open frmMenu, verify permission gating and navigate to a sub-form  _( P2 / needs-recording )_
+- `SET-0341` frmTaxes: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0334` frmSystem: Warning - Invalid characters.  _( P2 / needs-recording )_
+- `SET-0335` frmSystem: Warning - Sidekick cannot be its own server.  _( P2 / needs-recording )_
+- `SET-0333` frmSystem: Warning - Empty field.  _( P2 / needs-recording )_
+- `SET-0331` frmSystem: action btnInternetRefresh  _( P2 / needs-recording )_
+- `SET-0332` frmSystem: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0339` frmTaxes: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0340` frmTaxes: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0338` frmSystem: toggle cboMachineType  _( P2 / needs-recording )_
+- `SET-0336` frmSystem: Warning - Server is unavailable.  _( P2 / needs-recording )_
+- `SET-0337` frmSystem: Success - Settings changed, system will be restarted.  _( P1 / needs-recording )_
+- `SET-0308` frmReserved: Success - Updated successfully.  _( P1 / needs-recording )_
+- `SET-0279` frmReserved: action btnClear (Clear Log)  _( P2 / needs-recording )_
+- `SET-0280` frmReserved: action btnControl (Run)  _( P2 / needs-recording )_
+- `SET-0278` frmRegPref: toggle chkWeightLabel (Random Weight/Price Embedded On EAN/UPC Barcode)  _( P2 / needs-recording )_
+- `SET-0276` frmRegPref: toggle chkTabEnabled (Tab Auth)  _( P2 / needs-recording )_
+- `SET-0277` frmRegPref: toggle chkTips (Allow Tips)  _( P2 / needs-recording )_
+- `SET-0284` frmReserved: Warning - Customers Bulk Upload - Error  _( P2 / needs-recording )_
+- `SET-0285` frmReserved: action btnDevices (USB Devices)  _( P2 / needs-recording )_
+- `SET-0283` frmReserved: Success - Customers Bulk Upload - Success  _( P1 / needs-recording )_
+- `SET-0281` frmReserved: action btnCustBulkUpload (Customer Cloud Upload)  _( P2 / needs-recording )_
+- `SET-0282` frmReserved: Warning - This feature requires a valid Merchant and Location ID  _( P2 / needs-recording )_
+- `SET-0275` frmRegPref: toggle chkStaffPrompt (Custom Prompt)  _( P2 / needs-recording )_
+- `SET-0268` frmRegPref: toggle chkRefOpenEnded (Allow Open-Ended Refund)  _( P2 / needs-recording )_
+- `SET-0269` frmRegPref: toggle chkRefWithoutReceipt (Allow Refund Without Receipt)  _( P2 / needs-recording )_
+- `SET-0267` frmRegPref: toggle chkRefGC (Only To Gift Certs/eGift)  _( P2 / needs-recording )_
+- `SET-0265` frmRegPref: toggle chkLabelOnOrder (Label Order)  _( P2 / needs-recording )_
+- `SET-0266` frmRegPref: toggle chkQuickPay  _( P2 / needs-recording )_
+- `SET-0273` frmRegPref: toggle chkShowChange (Show Change Due Amount)  _( P2 / needs-recording )_
+- `SET-0274` frmRegPref: toggle chkSimpleMode (Simple Mode)  _( P2 / needs-recording )_
+- `SET-0272` frmRegPref: toggle chkShowOrderType  _( P2 / needs-recording )_
+- `SET-0270` frmRegPref: toggle chkRound (Rounding)  _( P2 / needs-recording )_
+- `SET-0271` frmRegPref: toggle chkShareItem (Share Item)  _( P2 / needs-recording )_
+- `SET-0286` frmReserved: action btnForce (Force Update)  _( P2 / needs-recording )_
+- `SET-0301` frmReserved: action btnReset (Reset Factory)  _( P2 / needs-recording )_
+- `SET-0302` frmReserved: Success - System reset complete. Restart now.  _( P1 / needs-recording )_
+- `SET-0300` frmReserved: Success - Saved. Restart required for setting change  _( P1 / needs-recording )_
+- `SET-0298` frmReserved: Warning - Assign unique port for each device.  _( P2 / needs-recording )_
+- `SET-0299` frmReserved: Warning - Must select Scale Protocol.  _( P2 / needs-recording )_
+- `SET-0306` frmReserved: Success - Successful. (973)  _( P1 / needs-recording )_
+- `SET-0307` frmReserved: action btnServer (Update Server DB)  _( P2 / needs-recording )_
+- `SET-0305` frmReserved: action btnRun (Run)  _( P2 / needs-recording )_
+- `SET-0303` frmReserved: action btnResetTrx (Reset Trxs)  _( P2 / needs-recording )_
+- `SET-0304` frmReserved: Success - Reset successful.  _( P1 / needs-recording )_
+- `SET-0297` frmReserved: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0290` frmReserved: Warning - Could not get file {mFileNamePrompFormResponse}.bak from {mZipFileName}  _( P2 / needs-recording )_
+- `SET-0291` frmReserved: Warning - XTTDB.bak file is in the restore folder  _( P2 / needs-recording )_
+- `SET-0289` frmReserved: Warning - File name cannot be more than 12 digits in length  _( P2 / needs-recording )_
+- `SET-0287` frmReserved: action btnHistory  _( P3 / needs-recording )_
+- `SET-0288` frmReserved: action btnImportDB (Import DB)  _( P2 / needs-recording )_
+- `SET-0295` frmReserved: Success - Successful. (530)  _( P1 / needs-recording )_
+- `SET-0296` frmReserved: action btnOffline (Offline)  _( P2 / needs-recording )_
+- `SET-0294` frmReserved: action btnLog  _( P3 / needs-recording )_
+- `SET-0292` frmReserved: Warning - There was an error please see the logs for more details  _( P2 / needs-recording )_
+- `SET-0293` frmReserved: action btnImport (Import)  _( P2 / needs-recording )_
+- `SET-0176` frmPreference: action btnImgUp  _( P3 / needs-recording )_
+- `SET-0059` frmAccount: toggle chkTFDualPrice (Dual Price)  _( P2 / needs-recording )_
+- `SET-0060` frmAccount: toggle chkTFSurcharge (Surcharge)  _( P2 / needs-recording )_
+- `SET-0058` frmAccount: toggle chkOffSendEmail (Send Email Alerts To:)  _( P2 / needs-recording )_
+- `SET-0056` frmAccount: toggle chkOfflineLimit (Offline Order Limit ($))  _( P2 / needs-recording )_
+- `SET-0057` frmAccount: toggle chkOfflineTotal (Total Offline Order Limit ($))  _( P2 / needs-recording )_
+- `SET-0064` frmAccount: action dgvLoyaltyCategory  _( P3 / needs-recording )_
+- `SET-0065` frmAccount: action dgvLoyaltyService  _( P3 / needs-recording )_
+- `SET-0063` frmAccount: toggle chkTipSecurity (Tip Security)  _( P2 / needs-recording )_
+- `SET-0061` frmAccount: toggle chkTFTax (Apply Fee to Taxes)  _( P2 / needs-recording )_
+- `SET-0062` frmAccount: toggle chkTipReqEnabled  _( P2 / needs-recording )_
+- `SET-0055` frmAccount: toggle chkOfflineDays (Allow Offline Payments For (Days))  _( P2 / needs-recording )_
+- `SET-0048` frmAccount: toggle chkAllowSign (Allow signature)  _( P2 / needs-recording )_
+- `SET-0049` frmAccount: toggle chkInactive  _( P2 / needs-recording )_
+- `SET-0047` frmAccount: toggle cboPlatform  _( P2 / needs-recording )_
+- `SET-0045` frmAccount: toggle cboIndustry  _( P2 / needs-recording )_
+- `SET-0046` frmAccount: Warning - EBT is only valid on Retail environment.  _( P2 / needs-recording )_
+- `SET-0053` frmAccount: toggle chkOffline (Offline Processing)  _( P2 / needs-recording )_
+- `SET-0054` frmAccount: Warning - Offline Processing is unavailable while Surcharging is enabled.  _( P2 / needs-recording )_
+- `SET-0052` frmAccount: toggle chkMsg  _( P2 / needs-recording )_
+- `SET-0050` frmAccount: toggle chkLoyalty  _( P2 / needs-recording )_
+- `SET-0051` frmAccount: toggle chkLoyaltyProgram  _( P2 / needs-recording )_
+- `SET-0066` frmAccount: action dgvScanData  _( P3 / needs-recording )_
+- `SET-0081` frmAdmin: Warning - Invalid PIN length.  _( P2 / needs-recording )_
+- `SET-0082` frmAdmin: Warning - Invalid PIN format.  _( P2 / needs-recording )_
+- `SET-0080` frmAdmin: Warning - Either Access PIN or Access Card is required in order to save.  _( P2 / needs-recording )_
+- `SET-0078` frmAdmin: action btnReadCard  _( P3 / needs-recording )_
+- `SET-0079` frmAdmin: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0086` frmCompany: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0087` frmCompany: Warning - Check start and end times for {mLbl[i].Text}  _( P2 / needs-recording )_
+- `SET-0085` frmCompany: action btnClose  _( P3 / needs-recording )_
+- `SET-0083` frmAdmin: Warning - PIN or Access Card already in use.  _( P2 / needs-recording )_
+- `SET-0084` frmCompany: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0077` frmAdmin: action btnReadCardAlt  _( P3 / needs-recording )_
+- `SET-0070` frmActivation: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0071` frmActivation: Success - Saved successfully.. Restart required for setting change  _( P1 / needs-recording )_
+- `SET-0069` frmActivation: toggle chkLMP (OH Liquor)  _( P2 / needs-recording )_
+- `SET-0067` frmActivation: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0068` frmActivation: action btnCopy  _( P2 / needs-recording )_
+- `SET-0075` frmActivation: action btnRemote (Remote Support)  _( P3 / needs-recording )_
+- `SET-0076` frmActivation: action btnPaste  _( P3 / needs-recording )_
+- `SET-0074` frmActivation: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0072` frmActivation: Warning - Invalid software key.  _( P2 / needs-recording )_
+- `SET-0073` frmActivation: Success - Trial activated.  _( P1 / needs-recording )_
+- `SET-0044` frmAccount: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0015` frmAccount: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0016` frmAccount: action btnLogo  _( P3 / needs-recording )_
+- `SET-0014` frmAccount: Warning - LMP has been activated, but no tax groups have been defined. (LMP setup)  _( P2 / needs-recording )_
+- `SET-0012` frmAccessProfiles: Warning - Error deserializing Security profile.  _( P2 / needs-recording )_
+- `SET-0013` frmAccount: Warning - LMP has been activated, but no tax groups have been defined.  _( P2 / needs-recording )_
+- `SET-0020` frmAccount: Warning - Terminal ID missing  _( P2 / needs-recording )_
+- `SET-0021` frmAccount: Warning - Percentage value must not be greater than 100.  _( P2 / needs-recording )_
+- `SET-0019` frmAccount: Warning - Location ID missing  _( P2 / needs-recording )_
+- `SET-0017` frmAccount: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0018` frmAccount: Warning - Merchant ID missing  _( P2 / needs-recording )_
+- `SET-0011` frmAccessProfiles: action dgvAccess  _( P3 / needs-recording )_
+- `SET-0004` frmAccessProfiles: action btnDelete  _( P3 / needs-recording )_
+- `SET-0005` frmAccessProfiles: action btnRename (Rename)  _( P2 / needs-recording )_
+- `SET-0003` frmAccessProfiles: Warning - There is already a profile with this name  _( P2 / needs-recording )_
+- `SET-0001` frmAccessProfiles: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0002` frmAccessProfiles: action btnCopy (Copy)  _( P2 / needs-recording )_
+- `SET-0009` frmAccessProfiles: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0010` frmAccessProfiles: toggle chkDeleted (Show Inactive)  _( P2 / needs-recording )_
+- `SET-0008` frmAccessProfiles: Warning - Duplicate name in active or inactive profile list.  _( P2 / needs-recording )_
+- `SET-0006` frmAccessProfiles: Warning - There is already a profile with this name (rename)  _( P2 / needs-recording )_
+- `SET-0007` frmAccessProfiles: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0022` frmAccount: Warning - Dual Price cannot be active when Tender Discount is applied  _( P2 / needs-recording )_
+- `SET-0037` frmAccount: Warning - Surcharge text must be a-z, and can contain () and %  _( P2 / needs-recording )_
+- `SET-0038` frmAccount: Warning - Offline processing must be disabled when Surcharge is active  _( P2 / needs-recording )_
+- `SET-0036` frmAccount: Warning - Surcharge text cannot be more than 25 characters long  _( P2 / needs-recording )_
+- `SET-0034` frmAccount: Warning - Dollars per point cannot be zero.  _( P2 / needs-recording )_
+- `SET-0035` frmAccount: Warning - Surcharge text cannot be empty  _( P2 / needs-recording )_
+- `SET-0042` frmAccount: Warning - Account init error. (retry)  _( P2 / needs-recording )_
+- `SET-0043` frmAccount: Warning - Error moving merchant backup.  _( P2 / needs-recording )_
+- `SET-0041` frmAccount: Warning - Account init error.  _( P2 / needs-recording )_
+- `SET-0039` frmAccount: Warning - Incorrect IP Address  _( P2 / needs-recording )_
+- `SET-0040` frmAccount: Warning - Backend MID entered does not appear to be a valid entry  _( P2 / needs-recording )_
+- `SET-0033` frmAccount: Warning - Points per dollar cannot be zero.  _( P2 / needs-recording )_
+- `SET-0026` frmAccount: Warning - MinQty cannot be blank.  _( P2 / needs-recording )_
+- `SET-0027` frmAccount: Warning - MaxQty must be 1 or greater.  _( P2 / needs-recording )_
+- `SET-0025` frmAccount: Warning - Tender Fee amount cannot be zero when dual price is toggled on  _( P2 / needs-recording )_
+- `SET-0023` frmAccount: Warning - Tender Fee cannot be active when Tender discount is in use  _( P2 / needs-recording )_
+- `SET-0024` frmAccount: Warning - Tender Fee amount cannot be zero when any tender is toggled on  _( P2 / needs-recording )_
+- `SET-0031` frmAccount: Warning - Start Date cannot be geater than End Date.  _( P2 / needs-recording )_
+- `SET-0032` frmAccount: Warning - F4 API information is required  _( P2 / needs-recording )_
+- `SET-0030` frmAccount: Warning - End Date cannot be blank.  _( P2 / needs-recording )_
+- `SET-0028` frmAccount: Warning - Discount cannot be blank.  _( P2 / needs-recording )_
+- `SET-0029` frmAccount: Warning - Start Date cannot be blank.  _( P2 / needs-recording )_
+- `SET-0088` frmCompany: Warning - Check start and end times.  _( P2 / needs-recording )_
+- `SET-0147` frmFieldManager: Warning - Cannot delete default order type.  _( P2 / needs-recording )_
+- `SET-0148` frmFieldManager: Warning - Order type is assigned to a custom button on the register.  _( P2 / needs-recording )_
+- `SET-0146` frmFieldManager: action dgvFields  _( P3 / needs-recording )_
+- `SET-0144` frmFieldManager: Warning - Duplicate name : {mQuery.First().Key.mName}  _( P2 / needs-recording )_
+- `SET-0145` frmFieldManager: Success - Successful.  _( P1 / needs-recording )_
+- `SET-0152` frmFileName: Warning - Empty field.  _( P2 / needs-recording )_
+- `SET-0153` frmLegend: action btnOK (Close)  _( P3 / needs-recording )_
+- `SET-0151` frmFileName: action btnOk (OK)  _( P2 / needs-recording )_
+- `SET-0149` frmFieldManager: Warning - Quick payout is assigned to a custom button on the register.  _( P2 / needs-recording )_
+- `SET-0150` frmFileName: action btnCancel (Cancel)  _( P3 / needs-recording )_
+- `SET-0143` frmFieldManager: Warning - At least one category or item is set to this department.  _( P2 / needs-recording )_
+- `SET-0136` frmFieldManager: action btnAdd (Add Line)  _( P2 / needs-recording )_
+- `SET-0137` frmFieldManager: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0135` frmDelivery: action btnSyncItems (Sync Items)  _( P2 / needs-recording )_
+- `SET-0133` frmDelivery: action dgvZones  _( P3 / needs-recording )_
+- `SET-0134` frmDelivery: action btnSyncSettings (Sync Settings)  _( P2 / needs-recording )_
+- `SET-0141` frmFieldManager: Warning - Duplicate {colValue.HeaderText} in Departments.  _( P2 / needs-recording )_
+- `SET-0142` frmFieldManager: Warning - At least one needs to be activated  _( P2 / needs-recording )_
+- `SET-0140` frmFieldManager: Warning - Department {colValue.HeaderText} field cannot be blank.  _( P2 / needs-recording )_
+- `SET-0138` frmFieldManager: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0139` frmFieldManager: Warning - {colName.HeaderText} cannot be blank.  _( P2 / needs-recording )_
+- `SET-0154` frmMenu: permission Settings.Business gates btnTaxes  _( P2 / needs-recording )_
+- `SET-0169` frmMenu: action btnTaxes (Tax Group Settings)  _( P2 / needs-recording )_
+- `SET-0170` frmOffline: action btnCancel (Decline)  _( P3 / needs-recording )_
+- `SET-0168` frmMenu: action btnSystemSettings  _( P2 / needs-recording )_
+- `SET-0166` frmMenu: action btnSecurity (Security Profile)  _( P2 / needs-recording )_
+- `SET-0167` frmMenu: action btnSettingsProfile (Settings Profile)  _( P2 / needs-recording )_
+- `SET-0174` frmPreference: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0175` frmPreference: action btnImgDown  _( P3 / needs-recording )_
+- `SET-0173` frmPreference: Warning - Unable to load {mPath}.  _( P2 / needs-recording )_
+- `SET-0171` frmOffline: action btnOK (Accept)  _( P2 / needs-recording )_
+- `SET-0172` frmPreference: action btnAdd  _( P2 / needs-recording )_
+- `SET-0165` frmMenu: action btnReserved (Reserved)  _( P2 / needs-recording )_
+- `SET-0158` frmMenu: action btnActivation (Activation)  _( P2 / needs-recording )_
+- `SET-0159` frmMenu: Warning - Invalid information in settings.  _( P2 / needs-recording )_
+- `SET-0157` frmMenu: action btnAccount (Account)  _( P2 / needs-recording )_
+- `SET-0155` frmMenu: permission Settings.Preference gates btnSettingsProfile  _( P2 / needs-recording )_
+- `SET-0156` frmMenu: permission Settings.Security gates btnSecurity  _( P2 / needs-recording )_
+- `SET-0163` frmMenu: action btnPrinter (Print Settings)  _( P2 / needs-recording )_
+- `SET-0164` frmMenu: action btnRegPref (Register Preferences)  _( P2 / needs-recording )_
+- `SET-0162` frmMenu: action btnPreference (Preferences)  _( P2 / needs-recording )_
+- `SET-0160` frmMenu: action btnCompany (Business Details)  _( P2 / needs-recording )_
+- `SET-0161` frmMenu: action btnFloorPlan (Floor Plan Designer)  _( P2 / needs-recording )_
+- `SET-0132` frmDelivery: action dgvAccounts  _( P3 / needs-recording )_
+- `SET-0103` frmCustomButtons: Warning - Enable lines in numeric order.  _( P2 / needs-recording )_
+- `SET-0104` frmCustomButtons: Success - Saved successful.  _( P1 / needs-recording )_
+- `SET-0102` frmCustomButtons: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0100` frmCustomButtons: Success - Successful.  _( P1 / needs-recording )_
+- `SET-0101` frmCustomButtons: action btnLegend (Legend)  _( P3 / needs-recording )_
+- `SET-0108` frmCustomTender: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0109` frmCustomTender: action btnClear (Clear Button)  _( P2 / needs-recording )_
+- `SET-0107` frmCustomButtons: toggle chkOrder (Entire Order)  _( P2 / needs-recording )_
+- `SET-0105` frmCustomButtons: toggle chkSingle (Single Item/Service)  _( P2 / needs-recording )_
+- `SET-0106` frmCustomButtons: toggle chkSystemColor (Use System Color)  _( P2 / needs-recording )_
+- `SET-0099` frmCustomButtons: action btnDefault (Reset Default)  _( P2 / needs-recording )_
+- `SET-0092` frmCompany: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0093` frmCompany: toggle cboState  _( P2 / needs-recording )_
+- `SET-0091` frmCompany: Warning - Invalid M.L. Price URL format  _( P2 / needs-recording )_
+- `SET-0089` frmCompany: Warning - Invalid Website URL format  _( P2 / needs-recording )_
+- `SET-0090` frmCompany: Warning - M.L. Price URL is missing in Business Details.  _( P2 / needs-recording )_
+- `SET-0097` frmCustomButtons: action btn  _( P3 / needs-recording )_
+- `SET-0098` frmCustomButtons: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0096` frmCustomButtons: action btnClearPage (Clear Page)  _( P2 / needs-recording )_
+- `SET-0094` frmCustomButtons: action btnClearAll (Clear All Pages)  _( P2 / needs-recording )_
+- `SET-0095` frmCustomButtons: action btnClear (Clear Button)  _( P2 / needs-recording )_
+- `SET-0110` frmCustomTender: action btnClearPage (Clear Page)  _( P2 / needs-recording )_
+- `SET-0125` frmDelivery: Warning - Check start and end times for {mLbl[i].Text} (open)  _( P2 / needs-recording )_
+- `SET-0126` frmDelivery: Warning - Check start and end times for {mLbl[i].Text} (close)  _( P2 / needs-recording )_
+- `SET-0124` frmDelivery: Warning - Duplicate name.  _( P2 / needs-recording )_
+- `SET-0122` frmDelivery: Warning - Description cannot be blank.  _( P2 / needs-recording )_
+- `SET-0123` frmDelivery: Warning - Account number cannot be blank.  _( P2 / needs-recording )_
+- `SET-0130` frmDelivery: toggle chkFlatFee (Charge a Flat Fee?)  _( P2 / needs-recording )_
+- `SET-0131` frmDelivery: toggle chkShowOnlyDeleted (Show Only Deleted)  _( P2 / needs-recording )_
+- `SET-0129` frmDelivery: toggle chkEmailPrint (Or Email & Print)  _( P2 / needs-recording )_
+- `SET-0127` frmDelivery: Success - Saved successfully.  _( P1 / needs-recording )_
+- `SET-0128` frmDelivery: toggle chkEmail (Driver Delivery Receipt? Email)  _( P2 / needs-recording )_
+- `SET-0121` frmDelivery: Warning - Percent cannot be greater than 100%.  _( P2 / needs-recording )_
+- `SET-0114` frmCustomTender: Success - Successful.  _( P1 / needs-recording )_
+- `SET-0115` frmCustomTender: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0113` frmCustomTender: action btnDefault (Reset Default)  _( P2 / needs-recording )_
+- `SET-0111` frmCustomTender: action btn  _( P3 / needs-recording )_
+- `SET-0112` frmCustomTender: action btnColor (Pick Color)  _( P3 / needs-recording )_
+- `SET-0119` frmDelivery: action btnNew (New)  _( P2 / needs-recording )_
+- `SET-0120` frmDelivery: action btnOK (Save)  _( P2 / needs-recording )_
+- `SET-0118` frmDelivery: action btnCancel (Close)  _( P3 / needs-recording )_
+- `SET-0116` frmCustomTender: Warning - At least one payment needs to be selected.  _( P2 / needs-recording )_
+- `SET-0117` frmCustomTender: Success - Saved successful.  _( P1 / needs-recording )_
+
+### Transactions  (740 tests: 738 atomic, 2 composite)
+
+**(uncategorized)** (740)
+
+- `TXN-0494` frmGetOrders: Open action (btnOKClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0493` frmGetOrders: Warning - Cannot join delivery orders. Those (309)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0495` frmGetOrders: Preview action (btnPreviewClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0497` frmGetOrders: Void Order action (btnVoidClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0496` frmGetOrders: Print action (btnPrintClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0492` frmGetOrders: Join In action (btnJoinClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0488` frmGetOrders: Close action (btnCancelClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0487` frmGetOrders: Permission - Void Order (Register.VoidOrder)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0489` frmGetOrders: Completed Orders action (btnCompletedClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0491` frmGetOrders: Send Email action (btnEmailClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0490` frmGetOrders: Copy Order action (btnCopyOrderClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0498` frmGetOrders: Warning - Voided successfully. (484)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0506` frmHistory: Reset action (btnResetClick)  _( P3 / frmHistory / Order / needs-recording )_
+- `TXN-0505` frmHistory: Close action (btnCancelClick)  _( P3 / frmHistory / Order / needs-recording )_
+- `TXN-0507` frmHistory: Select All action (btnSelectAllClick)  _( P3 / frmHistory / Order / needs-recording )_
+- `TXN-0509` frmInfo: Permission - btnMod (Items.Item)  _( P2 / frmInfo / Order / needs-recording )_
+- `TXN-0508` frmHistory: dgvHistory action (dgvHistoryCellClick)  _( P3 / frmHistory / Order / needs-recording )_
+- `TXN-0504` frmHistory: Add To Order action (btnOKClick)  _( P3 / frmHistory / Order / needs-recording )_
+- `TXN-0500` frmGetOrders: Warning - Cannot join tab authorized orders. (501)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0499` frmGetOrders: dgvOrdersColumnHeaderMouse action (dgvOrdersColumnHeaderMouseClick)  _( P3 / frmGetOrders / Order / needs-recording )_
+- `TXN-0501` frmGiftCard: Cancel action (btnCancelClick)  _( P3 / frmGiftCard / Order / needs-recording )_
+- `TXN-0503` frmHistory: Warning - Not found. (89)  _( P2 / frmHistory / Order / needs-recording )_
+- `TXN-0502` frmGiftCard: Manual Entry action (btnOKClick)  _( P3 / frmGiftCard / Order / needs-recording )_
+- `TXN-0471` frmComplete: dgvPaymentsColumnHeaderMouse action (dgvPaymentsColumnHeaderMouseClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0470` frmComplete: Toggle - chk (274)  _( P2 / frmComplete / Order / needs-recording )_
+- `TXN-0472` frmDRV: Close action (btnOKClick)  _( P3 / frmDRV / Order / needs-recording )_
+- `TXN-0474` frmDRVCalc: Close action (btnCloseClick)  _( P3 / frmDRVCalc / Order / needs-recording )_
+- `TXN-0473` frmDRVCalc: Clear action (btnClearClick)  _( P3 / frmDRVCalc / Order / needs-recording )_
+- `TXN-0469` frmComplete: Success - Payment voided. (269)  _( P1 / frmComplete / Order / needs-recording )_
+- `TXN-0465` frmComplete: Close action (btnCancelClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0464` frmComplete: Warning - Order {mOrderID} not found on this (63)  _( P2 / frmComplete / Order / needs-recording )_
+- `TXN-0466` frmComplete: Review action (btnReviewClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0468` frmComplete: Void Auth action (btnVoidClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0467` frmComplete: Complete action (btnOKClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0475` frmDRVCalc: . action (btnDecimalClick)  _( P3 / frmDRVCalc / Order / needs-recording )_
+- `TXN-0483` frmGetOrders: Permission - Copy Order (Register.CopyOrder)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0482` frmGetOrders: Permission - Print (Register.PrintOrder)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0484` frmGetOrders: Permission - Join In (Register.JoinOrder)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0486` frmGetOrders: Permission - Print Remote (Register.PrintRemote)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0485` frmGetOrders: Permission - Open (Register.OpenOrder)  _( P2 / frmGetOrders / Order / needs-recording )_
+- `TXN-0481` frmFPOrder: Open action (btnOKClick)  _( P3 / frmFPOrder / Order / needs-recording )_
+- `TXN-0477` frmDRVCalc: btnDRVItem action (btnDRVItemClick)  _( P3 / frmDRVCalc / Order / needs-recording )_
+- `TXN-0476` frmDRVCalc: btnDRVItemAlt action (btnDRVItemAltClick)  _( P3 / frmDRVCalc / Order / needs-recording )_
+- `TXN-0478` frmDRVCalc: Add to Order action (btnOKClick)  _( P3 / frmDRVCalc / Order / needs-recording )_
+- `TXN-0480` frmFPOrder: Close action (btnCancelClick)  _( P3 / frmFPOrder / Order / needs-recording )_
+- `TXN-0479` frmDRVCalc: btnQtyUpdate action (btnQtyUpdateClick)  _( P3 / frmDRVCalc / Order / needs-recording )_
+- `TXN-0540` frmMods: btnRemove action (btnRemoveClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0539` frmMods: btnOpenMod action (btnOpenModClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0541` frmMods: Warning - Insufficient access level. (1191)  _( P2 / frmMods / Order / needs-recording )_
+- `TXN-0543` frmMods: btnReset action (btnResetClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0542` frmMods: Required Mods action (btnReqClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0538` frmMods: Warning - Insufficient access level. (958)  _( P2 / frmMods / Order / needs-recording )_
+- `TXN-0534` frmMods: Warning - Selection error group (840)  _( P2 / frmMods / Order / needs-recording )_
+- `TXN-0533` frmMods: Warning - Selection error group (827)  _( P2 / frmMods / Order / needs-recording )_
+- `TXN-0535` frmMods: btnInstr action (btnInstrClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0537` frmMods: btnEditOpenMod action (btnEditOpenModClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0536` frmMods: MODS action (btnModsClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0544` frmMods: Sell As Reg. Item action (btnSellClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0552` frmNoScale: OK action (btnOKClick)  _( P3 / frmNoScale / Order / needs-recording )_
+- `TXN-0551` frmNoScale: Cancel action (btnCloseClick)  _( P3 / frmNoScale / Order / needs-recording )_
+- `TXN-0553` frmNotes: Close action (btnCancelClick)  _( P3 / frmNotes / Order / needs-recording )_
+- `TXN-0555` frmNotes: Warning - Please write in a reason fo (48)  _( P2 / frmNotes / Order / needs-recording )_
+- `TXN-0554` frmNotes: OK action (btnOkClick)  _( P3 / frmNotes / Order / needs-recording )_
+- `TXN-0550` frmNoScale: Clear action (btnClearClick)  _( P3 / frmNoScale / Order / needs-recording )_
+- `TXN-0546` frmMods: dgvMods action (dgvModsCellClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0545` frmMods: Special Instructions action (btnSpecialClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0547` frmMods: Warning - Modifier already added. (1635)  _( P2 / frmMods / Order / needs-recording )_
+- `TXN-0549` frmNoScale: btnNumPad action (btnNumPadClick)  _( P3 / frmNoScale / Order / needs-recording )_
+- `TXN-0548` frmMods: Warning - Modifier limit reached. (1641)  _( P2 / frmMods / Order / needs-recording )_
+- `TXN-0517` frmInfo: OK action (btnOKClick)  _( P3 / frmInfo / Order / needs-recording )_
+- `TXN-0516` frmInfo: btnMod action (btnModClick)  _( P3 / frmInfo / Order / needs-recording )_
+- `TXN-0518` frmLabel: Go Back action (btnCancelClick)  _( P3 / frmLabel / Order / needs-recording )_
+- `TXN-0520` frmLabel: Warning - Empty field. (60)  _( P2 / frmLabel / Order / needs-recording )_
+- `TXN-0519` frmLabel: Continue action (btnOkClick)  _( P3 / frmLabel / Order / needs-recording )_
+- `TXN-0515` frmInfo: btnFindStaff action (btnFindStaffClick)  _( P3 / frmInfo / Order / needs-recording )_
+- `TXN-0511` frmInfo: Permission - 86 (Register.Mark86)  _( P2 / frmInfo / Order / needs-recording )_
+- `TXN-0510` frmInfo: Permission - btnMod (Items.Item)  _( P2 / frmInfo / Order / needs-recording )_
+- `TXN-0512` frmInfo: Permission - btnFindStaff (Register.ChangeStaffService)  _( P2 / frmInfo / Order / needs-recording )_
+- `TXN-0514` frmInfo: Close action (btnCancelClick)  _( P3 / frmInfo / Order / needs-recording )_
+- `TXN-0513` frmInfo: 86 action (btn86Click)  _( P3 / frmInfo / Order / needs-recording )_
+- `TXN-0521` frmMisc: Clear action (btnClearClick)  _( P3 / frmMisc / Order / needs-recording )_
+- `TXN-0529` frmMods: Add Another action (btnAddClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0528` frmMods: Warning - Insufficient access level. (166)  _( P2 / frmMods / Order / needs-recording )_
+- `TXN-0530` frmMods: btnBack action (btnBackClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0532` frmMods: btnDone action (btnDoneClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0531` frmMods: btnCustom action (btnCustomClick)  _( P3 / frmMods / Order / needs-recording )_
+- `TXN-0527` frmMisc: btnQtyUpdate action (btnQtyUpdateClick)  _( P3 / frmMisc / Order / needs-recording )_
+- `TXN-0523` frmMisc: . action (btnDecimalClick)  _( P3 / frmMisc / Order / needs-recording )_
+- `TXN-0522` frmMisc: Close action (btnCancelClick)  _( P3 / frmMisc / Order / needs-recording )_
+- `TXN-0524` frmMisc: btnMiscOk action (btnMiscOkClick)  _( P3 / frmMisc / Order / needs-recording )_
+- `TXN-0526` frmMisc: Warning - Warning! You have exceeded the (167)  _( P2 / frmMisc / Order / needs-recording )_
+- `TXN-0525` frmMisc: Warning - Invalid quantity. (160)  _( P2 / frmMisc / Order / needs-recording )_
+- `TXN-0463` frmClub: OK action (btnOKClick)  _( P3 / frmClub / Order / needs-recording )_
+- `TXN-0401` frmPhone: Cancel action (btnCancelClick)  _( P3 / frmPhone / Order / needs-recording )_
+- `TXN-0400` frmPhone: btnBackClick action (btnBackClick)  _( P3 / frmPhone / Order / needs-recording )_
+- `TXN-0402` frmPhone: btnClearClick action (btnClearClick)  _( P3 / frmPhone / Order / needs-recording )_
+- `TXN-0404` frmPhone: Warning - Valid customer must be add (118)  _( P2 / frmPhone / Order / needs-recording )_
+- `TXN-0403` frmPhone: OK action (btnOkClick)  _( P3 / frmPhone / Order / needs-recording )_
+- `TXN-0399` frmPhone: Add Customer action (btnAddCustClick)  _( P3 / frmPhone / Order / needs-recording )_
+- `TXN-0395` frmMap: dgvDriversCellMouseClick action (dgvDriversCellMouseClick)  _( P3 / frmMap / Order / needs-recording )_
+- `TXN-0394` frmMap: Remove Driver action (btnRemoveClick)  _( P3 / frmMap / Order / needs-recording )_
+- `TXN-0396` frmMap: Warning - Incorrect Latitude or Long (301)  _( P2 / frmMap / Order / needs-recording )_
+- `TXN-0398` frmMap: Success - Driver(s) added. (403)  _( P1 / frmMap / Order / needs-recording )_
+- `TXN-0397` frmMap: Warning - Incorrect Latitude or Long (308)  _( P2 / frmMap / Order / needs-recording )_
+- `TXN-0405` frmPhone: Search action (btnSearchClick)  _( P3 / frmPhone / Order / needs-recording )_
+- `TXN-0413` frmReorder: btnReorder2Click action (btnReorder2Click)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0412` frmReorder: btnReorder1Click action (btnReorder1Click)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0414` frmSetDelivery: Close action (btnCancelClick)  _( P3 / frmSetDelivery / Order / needs-recording )_
+- `TXN-0416` frmSetDelivery: Warning - Invalid email address. (76)  _( P2 / frmSetDelivery / Order / needs-recording )_
+- `TXN-0415` frmSetDelivery: Print & Send Loc action (btnPrintSendClick)  _( P3 / frmSetDelivery / Order / needs-recording )_
+- `TXN-0411` frmReorder: btnOrderHistoryClick action (btnOrderHistoryClick)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0407` frmReorder: Manage Address action (btnAddressesClick)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0406` frmReorder: Add Customer action (btnAddCustomerClick)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0408` frmReorder: Cancel action (btnCancelClick)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0410` frmReorder: OK action (btnOKClick)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0409` frmReorder: Edit Customer action (btnEditCustomerClick)  _( P3 / frmReorder / Order / needs-recording )_
+- `TXN-0378` frmDelSearch: New customer action (btnNewCustomerClick)  _( P3 / frmDelSearch / Order / needs-recording )_
+- `TXN-0377` frmDelSearch: Clear action (btnClearClick)  _( P3 / frmDelSearch / Order / needs-recording )_
+- `TXN-0379` frmDelSearch: Go to order action (btnOrderClick)  _( P3 / frmDelSearch / Order / needs-recording )_
+- `TXN-0381` frmDelSearch: dgvCustomersCellDoubleClick action (dgvCustomersCellDoubleClick)  _( P3 / frmDelSearch / Order / needs-recording )_
+- `TXN-0380` frmDelSearch: Verify and order action (btnVerifyClick)  _( P3 / frmDelSearch / Order / needs-recording )_
+- `TXN-0376` frmDelSearch: Cancel action (btnCancelClick)  _( P3 / frmDelSearch / Order / needs-recording )_
+- `TXN-0372` frmDelManager: btnStatusClick action (btnStatusClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0371` frmDelManager: btnResetStatusClick action (btnResetStatusClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0373` frmDelManager: Success - Driver(s) removed. (1039)  _( P1 / frmDelManager / Order / needs-recording )_
+- `TXN-0375` frmDelSearch: History action (btnAddClick)  _( P3 / frmDelSearch / Order / needs-recording )_
+- `TXN-0374` frmDelManager: Success - Driver(s) added. (1126)  _( P1 / frmDelManager / Order / needs-recording )_
+- `TXN-0382` frmFuture: Close action (btnCloseClick)  _( P3 / frmFuture / Order / needs-recording )_
+- `TXN-0390` frmMap: Success - Driver(s) removed. (155)  _( P1 / frmMap / Order / needs-recording )_
+- `TXN-0389` frmManage: Print Sticky Labels action (btnPrintStickyClick)  _( P3 / frmManage / Order / needs-recording )_
+- `TXN-0391` frmMap: btnClearClick action (btnClearClick)  _( P3 / frmMap / Order / needs-recording )_
+- `TXN-0393` frmMap: btnDriversClick action (btnDriversClick)  _( P3 / frmMap / Order / needs-recording )_
+- `TXN-0392` frmMap: Close action (btnCloseClick)  _( P3 / frmMap / Order / needs-recording )_
+- `TXN-0388` frmManage: Print Kitchen Ticket action (btnPrintRemoteClick)  _( P3 / frmManage / Order / needs-recording )_
+- `TXN-0384` frmManage: Close action (btnCloseClick)  _( P3 / frmManage / Order / needs-recording )_
+- `TXN-0383` frmFuture: dgvInfoCellClick action (dgvInfoCellClick)  _( P3 / frmFuture / Order / needs-recording )_
+- `TXN-0385` frmManage: Manage Order action (btnManageClick)  _( P3 / frmManage / Order / needs-recording )_
+- `TXN-0387` frmManage: Print Customer Receipt action (btnPrintReceiptClick)  _( P3 / frmManage / Order / needs-recording )_
+- `TXN-0386` frmManage: Print Delivery Ticket action (btnPrintDeliveryClick)  _( P3 / frmManage / Order / needs-recording )_
+- `TXN-0447` frmBalance: Warning - Not found. (43)  _( P2 / frmBalance / Order / needs-recording )_
+- `TXN-0446` frmBalance: Gift Cert action (btnCertClick)  _( P3 / frmBalance / Order / needs-recording )_
+- `TXN-0448` frmBalance: Success - Gift Cert. balance:par fs120 {mGiftCard.Bala (47)  _( P1 / frmBalance / Order / needs-recording )_
+- `TXN-0450` frmBalance: btnEBT action (btnEBTClick)  _( P3 / frmBalance / Order / needs-recording )_
+- `TXN-0449` frmBalance: Close action (btnCancelClick)  _( P3 / frmBalance / Order / needs-recording )_
+- `TXN-0445` frmAlert: Success - Test page sent to the printer. (272)  _( P1 / frmAlert / Order / needs-recording )_
+- `TXN-0441` frmAlert: Close action (btnCancelClick)  _( P3 / frmAlert / Order / needs-recording )_
+- `TXN-0440` frmAlert: Success - Canceled {mDeleted}/{mCount} job(s). (205)  _( P1 / frmAlert / Order / needs-recording )_
+- `TXN-0442` frmAlert: Print Test Page action (btnPrintTestClick)  _( P3 / frmAlert / Order / needs-recording )_
+- `TXN-0444` frmAlert: Warning - Windows print test page failed. (263)  _( P2 / frmAlert / Order / needs-recording )_
+- `TXN-0443` frmAlert: Success - Test page sent to the printer. (241)  _( P1 / frmAlert / Order / needs-recording )_
+- `TXN-0451` frmBalance: Success - EBT {(sender.Equals(btnEBTCash) ? (74)  _( P1 / frmBalance / Order / needs-recording )_
+- `TXN-0459` frmCash: Clear action (btnClearClick)  _( P3 / frmCash / Order / needs-recording )_
+- `TXN-0458` frmCash: btnCash action (btnCashClick)  _( P3 / frmCash / Order / needs-recording )_
+- `TXN-0460` frmCash: . action (btnDecimalClick)  _( P3 / frmCash / Order / needs-recording )_
+- `TXN-0462` frmClub: Close action (btnCancelClick)  _( P3 / frmClub / Order / needs-recording )_
+- `TXN-0461` frmCash: Pay action (btnOKClick)  _( P3 / frmCash / Order / needs-recording )_
+- `TXN-0457` frmCash: Cancel action (btnCancelClick)  _( P3 / frmCash / Order / needs-recording )_
+- `TXN-0453` frmBalance: Success - eGift balance:par fs120 {mGift.Amount: (97)  _( P1 / frmBalance / Order / needs-recording )_
+- `TXN-0452` frmBalance: btneGift action (btneGiftClick)  _( P3 / frmBalance / Order / needs-recording )_
+- `TXN-0454` frmBalance: Loyalty action (btnLoyaltyClick)  _( P3 / frmBalance / Order / needs-recording )_
+- `TXN-0456` frmBalance: Success - Reward balance:par fs120 {mTotalBal: (160)  _( P1 / frmBalance / Order / needs-recording )_
+- `TXN-0455` frmBalance: Warning - No reward points available. (147)  _( P2 / frmBalance / Order / needs-recording )_
+- `TXN-0424` frmSuspend: btnDelEnableClick action (btnDelEnableClick)  _( P3 / frmSuspend / Order / needs-recording )_
+- `TXN-0423` frmSuspend: Success - Delivery suspended (73)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0425` frmSuspend: Success - Delivery Enabled (90)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0427` frmSuspend: Success - Pickup suspended (112)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0426` frmSuspend: btnPickClick action (btnPickClick)  _( P3 / frmSuspend / Order / needs-recording )_
+- `TXN-0422` frmSuspend: Close For Day action (btnDelDayClick)  _( P3 / frmSuspend / Order / needs-recording )_
+- `TXN-0418` frmSetDelivery: Toggle - All Staff (115)  _( P2 / frmSetDelivery / Order / needs-recording )_
+- `TXN-0417` frmSetDelivery: Delivered action (btnDeliveredClick)  _( P3 / frmSetDelivery / Order / needs-recording )_
+- `TXN-0419` frmSuspend: Close action (btnCloseClick)  _( P3 / frmSuspend / Order / needs-recording )_
+- `TXN-0421` frmSuspend: Success - Delivery Suspended (51)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0420` frmSuspend: btnDelClick action (btnDelClick)  _( P3 / frmSuspend / Order / needs-recording )_
+- `TXN-0428` frmSuspend: Close For Day action (btnPickDayClick)  _( P3 / frmSuspend / Order / needs-recording )_
+- `TXN-0436` frmSuspend: Toggle - cboPickUntil (211)  _( P2 / frmSuspend / Order / needs-recording )_
+- `TXN-0435` frmSuspend: Success - Delivery suspended (200)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0437` frmSuspend: Success - Pickup suspended (220)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0439` frmSuspend: Success - Pickup suspended (251)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0438` frmSuspend: Warning - Selection error. (240)  _( P2 / frmSuspend / Order / needs-recording )_
+- `TXN-0434` frmSuspend: Warning - Selection error. (189)  _( P2 / frmSuspend / Order / needs-recording )_
+- `TXN-0430` frmSuspend: btnPickEnableClick action (btnPickEnableClick)  _( P3 / frmSuspend / Order / needs-recording )_
+- `TXN-0429` frmSuspend: Success - Pickup Enabled (134)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0431` frmSuspend: Success - Pickup Enabled (152)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0433` frmSuspend: Success - Delivery suspended (169)  _( P1 / frmSuspend / Order / needs-recording )_
+- `TXN-0432` frmSuspend: Toggle - cboDelUntil (160)  _( P2 / frmSuspend / Order / needs-recording )_
+- `TXN-0679` frmSearch: btnStaffClick action (btnStaffClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0678` frmSearch: btnStaffAltClick action (btnStaffAltClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0680` frmSearch: Print Sticky Labels action (btnStickyClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0682` frmSearch: Warning - Payment was processed on a Clover Fle (398)  _( P2 / frmSearch / Order / needs-recording )_
+- `TXN-0681` frmSearch: dgvOrdersCellClick action (dgvOrdersCellClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0677` frmSearch: btnServiceClick action (btnServiceClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0673` frmSearch: Print action (btnPrintClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0672` frmSearch: btnItemClick action (btnItemClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0674` frmSearch: Print Remote action (btnRemoteClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0676` frmSearch: btnServiceAltClick action (btnServiceAltClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0675` frmSearch: Reset action (btnResetClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0683` frmSearch: Warning - Please refund the order on Procharge. (404)  _( P2 / frmSearch / Order / needs-recording )_
+- `TXN-0691` frmSendEmail: Cancel action (btnCancelClick)  _( P3 / frmSendEmail / Order / needs-recording )_
+- `TXN-0690` frmSeat: btnSeatClick action (btnSeatClick)  _( P3 / frmSeat / Order / needs-recording )_
+- `TXN-0692` frmSendEmail: btnFindCustomerClick action (btnFindCustomerClick)  _( P3 / frmSendEmail / Order / needs-recording )_
+- `TXN-0694` frmSendEmail: Clear action (btnClearClick)  _( P3 / frmSendEmail / Order / needs-recording )_
+- `TXN-0693` frmSendEmail: btnFindCustomerAltClick action (btnFindCustomerAltClick)  _( P3 / frmSendEmail / Order / needs-recording )_
+- `TXN-0689` frmSeat: OK action (btnOKClick)  _( P3 / frmSeat / Order / needs-recording )_
+- `TXN-0685` frmSeat: Clear action (btnClearClick)  _( P3 / frmSeat / Order / needs-recording )_
+- `TXN-0684` frmSearch: dgvOrdersColumnHeaderMouseClick action (dgvOrdersColumnHeaderMouseClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0686` frmSeat: Cancel action (btnCancelClick)  _( P3 / frmSeat / Order / needs-recording )_
+- `TXN-0688` frmSeat: Next Seat action (btnNextClick)  _( P3 / frmSeat / Order / needs-recording )_
+- `TXN-0687` frmSeat: btnCourseClick action (btnCourseClick)  _( P3 / frmSeat / Order / needs-recording )_
+- `TXN-0656` frmReView: Permission - Close Batch (Register.BatchClose)  _( P2 / frmReView / Order / needs-recording )_
+- `TXN-0655` frmReView: dgvPaymentsColumnHeaderMouseClick action (dgvPaymentsColumnHeaderMouseClick)  _( P3 / frmReView / Order / needs-recording )_
+- `TXN-0657` frmScale: Warning - Power interruption detected, please che (487)  _( P2 / frmScale / Order / needs-recording )_
+- `TXN-0659` frmScale: btnClick action (btnClick)  _( P3 / frmScale / Order / needs-recording )_
+- `TXN-0658` frmScale: Clear action (btnClearClick)  _( P3 / frmScale / Order / needs-recording )_
+- `TXN-0654` frmReView: Success - Payment voided. (216)  _( P1 / frmReView / Order / needs-recording )_
+- `TXN-0650` frmReView: Success - Adjust completed (193)  _( P1 / frmReView / Order / needs-recording )_
+- `TXN-0649` frmReView: Warning - The tip amount exceeds the allowed perce (105)  _( P2 / frmReView / Order / needs-recording )_
+- `TXN-0651` frmReView: Close action (btnCancelClick)  _( P3 / frmReView / Order / needs-recording )_
+- `TXN-0653` frmReView: Void Auth action (btnVoidClick)  _( P3 / frmReView / Order / needs-recording )_
+- `TXN-0652` frmReView: Close Batch action (btnOKClick)  _( P3 / frmReView / Order / needs-recording )_
+- `TXN-0660` frmScale: Warning - Price must be greater than zero. (754)  _( P2 / frmScale / Order / needs-recording )_
+- `TXN-0668` frmSearch: btnCustomerAltClick action (btnCustomerAltClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0667` frmSearch: Copy Order action (btnCopyOrderClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0669` frmSearch: btnCustomerClick action (btnCustomerClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0671` frmSearch: btnItemAltClick action (btnItemAltClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0670` frmSearch: Email Receipt action (btnEmailClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0666` frmSearch: Close action (btnCancelClick)  _( P3 / frmSearch / Order / needs-recording )_
+- `TXN-0662` frmScale: . action (btnDecimalClick)  _( P3 / frmScale / Order / needs-recording )_
+- `TXN-0661` frmScale: Container Weight action (btnContainerClick)  _( P3 / frmScale / Order / needs-recording )_
+- `TXN-0663` frmScale: lnkPriceClick action (lnkPriceClick)  _( P3 / frmScale / Order / needs-recording )_
+- `TXN-0665` frmSearch: Permission - btnStaff (Staff)  _( P2 / frmSearch / Order / needs-recording )_
+- `TXN-0664` frmScale: Warning - Insufficient access level. (814)  _( P2 / frmScale / Order / needs-recording )_
+- `TXN-0725` frmTaxExempt: Apply Multiple action (btnMultipleClick)  _( P3 / frmTaxExempt / Order / needs-recording )_
+- `TXN-0724` frmTaxExempt: Close action (btnCancelClick)  _( P3 / frmTaxExempt / Order / needs-recording )_
+- `TXN-0726` frmTime: Close action (btnCloseClick)  _( P3 / frmTime / Order / needs-recording )_
+- `TXN-0728` frmTime: Start action (btnRunClick)  _( P3 / frmTime / Order / needs-recording )_
+- `TXN-0727` frmTime: OK action (btnOkClick)  _( P3 / frmTime / Order / needs-recording )_
+- `TXN-0723` frmTaxExempt: Apply action (btnOKClick)  _( P3 / frmTaxExempt / Order / needs-recording )_
+- `TXN-0719` frmTakePayment: btnPartialPay_Click action (btnPartialPay_Click)  _( P3 / frmTakePayment / Order / needs-recording )_
+- `TXN-0718` frmTakePayment: Close action (btnCancelClick)  _( P3 / frmTakePayment / Order / needs-recording )_
+- `TXN-0720` frmTakePayment: btnApply_Click action (btnApply_Click)  _( P3 / frmTakePayment / Order / needs-recording )_
+- `TXN-0722` frmTakePayment: btnClearSelection_Click action (btnClearSelection_Click)  _( P3 / frmTakePayment / Order / needs-recording )_
+- `TXN-0721` frmTakePayment: btnPayInFull_Click action (btnPayInFull_Click)  _( P3 / frmTakePayment / Order / needs-recording )_
+- `TXN-0729` frmTime: Warning - Insufficient access level. (136)  _( P2 / frmTime / Order / needs-recording )_
+- `TXN-0737` frmTopaz: Close action (btnCancelClick)  _( P3 / frmTopaz / Order / needs-recording )_
+- `TXN-0736` frmTopaz: Clear action (btnClearClick)  _( P3 / frmTopaz / Order / needs-recording )_
+- `TXN-0738` frmTopaz: Done action (btnOKClick)  _( P3 / frmTopaz / Order / needs-recording )_
 - `TXN-C002` End-to-end: refund guard rails block an ineligible order  _( P2 / frmRefund / Order / needs-recording )_
 - `TXN-C001` End-to-end: find a refundable order and complete a refund  _( P1 / frmRefund / Order / needs-recording )_
-- `TXN-0055` frmBankSwap: Swap action (btnOKClick)  _( P2 / frmBankSwap / Order / needs-recording )_
-- `TXN-0046` frmBank: toggle cbo (cboSelectedIndexChanged) changes behavior  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0045` frmBank: Success - Voided successfully.  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0044` frmBank: Void Bank action (btnVoidBankClick)  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0047` frmBank: Warning - Improper amount for currency  _( P2 / frmBank / Order / needs-recording )_
-- `TXN-0050` frmBankClose: Close action (btnCancelClick)  _( P3 / frmBankClose / Order / needs-recording )_
-- `TXN-0049` frmBankClose: Success - Successful.  _( P1 / frmBankClose / Order / needs-recording )_
-- `TXN-0048` frmBankClose: Close Shift action (btnOKClick)  _( P2 / frmBankClose / Order / needs-recording )_
+- `TXN-0735` frmTips: dgvTPCellClick action (dgvTPCellClick)  _( P3 / frmTips / Order / needs-recording )_
+- `TXN-0731` frmTips: OK action (btnOkClick)  _( P3 / frmTips / Order / needs-recording )_
+- `TXN-0730` frmTips: Close action (btnCancelClick)  _( P3 / frmTips / Order / needs-recording )_
+- `TXN-0732` frmTips: Warning - The tip percent exceeds the al (102)  _( P2 / frmTips / Order / needs-recording )_
+- `TXN-0734` frmTips: Reset action (btnResetClick)  _( P3 / frmTips / Order / needs-recording )_
+- `TXN-0733` frmTips: Warning - The tip amount exceeds the all (111)  _( P2 / frmTips / Order / needs-recording )_
+- `TXN-0702` frmShareItem: btnMinusShareClick action (btnMinusShareClick)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0701` frmShareItem: 00 action (btnDouble0Click)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0703` frmShareItem: btnMinusSplitClick action (btnMinusSplitClick)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0705` frmShareItem: Warning - Minimum permissible quantity of 1 i (109)  _( P2 / frmShareItem / Order / needs-recording )_
+- `TXN-0704` frmShareItem: OK action (btnOKClick)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0700` frmShareItem: Clear action (btnClearClick)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0696` frmSendEmail: Send Email action (btnOKClick)  _( P3 / frmSendEmail / Order / needs-recording )_
+- `TXN-0695` frmSendEmail: Print action (btnPrintClick)  _( P3 / frmSendEmail / Order / needs-recording )_
+- `TXN-0697` frmSendEmail: Warning - Check internet connection. (107)  _( P2 / frmSendEmail / Order / needs-recording )_
+- `TXN-0699` frmShareItem: Cancel action (btnCancelClick)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0698` frmSendEmail: Warning - Email incorrect. (113)  _( P2 / frmSendEmail / Order / needs-recording )_
+- `TXN-0706` frmShareItem: Warning - Maximum permissible quantity of (114)  _( P2 / frmShareItem / Order / needs-recording )_
+- `TXN-0714` frmSplitItem: Reset action (btnResetClick)  _( P3 / frmSplitItem / Order / needs-recording )_
+- `TXN-0713` frmSplitItem: Warning - Cannot leave course or seat witho (101)  _( P2 / frmSplitItem / Order / needs-recording )_
+- `TXN-0715` frmSplitItem: Shared Item action (btnShareClick)  _( P3 / frmSplitItem / Order / needs-recording )_
+- `TXN-0717` frmTabLimit: Warning - Amount cannot be zero (25)  _( P2 / frmTabLimit / Order / needs-recording )_
+- `TXN-0716` frmSplitItem: dgvCellClick action (dgvCellClick)  _( P3 / frmSplitItem / Order / needs-recording )_
+- `TXN-0712` frmSplitItem: Warning - No items selected on order 1. (84)  _( P2 / frmSplitItem / Order / needs-recording )_
+- `TXN-0708` frmShareItem: btnPlusShareClick action (btnPlusShareClick)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0707` frmShareItem: Warning - Minimum permissible quantity of 2 i (121)  _( P2 / frmShareItem / Order / needs-recording )_
+- `TXN-0709` frmShareItem: btnPlusSplitClick action (btnPlusSplitClick)  _( P3 / frmShareItem / Order / needs-recording )_
+- `TXN-0711` frmSplitItem: Done action (btnOKClick)  _( P3 / frmSplitItem / Order / needs-recording )_
+- `TXN-0710` frmSplitItem: Close action (btnCancelClick)  _( P3 / frmSplitItem / Order / needs-recording )_
+- `TXN-0648` frmReView: Warning - Nothing changed. (95)  _( P2 / frmReView / Order / needs-recording )_
+- `TXN-0586` frmPLUCode: btnEditPrice_ action (btnEditPrice_Click)  _( P3 / frmPLUCode / Order / needs-recording )_
+- `TXN-0585` frmPLUCode: btnAdd_ action (btnAdd_Click)  _( P3 / frmPLUCode / Order / needs-recording )_
+- `TXN-0587` frmPriceQty: Clear action (btnClearClick)  _( P3 / frmPriceQty / Order / needs-recording )_
+- `TXN-0589` frmPriceQty: . action (btnDecimalClick)  _( P3 / frmPriceQty / Order / needs-recording )_
+- `TXN-0588` frmPriceQty: Cancel action (btnCloseClick)  _( P3 / frmPriceQty / Order / needs-recording )_
+- `TXN-0584` frmPLUCode: OK action (btnOKClick)  _( P3 / frmPLUCode / Order / needs-recording )_
+- `TXN-0580` frmPLUCode: btnNumPad action (btnNumPadClick)  _( P3 / frmPLUCode / Order / needs-recording )_
+- `TXN-0579` frmPayType: Close action (btnCancelClick)  _( P3 / frmPayType / Order / needs-recording )_
+- `TXN-0581` frmPLUCode: Clear action (btnClearClick)  _( P3 / frmPLUCode / Order / needs-recording )_
+- `TXN-0583` frmPLUCode: btnClearEntry_ action (btnClearEntry_Click)  _( P3 / frmPLUCode / Order / needs-recording )_
+- `TXN-0582` frmPLUCode: btnCancel_ action (btnCancel_Click)  _( P3 / frmPLUCode / Order / needs-recording )_
+- `TXN-0590` frmPriceQty: OK action (btnOKClick)  _( P3 / frmPriceQty / Order / needs-recording )_
+- `TXN-0598` frmReadCard: Cancel action (btnCancelClick)  _( P3 / frmReadCard / Order / needs-recording )_
+- `TXN-0597` frmReadCard: Warning - Exp Date is not valid (74)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0599` frmReadCard: GO action (btnOKClick)  _( P3 / frmReadCard / Order / needs-recording )_
+- `TXN-0601` frmReadCard: Warning - Exp Date is not valid (154)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0600` frmReadCard: Warning - Card number is not valid (143)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0596` frmReadCard: Warning - Invalid card info. (63)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0592` frmPriceQty: btnQtyUpdate action (btnQtyUpdateClick)  _( P3 / frmPriceQty / Order / needs-recording )_
+- `TXN-0591` frmPriceQty: Warning - Warning! You have exceeded the (99)  _( P2 / frmPriceQty / Order / needs-recording )_
+- `TXN-0593` frmPromo: Apply action (btnOKClick)  _( P3 / frmPromo / Order / needs-recording )_
+- `TXN-0595` frmPromo: dgvPromoCellMouseDoubleClick action (dgvPromoCellMouseDoubleClick)  _( P3 / frmPromo / Order / needs-recording )_
+- `TXN-0594` frmPromo: Close action (btnCancelClick)  _( P3 / frmPromo / Order / needs-recording )_
+- `TXN-0563` frmOpenModifier: btnDone action (btnDoneClick)  _( P3 / frmOpenModifier / Order / needs-recording )_
+- `TXN-0562` frmOpenModifier: Go Back action (btnCancelClick)  _( P3 / frmOpenModifier / Order / needs-recording )_
+- `TXN-0564` frmOpenModifier: Warning - Maximum of 100 characters i (70)  _( P2 / frmOpenModifier / Order / needs-recording )_
+- `TXN-0566` frmPartialApproval: Void Partial Approval action (btnCancelClick)  _( P3 / frmPartialApproval / Order / needs-recording )_
+- `TXN-0565` frmPartialApproval: Ok action (btnOKClick)  _( P3 / frmPartialApproval / Order / needs-recording )_
+- `TXN-0561` frmOfflineProcess: Print action (btnPrintClick)  _( P3 / frmOfflineProcess / Order / needs-recording )_
+- `TXN-0557` frmOffline: Close action (btnCloseClick)  _( P3 / frmOffline / Order / needs-recording )_
+- `TXN-0556` frmNotes: btnReason action (btnReasonClick)  _( P3 / frmNotes / Order / needs-recording )_
+- `TXN-0558` frmOffline: Print action (btnPrintClick)  _( P3 / frmOffline / Order / needs-recording )_
+- `TXN-0560` frmOfflineProcess: Close action (btnCloseClick)  _( P3 / frmOfflineProcess / Order / needs-recording )_
+- `TXN-0559` frmOfflineProcess: Warning - Warning! Failed transactions w (250)  _( P2 / frmOfflineProcess / Order / needs-recording )_
+- `TXN-0567` frmPayInOut: Close action (btnCancelClick)  _( P3 / frmPayInOut / Order / needs-recording )_
+- `TXN-0575` frmPayOutAmount: Clear action (btnClearClick)  _( P3 / frmPayOutAmount / Order / needs-recording )_
+- `TXN-0574` frmPayOutAmount: btnAmount action (btnAmountClick)  _( P3 / frmPayOutAmount / Order / needs-recording )_
+- `TXN-0576` frmPayOutAmount: . action (btnDecimalClick)  _( P3 / frmPayOutAmount / Order / needs-recording )_
+- `TXN-0578` frmPayType: btn action (btnClick)  _( P3 / frmPayType / Order / needs-recording )_
+- `TXN-0577` frmPayOutAmount: OK action (btnOKClick)  _( P3 / frmPayOutAmount / Order / needs-recording )_
+- `TXN-0573` frmPayOutAmount: Cancel action (btnCancelClick)  _( P3 / frmPayOutAmount / Order / needs-recording )_
+- `TXN-0569` frmPayOut: Close action (btnCancelClick)  _( P3 / frmPayOut / Order / needs-recording )_
+- `TXN-0568` frmPayInOut: OK action (btnOKClick)  _( P3 / frmPayInOut / Order / needs-recording )_
+- `TXN-0570` frmPayOut: OK action (btnOkClick)  _( P3 / frmPayOut / Order / needs-recording )_
+- `TXN-0572` frmPayOut: dgvReasonsCell action (dgvReasonsCellDoubleClick)  _( P3 / frmPayOut / Order / needs-recording )_
+- `TXN-0571` frmPayOut: Warning - Empty field. (43)  _( P2 / frmPayOut / Order / needs-recording )_
+- `TXN-0632` frmReceiptPrompt: Gift action (btnGiftReceiptClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0631` frmReceiptPrompt: Transaction action (btnTrxReceiptClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0633` frmReceiptPrompt: Transaction & Signature action (btnTrxSigReceiptClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0635` frmReceiptPrompt: Text Message action (btnSMSReceiptClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0634` frmReceiptPrompt: Email action (btnEmailReceiptClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0630` frmReceiptPrompt: Done action (btnOKClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0626` frmReadLicense: Cancel action (btnCancelClick)  _( P3 / frmReadLicense / Order / needs-recording )_
+- `TXN-0625` frmReadLicense: Warning - Insufficient access level. (293)  _( P2 / frmReadLicense / Order / needs-recording )_
+- `TXN-0627` frmReadLicense: Manual Entry action (btnManualClick)  _( P3 / frmReadLicense / Order / needs-recording )_
+- `TXN-0629` frmReadLicense: Warning - Age verification failed. (389)  _( P2 / frmReadLicense / Order / needs-recording )_
+- `TXN-0628` frmReadLicense: Warning - Age verification failed. (384)  _( P2 / frmReadLicense / Order / needs-recording )_
+- `TXN-0636` frmReceiptPrompt: Gift Balance action (btnGiftBalReceiptClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0644` frmRefundTool: Refund action (btnOKClick)  _( P3 / frmRefundTool / Order / needs-recording )_
+- `TXN-0643` frmRefundTool: Gift Certificate action (btnGiftCertClick)  _( P3 / frmRefundTool / Order / needs-recording )_
+- `TXN-0645` frmRefundTool: dgvRefundsCellClick action (dgvRefundsCellClick)  _( P3 / frmRefundTool / Order / needs-recording )_
+- `TXN-0647` frmReView: btnAdjClick action (btnAdjClick)  _( P3 / frmReView / Order / needs-recording )_
+- `TXN-0646` frmRefundTool: Warning - No partial refund allowed on authoriz (148)  _( P2 / frmRefundTool / Order / needs-recording )_
+- `TXN-0642` frmRefundTool: btnGiftCardClick action (btnGiftCardClick)  _( P3 / frmRefundTool / Order / needs-recording )_
+- `TXN-0638` frmRefTips: OK action (btnOkClick)  _( P3 / frmRefTips / Order / needs-recording )_
+- `TXN-0637` frmReceiptPrompt: Signature action (btnSigReceiptClick)  _( P3 / frmReceiptPrompt / Order / needs-recording )_
+- `TXN-0639` frmRefTips: dgvTPCellClick action (dgvTPCellClick)  _( P3 / frmRefTips / Order / needs-recording )_
+- `TXN-0641` frmRefundTool: Close action (btnCancelClick)  _( P3 / frmRefundTool / Order / needs-recording )_
+- `TXN-0640` frmRefundTool: Auto Fill action (btnAutoClick)  _( P3 / frmRefundTool / Order / needs-recording )_
+- `TXN-0609` frmReadCardManual: Warning - Invalid card info. (104)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0608` frmReadCard: Manual Entry action (btnSwitchClick)  _( P3 / frmReadCard / Order / needs-recording )_
+- `TXN-0610` frmReadCardManual: Warning - Exp Date is not valid (115)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0612` frmReadCardManual: Warning - Exp Date is not valid (168)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0611` frmReadCardManual: Warning - Card number is not valid (156)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0607` frmReadCard: Warning - A Transaction with that Auth Code already (197)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0603` frmReadCard: Warning - Address is not valid (166)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0602` frmReadCard: Warning - Cardholder is not valid (160)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0604` frmReadCard: Warning - Zip code is not valid (172)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0606` frmReadCard: Warning - Incorrect approval code. (186)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0605` frmReadCard: Warning - Security number is not valid (178)  _( P2 / frmReadCard / Order / needs-recording )_
+- `TXN-0613` frmReadCardManual: Warning - Cardholder is not valid (175)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0621` frmReadCardManual: Pay action (btnGOClick)  _( P3 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0620` frmReadCardManual: Cancel action (btnCancelClick)  _( P3 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0622` frmReadLicense: Override action (btnOverrideClick)  _( P3 / frmReadLicense / Order / needs-recording )_
+- `TXN-0624` frmReadLicense: Warning - Insufficient access level. (157)  _( P2 / frmReadLicense / Order / needs-recording )_
+- `TXN-0623` frmReadLicense: Warning - Insufficient access level. (67)  _( P2 / frmReadLicense / Order / needs-recording )_
+- `TXN-0619` frmReadCardManual: Warning - Invalid email address. (251)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0615` frmReadCardManual: Warning - Phone number is required. (199)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0614` frmReadCardManual: Warning - Cardholder name is required. (193)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0616` frmReadCardManual: Warning - Address is not valid (209)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0618` frmReadCardManual: Warning - CVV is not valid (229)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0617` frmReadCardManual: Warning - Zip code is not valid (218)  _( P2 / frmReadCardManual / Order / needs-recording )_
+- `TXN-0124` frmRegister: Permission - Check Balance (Register.Tender.Balance)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0123` frmRegister: Permission - _TndTabAuth2 (Register.Tender.Credit)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0125` frmRegister: Permission - btnFindCustomer (Register.AddCustomer)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0127` frmRegister: Permission - _TndCheck2 (Register.Tender.Check)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0126` frmRegister: Permission - _TndCertificate2 (Register.Tender.Cert)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0122` frmRegister: Permission - _TndExactCash2 (Register.Tender.Cash)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0118` frmRegister: Permission - mControl (Register.Take)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0117` frmRegister: Permission - mControl (Register.SplitItem)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0119` frmRegister: Permission - mControl (Register.TaxExempt)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0121` frmRegister: Permission - mControl (Register.PLUCode)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0120` frmRegister: Permission - mControl (Register.UndoCSF)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0128` frmRegister: Permission - _TndDebit2 (Register.Tender.Debit)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0136` frmRegister: Permission - _TndOnAccount1 (Register.Tender.OnAccount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0135` frmRegister: Permission - _TndTabComplete2 (Register.CompleteAuth)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0137` frmRegister: Permission - _TndOnAccount2 (Register.Tender.OnAccount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0139` frmRegister: Permission - _TndCardOnFile2 (Register.Tender.CardOnFile)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0138` frmRegister: Permission - _TndCardOnFile1 (Register.Tender.CardOnFile)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0134` frmRegister: Permission - _TndReward2 (Register.Tender.Reward)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0130` frmRegister: Permission - _TndEBTFood2 (Register.Tender.EBT)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0129` frmRegister: Permission - _TndDiscount2 (Register.Tender.Discount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0131` frmRegister: Permission - _TndGift2 (Register.Tender.eGift)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0133` frmRegister: Permission - _TndPromos2 (Register.Tender.Promos)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0132` frmRegister: Permission - _TndPayOut2 (Register.Tender.PayOut)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0101` frmRegister: Permission - mControl (Register.OpenOrder)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0100` frmRegister: Permission - mControl (Register.CashDrawer)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0102` frmRegister: Permission - mControl (Register.OTDelivery)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0104` frmRegister: Permission - mControl (Register.OTPickUp)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0103` frmRegister: Permission - mControl (Register.Other)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0099` frmRegister: Permission - mControl (Register.MiscTax)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0095` frmRegister: Permission - mControl (Register.Info)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0094` frmRegister: Permission - mControl (Register.Discount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0096` frmRegister: Permission - mControl (Register.MiscNoTax)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0098` frmRegister: Permission - mControl (Register.MiscScale)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0097` frmRegister: Permission - mControl (Register.MiscSale)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0105` frmRegister: Permission - mControl (Register.OTTakeOut)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0113` frmRegister: Permission - mControl (Register.PrintRemote)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0112` frmRegister: Permission - mControl (Register.Refund)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0114` frmRegister: Permission - mControl (Register.RepeatLine)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0116` frmRegister: Permission - mControl (Register.SaveOrder)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0115` frmRegister: Permission - mControl (Register.Reprint)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0111` frmRegister: Permission - mControl (Register.Reassign)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0107` frmRegister: Permission - mControl (Register.Tender.PayOut)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0106` frmRegister: Permission - mControl (Register.OverridePrice)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0108` frmRegister: Permission - mControl (Register.PayOutIn)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0110` frmRegister: Permission - mControl (Register.QuickPayOut)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0109` frmRegister: Permission - mControl (Register.PrintOrder)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0170` frmRegister: Warning - A partial payment has been a (6974)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0169` frmRegister: Warning -  (6760)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0171` frmRegister: Warning - Customer Phone Not Found! (7630)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0173` frmRegister: Warning - Membership number must be le (7779)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0172` frmRegister: Warning - Member number already in use (7771)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0168` frmRegister: Warning - Warning! You have exceeded th (6643)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0164` frmRegister: Warning - Warning! You have exceeded th (6459)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0163` frmRegister: Warning - Warning! You have exceeded th (6453)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0165` frmRegister: Pay action (btnDiscountPayClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0167` frmRegister: Warning - Warning! You have exceeded th (6631)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0166` frmRegister: Warning - Warning! You have exceeded th (6619)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0174` frmRegister: Warning - Club {Global.Settings.Club.N (7840)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0182` frmRegister: Warning - Payments for this order must (9283)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0181` frmRegister: Warning - {Global.Processors.Default.P (9276)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0183` frmRegister: Warning - Cannot complete auth until s (9303)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0185` frmRegister: Success - Service {mSelectValue[1]} added (9473)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0184` frmRegister: Success - Transaction authorized. (9329)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0180` frmRegister: Warning - All payments are completed. (9266)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0176` frmRegister: Warning - A exclusive discount has alrea (7892)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0175` frmRegister: Warning - Club {Global.Settings.Club.N (7845)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0177` frmRegister: Warning - Order is marked as (8557)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0179` frmRegister: Warning - Insufficient access level. (9076)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0178` frmRegister: Warning - Order is marked as (8568)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0147` frmRegister: Warning - Subcategory: {mSqlCmdExtra.E (5156)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0146` frmRegister: Warning - Category: {mCategory} is mark (5145)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0148` frmRegister: Warning - Insufficient access level. (5178)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0150` frmRegister: Warning - In order to add Item to curre (5214)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0149` frmRegister: Warning - Item: {mSqlReader[ (5199)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0145` frmRegister: Warning - Insufficient access level. (5111)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0141` frmRegister: Permission - View Timers (Register.FloorPlan.ViewTableDetails)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0140` frmRegister: Permission - Reset All Tables (Register.FloorPlan.ResetTable)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0142` frmRegister: Permission - Zone 5 (Register.FloorPlan.ChangeZones)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0144` frmRegister: Warning - Insufficient access level. (5009)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0143` frmRegister: Permission - Clear All (Register.ClearAll)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0151` frmRegister: Warning - Item has an invalid price per (5246)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0159` frmRegister: Warning - This item is sold by weight a (5833)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0158` frmRegister: Warning - Service: {mSqlReader[ (5758)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0160` frmRegister: Warning - Net weight on this item is 0. (5891)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0162` frmRegister: Warning - Warning! You have exceeded th (6447)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0161` frmRegister: Warning - Discount only applied to qual (6270)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0157` frmRegister: Warning - Subcategory: {mSqlCmdExtra.E (5751)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0153` frmRegister: Warning - Member number already in use (5448)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0152` frmRegister: Warning - Item has been 86'd. (5342)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0154` frmRegister: Warning - Service not Found (5666)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0156` frmRegister: Warning - Category: {mCategory} is mark (5741)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0155` frmRegister: Warning - Not found. (5726)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0093` frmRegister: Permission - mControl (Register.GiftCert)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0031` frmRefund: Detail grid cell click (dgvDetailsCellClick)  _( P3 / frmRefund / Order / needs-recording )_
+- `TXN-0030` frmRefund: toggle chkReCreate (Recreate Order) changes behavior  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0032` frmBank: Close action (btnCancelClick)  _( P3 / frmBank / Order / needs-recording )_
+- `TXN-0034` frmBank: Success - Saved successfully. (187)  _( P1 / frmBank / Order / needs-recording )_
+- `TXN-0033` frmBank: Duplicate Bank action (btnDuplicateClick)  _( P3 / frmBank / Order / needs-recording )_
 - `TXN-0029` frmRefund: toggle chkTip (chkTipCheckedChanged) changes behavior  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0010` frmRefund: Clear action (btnClearClick)  _( P3 / frmRefund / Order / needs-recording )_
-- `TXN-0009` frmRefund: Void button requires Register.VoidOrder right  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0008` frmRefund: Refund button requires Register.Refund right  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0011` frmRefund: Close action (btnCancelClick)  _( P3 / frmRefund / Order / needs-recording )_
-- `TXN-0014` frmRefund: Open Ended Refund action (btnOpenClick)  _( P3 / frmRefund / Order / needs-recording )_
-- `TXN-0013` frmRefund: Item Search action (btnItemSearchClick)  _( P3 / frmRefund / Order / needs-recording )_
-- `TXN-0012` frmRefund: Find Order action (btnFindOrderClick)  _( P3 / frmRefund / Order / needs-recording )_
-- `TXN-0003` frmRefund: Warning - Order balance $0.00.  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0002` frmRefund: Warning - Order is marked as  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0001` frmRefund: Warning - Failed to load order  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0004` frmRefund: Warning - Order past (refund window)  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0007` frmRefund: Warning - Credit card payment(s) not completed.  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0006` frmRefund: Warning - Gift certificate cannot be refunded  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0005` frmRefund: Warning - order has no payments attached  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0024` frmRefund: Success - Transaction successful.  _( P1 / frmRefund / Order / needs-recording )_
-- `TXN-0023` frmRefund: Warning - Offline mode cannot process debit or EBT (2287)  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0022` frmRefund: Warning - Refund to Gift Card was cancelled. (2159)  _( P2 / frmRefund / Order / needs-recording )_
 - `TXN-0025` frmRefund: Warning - Gift Card (2629)  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0024` frmRefund: Success - Transaction successful.  _( P1 / frmRefund / Order / needs-recording )_
+- `TXN-0026` frmRefund: Warning - Gift Card (2675)  _( P2 / frmRefund / Order / needs-recording )_
 - `TXN-0028` frmRefund: toggle chk (chkCheckedChanged) changes behavior  _( P2 / frmRefund / Order / needs-recording )_
 - `TXN-0027` frmRefund: Tips action (btnTipClick)  _( P3 / frmRefund / Order / needs-recording )_
-- `TXN-0026` frmRefund: Warning - Gift Card (2675)  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0017` frmRefund: Success - Refund completed.  _( P1 / frmRefund / Order / needs-recording )_
-- `TXN-0016` frmRefund: Warning - Error occurred processing.  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0015` frmRefund: Warning - Offline mode cannot process debit or EBT (1686)  _( P2 / frmRefund / Order / needs-recording )_
-- `TXN-0018` frmRefund: Refund action (btnRefundClick)  _( P1 / frmRefund / Order / needs-recording )_
-- `TXN-0021` frmRefund: Warning - Refund to Gift Card was cancelled. (2136)  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0035` frmBank: Open Drawer action (btnOpenDrawerClick)  _( P3 / frmBank / Order / needs-recording )_
+- `TXN-0043` frmBank: Success - Saved successfully. (306)  _( P1 / frmBank / Order / needs-recording )_
+- `TXN-0042` frmBank: Warning - Nothing changed. (244)  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0044` frmBank: Void Bank action (btnVoidBankClick)  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0046` frmBank: toggle cbo (cboSelectedIndexChanged) changes behavior  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0045` frmBank: Success - Voided successfully.  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0041` frmBank: Warning - Please add a note before saving.  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0037` frmBank: Reset action (btnResetClick)  _( P3 / frmBank / Order / needs-recording )_
+- `TXN-0036` frmBank: Print action (btnPrintClick)  _( P3 / frmBank / Order / needs-recording )_
+- `TXN-0038` frmBank: Save action (btnOKClick)  _( P1 / frmBank / Order / needs-recording )_
+- `TXN-0040` frmBank: Warning - Selection error.  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0039` frmBank: Warning - Nothing changed. (224)  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0008` frmRefund: Refund button requires Register.Refund right  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0007` frmRefund: Warning - Credit card payment(s) not completed.  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0009` frmRefund: Void button requires Register.VoidOrder right  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0011` frmRefund: Close action (btnCancelClick)  _( P3 / frmRefund / Order / needs-recording )_
+- `TXN-0010` frmRefund: Clear action (btnClearClick)  _( P3 / frmRefund / Order / needs-recording )_
+- `TXN-0006` frmRefund: Warning - Gift certificate cannot be refunded  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0002` frmRefund: Warning - Order is marked as  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0001` frmRefund: Warning - Failed to load order  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0003` frmRefund: Warning - Order balance $0.00.  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0005` frmRefund: Warning - order has no payments attached  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0004` frmRefund: Warning - Order past (refund window)  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0012` frmRefund: Find Order action (btnFindOrderClick)  _( P3 / frmRefund / Order / needs-recording )_
 - `TXN-0020` frmRefund: Warning - eGift disabled as a Refund Option.  _( P2 / frmRefund / Order / needs-recording )_
 - `TXN-0019` frmRefund: Warning - Gift Certification disabled as a Refund Option.  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0021` frmRefund: Warning - Refund to Gift Card was cancelled. (2136)  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0023` frmRefund: Warning - Offline mode cannot process debit or EBT (2287)  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0022` frmRefund: Warning - Refund to Gift Card was cancelled. (2159)  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0018` frmRefund: Refund action (btnRefundClick)  _( P1 / frmRefund / Order / needs-recording )_
+- `TXN-0014` frmRefund: Open Ended Refund action (btnOpenClick)  _( P3 / frmRefund / Order / needs-recording )_
+- `TXN-0013` frmRefund: Item Search action (btnItemSearchClick)  _( P3 / frmRefund / Order / needs-recording )_
+- `TXN-0015` frmRefund: Warning - Offline mode cannot process debit or EBT (1686)  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0017` frmRefund: Success - Refund completed.  _( P1 / frmRefund / Order / needs-recording )_
+- `TXN-0016` frmRefund: Warning - Error occurred processing.  _( P2 / frmRefund / Order / needs-recording )_
+- `TXN-0077` frmRegister: Permission - mControl (Register.AddTip)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0076` frmRegister: Permission - mControl (Register.AddCustomer)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0078` frmRegister: Permission - mControl (Register.ApplyGroupTip)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0080` frmRegister: Permission - mControl (Register.BankSwapClose)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0079` frmRegister: Permission - mControl (Register.Bank)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0075` frmRegister: btnTakePayment_Click action (btnTakePayment_Click)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0071` frmRegister: Warning - Order may have been modified (1852)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0070` frmRegister: Warning - Warning! You have exceeded th (1782)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0072` frmRegister: Warning - Insufficient access level. (1883)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0074` frmRegister: Warning - Can't add item after split pa (2845)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0073` frmRegister: Warning - Your trial period or your lic (1908)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0081` frmRegister: Permission - mControl (Register.BatchClose)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0089` frmRegister: Permission - mControl (Register.Exchange)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0088` frmRegister: Permission - mControl (Register.eGift)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0090` frmRegister: Permission - mControl (Register.FindItem)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0092` frmRegister: Permission - mControl (Register.FireNow)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0091` frmRegister: Permission - mControl (Register.Fire)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0087` frmRegister: Permission - mControl (Register.Discount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0083` frmRegister: Permission - mControl (Register.CompleteAuth)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0082` frmRegister: Permission - mControl (Register.Club)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0084` frmRegister: Permission - mControl (Register.CourseSeats)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0086` frmRegister: Permission - mControl (Register.Discount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0085` frmRegister: Permission - mControl (Register.Delivery.Access)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0054` frmBankSwap: Close action (btnCancelClick)  _( P3 / frmBankSwap / Order / needs-recording )_
+- `TXN-0053` frmBankDuplicate: OK action (btnOkClick)  _( P3 / frmBankDuplicate / Order / needs-recording )_
+- `TXN-0055` frmBankSwap: Swap action (btnOKClick)  _( P2 / frmBankSwap / Order / needs-recording )_
+- `TXN-0057` frmRegister: Warning - Promo already added. (323)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0056` frmRegister: Warning - Coupon amount greater than balance (317)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0052` frmBankDuplicate: Cancel action (btnCancelClick)  _( P3 / frmBankDuplicate / Order / needs-recording )_
+- `TXN-0048` frmBankClose: Close Shift action (btnOKClick)  _( P2 / frmBankClose / Order / needs-recording )_
+- `TXN-0047` frmBank: Warning - Improper amount for currency  _( P2 / frmBank / Order / needs-recording )_
+- `TXN-0049` frmBankClose: Success - Successful.  _( P1 / frmBankClose / Order / needs-recording )_
+- `TXN-0051` frmBankClose: Warning - Improper amount for currency  _( P2 / frmBankClose / Order / needs-recording )_
+- `TXN-0050` frmBankClose: Close action (btnCancelClick)  _( P3 / frmBankClose / Order / needs-recording )_
+- `TXN-0058` frmRegister: Warning - A exclusive discount has alrea (329)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0066` frmRegister: Warning - Maximum EBT amount applied. (1247)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0065` frmRegister: Warning - Phone {pPhone} have a incorre (1159)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0067` frmRegister: Warning - Maximum EBT amount applied. (1286)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0069` frmRegister: Warning - Cannot save. Items total belo (1777)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0068` frmRegister: Warning - Order has no items. (1766)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0064` frmRegister: Permission - _CmdPromo2 (Register.Discount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0060` frmRegister: Calculation (428)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0059` frmRegister: Warning - A partial payment has already (335)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0061` frmRegister: Calculation (432)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0063` frmRegister: Warning - Item(s)/Services(s) (556)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0062` frmRegister: Warning - All items Order are inactive. (552)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0309` frmRegister: btnReassign action (btnReassignClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0308` frmRegister: btnPromos action (btnPromosClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0310` frmRegister: btnRefund action (btnRefundClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0312` frmRegister: Reset All Tables action (btnResetAllClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0311` frmRegister: btnReprint action (btnReprintClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0307` frmRegister: Calculation (19029)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0303` frmRegister: Warning - Insufficient funds. (17823)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0302` frmRegister: Warning - Insufficient funds.line Curr (17689)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0304` frmRegister: Warning - Insufficient balance.par cur (17861)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0306` frmRegister: Warning - Tab Auth cannot voided. {Mai (18573)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0305` frmRegister: Warning - Insufficient balance.par cur (17884)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0313` frmRegister: btnSave action (btnSaveClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0321` frmRegister: btnTaxExempt action (btnTaxExemptClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0320` frmRegister: btnSplit action (btnSplitClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0322` frmRegister: btnTenderFee action (btnTenderFeeClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0324` frmRegister: btnType action (btnTypeClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0323` frmRegister: btnToGo action (btnToGoClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0319` frmRegister: Split By action (btnSplitByClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0315` frmRegister: Warning - Nothing changed. (19417)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0314` frmRegister: Success - Order #: {mOrderID} saved succe (19408)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0316` frmRegister: btnScrollDown action (btnScrollDownClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0318` frmRegister: btnSeat action (btnSeatClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0317` frmRegister: btnScrollUp action (btnScrollUpClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0286` frmRegister: Warning - The tab auth was created on (16386)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0285` frmRegister: Warning - Order has been paid for onli (16322)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0287` frmRegister: Warning - No payment added. (16479)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0289` frmRegister: Warning - The tab auth was created on (16544)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0288` frmRegister: Warning - Coupon(s) could not be proce (16497)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0284` frmRegister: Warning - Payments are not available i (16280)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0280` frmRegister: Warning - Maximum Reward amount applie (16217)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0279` frmRegister: Warning - No reward points available. (16207)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0281` frmRegister: btnPercent action (btnPercentClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0283` frmRegister: btnProcess action (btnProcessClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0282` frmRegister: Success - Saved successfully. (16268)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0290` frmRegister: Warning - Order has no items. (16680)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0298` frmRegister: Warning - Card on file data not found. (17292)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0297` frmRegister: Success - Transaction successful. (17258)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0299` frmRegister: Warning - {Global.Processors.Default.P (17310)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0301` frmRegister: Warning - Card has $0.00 balance. (17669)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0300` frmRegister: Warning - Card number cannot be blank. (17648)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0296` frmRegister: Warning - Offline allowed days exceede (17206)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0292` frmRegister: Warning - Terminal is on Offline mode. (17157)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0291` frmRegister: Warning - Terminal is on Offline mode. (17151)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0293` frmRegister: Warning - Terminal is on Offline mode (17163)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0295` frmRegister: Warning - Total offline order limit ex (17200)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0294` frmRegister: Warning - Offline order limit exceeded (17172)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0355` frmDelivery: Without Customer action (btnWithoutCustClick)  _( P3 / frmDelivery / Order / needs-recording )_
+- `TXN-0354` frmDelivery: With Customer action (btnWithCustClick)  _( P3 / frmDelivery / Order / needs-recording )_
+- `TXN-0356` frmDeliveryAddress: Accept action (btnAcceptClick)  _( P3 / frmDeliveryAddress / Order / needs-recording )_
+- `TXN-0358` frmDeliveryAddress: Save & Apply action (btnOKClick)  _( P3 / frmDeliveryAddress / Order / needs-recording )_
+- `TXN-0357` frmDeliveryAddress: Cancel action (btnCloseClick)  _( P3 / frmDeliveryAddress / Order / needs-recording )_
+- `TXN-0353` frmDelivery: Search action (btnSearchClick)  _( P3 / frmDelivery / Order / needs-recording )_
+- `TXN-0349` frmDelivery: Warning - Order number cannot be empty. (270)  _( P2 / frmDelivery / Order / needs-recording )_
+- `TXN-0348` frmDelivery: Save action (btnOKClick)  _( P3 / frmDelivery / Order / needs-recording )_
+- `TXN-0350` frmDelivery: Warning - Phone number incorrect. (288)  _( P2 / frmDelivery / Order / needs-recording )_
+- `TXN-0352` frmDelivery: Success - Saved successfully. (367)  _( P1 / frmDelivery / Order / needs-recording )_
+- `TXN-0351` frmDelivery: Warning - Email address invalid. (294)  _( P2 / frmDelivery / Order / needs-recording )_
+- `TXN-0359` frmDeliveryAddress: dgvAddressCellClick action (dgvAddressCellClick)  _( P3 / frmDeliveryAddress / Order / needs-recording )_
+- `TXN-0367` frmDelManager: Map View action (btnMapClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0366` frmDelManager: btnDriversClick action (btnDriversClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0368` frmDelManager: btnOrdersClick action (btnOrdersClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0370` frmDelManager: Suspend Online Orders action (btnSuspendClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0369` frmDelManager: Future Orders action (btnFutureClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0365` frmDelManager: Delivery Failed action (btnDeliveryFailedClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0361` frmDelManager: Close action (btnCancelClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0360` frmDelManager: Warning - Must select driver before se (253)  _( P2 / frmDelManager / Order / needs-recording )_
+- `TXN-0362` frmDelManager: Complete & Pay action (btnCompleteClick)  _( P3 / frmDelManager / Order / needs-recording )_
+- `TXN-0364` frmDelManager: Calculation (620)  _( P1 / frmDelManager / Order / needs-recording )_
+- `TXN-0363` frmDelManager: Warning - Must select driver before se (562)  _( P2 / frmDelManager / Order / needs-recording )_
+- `TXN-0332` frmRegister: lnkLabel action (lnkLabelClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0331` frmRegister: dgvSubCat action (dgvSubCatCellClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0333` frmRegister: btnOnAccount action (btnOnAccountClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0335` frm3PDS: Close action (btnCloseClick)  _( P3 / frm3PDS / Order / needs-recording )_
+- `TXN-0334` frmRegister: btnCardOnFile action (btnCardOnFileClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0330` frmRegister: dgvOD action (dgvODCellClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0326` frmRegister: dgvCat action (dgvCatCellClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0325` frmRegister: btnZone action (btnZoneClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0327` frmRegister: dgvCO action (dgvCOCellClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0329` frmRegister: dgvItemsCellMouse action (dgvItemsCellMouseDoubleClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0328` frmRegister: dgvItems action (dgvItemsCellClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0336` frm3PDS: In house delivery action (btnInHouseClick)  _( P3 / frm3PDS / Order / needs-recording )_
+- `TXN-0344` frmComplete: btnCompleteClick action (btnCompleteClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0343` frmComplete: Cancel action (btnCloseClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0345` frmComplete: Warning - Collected amount is greater tha (171)  _( P2 / frmComplete / Order / needs-recording )_
+- `TXN-0347` frmDelivery: Cancel action (btnCancelClick)  _( P3 / frmDelivery / Order / needs-recording )_
+- `TXN-0346` frmComplete: Warning - The tip amount exceeds the (180)  _( P2 / frmComplete / Order / needs-recording )_
+- `TXN-0342` frmComplete: btnCancelClick action (btnCancelClick)  _( P3 / frmComplete / Order / needs-recording )_
+- `TXN-0338` frm3PDS: dgv3PDSCellMouseDoubleClick action (dgv3PDSCellMouseDoubleClick)  _( P3 / frm3PDS / Order / needs-recording )_
+- `TXN-0337` frm3PDS: With customer action (btnWithClick)  _( P3 / frm3PDS / Order / needs-recording )_
+- `TXN-0339` frmCallID: Close action (btnCloseClick)  _( P3 / frmCallID / Order / needs-recording )_
+- `TXN-0341` frmComplete: Warning - Could not load order: (140)  _( P2 / frmComplete / Order / needs-recording )_
+- `TXN-0340` frmCallID: dgvInfoCellClick action (dgvInfoCellClick)  _( P3 / frmCallID / Order / needs-recording )_
+- `TXN-0278` frmRegister: btnPayReward action (btnPayRewardClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0216` frmRegister: Warning - Insufficient access level. (13507)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0215` frmRegister: btnDelete action (btnDeleteClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0217` frmRegister: Warning - Payment amount is greater or (13515)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0219` frmRegister: Warning - EBT Food payment amount is g (13530)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0218` frmRegister: Warning - EBT Cash payment amount is g (13522)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0214` frmRegister: btnCustomPromos action (btnCustomPromosClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0210` frmRegister: btnClub action (btnClubClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0209` frmRegister: Warning - Insufficient access level. (13398)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0211` frmRegister: btnComplete action (btnCompleteClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0213` frmRegister: Warning - Insufficient access level. (13467)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0212` frmRegister: btnCustomerInfo action (btnCustomerInfoClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0220` frmRegister: btnDelivery action (btnDeliveryClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0228` frmRegister: btnFindCustomer action (btnFindCustomerClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0227` frmRegister: btnFindCustomerAlt action (btnFindCustomerAltClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0229` frmRegister: btnFire action (btnFireClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0231` frmRegister: btnGetOrder action (btnGetOrderClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0230` frmRegister: btnFireNow action (btnFireNowClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0226` frmRegister: btnExchange action (btnExchangeClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0222` frmRegister: Permission - _CmdPromo2 (Register.Discount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0221` frmRegister: btnDiscount action (btnDiscountClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0223` frmRegister: Warning - A exclusive discount has alrea (13674)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0225` frmRegister: btnDRVCalc action (btnDRVCalcClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0224` frmRegister: btnDiscountSingle action (btnDiscountSingleClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0193` frmRegister: Warning - The tip amount exceeds the a (12764)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0192` frmRegister: Warning - EBT Food payment amount is g (12746)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0194` frmRegister: btnAdd action (btnAddClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0196` frmRegister: btnAddTip action (btnAddTipClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0195` frmRegister: btnAddService action (btnAddServiceClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0191` frmRegister: Warning - EBT Cash payment amount is g (12736)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0187` frmRegister: Calculation (10023)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0186` frmRegister: Warning - Order Not Found (9942)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0188` frmRegister: Permission - _CmdPromo2 (Register.Discount)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0190` frmRegister: Warning - Payment amount is greater or (12727)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0189` frmRegister: Warning - Insufficient access level. (12716)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0197` frmRegister: btnAgeCheck action (btnAgeCheckClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0205` frmRegister: Warning - No banks available. (13284)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0204` frmRegister: btnBankSwap action (btnBankSwapClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0206` frmRegister: Success - Successful Bank swap. (13378)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0208` frmRegister: Clear All action (btnClearClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0207` frmRegister: btnBatchClose action (btnBatchCloseClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0203` frmRegister: btnBankMgr action (btnBankMgrClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0199` frmRegister: Success - {mForm.FirstName} {mForm.LastName} {mFor (13207)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0198` frmRegister: Warning - Insufficient access level. (13197)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0200` frmRegister: Warning - {mForm.FirstName} {mForm.La (13217)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0202` frmRegister: Check Balance action (btnBalanceClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0201` frmRegister: btnApplyPromo action (btnApplyPromoClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0262` frmRegister: Warning - This item's price structure (15473)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0261` frmRegister: Warning - This item's price structure (15394)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0263` frmRegister: Warning - Insufficient access level. (15488)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0265` frmRegister: Warning - Manual entry is disabled, pl (15564)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0264` frmRegister: btnPay action (btnPayClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0260` frmRegister: btnOverRide action (btnOverRideClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0256` frmRegister: Warning - Open order exist. Staff: (15028)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0255` frmRegister: Warning - Table status needs to be (14899)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0257` frmRegister: btnObject action (btnObjectDoubleClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0259` frmRegister: btnOther action (btnOtherClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0258` frmRegister: btnOpenDrawer action (btnOpenDrawerClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0266` frmRegister: Success - Pay out customer {mAmount:$#,0. (15722)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0274` frmRegister: btnPayEBTFood action (btnPayEBTFoodClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0273` frmRegister: btnPayEBTCash action (btnPayEBTCashClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0275` frmRegister: btnPayFull action (btnPayFullClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0277` frmRegister: btnPayInOut action (btnPayInOutClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0276` frmRegister: btnPayInfo action (btnPayInfoClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0272` frmRegister: Warning - Maximum discount applied. (15943)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0268` frmRegister: Success - Pay out customer {mPay:$#,0.00} (15869)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0267` frmRegister: Success - OnAccount payment {mAmount:$#,0 (15746)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0269` frmRegister: Warning - Invalid card format. (15890)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0271` frmRegister: Warning - Maximum discount applied. (15928)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0270` frmRegister: btnPayDiscount action (btnPayDiscountClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0239` frmRegister: History action (btnHistoryClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0238` frmRegister: Warning - Exceeds maximum amount allow (14181)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0240` frmRegister: btnInfo action (btnInfoClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0242` frmRegister: Calculation (14341)  _( P1 / frmRegister / Order / needs-recording )_
+- `TXN-0241` frmRegister: btnItem action (btnItemClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0237` frmRegister: Warning - Amounts must be a proper val (14175)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0233` frmRegister: Warning - Amounts must be a proper val (14094)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0232` frmRegister: btnGiftCard action (btnGiftCardClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0234` frmRegister: Warning - Exceeds maximum amount allow (14100)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0236` frmRegister: btnGiftCert action (btnGiftCertClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0235` frmRegister: Warning - Exceeds maximum amount allow (14135)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0243` frmRegister: btnItemSearch action (btnItemSearchClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0251` frmRegister: btnObject action (btnObjectClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0250` frmRegister: btnNumber action (btnNumberClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0252` frmRegister: Warning - Host is in the works, due fo (14712)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0254` frmRegister: Warning - Table status needs to be (14828)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0253` frmRegister: Warning - Order is marked as (14796)  _( P2 / frmRegister / Order / needs-recording )_
+- `TXN-0249` frmRegister: btnMods action (btnModsClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0245` frmRegister: btnMenu action (btnMenuClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0244` frmRegister: btnFPStatus action (btnFPStatusClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0246` frmRegister: btnMiscSale action (btnMiscSaleClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0248` frmRegister: btnMiscScale action (btnMiscScaleClick)  _( P3 / frmRegister / Order / needs-recording )_
+- `TXN-0247` frmRegister: Warning - Warning! You have exceeded th (14512)  _( P2 / frmRegister / Order / needs-recording )_
 
 
