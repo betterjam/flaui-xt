@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-083
+    title: OK confirms the phone number and sends the text receipt
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhone
+      entity: Receipt
+    preconditions:
+      - The customer-facing phone-entry screen is shown with a valid number entered
+    steps:
+      - Enter a valid phone number
+      - Tap OK
+    expected:
+      - The text receipt is sent to the entered phone number
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhone btnOK button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmPhone.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmPhone.cs, line: 110, text: "btnOKClick (OK)" }
+    flow_hash: "6BDDD4CECB02FCCA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmTipAndSignature.cs - customer-facing tip + signature (entity: Tip)
+  # ============================================================================

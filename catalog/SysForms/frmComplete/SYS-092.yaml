@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-092
+    title: CFD email-receipt flow - choose Email, enter address, send
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    chains: [SYS-071, SYS-078, SYS-079]
+    preconditions:
+      - A transaction has completed and the customer-facing receipt-choice screen is shown
+    steps:
+      - Tap Email on the receipt-choice screen
+      - Enter a valid email via the on-screen keyboard
+      - Tap OK
+    expected:
+      - The email receipt is sent to the entered address
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence: []
+    flow_hash: "451468BCE350CC24"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

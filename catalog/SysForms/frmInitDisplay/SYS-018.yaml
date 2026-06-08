@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-018
+    title: Cancel confirmation dialog asks the user to confirm
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInitDisplay
+      entity: Display
+    preconditions:
+      - The initial display setup form is open and Cancel was clicked
+    steps:
+      - Observe the confirmation dialog
+    expected:
+      - "Dialog message is shown: Are you sure you want to cancel?"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmInitDisplay cancel confirmation dialog (frmMessageBox)
+    source_files:
+      - 2.0.x/SysForms/frmInitDisplay.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmInitDisplay.cs, line: 113, text: "Are you sure you want to cancel?" }
+    flow_hash: "7A173ACA008519E5"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmLabel.cs - label text entry (entity: Label)
+  # ============================================================================

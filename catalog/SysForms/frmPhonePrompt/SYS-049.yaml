@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-049
+    title: A toll-free number is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open
+    steps:
+      - Enter a toll-free number (e.g. 800/888 prefix)
+      - Click OK
+    expected:
+      - "Warning message is shown: Toll free number not allowed."
+      - The phone number is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt toll-free warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 73, text: "\\par\\fs30 Toll free number not allowed." }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-020
+    title: OK saves the entered label text
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - The label entry dialog is open
+    steps:
+      - Enter label text
+      - Click OK
+    expected:
+      - The label text is accepted and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLabel btnOk button, label text field
+    source_files:
+      - 2.0.x/SysForms/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLabel.cs, line: 45, text: "btnOkClick (OK)" }
+    flow_hash: "4484224487AF144A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

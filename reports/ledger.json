@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  2277,
-    "grandUncovered":  323,
-    "grandPct":  87.6,
+    "grandCovered":  2370,
+    "grandUncovered":  230,
+    "grandPct":  91.2,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Managers",
-                      "layer":  "unit",
-                      "total":  93,
-                      "covered":  0,
-                      "uncovered":  93,
-                      "pct":  0,
-                      "catalog":  false
-                  },
                   {
                       "area":  "SysForms",
                       "layer":  "e2e",
@@ -51,15 +42,6 @@
                       "catalog":  false
                   },
                   {
-                      "area":  "Customers",
-                      "layer":  "e2e",
-                      "total":  95,
-                      "covered":  95,
-                      "uncovered":  0,
-                      "pct":  100,
-                      "catalog":  true
-                  },
-                  {
                       "area":  "Calendar",
                       "layer":  "e2e",
                       "total":  51,
@@ -69,10 +51,19 @@
                       "catalog":  true
                   },
                   {
-                      "area":  "Settings",
+                      "area":  "Customers",
                       "layer":  "e2e",
-                      "total":  343,
-                      "covered":  343,
+                      "total":  95,
+                      "covered":  95,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Managers",
+                      "layer":  "unit",
+                      "total":  93,
+                      "covered":  93,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true
@@ -91,6 +82,15 @@
                       "layer":  "e2e",
                       "total":  738,
                       "covered":  738,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Settings",
+                      "layer":  "e2e",
+                      "total":  343,
+                      "covered":  343,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true

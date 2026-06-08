@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-002
+    title: OK confirms the selected address row
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmAddress
+      entity: Address
+    preconditions:
+      - The address selection dialog is open with at least one address row
+    steps:
+      - Select an address row
+      - Click OK
+    expected:
+      - The dialog closes and the selected address is returned to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmAddress btnOK button
+      - frmAddress dgvAddress grid row
+    source_files:
+      - 2.0.x/SysForms/frmAddress.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmAddress.cs, line: 25, text: "btnOKClick (OK)" }
+    flow_hash: "1ED8FBD5C42708F0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

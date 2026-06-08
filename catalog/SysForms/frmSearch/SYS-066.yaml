@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-066
+    title: Clicking a search result row selects that record
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Search
+    preconditions:
+      - The browse/search dialog is open with results shown
+    steps:
+      - Click a row in the results grid
+    expected:
+      - The clicked record is selected and returned to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSearch dgvBrowser results grid
+    source_files:
+      - 2.0.x/SysForms/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSearch.cs, line: 255, text: "dgvBrowserCellClick" }
+    flow_hash: "CD86B89B234F6C63"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmSuccess.cs - success overlay (entity: Dialog)
+  # ============================================================================

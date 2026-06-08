@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-042
+    title: Save Note persists the entered note text
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmNotes
+      entity: Note
+    preconditions:
+      - The note editor dialog is open
+    steps:
+      - Enter note text
+      - Click Save Note
+    expected:
+      - The note text is saved and the editor closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmNotes btnOk (Save Note) button, note text field
+    source_files:
+      - 2.0.x/SysForms/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmNotes.cs, line: 46, text: "btnOkClick (Save Note)" }
+    flow_hash: "84DFB8E01CBD394C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmPhonePrompt.cs - phone number entry prompt with validation (entity: Phone)
+  # ============================================================================

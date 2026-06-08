@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-036
+    title: Value below minimum is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a configured minimum
+    steps:
+      - Enter a value below the minimum
+      - Click OK
+    expected:
+      - "Warning message is shown: The minimum allowed value is {_Min}."
+      - The value is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue minimum-value warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 194, text: "The minimum allowed value is {_Min}." }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

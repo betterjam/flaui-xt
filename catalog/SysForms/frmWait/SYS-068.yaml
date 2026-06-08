@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-068
+    title: Cancel aborts the in-progress wait operation
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWait
+      entity: Dialog
+    preconditions:
+      - The wait overlay is shown for a cancellable operation
+    steps:
+      - Click Cancel
+    expected:
+      - The in-progress operation is aborted and the overlay closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWait btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmWait.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmWait.cs, line: 122, text: "btnCancelClick (Cancel)" }
+    flow_hash: "5710FC316A32BF6C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmWaiting.cs - waiting overlay (entity: Dialog)
+  # ============================================================================

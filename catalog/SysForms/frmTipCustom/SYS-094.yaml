@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-094
+    title: CFD custom-tip then complete - enter custom tip, complete transaction
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipCustom
+      entity: Tip
+    chains: [SYS-089, SYS-090, SYS-086]
+    preconditions:
+      - The customer-facing custom tip entry screen is shown
+    steps:
+      - Enter a valid custom tip via the keypad
+      - Tap OK to apply the tip
+      - Capture a signature and tap Complete Transaction
+    expected:
+      - The custom tip and signature are saved and the transaction completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+      - 2.0.x/SysForms/CFD/frmTipAndSignature.cs
+    evidence: []
+    flow_hash: "4ADCE9762DA345A9"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-074
+    title: SMS choice prompts for a text receipt
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    preconditions:
+      - The customer-facing receipt-choice screen is shown
+    steps:
+      - Tap SMS
+    expected:
+      - The phone-entry screen is shown for sending a text receipt
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmComplete btnText (SMS) button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmComplete.cs, line: 170, text: "btnTextClick (SMS)" }
+    flow_hash: "8B732C7AEDB5865C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmEmail.cs - customer-facing email entry (entity: Receipt)
+  # ============================================================================

@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-050
+    title: Clear (secondary keypad) resets the phone entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open with digits entered
+    steps:
+      - Enter some digits
+      - Press the secondary Clear key
+    expected:
+      - The entered phone number is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt btnClear_ button
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 94, text: "btnClear_Click" }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

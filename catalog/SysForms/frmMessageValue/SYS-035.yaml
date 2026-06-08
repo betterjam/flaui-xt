@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-035
+    title: OK accepts a valid numeric value within range
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a value within the allowed range
+    steps:
+      - Enter a valid value
+      - Click OK
+    expected:
+      - The value is accepted and returned to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnOK button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 172, text: "btnOKClick (OK)" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

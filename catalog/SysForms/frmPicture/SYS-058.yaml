@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-058
+    title: Prev returns to the previous picture
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPicture
+      entity: Picture
+    preconditions:
+      - The picture viewer is open showing a picture past the first
+    steps:
+      - Click Prev
+    expected:
+      - The viewer returns to the previous picture
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPicture btnPrev button
+    source_files:
+      - 2.0.x/SysForms/frmPicture.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPicture.cs, line: 65, text: "btnPrevClick (Prev)" }
+    flow_hash: "5824D7EEFEDDC45A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmPopup.cs - generic popup (entity: Dialog)
+  # ============================================================================

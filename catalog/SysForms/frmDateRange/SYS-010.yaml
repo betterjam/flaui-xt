@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-010
+    title: Run confirms the selected date range
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateRange
+      entity: DateRange
+    preconditions:
+      - The date-range dialog is open with a from/to date selected
+    steps:
+      - Select a from and to date
+      - Click Run
+    expected:
+      - The dialog closes and returns the chosen date range to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDateRange btnOK (Run) button
+    source_files:
+      - 2.0.x/SysForms/frmDateRange.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmDateRange.cs, line: 28, text: "btnOKClick (Run)" }
+    flow_hash: "51467E913033E524"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmDateTime.cs - date/time picker (entity: DateTime)
+  # ============================================================================

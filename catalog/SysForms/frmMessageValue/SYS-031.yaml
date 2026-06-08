@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-031
+    title: Clear resets the numeric value pad entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with digits entered
+    steps:
+      - Enter some digits
+      - Click Clear
+    expected:
+      - The entered value is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnClear button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 146, text: "btnClearClick (Clear)" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

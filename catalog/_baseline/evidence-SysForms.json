@@ -1,0 +1,830 @@
+﻿{
+    "feature":  "SysForms",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\SysForms"
+                    ],
+    "formCount":  27,
+    "anchorTotal":  91,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  0,
+                   "action":  78,
+                   "message":  13,
+                   "toggle":  0
+               },
+    "forms":  [
+                  {
+                      "form":  "frmAddress",
+                      "file":  "2.0.x\\SysForms\\frmAddress.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  20,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  25,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  31,
+                                          "handler":  "btnOverRideClick",
+                                          "control":  "btnOverRide",
+                                          "label":  "Override"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  36,
+                                          "handler":  "dgvAddressCellDoubleClick",
+                                          "control":  "dgvAddressCell",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  41,
+                                          "handler":  "dgvAddressCellClick",
+                                          "control":  "dgvAddress",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCriteria",
+                      "file":  "2.0.x\\SysForms\\frmCriteria.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  47,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  53,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  58,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "OK"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDateRange",
+                      "file":  "2.0.x\\SysForms\\frmDateRange.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  23,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  28,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Run"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDateTime",
+                      "file":  "2.0.x\\SysForms\\frmDateTime.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  20,
+                                          "handler":  "btnOK_Click",
+                                          "control":  "btnOK_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  31,
+                                          "handler":  "btnCancel_Click",
+                                          "control":  "btnCancel_",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmImage",
+                      "file":  "2.0.x\\SysForms\\frmImage.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  51,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  56,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  61,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Use"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  67,
+                                          "handler":  "dgvImgCellMouseDoubleClick",
+                                          "control":  "dgvImgCellMouse",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmInitDisplay",
+                      "file":  "2.0.x\\SysForms\\frmInitDisplay.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  110,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  113,
+                                          "kind":  "Dialog",
+                                          "text":  "Are you sure you want to cancel?"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLabel",
+                      "file":  "2.0.x\\SysForms\\frmLabel.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  39,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  45,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  49,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLock",
+                      "file":  "2.0.x\\SysForms\\frmLock.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  39,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Continue"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLogin",
+                      "file":  "2.0.x\\SysForms\\frmLogin.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  195,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  200,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  211,
+                                          "handler":  "btnRequestClick",
+                                          "control":  "btnRequest",
+                                          "label":  "Send PIN\\r\\nRequest"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMerchantConfirm",
+                      "file":  "2.0.x\\SysForms\\frmMerchantConfirm.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  17,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  22,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "Accept"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMessageBox",
+                      "file":  "2.0.x\\SysForms\\frmMessageBox.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  130,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  135,
+                                          "handler":  "btnNoClick",
+                                          "control":  "btnNo",
+                                          "label":  "No"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  140,
+                                          "handler":  "btnYesClick",
+                                          "control":  "btnYes",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMessageValue",
+                      "file":  "2.0.x\\SysForms\\frmMessageValue.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  146,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  153,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  158,
+                                          "handler":  "btnDouble0Click",
+                                          "control":  "btnDouble0",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  167,
+                                          "handler":  "btnMinusClick",
+                                          "control":  "btnMinus",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  172,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  194,
+                                          "kind":  "Warning",
+                                          "text":  "The minimum allowed value is {_Min}."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  200,
+                                          "kind":  "Warning",
+                                          "text":  "Maximum permissible quantity of {_Max} is exceeded."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  208,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid amount."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  224,
+                                          "kind":  "Warning",
+                                          "text":  "Maximum permissible amount of {_Total:$#,0.00;-$#,0.00} is exceeded."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  233,
+                                          "handler":  "btnPlusClick",
+                                          "control":  "btnPlus",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmNotes",
+                      "file":  "2.0.x\\SysForms\\frmNotes.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  37,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel\\r\\nNote"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  46,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "Save\\r\\nNote"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPhonePrompt",
+                      "file":  "2.0.x\\SysForms\\frmPhonePrompt.cs",
+                      "anchorCount":  9,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  24,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  29,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  34,
+                                          "handler":  "btnDouble0Click",
+                                          "control":  "btnDouble0",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  55,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  59,
+                                          "kind":  "Warning",
+                                          "text":  "\\par\\fs30 Invalid Phone Number."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  65,
+                                          "kind":  "Warning",
+                                          "text":  "\\par\\fs30 Invalid Phone Number."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  73,
+                                          "kind":  "Warning",
+                                          "text":  "\\par\\fs30 Toll free number not allowed."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  94,
+                                          "handler":  "btnClear_Click",
+                                          "control":  "btnClear_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  101,
+                                          "handler":  "btnBackSpace_Click",
+                                          "control":  "btnBackSpace_",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPickColor",
+                      "file":  "2.0.x\\SysForms\\frmPickColor.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  115,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  120,
+                                          "handler":  "btnColorClick",
+                                          "control":  "btnColor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  129,
+                                          "handler":  "btnDefaultClick",
+                                          "control":  "btnDefault",
+                                          "label":  "Default\\r\\nColor"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  138,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Ok"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPicture",
+                      "file":  "2.0.x\\SysForms\\frmPicture.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  50,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  55,
+                                          "handler":  "btnNextClick",
+                                          "control":  "btnNext",
+                                          "label":  "Next"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  65,
+                                          "handler":  "btnPrevClick",
+                                          "control":  "btnPrev",
+                                          "label":  "Prev"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPopup",
+                      "file":  "2.0.x\\SysForms\\frmPopup.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  79,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmReadCard",
+                      "file":  "2.0.x\\SysForms\\frmReadCard.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  47,
+                                          "kind":  "Warning",
+                                          "text":  "Not a valid Exatouch access card."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  50,
+                                          "kind":  "Warning",
+                                          "text":  "Not a valid Exatouch access card."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  69,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSearch",
+                      "file":  "2.0.x\\SysForms\\frmSearch.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  70,
+                                          "kind":  "Warning",
+                                          "text":  "No {(_BrowseType.Equals(Module.None) ? "
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  173,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  181,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "New"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  255,
+                                          "handler":  "dgvBrowserCellClick",
+                                          "control":  "dgvBrowser",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSuccess",
+                      "file":  "2.0.x\\SysForms\\frmSuccess.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  71,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmWait",
+                      "file":  "2.0.x\\SysForms\\frmWait.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  122,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmWaiting",
+                      "file":  "2.0.x\\SysForms\\frmWaiting.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  135,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmComplete",
+                      "file":  "2.0.x\\SysForms\\CFD\\frmComplete.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  94,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  123,
+                                          "handler":  "btnEmailClick",
+                                          "control":  "btnEmail",
+                                          "label":  "   Email"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  136,
+                                          "handler":  "btnNoReceiptClick",
+                                          "control":  "btnNoReceipt",
+                                          "label":  "No Receipt"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  142,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  170,
+                                          "handler":  "btnTextClick",
+                                          "control":  "btnText",
+                                          "label":  "  SMS"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmEmail",
+                      "file":  "2.0.x\\SysForms\\CFD\\frmEmail.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  84,
+                                          "handler":  "btnBackClick",
+                                          "control":  "btnBack",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  96,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  102,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  110,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  120,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPhone",
+                      "file":  "2.0.x\\SysForms\\CFD\\frmPhone.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  78,
+                                          "handler":  "btnBackClick",
+                                          "control":  "btnBack",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  91,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  97,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  110,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmTipAndSignature",
+                      "file":  "2.0.x\\SysForms\\CFD\\frmTipAndSignature.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  106,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  135,
+                                          "handler":  "btnCloseClick",
+                                          "control":  "btnClose",
+                                          "label":  "Review Order"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  140,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Complete Transaction"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmTipCustom",
+                      "file":  "2.0.x\\SysForms\\CFD\\frmTipCustom.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  43,
+                                          "handler":  "btnBackClick",
+                                          "control":  "btnBack",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  49,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  54,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  60,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  68,
+                                          "kind":  "Warning",
+                                          "text":  "The tip amount exceeds the allowed\\npercentage amount ({mAllow:C2})."
+                                      }
+                                  ]
+                  }
+              ]
+}

@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-060
+    title: An unrecognized card is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReadCard
+      entity: AccessCard
+    preconditions:
+      - The read-card prompt is open
+    steps:
+      - Swipe a card that is not a valid Exatouch access card
+    expected:
+      - "Warning message is shown: Not a valid Exatouch access card."
+      - The card is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReadCard invalid-card warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmReadCard.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmReadCard.cs, line: 47, text: "Not a valid Exatouch access card." }
+    flow_hash: "19455B616F73A664"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

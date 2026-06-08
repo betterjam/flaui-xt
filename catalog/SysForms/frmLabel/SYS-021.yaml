@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-021
+    title: Saving an empty label is blocked with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - The label entry dialog is open with the field left empty
+    steps:
+      - Leave the label field empty
+      - Click OK
+    expected:
+      - "Warning message is shown: Empty field."
+      - The dialog does not close
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLabel empty-field warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLabel.cs, line: 49, text: "Empty field." }
+    flow_hash: "4484224487AF144A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmLock.cs - lock screen continue (entity: Session)
+  # ============================================================================

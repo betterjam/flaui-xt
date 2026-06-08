@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-063
+    title: A search with no matches shows a no-results warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmSearch
+      entity: Search
+    preconditions:
+      - The browse/search dialog is open
+    steps:
+      - Enter a search term that matches nothing
+      - Run the search
+    expected:
+      - "Warning message is shown indicating no matching records were found (No <items> found)"
+      - The result grid stays empty
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSearch no-results warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSearch.cs, line: 70, text: "No {(_BrowseType.Equals(Module.None) ?" }
+    flow_hash: "CD86B89B234F6C63"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

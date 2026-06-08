@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-022
+    title: Continue dismisses the lock screen
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLock
+      entity: Session
+    preconditions:
+      - The lock screen is displayed
+    steps:
+      - Click Continue
+    expected:
+      - The lock screen is dismissed and the session continues
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLock btnOK (Continue) button
+    source_files:
+      - 2.0.x/SysForms/frmLock.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLock.cs, line: 39, text: "btnOKClick (Continue)" }
+    flow_hash: "6CBB38ABBFA61D85"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmLogin.cs - PIN login / PIN request (entity: Session)
+  # ============================================================================

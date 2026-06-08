@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-059
+    title: Close dismisses the popup
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPopup
+      entity: Dialog
+    preconditions:
+      - A popup is shown
+    steps:
+      - Click Close
+    expected:
+      - The popup closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPopup btnOK (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmPopup.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPopup.cs, line: 79, text: "btnOKClick (Close)" }
+    flow_hash: "790D1FCF2FBE67CD"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmReadCard.cs - access card reader with validation (entity: AccessCard)
+  # ============================================================================

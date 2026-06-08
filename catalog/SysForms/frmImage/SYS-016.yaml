@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-016
+    title: Double-clicking an image thumbnail selects and uses it
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImage
+      entity: Image
+    preconditions:
+      - The image picker dialog is open with thumbnails shown
+    steps:
+      - Double-click an image thumbnail in the grid
+    expected:
+      - The double-clicked image is selected and used
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImage dgvImg grid (double-click)
+    source_files:
+      - 2.0.x/SysForms/frmImage.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmImage.cs, line: 67, text: "dgvImgCellMouseDoubleClick" }
+    flow_hash: "66608037BB81E550"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmInitDisplay.cs - initial display setup guard (entity: Display)
+  # ============================================================================

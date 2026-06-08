@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-086
+    title: Complete Transaction confirms the tip and signature
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipAndSignature
+      entity: Tip
+    preconditions:
+      - The customer-facing tip + signature screen is shown with a tip selected and signature captured
+    steps:
+      - Select a tip and capture a signature
+      - Tap Complete Transaction
+    expected:
+      - The tip and signature are saved and the transaction completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipAndSignature btnOK (Complete Transaction) button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipAndSignature.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipAndSignature.cs, line: 140, text: "btnOKClick (Complete Transaction)" }
+    flow_hash: "100A0A6DEFBEC658"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmTipCustom.cs - customer-facing custom tip entry (entity: Tip)
+  # ============================================================================

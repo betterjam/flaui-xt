@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-055
+    title: Ok confirms the selected color
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPickColor
+      entity: Color
+    preconditions:
+      - The color picker dialog is open with a color selected
+    steps:
+      - Select a color
+      - Click Ok
+    expected:
+      - The selected color is returned to the caller and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPickColor btnOK (Ok) button
+    source_files:
+      - 2.0.x/SysForms/frmPickColor.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPickColor.cs, line: 138, text: "btnOKClick (Ok)" }
+    flow_hash: "CB1E713A69F14DDB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmPicture.cs - picture viewer with next/prev navigation (entity: Picture)
+  # ============================================================================

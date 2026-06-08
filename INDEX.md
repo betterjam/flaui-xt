@@ -4,23 +4,23 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**87.6% complete** - 2277 / 2600 testable code anchors covered. Complete: **NO**.
+**91.2% complete** - 2370 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
 | Reports | e2e | 295 | 249 | 118.5% | yes |
 | Integrations | e2e | 260 | 235 | 110.6% | yes |
 | Main | e2e | 105 | 104 | 101% | yes |
-| Settings | e2e | 343 | 343 | 100% | yes |
 | Items | e2e | 346 | 346 | 100% | yes |
 | Transactions | e2e | 738 | 738 | 100% | yes |
+| Settings | e2e | 343 | 343 | 100% | yes |
+| Managers | unit | 93 | 93 | 100% | yes |
 | Calendar | e2e | 51 | 51 | 100% | yes |
 | Customers | e2e | 95 | 95 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
 | SysForms | e2e | 0 | 91 | 0% | - |
-| Managers | unit | 0 | 93 | 0% | - |
-| Utility | e2e | 0 | 56 | 0% | - |
 | Staff | e2e | 0 | 88 | 0% | - |
+| Utility | e2e | 0 | 56 | 0% | - |
 
 ## Tests by area
 
@@ -1742,6 +1742,106 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `SET-0118` frmDelivery: action btnCancel (Close)  _( P3 / needs-recording )_
 - `SET-0116` frmCustomTender: Warning - At least one payment needs to be selected.  _( P2 / needs-recording )_
 - `SET-0117` frmCustomTender: Success - Saved successful.  _( P1 / needs-recording )_
+
+### SysForms  (95 tests: 91 atomic, 4 composite)
+
+**(uncategorized)** (95)
+
+- `SYS-064` Close search dialog dismisses without selecting a record  _( P2 / frmSearch / Search / needs-recording )_
+- `SYS-065` New starts creating a new record from the search dialog  _( P2 / frmSearch / Search / needs-recording )_
+- `SYS-063` A search with no matches shows a no-results warning  _( P2 / frmSearch / Search / needs-recording )_
+- `SYS-061` A card failing the secondary read check is rejected with a warning  _( P3 / frmReadCard / AccessCard / needs-recording )_
+- `SYS-062` Cancel read-card prompt dismisses without reading a card  _( P2 / frmReadCard / AccessCard / needs-recording )_
+- `SYS-066` Clicking a search result row selects that record  _( P1 / frmSearch / Search / needs-recording )_
+- `SYS-070` Tapping the customer display advances the receipt-choice screen  _( P2 / frmComplete / Receipt / needs-recording )_
+- `SYS-071` Email choice prompts for an email receipt  _( P1 / frmComplete / Receipt / needs-recording )_
+- `SYS-069` Close dismisses the waiting overlay  _( P3 / frmWaiting / Dialog / needs-recording )_
+- `SYS-067` Close dismisses the success overlay  _( P3 / frmSuccess / Dialog / needs-recording )_
+- `SYS-068` Cancel aborts the in-progress wait operation  _( P3 / frmWait / Dialog / needs-recording )_
+- `SYS-060` An unrecognized card is rejected with a warning  _( P2 / frmReadCard / AccessCard / needs-recording )_
+- `SYS-052` Close color picker dismisses without choosing a color  _( P2 / frmPickColor / Color / needs-recording )_
+- `SYS-053` Selecting a color swatch sets the current color  _( P2 / frmPickColor / Color / needs-recording )_
+- `SYS-051` Backspace removes the last entered phone digit  _( P3 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-049` A toll-free number is rejected with a warning  _( P2 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-050` Clear (secondary keypad) resets the phone entry  _( P3 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-054` Default Color resets the selection to the default  _( P3 / frmPickColor / Color / needs-recording )_
+- `SYS-058` Prev returns to the previous picture  _( P3 / frmPicture / Picture / needs-recording )_
+- `SYS-059` Close dismisses the popup  _( P3 / frmPopup / Dialog / needs-recording )_
+- `SYS-057` Next advances to the next picture  _( P3 / frmPicture / Picture / needs-recording )_
+- `SYS-055` Ok confirms the selected color  _( P2 / frmPickColor / Color / needs-recording )_
+- `SYS-056` Close picture viewer dismisses the viewer  _( P2 / frmPicture / Picture / needs-recording )_
+- `SYS-072` No Receipt completes the transaction without a receipt  _( P1 / frmComplete / Receipt / needs-recording )_
+- `SYS-088` Cancel custom tip entry dismisses without applying a tip  _( P2 / frmTipCustom / Tip / needs-recording )_
+- `SYS-089` Tapping a keypad key appends a digit to the custom tip amount  _( P3 / frmTipCustom / Tip / needs-recording )_
+- `SYS-087` Back returns from custom tip entry to the tip screen  _( P2 / frmTipCustom / Tip / needs-recording )_
+- `SYS-085` Review Order returns to review the order before completing  _( P2 / frmTipAndSignature / Tip / needs-recording )_
+- `SYS-086` Complete Transaction confirms the tip and signature  _( P1 / frmTipAndSignature / Tip / needs-recording )_
+- `SYS-090` OK applies a valid custom tip within the allowed percentage  _( P1 / frmTipCustom / Tip / needs-recording )_
+- `SYS-094` CFD custom-tip then complete - enter custom tip, complete transaction  _( P1 / frmTipCustom / Tip / needs-recording )_
+- `SYS-095` Numeric value pad min/max guard then valid entry  _( P2 / frmMessageValue / Value / needs-recording )_
+- `SYS-093` CFD text-receipt flow - choose SMS, enter phone, send  _( P1 / frmComplete / Receipt / needs-recording )_
+- `SYS-091` A custom tip above the allowed percentage is rejected with a warning  _( P2 / frmTipCustom / Tip / needs-recording )_
+- `SYS-092` CFD email-receipt flow - choose Email, enter address, send  _( P1 / frmComplete / Receipt / needs-recording )_
+- `SYS-084` Tapping a preset tip option selects that tip  _( P1 / frmTipAndSignature / Tip / needs-recording )_
+- `SYS-076` Cancel email entry dismisses without sending  _( P2 / frmEmail / Receipt / needs-recording )_
+- `SYS-077` Clear resets the entered email address  _( P3 / frmEmail / Receipt / needs-recording )_
+- `SYS-075` Back returns from email entry to the receipt-choice screen  _( P2 / frmEmail / Receipt / needs-recording )_
+- `SYS-073` Print issues a printed receipt  _( P1 / frmComplete / Receipt / needs-recording )_
+- `SYS-074` SMS choice prompts for a text receipt  _( P2 / frmComplete / Receipt / needs-recording )_
+- `SYS-078` Tapping an on-screen key appends a character to the email  _( P3 / frmEmail / Receipt / needs-recording )_
+- `SYS-082` Tapping an on-screen key appends a digit to the phone number  _( P3 / frmPhone / Receipt / needs-recording )_
+- `SYS-083` OK confirms the phone number and sends the text receipt  _( P1 / frmPhone / Receipt / needs-recording )_
+- `SYS-081` Cancel phone entry dismisses without sending  _( P2 / frmPhone / Receipt / needs-recording )_
+- `SYS-079` OK confirms the email address and sends the receipt  _( P1 / frmEmail / Receipt / needs-recording )_
+- `SYS-080` Back returns from phone entry to the receipt-choice screen  _( P2 / frmPhone / Receipt / needs-recording )_
+- `SYS-048` An invalid phone number on the secondary path is rejected with a warning  _( P3 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-016` Double-clicking an image thumbnail selects and uses it  _( P3 / frmImage / Image / needs-recording )_
+- `SYS-017` Cancel on init display prompts a confirmation  _( P2 / frmInitDisplay / Display / needs-recording )_
+- `SYS-015` Use confirms the highlighted image  _( P2 / frmImage / Image / needs-recording )_
+- `SYS-013` Close image picker dismisses without choosing an image  _( P2 / frmImage / Image / needs-recording )_
+- `SYS-014` Reset clears the current image selection  _( P3 / frmImage / Image / needs-recording )_
+- `SYS-018` Cancel confirmation dialog asks the user to confirm  _( P2 / frmInitDisplay / Display / needs-recording )_
+- `SYS-022` Continue dismisses the lock screen  _( P2 / frmLock / Session / needs-recording )_
+- `SYS-023` Cancel login dialog dismisses without logging in  _( P2 / frmLogin / Session / needs-recording )_
+- `SYS-021` Saving an empty label is blocked with a warning  _( P2 / frmLabel / Label / needs-recording )_
+- `SYS-019` Cancel label entry dismisses without saving  _( P2 / frmLabel / Label / needs-recording )_
+- `SYS-020` OK saves the entered label text  _( P1 / frmLabel / Label / needs-recording )_
+- `SYS-012` Cancel date/time picker dismisses without selecting  _( P2 / frmDateTime / DateTime / needs-recording )_
+- `SYS-004` Double-clicking an address row selects and confirms it  _( P2 / frmAddress / Address / needs-recording )_
+- `SYS-005` Clicking an address grid cell highlights that row  _( P3 / frmAddress / Address / needs-recording )_
+- `SYS-003` Override keeps the entered address even when verification suggests another  _( P2 / frmAddress / Address / needs-recording )_
+- `SYS-001` Cancel address dialog dismisses without selecting an address  _( P2 / frmAddress / Address / needs-recording )_
+- `SYS-002` OK confirms the selected address row  _( P1 / frmAddress / Address / needs-recording )_
+- `SYS-006` Cancel criteria dialog dismisses without applying a filter  _( P2 / frmCriteria / Criteria / needs-recording )_
+- `SYS-010` Run confirms the selected date range  _( P1 / frmDateRange / DateRange / needs-recording )_
+- `SYS-011` OK confirms the selected date and time  _( P2 / frmDateTime / DateTime / needs-recording )_
+- `SYS-009` Cancel date-range dialog dismisses without running  _( P2 / frmDateRange / DateRange / needs-recording )_
+- `SYS-007` Delete removes the selected saved criteria  _( P2 / frmCriteria / Criteria / needs-recording )_
+- `SYS-008` OK applies the selected criteria  _( P2 / frmCriteria / Criteria / needs-recording )_
+- `SYS-024` Clear resets the entered PIN digits  _( P3 / frmLogin / Session / needs-recording )_
+- `SYS-040` Plus key toggles the value sign positive  _( P3 / frmMessageValue / Value / needs-recording )_
+- `SYS-041` Cancel Note dismisses the editor without saving  _( P2 / frmNotes / Note / needs-recording )_
+- `SYS-039` Amount above maximum total is rejected with a warning  _( P2 / frmMessageValue / Value / needs-recording )_
+- `SYS-037` Quantity above maximum is rejected with a warning  _( P2 / frmMessageValue / Value / needs-recording )_
+- `SYS-038` A non-numeric or malformed entry is rejected as invalid  _( P2 / frmMessageValue / Value / needs-recording )_
+- `SYS-042` Save Note persists the entered note text  _( P1 / frmNotes / Note / needs-recording )_
+- `SYS-046` OK accepts a valid phone number  _( P1 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-047` An invalid phone number is rejected with a warning  _( P2 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-045` Double-zero key appends two zeros to the phone entry  _( P3 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-043` Clear resets the entered phone number  _( P3 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-044` Cancel phone prompt dismisses without returning a number  _( P2 / frmPhonePrompt / Phone / needs-recording )_
+- `SYS-036` Value below minimum is rejected with a warning  _( P2 / frmMessageValue / Value / needs-recording )_
+- `SYS-028` Cancel on the generic message box returns Cancel  _( P2 / frmMessageBox / Dialog / needs-recording )_
+- `SYS-029` No on the generic message box returns No  _( P2 / frmMessageBox / Dialog / needs-recording )_
+- `SYS-027` Accept confirms the merchant terms  _( P2 / frmMerchantConfirm / Merchant / needs-recording )_
+- `SYS-025` Send PIN Request initiates a PIN request for the user  _( P2 / frmLogin / Session / needs-recording )_
+- `SYS-026` Cancel merchant confirmation dismisses without accepting  _( P2 / frmMerchantConfirm / Merchant / needs-recording )_
+- `SYS-030` Yes on the generic message box returns Yes  _( P2 / frmMessageBox / Dialog / needs-recording )_
+- `SYS-034` Minus key toggles the value sign negative  _( P3 / frmMessageValue / Value / needs-recording )_
+- `SYS-035` OK accepts a valid numeric value within range  _( P1 / frmMessageValue / Value / needs-recording )_
+- `SYS-033` Double-zero key appends two zeros to the value  _( P3 / frmMessageValue / Value / needs-recording )_
+- `SYS-031` Clear resets the numeric value pad entry  _( P3 / frmMessageValue / Value / needs-recording )_
+- `SYS-032` Cancel numeric value pad dismisses without returning a value  _( P2 / frmMessageValue / Value / needs-recording )_
 
 ### Transactions  (740 tests: 738 atomic, 2 composite)
 

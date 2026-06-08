@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-012
+    title: Cancel date/time picker dismisses without selecting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateTime
+      entity: DateTime
+    preconditions:
+      - The date/time picker dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The dialog closes without returning a date/time
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDateTime btnCancel_ button
+    source_files:
+      - 2.0.x/SysForms/frmDateTime.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmDateTime.cs, line: 31, text: "btnCancel_Click" }
+    flow_hash: "F62E2485361CD97C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmImage.cs - image picker (entity: Image)
+  # ============================================================================

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-025
+    title: Send PIN Request initiates a PIN request for the user
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLogin
+      entity: Session
+    preconditions:
+      - The login dialog is open
+    steps:
+      - Click Send PIN Request
+    expected:
+      - A PIN request is submitted for the user
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLogin btnRequest (Send PIN Request) button
+    source_files:
+      - 2.0.x/SysForms/frmLogin.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLogin.cs, line: 211, text: "btnRequestClick (Send PIN Request)" }
+    flow_hash: "B97718717DA9F0A0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmMerchantConfirm.cs - merchant agreement confirm (entity: Merchant)
+  # ============================================================================

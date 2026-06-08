@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-015
+    title: Use confirms the highlighted image
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImage
+      entity: Image
+    preconditions:
+      - The image picker dialog is open with an image highlighted
+    steps:
+      - Highlight an image
+      - Click Use
+    expected:
+      - The highlighted image is returned to the caller and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImage btnOK (Use) button
+    source_files:
+      - 2.0.x/SysForms/frmImage.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmImage.cs, line: 61, text: "btnOKClick (Use)" }
+    flow_hash: "66608037BB81E550"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

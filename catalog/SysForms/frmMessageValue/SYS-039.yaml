@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-039
+    title: Amount above maximum total is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a configured maximum total amount
+    steps:
+      - Enter an amount above the maximum total
+      - Click OK
+    expected:
+      - "Warning message is shown: Maximum permissible amount of {_Total:$#,0.00;-$#,0.00} is exceeded."
+      - The value is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue maximum-amount warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 224, text: "Maximum permissible amount of {_Total:$#,0.00;-$#,0.00} is exceeded." }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

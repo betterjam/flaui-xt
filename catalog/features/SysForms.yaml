@@ -1,0 +1,3100 @@
+﻿feature: SysForms
+description: >
+  Shared system dialogs and customer-facing-display (CFD) prompts used across Exatouch:
+  address picker, criteria/date-range/date-time pickers, image & color pickers, init-display
+  guard, label/notes editors, lock & login screens, merchant confirm, generic message box,
+  numeric value pad, phone prompt, picture viewer, popup, access-card reader, generic
+  search/browse, success/wait/waiting overlays, and the CFD receipt/email/phone/tip flows.
+  Every case is grounded in a deterministic code anchor from
+  catalog/_baseline/evidence-SysForms.json (the extract-evidence.ps1 output over 2.0.x/SysForms);
+  message text is copied verbatim from that anchor. These are dialog building blocks invoked
+  by many modules, so most cases are needs-recording (net-new controls) and reference the
+  generic StartAUT/LoginAsAdminUser/GoToModule building blocks where a flow precedes the dialog.
+source_paths:
+  - 2.0.x/SysForms
+flavors: [CFD]        # 2.0.x/SysForms/CFD/* are customer-facing-display prompt forms
+
+test_cases:
+  # ============================================================================
+  # frmAddress.cs - address selection / override dialog (entity: Address)
+  # ============================================================================
+  - id: SYS-001
+    title: Cancel address dialog dismisses without selecting an address
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmAddress
+      entity: Address
+    preconditions:
+      - The address selection dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The address dialog closes with no address selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmAddress btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmAddress.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmAddress.cs, line: 20, text: "btnCancelClick (Cancel)" }
+    flow_hash: "1ED8FBD5C42708F0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-002
+    title: OK confirms the selected address row
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmAddress
+      entity: Address
+    preconditions:
+      - The address selection dialog is open with at least one address row
+    steps:
+      - Select an address row
+      - Click OK
+    expected:
+      - The dialog closes and the selected address is returned to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmAddress btnOK button
+      - frmAddress dgvAddress grid row
+    source_files:
+      - 2.0.x/SysForms/frmAddress.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmAddress.cs, line: 25, text: "btnOKClick (OK)" }
+    flow_hash: "1ED8FBD5C42708F0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-003
+    title: Override keeps the entered address even when verification suggests another
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmAddress
+      entity: Address
+    preconditions:
+      - The address verification dialog is open showing a suggested address
+    steps:
+      - Click Override
+    expected:
+      - The originally entered address is kept and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmAddress btnOverRide button
+    source_files:
+      - 2.0.x/SysForms/frmAddress.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmAddress.cs, line: 31, text: "btnOverRideClick (Override)" }
+    flow_hash: "1ED8FBD5C42708F0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-004
+    title: Double-clicking an address row selects and confirms it
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmAddress
+      entity: Address
+    preconditions:
+      - The address selection dialog is open with at least one address row
+    steps:
+      - Double-click an address row in the grid
+    expected:
+      - The double-clicked address is selected and the dialog confirms it
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmAddress dgvAddress grid (double-click)
+    source_files:
+      - 2.0.x/SysForms/frmAddress.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmAddress.cs, line: 36, text: "dgvAddressCellDoubleClick" }
+    flow_hash: "1ED8FBD5C42708F0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-005
+    title: Clicking an address grid cell highlights that row
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmAddress
+      entity: Address
+    preconditions:
+      - The address selection dialog is open with at least one address row
+    steps:
+      - Click a cell in the address grid
+    expected:
+      - The clicked row becomes the current/highlighted selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmAddress dgvAddress grid (single click)
+    source_files:
+      - 2.0.x/SysForms/frmAddress.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmAddress.cs, line: 41, text: "dgvAddressCellClick" }
+    flow_hash: "1ED8FBD5C42708F0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmCriteria.cs - saved-criteria / filter picker (entity: Criteria)
+  # ============================================================================
+  - id: SYS-006
+    title: Cancel criteria dialog dismisses without applying a filter
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCriteria
+      entity: Criteria
+    preconditions:
+      - The criteria/filter dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The dialog closes without applying any criteria
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCriteria btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmCriteria.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmCriteria.cs, line: 47, text: "btnCancelClick (Cancel)" }
+    flow_hash: "36A522EEFB45C3BB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-007
+    title: Delete removes the selected saved criteria
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCriteria
+      entity: Criteria
+    preconditions:
+      - The criteria dialog is open with at least one saved criteria selected
+    steps:
+      - Select a saved criteria
+      - Click Delete
+    expected:
+      - The selected criteria is removed from the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCriteria btnDelete button
+    source_files:
+      - 2.0.x/SysForms/frmCriteria.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmCriteria.cs, line: 53, text: "btnDeleteClick (Delete)" }
+    flow_hash: "36A522EEFB45C3BB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-008
+    title: OK applies the selected criteria
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCriteria
+      entity: Criteria
+    preconditions:
+      - The criteria dialog is open with a criteria selected
+    steps:
+      - Click OK
+    expected:
+      - The selected criteria is applied and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCriteria btnOk button
+    source_files:
+      - 2.0.x/SysForms/frmCriteria.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmCriteria.cs, line: 58, text: "btnOkClick (OK)" }
+    flow_hash: "36A522EEFB45C3BB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmDateRange.cs - date-range picker for reports (entity: DateRange)
+  # ============================================================================
+  - id: SYS-009
+    title: Cancel date-range dialog dismisses without running
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateRange
+      entity: DateRange
+    preconditions:
+      - The date-range dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The dialog closes without selecting a date range
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDateRange btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmDateRange.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmDateRange.cs, line: 23, text: "btnCancelClick (Cancel)" }
+    flow_hash: "51467E913033E524"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-010
+    title: Run confirms the selected date range
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateRange
+      entity: DateRange
+    preconditions:
+      - The date-range dialog is open with a from/to date selected
+    steps:
+      - Select a from and to date
+      - Click Run
+    expected:
+      - The dialog closes and returns the chosen date range to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDateRange btnOK (Run) button
+    source_files:
+      - 2.0.x/SysForms/frmDateRange.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmDateRange.cs, line: 28, text: "btnOKClick (Run)" }
+    flow_hash: "51467E913033E524"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmDateTime.cs - date/time picker (entity: DateTime)
+  # ============================================================================
+  - id: SYS-011
+    title: OK confirms the selected date and time
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateTime
+      entity: DateTime
+    preconditions:
+      - The date/time picker dialog is open
+    steps:
+      - Choose a date and time
+      - Click OK
+    expected:
+      - The dialog closes and returns the chosen date/time
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDateTime btnOK_ button
+    source_files:
+      - 2.0.x/SysForms/frmDateTime.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmDateTime.cs, line: 20, text: "btnOK_Click" }
+    flow_hash: "F62E2485361CD97C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-012
+    title: Cancel date/time picker dismisses without selecting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateTime
+      entity: DateTime
+    preconditions:
+      - The date/time picker dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The dialog closes without returning a date/time
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDateTime btnCancel_ button
+    source_files:
+      - 2.0.x/SysForms/frmDateTime.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmDateTime.cs, line: 31, text: "btnCancel_Click" }
+    flow_hash: "F62E2485361CD97C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmImage.cs - image picker (entity: Image)
+  # ============================================================================
+  - id: SYS-013
+    title: Close image picker dismisses without choosing an image
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImage
+      entity: Image
+    preconditions:
+      - The image picker dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The image picker closes with no image chosen
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImage btnCancel (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmImage.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmImage.cs, line: 51, text: "btnCancelClick (Close)" }
+    flow_hash: "66608037BB81E550"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-014
+    title: Reset clears the current image selection
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImage
+      entity: Image
+    preconditions:
+      - The image picker dialog is open with an image selected
+    steps:
+      - Click Reset
+    expected:
+      - The selected image is cleared back to default/none
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImage btnReset button
+    source_files:
+      - 2.0.x/SysForms/frmImage.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmImage.cs, line: 56, text: "btnResetClick (Reset)" }
+    flow_hash: "66608037BB81E550"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-015
+    title: Use confirms the highlighted image
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImage
+      entity: Image
+    preconditions:
+      - The image picker dialog is open with an image highlighted
+    steps:
+      - Highlight an image
+      - Click Use
+    expected:
+      - The highlighted image is returned to the caller and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImage btnOK (Use) button
+    source_files:
+      - 2.0.x/SysForms/frmImage.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmImage.cs, line: 61, text: "btnOKClick (Use)" }
+    flow_hash: "66608037BB81E550"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-016
+    title: Double-clicking an image thumbnail selects and uses it
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImage
+      entity: Image
+    preconditions:
+      - The image picker dialog is open with thumbnails shown
+    steps:
+      - Double-click an image thumbnail in the grid
+    expected:
+      - The double-clicked image is selected and used
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImage dgvImg grid (double-click)
+    source_files:
+      - 2.0.x/SysForms/frmImage.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmImage.cs, line: 67, text: "dgvImgCellMouseDoubleClick" }
+    flow_hash: "66608037BB81E550"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmInitDisplay.cs - initial display setup guard (entity: Display)
+  # ============================================================================
+  - id: SYS-017
+    title: Cancel on init display prompts a confirmation
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInitDisplay
+      entity: Display
+    preconditions:
+      - The initial display setup form is open
+    steps:
+      - Click Cancel
+    expected:
+      - A confirmation dialog is shown asking whether to cancel
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmInitDisplay btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmInitDisplay.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmInitDisplay.cs, line: 110, text: "btnCancelClick (Cancel)" }
+    flow_hash: "7A173ACA008519E5"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-018
+    title: Cancel confirmation dialog asks the user to confirm
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInitDisplay
+      entity: Display
+    preconditions:
+      - The initial display setup form is open and Cancel was clicked
+    steps:
+      - Observe the confirmation dialog
+    expected:
+      - "Dialog message is shown: Are you sure you want to cancel?"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmInitDisplay cancel confirmation dialog (frmMessageBox)
+    source_files:
+      - 2.0.x/SysForms/frmInitDisplay.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmInitDisplay.cs, line: 113, text: "Are you sure you want to cancel?" }
+    flow_hash: "7A173ACA008519E5"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmLabel.cs - label text entry (entity: Label)
+  # ============================================================================
+  - id: SYS-019
+    title: Cancel label entry dismisses without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - The label entry dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The dialog closes without saving the label
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLabel btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLabel.cs, line: 39, text: "btnCancelClick (Cancel)" }
+    flow_hash: "4484224487AF144A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-020
+    title: OK saves the entered label text
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - The label entry dialog is open
+    steps:
+      - Enter label text
+      - Click OK
+    expected:
+      - The label text is accepted and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLabel btnOk button, label text field
+    source_files:
+      - 2.0.x/SysForms/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLabel.cs, line: 45, text: "btnOkClick (OK)" }
+    flow_hash: "4484224487AF144A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-021
+    title: Saving an empty label is blocked with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - The label entry dialog is open with the field left empty
+    steps:
+      - Leave the label field empty
+      - Click OK
+    expected:
+      - "Warning message is shown: Empty field."
+      - The dialog does not close
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLabel empty-field warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLabel.cs, line: 49, text: "Empty field." }
+    flow_hash: "4484224487AF144A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmLock.cs - lock screen continue (entity: Session)
+  # ============================================================================
+  - id: SYS-022
+    title: Continue dismisses the lock screen
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLock
+      entity: Session
+    preconditions:
+      - The lock screen is displayed
+    steps:
+      - Click Continue
+    expected:
+      - The lock screen is dismissed and the session continues
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLock btnOK (Continue) button
+    source_files:
+      - 2.0.x/SysForms/frmLock.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLock.cs, line: 39, text: "btnOKClick (Continue)" }
+    flow_hash: "6CBB38ABBFA61D85"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmLogin.cs - PIN login / PIN request (entity: Session)
+  # ============================================================================
+  - id: SYS-023
+    title: Cancel login dialog dismisses without logging in
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLogin
+      entity: Session
+    preconditions:
+      - The login (PIN) dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The login dialog closes without authenticating
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLogin btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmLogin.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLogin.cs, line: 195, text: "btnCancelClick (Cancel)" }
+    flow_hash: "B97718717DA9F0A0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-024
+    title: Clear resets the entered PIN digits
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLogin
+      entity: Session
+    preconditions:
+      - The login (PIN) dialog is open with digits entered
+    steps:
+      - Enter some PIN digits
+      - Click Clear
+    expected:
+      - The entered PIN is cleared
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLogin btnClear button
+    source_files:
+      - 2.0.x/SysForms/frmLogin.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLogin.cs, line: 200, text: "btnClearClick (Clear)" }
+    flow_hash: "B97718717DA9F0A0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-025
+    title: Send PIN Request initiates a PIN request for the user
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLogin
+      entity: Session
+    preconditions:
+      - The login dialog is open
+    steps:
+      - Click Send PIN Request
+    expected:
+      - A PIN request is submitted for the user
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLogin btnRequest (Send PIN Request) button
+    source_files:
+      - 2.0.x/SysForms/frmLogin.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmLogin.cs, line: 211, text: "btnRequestClick (Send PIN Request)" }
+    flow_hash: "B97718717DA9F0A0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmMerchantConfirm.cs - merchant agreement confirm (entity: Merchant)
+  # ============================================================================
+  - id: SYS-026
+    title: Cancel merchant confirmation dismisses without accepting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMerchantConfirm
+      entity: Merchant
+    preconditions:
+      - The merchant confirmation dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The dialog closes without accepting the merchant terms
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMerchantConfirm btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmMerchantConfirm.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMerchantConfirm.cs, line: 17, text: "btnCancelClick (Cancel)" }
+    flow_hash: "14EBD98B0510F2C0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-027
+    title: Accept confirms the merchant terms
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMerchantConfirm
+      entity: Merchant
+    preconditions:
+      - The merchant confirmation dialog is open
+    steps:
+      - Click Accept
+    expected:
+      - The merchant terms are accepted and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMerchantConfirm btnOk (Accept) button
+    source_files:
+      - 2.0.x/SysForms/frmMerchantConfirm.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMerchantConfirm.cs, line: 22, text: "btnOkClick (Accept)" }
+    flow_hash: "14EBD98B0510F2C0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmMessageBox.cs - generic Yes/No/Cancel message box (entity: Dialog)
+  # ============================================================================
+  - id: SYS-028
+    title: Cancel on the generic message box returns Cancel
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageBox
+      entity: Dialog
+    preconditions:
+      - A generic message box with a Cancel option is shown
+    steps:
+      - Click Cancel
+    expected:
+      - The message box closes returning a Cancel result to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageBox btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmMessageBox.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageBox.cs, line: 130, text: "btnCancelClick (Cancel)" }
+    flow_hash: "E8B18C5A2CC1CF53"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-029
+    title: No on the generic message box returns No
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageBox
+      entity: Dialog
+    preconditions:
+      - A generic Yes/No message box is shown
+    steps:
+      - Click No
+    expected:
+      - The message box closes returning a No result to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageBox btnNo button
+    source_files:
+      - 2.0.x/SysForms/frmMessageBox.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageBox.cs, line: 135, text: "btnNoClick (No)" }
+    flow_hash: "E8B18C5A2CC1CF53"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-030
+    title: Yes on the generic message box returns Yes
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageBox
+      entity: Dialog
+    preconditions:
+      - A generic Yes/No message box is shown
+    steps:
+      - Click Yes
+    expected:
+      - The message box closes returning a Yes result to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageBox btnYes button
+    source_files:
+      - 2.0.x/SysForms/frmMessageBox.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageBox.cs, line: 140, text: "btnYesClick" }
+    flow_hash: "E8B18C5A2CC1CF53"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmMessageValue.cs - numeric value entry pad with min/max guards (entity: Value)
+  # ============================================================================
+  - id: SYS-031
+    title: Clear resets the numeric value pad entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with digits entered
+    steps:
+      - Enter some digits
+      - Click Clear
+    expected:
+      - The entered value is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnClear button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 146, text: "btnClearClick (Clear)" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-032
+    title: Cancel numeric value pad dismisses without returning a value
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open
+    steps:
+      - Click Cancel
+    expected:
+      - The pad closes without returning a value
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 153, text: "btnCancelClick (Cancel)" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-033
+    title: Double-zero key appends two zeros to the value
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open
+    steps:
+      - Press a digit
+      - Press the 00 key
+    expected:
+      - Two zero digits are appended to the entered value
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnDouble0 button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 158, text: "btnDouble0Click" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-034
+    title: Minus key toggles the value sign negative
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a value entered
+    steps:
+      - Enter a value
+      - Press the minus key
+    expected:
+      - The entered value sign is toggled to negative
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnMinus button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 167, text: "btnMinusClick" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-035
+    title: OK accepts a valid numeric value within range
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a value within the allowed range
+    steps:
+      - Enter a valid value
+      - Click OK
+    expected:
+      - The value is accepted and returned to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnOK button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 172, text: "btnOKClick (OK)" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-036
+    title: Value below minimum is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a configured minimum
+    steps:
+      - Enter a value below the minimum
+      - Click OK
+    expected:
+      - "Warning message is shown: The minimum allowed value is {_Min}."
+      - The value is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue minimum-value warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 194, text: "The minimum allowed value is {_Min}." }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-037
+    title: Quantity above maximum is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a configured maximum quantity
+    steps:
+      - Enter a quantity above the maximum
+      - Click OK
+    expected:
+      - "Warning message is shown: Maximum permissible quantity of {_Max} is exceeded."
+      - The value is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue maximum-quantity warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 200, text: "Maximum permissible quantity of {_Max} is exceeded." }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-038
+    title: A non-numeric or malformed entry is rejected as invalid
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open
+    steps:
+      - Enter an invalid amount
+      - Click OK
+    expected:
+      - "Warning message is shown: Invalid amount."
+      - The value is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue invalid-amount warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 208, text: "Invalid amount." }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-039
+    title: Amount above maximum total is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a configured maximum total amount
+    steps:
+      - Enter an amount above the maximum total
+      - Click OK
+    expected:
+      - "Warning message is shown: Maximum permissible amount of {_Total:$#,0.00;-$#,0.00} is exceeded."
+      - The value is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue maximum-amount warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 224, text: "Maximum permissible amount of {_Total:$#,0.00;-$#,0.00} is exceeded." }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-040
+    title: Plus key toggles the value sign positive
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMessageValue
+      entity: Value
+    preconditions:
+      - The numeric value pad is open with a negative value entered
+    steps:
+      - Enter a value and make it negative
+      - Press the plus key
+    expected:
+      - The entered value sign is toggled to positive
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMessageValue btnPlus button
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmMessageValue.cs, line: 233, text: "btnPlusClick" }
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmNotes.cs - note text editor (entity: Note)
+  # ============================================================================
+  - id: SYS-041
+    title: Cancel Note dismisses the editor without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmNotes
+      entity: Note
+    preconditions:
+      - The note editor dialog is open
+    steps:
+      - Click Cancel Note
+    expected:
+      - The note editor closes without saving the note
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmNotes btnCancel (Cancel Note) button
+    source_files:
+      - 2.0.x/SysForms/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmNotes.cs, line: 37, text: "btnCancelClick (Cancel Note)" }
+    flow_hash: "84DFB8E01CBD394C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-042
+    title: Save Note persists the entered note text
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmNotes
+      entity: Note
+    preconditions:
+      - The note editor dialog is open
+    steps:
+      - Enter note text
+      - Click Save Note
+    expected:
+      - The note text is saved and the editor closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmNotes btnOk (Save Note) button, note text field
+    source_files:
+      - 2.0.x/SysForms/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmNotes.cs, line: 46, text: "btnOkClick (Save Note)" }
+    flow_hash: "84DFB8E01CBD394C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmPhonePrompt.cs - phone number entry prompt with validation (entity: Phone)
+  # ============================================================================
+  - id: SYS-043
+    title: Clear resets the entered phone number
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open with digits entered
+    steps:
+      - Enter some digits
+      - Click Clear
+    expected:
+      - The entered phone number is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt btnClear button
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 24, text: "btnClearClick (Clear)" }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-044
+    title: Cancel phone prompt dismisses without returning a number
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open
+    steps:
+      - Click Cancel
+    expected:
+      - The phone prompt closes without returning a number
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 29, text: "btnCancelClick (Cancel)" }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-045
+    title: Double-zero key appends two zeros to the phone entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open
+    steps:
+      - Press a digit
+      - Press the 00 key
+    expected:
+      - Two zero digits are appended to the phone entry
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt btnDouble0 button
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 34, text: "btnDouble0Click" }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-046
+    title: OK accepts a valid phone number
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open with a valid phone number entered
+    steps:
+      - Enter a valid phone number
+      - Click OK
+    expected:
+      - The phone number is accepted and returned to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt btnOK button
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 55, text: "btnOKClick (OK)" }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-047
+    title: An invalid phone number is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open
+    steps:
+      - Enter an invalid phone number (too few digits)
+      - Click OK
+    expected:
+      - "Warning message is shown: Invalid Phone Number."
+      - The phone number is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt invalid-phone warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 59, text: "\\par\\fs30 Invalid Phone Number." }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-048
+    title: An invalid phone number on the secondary path is rejected with a warning
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open
+    steps:
+      - Enter a phone number that fails the secondary validation check
+      - Click OK
+    expected:
+      - "Warning message is shown: Invalid Phone Number."
+      - The phone number is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt invalid-phone warning dialog (secondary check)
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 65, text: "\\par\\fs30 Invalid Phone Number." }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-049
+    title: A toll-free number is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open
+    steps:
+      - Enter a toll-free number (e.g. 800/888 prefix)
+      - Click OK
+    expected:
+      - "Warning message is shown: Toll free number not allowed."
+      - The phone number is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt toll-free warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 73, text: "\\par\\fs30 Toll free number not allowed." }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-050
+    title: Clear (secondary keypad) resets the phone entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open with digits entered
+    steps:
+      - Enter some digits
+      - Press the secondary Clear key
+    expected:
+      - The entered phone number is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt btnClear_ button
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 94, text: "btnClear_Click" }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-051
+    title: Backspace removes the last entered phone digit
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhonePrompt
+      entity: Phone
+    preconditions:
+      - The phone prompt is open with digits entered
+    steps:
+      - Enter some digits
+      - Press Backspace
+    expected:
+      - The last entered digit is removed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhonePrompt btnBackSpace_ button
+    source_files:
+      - 2.0.x/SysForms/frmPhonePrompt.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPhonePrompt.cs, line: 101, text: "btnBackSpace_Click" }
+    flow_hash: "3BBB1EBE1EE714FA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmPickColor.cs - color picker (entity: Color)
+  # ============================================================================
+  - id: SYS-052
+    title: Close color picker dismisses without choosing a color
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPickColor
+      entity: Color
+    preconditions:
+      - The color picker dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The color picker closes with no color chosen
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPickColor btnCancel (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmPickColor.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPickColor.cs, line: 115, text: "btnCancelClick (Close)" }
+    flow_hash: "CB1E713A69F14DDB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-053
+    title: Selecting a color swatch sets the current color
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPickColor
+      entity: Color
+    preconditions:
+      - The color picker dialog is open
+    steps:
+      - Click a color swatch
+    expected:
+      - The clicked color becomes the selected color
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPickColor btnColor swatch button
+    source_files:
+      - 2.0.x/SysForms/frmPickColor.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPickColor.cs, line: 120, text: "btnColorClick" }
+    flow_hash: "CB1E713A69F14DDB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-054
+    title: Default Color resets the selection to the default
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPickColor
+      entity: Color
+    preconditions:
+      - The color picker dialog is open with a color selected
+    steps:
+      - Click Default Color
+    expected:
+      - The selection resets to the default color
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPickColor btnDefault (Default Color) button
+    source_files:
+      - 2.0.x/SysForms/frmPickColor.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPickColor.cs, line: 129, text: "btnDefaultClick (Default Color)" }
+    flow_hash: "CB1E713A69F14DDB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-055
+    title: Ok confirms the selected color
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPickColor
+      entity: Color
+    preconditions:
+      - The color picker dialog is open with a color selected
+    steps:
+      - Select a color
+      - Click Ok
+    expected:
+      - The selected color is returned to the caller and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPickColor btnOK (Ok) button
+    source_files:
+      - 2.0.x/SysForms/frmPickColor.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPickColor.cs, line: 138, text: "btnOKClick (Ok)" }
+    flow_hash: "CB1E713A69F14DDB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmPicture.cs - picture viewer with next/prev navigation (entity: Picture)
+  # ============================================================================
+  - id: SYS-056
+    title: Close picture viewer dismisses the viewer
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPicture
+      entity: Picture
+    preconditions:
+      - The picture viewer is open
+    steps:
+      - Click Close
+    expected:
+      - The picture viewer closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPicture btnCancel (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmPicture.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPicture.cs, line: 50, text: "btnCancelClick (Close)" }
+    flow_hash: "5824D7EEFEDDC45A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-057
+    title: Next advances to the next picture
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPicture
+      entity: Picture
+    preconditions:
+      - The picture viewer is open with more than one picture
+    steps:
+      - Click Next
+    expected:
+      - The viewer advances to the next picture
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPicture btnNext button
+    source_files:
+      - 2.0.x/SysForms/frmPicture.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPicture.cs, line: 55, text: "btnNextClick (Next)" }
+    flow_hash: "5824D7EEFEDDC45A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-058
+    title: Prev returns to the previous picture
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPicture
+      entity: Picture
+    preconditions:
+      - The picture viewer is open showing a picture past the first
+    steps:
+      - Click Prev
+    expected:
+      - The viewer returns to the previous picture
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPicture btnPrev button
+    source_files:
+      - 2.0.x/SysForms/frmPicture.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPicture.cs, line: 65, text: "btnPrevClick (Prev)" }
+    flow_hash: "5824D7EEFEDDC45A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmPopup.cs - generic popup (entity: Dialog)
+  # ============================================================================
+  - id: SYS-059
+    title: Close dismisses the popup
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPopup
+      entity: Dialog
+    preconditions:
+      - A popup is shown
+    steps:
+      - Click Close
+    expected:
+      - The popup closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPopup btnOK (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmPopup.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmPopup.cs, line: 79, text: "btnOKClick (Close)" }
+    flow_hash: "790D1FCF2FBE67CD"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmReadCard.cs - access card reader with validation (entity: AccessCard)
+  # ============================================================================
+  - id: SYS-060
+    title: An unrecognized card is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReadCard
+      entity: AccessCard
+    preconditions:
+      - The read-card prompt is open
+    steps:
+      - Swipe a card that is not a valid Exatouch access card
+    expected:
+      - "Warning message is shown: Not a valid Exatouch access card."
+      - The card is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReadCard invalid-card warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmReadCard.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmReadCard.cs, line: 47, text: "Not a valid Exatouch access card." }
+    flow_hash: "19455B616F73A664"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-061
+    title: A card failing the secondary read check is rejected with a warning
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReadCard
+      entity: AccessCard
+    preconditions:
+      - The read-card prompt is open
+    steps:
+      - Swipe a card that fails the secondary read/validation check
+    expected:
+      - "Warning message is shown: Not a valid Exatouch access card."
+      - The card is not accepted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReadCard invalid-card warning dialog (secondary check)
+    source_files:
+      - 2.0.x/SysForms/frmReadCard.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmReadCard.cs, line: 50, text: "Not a valid Exatouch access card." }
+    flow_hash: "19455B616F73A664"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-062
+    title: Cancel read-card prompt dismisses without reading a card
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReadCard
+      entity: AccessCard
+    preconditions:
+      - The read-card prompt is open
+    steps:
+      - Click Cancel
+    expected:
+      - The read-card prompt closes without reading a card
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReadCard btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmReadCard.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmReadCard.cs, line: 69, text: "btnCancelClick (Cancel)" }
+    flow_hash: "19455B616F73A664"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmSearch.cs - generic browse/search dialog (entity: Search)
+  # ============================================================================
+  - id: SYS-063
+    title: A search with no matches shows a no-results warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmSearch
+      entity: Search
+    preconditions:
+      - The browse/search dialog is open
+    steps:
+      - Enter a search term that matches nothing
+      - Run the search
+    expected:
+      - "Warning message is shown indicating no matching records were found (No <items> found)"
+      - The result grid stays empty
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSearch no-results warning dialog
+    source_files:
+      - 2.0.x/SysForms/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSearch.cs, line: 70, text: "No {(_BrowseType.Equals(Module.None) ?" }
+    flow_hash: "CD86B89B234F6C63"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-064
+    title: Close search dialog dismisses without selecting a record
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Search
+    preconditions:
+      - The browse/search dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The search dialog closes without returning a record
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSearch btnCancel (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSearch.cs, line: 173, text: "btnCancelClick (Close)" }
+    flow_hash: "CD86B89B234F6C63"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-065
+    title: New starts creating a new record from the search dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Search
+    preconditions:
+      - The browse/search dialog is open
+    steps:
+      - Click New
+    expected:
+      - A new-record flow is started for the searched entity type
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSearch btnNew button
+    source_files:
+      - 2.0.x/SysForms/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSearch.cs, line: 181, text: "btnNewClick (New)" }
+    flow_hash: "CD86B89B234F6C63"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-066
+    title: Clicking a search result row selects that record
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Search
+    preconditions:
+      - The browse/search dialog is open with results shown
+    steps:
+      - Click a row in the results grid
+    expected:
+      - The clicked record is selected and returned to the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSearch dgvBrowser results grid
+    source_files:
+      - 2.0.x/SysForms/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSearch.cs, line: 255, text: "dgvBrowserCellClick" }
+    flow_hash: "CD86B89B234F6C63"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmSuccess.cs - success overlay (entity: Dialog)
+  # ============================================================================
+  - id: SYS-067
+    title: Close dismisses the success overlay
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSuccess
+      entity: Dialog
+    preconditions:
+      - The success overlay is shown
+    steps:
+      - Click Close
+    expected:
+      - The success overlay is dismissed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSuccess btnOK (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmSuccess.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSuccess.cs, line: 71, text: "btnOKClick (Close)" }
+    flow_hash: "CFE429B5EBEF597B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmWait.cs - cancellable wait overlay (entity: Dialog)
+  # ============================================================================
+  - id: SYS-068
+    title: Cancel aborts the in-progress wait operation
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWait
+      entity: Dialog
+    preconditions:
+      - The wait overlay is shown for a cancellable operation
+    steps:
+      - Click Cancel
+    expected:
+      - The in-progress operation is aborted and the overlay closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWait btnCancel button
+    source_files:
+      - 2.0.x/SysForms/frmWait.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmWait.cs, line: 122, text: "btnCancelClick (Cancel)" }
+    flow_hash: "5710FC316A32BF6C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmWaiting.cs - waiting overlay (entity: Dialog)
+  # ============================================================================
+  - id: SYS-069
+    title: Close dismisses the waiting overlay
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWaiting
+      entity: Dialog
+    preconditions:
+      - The waiting overlay is shown and the operation has finished
+    steps:
+      - Click Close
+    expected:
+      - The waiting overlay is dismissed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWaiting btnOK (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmWaiting.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmWaiting.cs, line: 135, text: "btnOKClick (Close)" }
+    flow_hash: "85685F0AA774C32E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmComplete.cs - customer-facing receipt-choice screen (entity: Receipt)
+  # ============================================================================
+  - id: SYS-070
+    title: Tapping the customer display advances the receipt-choice screen
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    preconditions:
+      - A transaction has completed and the customer-facing receipt-choice screen is shown
+    steps:
+      - Tap the screen / primary button
+    expected:
+      - The receipt-choice screen acknowledges the tap and proceeds
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmComplete primary btn (customer display)
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmComplete.cs, line: 94, text: "btnClick" }
+    flow_hash: "8B732C7AEDB5865C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-071
+    title: Email choice prompts for an email receipt
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    preconditions:
+      - The customer-facing receipt-choice screen is shown
+    steps:
+      - Tap Email
+    expected:
+      - The email-entry screen is shown for sending an email receipt
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmComplete btnEmail button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmComplete.cs, line: 123, text: "btnEmailClick (Email)" }
+    flow_hash: "8B732C7AEDB5865C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-072
+    title: No Receipt completes the transaction without a receipt
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    preconditions:
+      - The customer-facing receipt-choice screen is shown
+    steps:
+      - Tap No Receipt
+    expected:
+      - The transaction completes with no receipt issued
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmComplete btnNoReceipt button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmComplete.cs, line: 136, text: "btnNoReceiptClick (No Receipt)" }
+    flow_hash: "8B732C7AEDB5865C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-073
+    title: Print issues a printed receipt
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    preconditions:
+      - The customer-facing receipt-choice screen is shown
+    steps:
+      - Tap Print
+    expected:
+      - A printed receipt is issued and the transaction completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmComplete btnPrint button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmComplete.cs, line: 142, text: "btnPrintClick (Print)" }
+    flow_hash: "8B732C7AEDB5865C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-074
+    title: SMS choice prompts for a text receipt
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    preconditions:
+      - The customer-facing receipt-choice screen is shown
+    steps:
+      - Tap SMS
+    expected:
+      - The phone-entry screen is shown for sending a text receipt
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmComplete btnText (SMS) button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmComplete.cs, line: 170, text: "btnTextClick (SMS)" }
+    flow_hash: "8B732C7AEDB5865C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmEmail.cs - customer-facing email entry (entity: Receipt)
+  # ============================================================================
+  - id: SYS-075
+    title: Back returns from email entry to the receipt-choice screen
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmEmail
+      entity: Receipt
+    preconditions:
+      - The customer-facing email-entry screen is shown
+    steps:
+      - Tap Back
+    expected:
+      - The receipt-choice screen is shown again
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmEmail btnBack button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmEmail.cs, line: 84, text: "btnBackClick" }
+    flow_hash: "49AFD3E472EAA740"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-076
+    title: Cancel email entry dismisses without sending
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmEmail
+      entity: Receipt
+    preconditions:
+      - The customer-facing email-entry screen is shown
+    steps:
+      - Tap Cancel
+    expected:
+      - The email-entry screen closes without sending an email receipt
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmEmail btnCancel button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmEmail.cs, line: 96, text: "btnCancelClick (Cancel)" }
+    flow_hash: "49AFD3E472EAA740"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-077
+    title: Clear resets the entered email address
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmEmail
+      entity: Receipt
+    preconditions:
+      - The customer-facing email-entry screen is shown with text entered
+    steps:
+      - Enter some text
+      - Tap Clear
+    expected:
+      - The entered email address is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmEmail btnClear button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmEmail.cs, line: 102, text: "btnClearClick (Clear)" }
+    flow_hash: "49AFD3E472EAA740"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-078
+    title: Tapping an on-screen key appends a character to the email
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmEmail
+      entity: Receipt
+    preconditions:
+      - The customer-facing email-entry screen is shown
+    steps:
+      - Tap an on-screen keyboard key
+    expected:
+      - The tapped character is appended to the email address field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmEmail on-screen keyboard btn
+    source_files:
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmEmail.cs, line: 110, text: "btnClick" }
+    flow_hash: "49AFD3E472EAA740"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-079
+    title: OK confirms the email address and sends the receipt
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmEmail
+      entity: Receipt
+    preconditions:
+      - The customer-facing email-entry screen is shown with a valid email entered
+    steps:
+      - Enter a valid email address
+      - Tap OK
+    expected:
+      - The email receipt is sent to the entered address
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmEmail btnOK button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmEmail.cs, line: 120, text: "btnOKClick (OK)" }
+    flow_hash: "49AFD3E472EAA740"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmPhone.cs - customer-facing phone entry (entity: Receipt)
+  # ============================================================================
+  - id: SYS-080
+    title: Back returns from phone entry to the receipt-choice screen
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhone
+      entity: Receipt
+    preconditions:
+      - The customer-facing phone-entry screen is shown
+    steps:
+      - Tap Back
+    expected:
+      - The receipt-choice screen is shown again
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhone btnBack button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmPhone.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmPhone.cs, line: 78, text: "btnBackClick" }
+    flow_hash: "6BDDD4CECB02FCCA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-081
+    title: Cancel phone entry dismisses without sending
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhone
+      entity: Receipt
+    preconditions:
+      - The customer-facing phone-entry screen is shown
+    steps:
+      - Tap Cancel
+    expected:
+      - The phone-entry screen closes without sending a text receipt
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhone btnCancel button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmPhone.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmPhone.cs, line: 91, text: "btnCancelClick (Cancel)" }
+    flow_hash: "6BDDD4CECB02FCCA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-082
+    title: Tapping an on-screen key appends a digit to the phone number
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhone
+      entity: Receipt
+    preconditions:
+      - The customer-facing phone-entry screen is shown
+    steps:
+      - Tap an on-screen number key
+    expected:
+      - The tapped digit is appended to the phone number field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhone on-screen keypad btn
+    source_files:
+      - 2.0.x/SysForms/CFD/frmPhone.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmPhone.cs, line: 97, text: "btnClick" }
+    flow_hash: "6BDDD4CECB02FCCA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-083
+    title: OK confirms the phone number and sends the text receipt
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPhone
+      entity: Receipt
+    preconditions:
+      - The customer-facing phone-entry screen is shown with a valid number entered
+    steps:
+      - Enter a valid phone number
+      - Tap OK
+    expected:
+      - The text receipt is sent to the entered phone number
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPhone btnOK button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmPhone.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmPhone.cs, line: 110, text: "btnOKClick (OK)" }
+    flow_hash: "6BDDD4CECB02FCCA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmTipAndSignature.cs - customer-facing tip + signature (entity: Tip)
+  # ============================================================================
+  - id: SYS-084
+    title: Tapping a preset tip option selects that tip
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipAndSignature
+      entity: Tip
+    preconditions:
+      - The customer-facing tip + signature screen is shown
+    steps:
+      - Tap a preset tip option
+    expected:
+      - The tapped tip amount/percentage is selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipAndSignature preset tip btn
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipAndSignature.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipAndSignature.cs, line: 106, text: "btnClick" }
+    flow_hash: "100A0A6DEFBEC658"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-085
+    title: Review Order returns to review the order before completing
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipAndSignature
+      entity: Tip
+    preconditions:
+      - The customer-facing tip + signature screen is shown
+    steps:
+      - Tap Review Order
+    expected:
+      - The order review is shown so the customer can verify before completing
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipAndSignature btnClose (Review Order) button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipAndSignature.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipAndSignature.cs, line: 135, text: "btnCloseClick (Review Order)" }
+    flow_hash: "100A0A6DEFBEC658"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-086
+    title: Complete Transaction confirms the tip and signature
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipAndSignature
+      entity: Tip
+    preconditions:
+      - The customer-facing tip + signature screen is shown with a tip selected and signature captured
+    steps:
+      - Select a tip and capture a signature
+      - Tap Complete Transaction
+    expected:
+      - The tip and signature are saved and the transaction completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipAndSignature btnOK (Complete Transaction) button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipAndSignature.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipAndSignature.cs, line: 140, text: "btnOKClick (Complete Transaction)" }
+    flow_hash: "100A0A6DEFBEC658"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmTipCustom.cs - customer-facing custom tip entry (entity: Tip)
+  # ============================================================================
+  - id: SYS-087
+    title: Back returns from custom tip entry to the tip screen
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipCustom
+      entity: Tip
+    preconditions:
+      - The customer-facing custom tip entry screen is shown
+    steps:
+      - Tap Back
+    expected:
+      - The previous tip screen is shown again
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipCustom btnBack button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipCustom.cs, line: 43, text: "btnBackClick" }
+    flow_hash: "B58AFD1A00A30FF8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-088
+    title: Cancel custom tip entry dismisses without applying a tip
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipCustom
+      entity: Tip
+    preconditions:
+      - The customer-facing custom tip entry screen is shown
+    steps:
+      - Tap Cancel
+    expected:
+      - The custom tip screen closes without applying a tip
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipCustom btnCancel button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipCustom.cs, line: 49, text: "btnCancelClick (Cancel)" }
+    flow_hash: "B58AFD1A00A30FF8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-089
+    title: Tapping a keypad key appends a digit to the custom tip amount
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipCustom
+      entity: Tip
+    preconditions:
+      - The customer-facing custom tip entry screen is shown
+    steps:
+      - Tap a keypad key
+    expected:
+      - The tapped digit is appended to the custom tip amount
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipCustom keypad btn
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipCustom.cs, line: 54, text: "btnClick" }
+    flow_hash: "B58AFD1A00A30FF8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-090
+    title: OK applies a valid custom tip within the allowed percentage
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipCustom
+      entity: Tip
+    preconditions:
+      - The customer-facing custom tip entry screen is shown with a valid amount entered
+    steps:
+      - Enter a custom tip within the allowed percentage
+      - Tap OK
+    expected:
+      - The custom tip is applied and the screen closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipCustom btnOK button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipCustom.cs, line: 60, text: "btnOKClick (OK)" }
+    flow_hash: "B58AFD1A00A30FF8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-091
+    title: A custom tip above the allowed percentage is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmTipCustom
+      entity: Tip
+    preconditions:
+      - The customer-facing custom tip entry screen is shown
+    steps:
+      - Enter a custom tip above the allowed percentage
+      - Tap OK
+    expected:
+      - "Warning message is shown: The tip amount exceeds the allowed percentage amount ({mAllow:C2})."
+      - The custom tip is not applied
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipCustom tip-percentage warning dialog
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipCustom.cs, line: 68, text: "The tip amount exceeds the allowed\\npercentage amount ({mAllow:C2})." }
+    flow_hash: "B58AFD1A00A30FF8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # Composite end-to-end flows (chain atomic ids; add no new anchors)
+  # ============================================================================
+  - id: SYS-092
+    title: CFD email-receipt flow - choose Email, enter address, send
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    chains: [SYS-071, SYS-078, SYS-079]
+    preconditions:
+      - A transaction has completed and the customer-facing receipt-choice screen is shown
+    steps:
+      - Tap Email on the receipt-choice screen
+      - Enter a valid email via the on-screen keyboard
+      - Tap OK
+    expected:
+      - The email receipt is sent to the entered address
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence: []
+    flow_hash: "451468BCE350CC24"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-093
+    title: CFD text-receipt flow - choose SMS, enter phone, send
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmComplete
+      entity: Receipt
+    chains: [SYS-074, SYS-082, SYS-083]
+    preconditions:
+      - A transaction has completed and the customer-facing receipt-choice screen is shown
+    steps:
+      - Tap SMS on the receipt-choice screen
+      - Enter a valid phone number via the on-screen keypad
+      - Tap OK
+    expected:
+      - The text receipt is sent to the entered phone number
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/SysForms/CFD/frmComplete.cs
+      - 2.0.x/SysForms/CFD/frmPhone.cs
+    evidence: []
+    flow_hash: "EE9C9043E70A18F6"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-094
+    title: CFD custom-tip then complete - enter custom tip, complete transaction
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTipCustom
+      entity: Tip
+    chains: [SYS-089, SYS-090, SYS-086]
+    preconditions:
+      - The customer-facing custom tip entry screen is shown
+    steps:
+      - Enter a valid custom tip via the keypad
+      - Tap OK to apply the tip
+      - Capture a signature and tap Complete Transaction
+    expected:
+      - The custom tip and signature are saved and the transaction completes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+      - 2.0.x/SysForms/CFD/frmTipAndSignature.cs
+    evidence: []
+    flow_hash: "4ADCE9762DA345A9"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: SYS-095
+    title: Numeric value pad min/max guard then valid entry
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmMessageValue
+      entity: Value
+    chains: [SYS-036, SYS-037, SYS-035]
+    preconditions:
+      - The numeric value pad is open with configured min and max
+    steps:
+      - Enter a value below the minimum and click OK (rejected)
+      - Enter a quantity above the maximum and click OK (rejected)
+      - Enter a value within range and click OK (accepted)
+    expected:
+      - Below-min and above-max entries are rejected with warnings
+      - The in-range value is accepted and returned
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/SysForms/frmMessageValue.cs
+    evidence: []
+    flow_hash: "F29505858590DF56"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

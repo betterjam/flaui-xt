@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-079
+    title: OK confirms the email address and sends the receipt
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmEmail
+      entity: Receipt
+    preconditions:
+      - The customer-facing email-entry screen is shown with a valid email entered
+    steps:
+      - Enter a valid email address
+      - Tap OK
+    expected:
+      - The email receipt is sent to the entered address
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmEmail btnOK button
+    source_files:
+      - 2.0.x/SysForms/CFD/frmEmail.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmEmail.cs, line: 120, text: "btnOKClick (OK)" }
+    flow_hash: "49AFD3E472EAA740"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # CFD/frmPhone.cs - customer-facing phone entry (entity: Receipt)
+  # ============================================================================

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-067
+    title: Close dismisses the success overlay
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSuccess
+      entity: Dialog
+    preconditions:
+      - The success overlay is shown
+    steps:
+      - Click Close
+    expected:
+      - The success overlay is dismissed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSuccess btnOK (Close) button
+    source_files:
+      - 2.0.x/SysForms/frmSuccess.cs
+    evidence:
+      - { file: 2.0.x/SysForms/frmSuccess.cs, line: 71, text: "btnOKClick (Close)" }
+    flow_hash: "CFE429B5EBEF597B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmWait.cs - cancellable wait overlay (entity: Dialog)
+  # ============================================================================

@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/SysForms.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: SysForms
+test_case:
+  - id: SYS-091
+    title: A custom tip above the allowed percentage is rejected with a warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmTipCustom
+      entity: Tip
+    preconditions:
+      - The customer-facing custom tip entry screen is shown
+    steps:
+      - Enter a custom tip above the allowed percentage
+      - Tap OK
+    expected:
+      - "Warning message is shown: The tip amount exceeds the allowed percentage amount ({mAllow:C2})."
+      - The custom tip is not applied
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTipCustom tip-percentage warning dialog
+    source_files:
+      - 2.0.x/SysForms/CFD/frmTipCustom.cs
+    evidence:
+      - { file: 2.0.x/SysForms/CFD/frmTipCustom.cs, line: 68, text: "The tip amount exceeds the allowed\\npercentage amount ({mAllow:C2})." }
+    flow_hash: "B58AFD1A00A30FF8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # Composite end-to-end flows (chain atomic ids; add no new anchors)
+  # ============================================================================
