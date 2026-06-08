@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-001
+    title: Reject club save when scanned UPC is not valid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open with an invalid UPC entered
+    steps:
+      - Open Customers > Club
+      - Enter a UPC that fails validation
+      - Attempt to save the club
+    expected:
+      - Warning dialog displays "UPC is not correct."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club editor UPC field
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 205, text: "UPC is not correct." }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

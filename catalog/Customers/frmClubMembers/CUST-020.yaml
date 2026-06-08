@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-020
+    title: Club member row checkbox toggle selects/deselects the member
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with at least one member row
+    steps:
+      - Open Customers > Club Members
+      - Toggle the row checkbox (chk) on a member
+    expected:
+      - The member's selection state updates to reflect the checkbox
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members row checkbox (chk)
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 261, text: "chkCheckedChanged" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmClubMod  (2.0.x/Customers/frmClubMod.cs) - 3 anchors
+  # ===================================================================================

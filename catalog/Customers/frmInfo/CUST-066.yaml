@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-066
+    title: Reject info save when neither phone nor email is provided
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInfo
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer info dialog open with both phone and email blank
+    steps:
+      - Open the customer info dialog
+      - Leave both phone and email blank
+      - Click Save
+    expected:
+      - Warning dialog displays "Phone number or email is required."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Phone and email fields on the info dialog
+    source_files:
+      - 2.0.x/Customers/frmInfo.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmInfo.cs, line: 145, text: "Phone number or email is required." }
+    flow_hash: "F99532C7F86C0CEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

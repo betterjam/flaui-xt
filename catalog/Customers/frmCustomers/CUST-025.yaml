@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-025
+    title: Remove Note button is gated by the Customers.CustomerNote permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.CustomerNote right
+      - Customer detail form open with at least one note
+    steps:
+      - Open a customer's detail form
+      - Observe the Remove Note (btnNoteRemove) control
+    expected:
+      - The Remove Note action is unavailable/disabled without the Customers.CustomerNote permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Remove Note (btnNoteRemove) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 280, text: "perm:Customers.CustomerNote" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

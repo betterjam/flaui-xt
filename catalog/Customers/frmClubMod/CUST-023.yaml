@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-023
+    title: Reject club modify confirm when no club is selected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClubMod
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club selection dialog open with nothing selected
+    steps:
+      - Open the Club selection dialog
+      - Leave the selection empty
+      - Click OK
+    expected:
+      - Warning dialog displays "No club selected, please select at least one."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection list
+      - Club selection dialog OK (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClubMod.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMod.cs, line: 63, text: "No club selected, please select at least one." }
+    flow_hash: "3D588EB4991D1D60"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmCustomers  (2.0.x/Customers/frmCustomers.cs) - 32 anchors
+  # ===================================================================================

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-051
+    title: Reject customer save when membership number set but Loyalty Member toggle off
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with a membership number set but Loyalty Member toggle disabled
+    steps:
+      - Open a customer's detail form
+      - Enter a membership number with the Loyalty Member toggle off
+      - Save the customer
+    expected:
+      - Warning dialog displays "Loyalty Member toggle must be enabled when Membership Number is set."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Membership number field
+      - Loyalty Member toggle
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 889, text: "Loyalty Member toggle must be enabled when Membership Number is set." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

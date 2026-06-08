@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Customers",
+    "anchorsTotal":  95,
+    "covered":  95,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  99,
+    "atomic":  95,
+    "composite":  4,
+    "uncoveredAnchors":  [
+
+                         ]
+}

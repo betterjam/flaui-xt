@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-013
+    title: Add button adds the selected customer to the club
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with a customer selected
+    steps:
+      - Open Customers > Club Members
+      - Select a customer
+      - Click Add (btnAdd)
+    expected:
+      - The customer is added to the club member list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add (btnAdd) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 143, text: "btnAddClick Add" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

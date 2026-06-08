@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-026
+    title: Accept commits a customer address entry
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open editing an address with all required fields filled
+    steps:
+      - Open a customer's detail form
+      - Fill the address fields
+      - Click Accept (btnAccept)
+    expected:
+      - The address entry is accepted into the customer's address list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState, InsertZipCode, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState, InsertZipCode]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Accept (btnAccept) button on the address editor
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 423, text: "btnAcceptClick Accept" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

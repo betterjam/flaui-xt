@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-090
+    title: Reject saving an empty note
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmNotes
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Note editor open with the text field empty
+    steps:
+      - Open the customer note editor
+      - Leave the text field empty
+      - Click Save
+    expected:
+      - Warning dialog displays "Empty field."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Note editor text field
+    source_files:
+      - 2.0.x/Customers/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmNotes.cs, line: 69, text: "Empty field." }
+    flow_hash: "4A881DA311C1500B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmStatements  (2.0.x/Customers/frmStatements.cs) - 2 anchors
+  # ===================================================================================

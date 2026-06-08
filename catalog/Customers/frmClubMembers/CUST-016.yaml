@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-016
+    title: Remove All clears all members from the club
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with at least one member listed
+    steps:
+      - Open Customers > Club Members
+      - Click Remove All (btnRemoveAll)
+    expected:
+      - All members are removed from the club member list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Remove All (btnRemoveAll) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 179, text: "btnRemoveAllClick Remove\r\nAll" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,3311 @@
+﻿feature: Customers
+description: >
+  Customer master record, club / club-member, customer search & list, notes, info,
+  statements and transactions flows for the Exatouch Customers module. Net-new catalog
+  grounded in the 2.0.x/Customers/*.cs forms. Customer-specific Ranorex building blocks
+  (GoToCustomers, GoToCustomerDetails, SearchForCustomerByName, SearchCustomerByPhone,
+  Insert* field recordings, SaveRecord) are referenced as locator ground; net-new controls
+  on the club/notes/info/statements forms are flagged for a record pass.
+source_paths:
+  - 2.0.x/Customers
+flavors: []          # no #if (CFD|BO|DEMO|TRAINING) branch in Customers/*.cs alters the user-facing flows enumerated here
+
+test_cases:
+  # ===================================================================================
+  # frmClub  (2.0.x/Customers/frmClub.cs) - 8 anchors
+  # ===================================================================================
+  - id: CUST-001
+    title: Reject club save when scanned UPC is not valid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open with an invalid UPC entered
+    steps:
+      - Open Customers > Club
+      - Enter a UPC that fails validation
+      - Attempt to save the club
+    expected:
+      - Warning dialog displays "UPC is not correct."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club editor UPC field
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 205, text: "UPC is not correct." }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-002
+    title: Reject club save when price is not greater than previous club's price
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open in upgrade context where a previous club price exists
+      - New price entered is not greater than the previous club's price
+    steps:
+      - Open Customers > Club
+      - Enter a price equal to or less than the previous club's price
+      - Attempt to save the club
+    expected:
+      - Warning dialog displays "Price needs to be greater than previous club's price."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club editor price field
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 233, text: "Price needs to be greater than previous club's price." }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-003
+    title: Reject club save when no club is selected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open with no club selected in the list
+    steps:
+      - Open Customers > Club
+      - Leave the club selection empty
+      - Attempt to save
+    expected:
+      - Warning dialog displays "No club selected, please select at least one."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection list
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 243, text: "No club selected, please select at least one." }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-004
+    title: Save a valid club shows success
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open with a club selected, valid UPC and a valid price
+    steps:
+      - Open Customers > Club
+      - Select a club and enter a valid UPC and price
+      - Save the club
+    expected:
+      - Success dialog displays "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club editor UPC and price fields
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 311, text: "Saved successfully." }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-005
+    title: Cancel closes the Club editor without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open with unsaved edits
+    steps:
+      - Open Customers > Club
+      - Make a change in the club editor
+      - Click Close (btnCancel)
+    expected:
+      - The Club editor closes and edits are discarded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club editor Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 185, text: "btnCancelClick Close" }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-006
+    title: Save (btnOK) commits the club editor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open with valid values
+    steps:
+      - Open Customers > Club
+      - Enter valid values
+      - Click Save (btnOK)
+    expected:
+      - The club editor runs its save path (validates then persists)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 194, text: "btnOKClick Save" }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-007
+    title: SKU button opens SKU entry from the Club editor
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open
+    steps:
+      - Open Customers > Club
+      - Click the SKU button (btnSKU)
+    expected:
+      - The SKU entry action is invoked for the club
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club editor SKU (btnSKU) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 315, text: "btnSKUClick" }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-008
+    title: Upgrade Mode toggle changes club editor behavior
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open
+    steps:
+      - Open Customers > Club
+      - Toggle the Upgrade Mode checkbox (chkUpgradeMode)
+    expected:
+      - The editor switches to/from upgrade mode and applies the upgrade-mode price rule
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Upgrade Mode checkbox (chkUpgradeMode)
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 320, text: "chkUpgradeModeCheckedChanged Upgrade Mode" }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmClubMembers  (2.0.x/Customers/frmClubMembers.cs) - 12 anchors
+  # ===================================================================================
+  - id: CUST-009
+    title: Reject adding a customer already a member of the club
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open for a club where the selected customer is already a member
+    steps:
+      - Open Customers > Club Members
+      - Select a customer who already belongs to the club
+      - Click Add
+    expected:
+      - Warning dialog displays "Customer is already member of this club."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members customer selector
+      - Add (btnAdd) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 75, text: "Customer is already member of this club." }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-010
+    title: Reject club member add when member number already in use (on add)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with a member number that is already assigned
+    steps:
+      - Open Customers > Club Members
+      - Enter a member number that is already in use
+      - Click Add
+    expected:
+      - Warning dialog displays "Member number already in use.\nPlease enter a different number."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members member number field
+      - Add (btnAdd) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 100, text: "Member number already in use.\nPlease enter a different number." }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-011
+    title: Reject club member modify when member number already in use (on modify)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open editing an existing member
+      - The entered member number collides with another member's number
+    steps:
+      - Open Customers > Club Members
+      - Modify a member's number to one already in use
+      - Commit the change
+    expected:
+      - Warning dialog displays "Member number already in use.\nPlease enter a different number."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members member number field
+      - Modify (btnModify) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 113, text: "Member number already in use.\nPlease enter a different number." }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-012
+    title: Adding a club member shows the member-added success message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with a valid customer and unused member number
+    steps:
+      - Open Customers > Club Members
+      - Select a customer and a unique member number
+      - Click Add
+    expected:
+      - "Success dialog confirms the member was added (e.g. \"{mSelectValue[1]} {mSelectValue[2]} added successfully.\")"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members customer selector
+      - Add (btnAdd) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 136, text: "{mSelectValue[1]} {mSelectValue[2]} added successfully." }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-013
+    title: Add button adds the selected customer to the club
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with a customer selected
+    steps:
+      - Open Customers > Club Members
+      - Select a customer
+      - Click Add (btnAdd)
+    expected:
+      - The customer is added to the club member list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add (btnAdd) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 143, text: "btnAddClick Add" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-014
+    title: Close button closes the Club Members form
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members form open
+    steps:
+      - Open Customers > Club Members
+      - Click Close (btnCancel)
+    expected:
+      - The Club Members form closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 157, text: "btnCancelClick Close" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-015
+    title: Modify button edits the selected club member
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with a member selected
+    steps:
+      - Open Customers > Club Members
+      - Select an existing member
+      - Click Modify (btnModify)
+    expected:
+      - The member's editable fields become available for change
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modify (btnModify) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 166, text: "btnModifyClick Modify" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-016
+    title: Remove All clears all members from the club
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with at least one member listed
+    steps:
+      - Open Customers > Club Members
+      - Click Remove All (btnRemoveAll)
+    expected:
+      - All members are removed from the club member list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Remove All (btnRemoveAll) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 179, text: "btnRemoveAllClick Remove\r\nAll" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-017
+    title: Remove deletes the selected club member
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with a member selected
+    steps:
+      - Open Customers > Club Members
+      - Select a member
+      - Click Remove (btnRemove)
+    expected:
+      - The selected member is removed from the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Remove (btnRemove) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 193, text: "btnRemoveClick Remove" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-018
+    title: Save (btnOK) commits the club member changes
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with valid member changes
+    steps:
+      - Open Customers > Club Members
+      - Make valid member changes
+      - Click Save (btnOK)
+    expected:
+      - The club member changes are persisted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 212, text: "btnOKClick Save" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-019
+    title: Saving club members shows success
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with valid changes ready to save
+    steps:
+      - Open Customers > Club Members
+      - Make valid changes and click Save
+    expected:
+      - Success dialog displays "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 257, text: "Saved successfully." }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-020
+    title: Club member row checkbox toggle selects/deselects the member
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with at least one member row
+    steps:
+      - Open Customers > Club Members
+      - Toggle the row checkbox (chk) on a member
+    expected:
+      - The member's selection state updates to reflect the checkbox
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members row checkbox (chk)
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 261, text: "chkCheckedChanged" }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmClubMod  (2.0.x/Customers/frmClubMod.cs) - 3 anchors
+  # ===================================================================================
+  - id: CUST-021
+    title: Cancel closes the Club selection (modify) dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMod
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club selection (modify) dialog open
+    steps:
+      - Open the Club selection dialog
+      - Click Close (btnCancel)
+    expected:
+      - The dialog closes without applying a selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection dialog Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmClubMod.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMod.cs, line: 47, text: "btnCancelClick Close" }
+    flow_hash: "3D588EB4991D1D60"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-022
+    title: OK confirms the selected club in the modify dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMod
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club selection dialog open with a club selected
+    steps:
+      - Open the Club selection dialog
+      - Select a club
+      - Click OK (btnOK)
+    expected:
+      - The selected club is confirmed and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection dialog OK (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClubMod.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMod.cs, line: 56, text: "btnOKClick OK" }
+    flow_hash: "3D588EB4991D1D60"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-023
+    title: Reject club modify confirm when no club is selected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClubMod
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club selection dialog open with nothing selected
+    steps:
+      - Open the Club selection dialog
+      - Leave the selection empty
+      - Click OK
+    expected:
+      - Warning dialog displays "No club selected, please select at least one."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection list
+      - Club selection dialog OK (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClubMod.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMod.cs, line: 63, text: "No club selected, please select at least one." }
+    flow_hash: "3D588EB4991D1D60"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmCustomers  (2.0.x/Customers/frmCustomers.cs) - 32 anchors
+  # ===================================================================================
+  - id: CUST-024
+    title: Delete button is gated by the Staff permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Staff right
+      - Customer detail form open
+    steps:
+      - Open a customer's detail form
+      - Observe the Delete (btnDelete) control
+    expected:
+      - The Delete action is unavailable/disabled without the Staff permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete (btnDelete) button on the customer detail form
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 278, text: "perm:Staff" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-025
+    title: Remove Note button is gated by the Customers.CustomerNote permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.CustomerNote right
+      - Customer detail form open with at least one note
+    steps:
+      - Open a customer's detail form
+      - Observe the Remove Note (btnNoteRemove) control
+    expected:
+      - The Remove Note action is unavailable/disabled without the Customers.CustomerNote permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Remove Note (btnNoteRemove) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 280, text: "perm:Customers.CustomerNote" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-026
+    title: Accept commits a customer address entry
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open editing an address with all required fields filled
+    steps:
+      - Open a customer's detail form
+      - Fill the address fields
+      - Click Accept (btnAccept)
+    expected:
+      - The address entry is accepted into the customer's address list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState, InsertZipCode, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState, InsertZipCode]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Accept (btnAccept) button on the address editor
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 423, text: "btnAcceptClick Accept" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-027
+    title: Reject address accept when Address is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer address editor open with the Address field blank
+    steps:
+      - Open a customer's detail form
+      - Leave the Address field blank
+      - Click Accept
+    expected:
+      - Warning dialog displays "Address cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Address field
+      - Accept (btnAccept) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 429, text: "Address cannot be blank." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-028
+    title: Reject address accept when City is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer address editor open with the City field blank
+    steps:
+      - Open a customer's detail form
+      - Enter an address but leave City blank
+      - Click Accept
+    expected:
+      - Warning dialog displays "City cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - City field
+      - Accept (btnAccept) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 435, text: "City cannot be blank." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-029
+    title: Reject address accept when State is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer address editor open with the State unset
+    steps:
+      - Open a customer's detail form
+      - Enter address and city but leave State blank
+      - Click Accept
+    expected:
+      - Warning dialog displays "State cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - State selector
+      - Accept (btnAccept) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 441, text: "State cannot be blank." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-030
+    title: Reject address accept when Zip Code is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer address editor open with the Zip Code blank
+    steps:
+      - Open a customer's detail form
+      - Enter address, city and state but leave Zip Code blank
+      - Click Accept
+    expected:
+      - Warning dialog displays "Zip Code cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Zip Code field
+      - Accept (btnAccept) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 447, text: "Zip Code cannot be blank." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-031
+    title: Cancel closes the customer detail form without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with unsaved edits
+    steps:
+      - Open a customer's detail form
+      - Make a change
+      - Click Close (btnCancel)
+    expected:
+      - The customer detail form closes and edits are discarded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer detail Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 501, text: "btnCancelClick Close" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-032
+    title: Delete button removes the customer
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Staff right
+      - Customer detail form open on a deletable customer
+    steps:
+      - Open a customer's detail form
+      - Click Delete (btnDelete)
+      - Confirm the deletion
+    expected:
+      - The customer is deleted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete (btnDelete) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 508, text: "btnDeleteClick Delete" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-033
+    title: Deleting a customer shows the deleted-success message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Staff right
+      - Customer detail form open on a deletable customer
+    steps:
+      - Open a customer's detail form
+      - Click Delete and confirm
+    expected:
+      - Success dialog displays "Deleted successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete (btnDelete) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 534, text: "Deleted successfully." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-034
+    title: Find Reference (Alt) lookup from the customer detail form
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open
+    steps:
+      - Open a customer's detail form
+      - Click the Find Reference (Alt) control (btnFindRefAlt)
+    expected:
+      - The alternate reference lookup is invoked
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Find Reference Alt (btnFindRefAlt) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 538, text: "btnFindRefAltClick" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-035
+    title: Find Reference lookup from the customer detail form
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open
+    steps:
+      - Open a customer's detail form
+      - Click the Find Reference control (btnFindRef)
+    expected:
+      - The reference lookup is invoked
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Find Reference (btnFindRef) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 546, text: "btnFindRefClick" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-036
+    title: History opens the customer purchase history
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open
+    steps:
+      - Open a customer's detail form
+      - Click History (btnHistory)
+    expected:
+      - The customer's history view opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - History (btnHistory) button on the customer detail form
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 564, text: "btnHistoryClick History" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-037
+    title: Add Note opens the note editor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open
+    steps:
+      - Open a customer's detail form
+      - Click Add Note (btnNoteAdd)
+    expected:
+      - The note editor opens for the customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Note (btnNoteAdd) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 573, text: "btnNoteAddClick" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-038
+    title: Reject empty customer note
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer note editor open with the note text blank
+    steps:
+      - Open a customer's detail form
+      - Click Add Note and leave the text blank
+      - Save the note
+    expected:
+      - Warning dialog displays "Note Can't be Blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer note text field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 577, text: "Note Can't be Blank." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-039
+    title: Remove Note deletes the selected customer note
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Customers.CustomerNote right
+      - Customer detail form open with a note selected
+    steps:
+      - Open a customer's detail form
+      - Select an existing note
+      - Click Remove Note (btnNoteRemove)
+    expected:
+      - The selected note is removed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Remove Note (btnNoteRemove) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 600, text: "btnNoteRemoveClick" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-040
+    title: Read button reads a card/scan into the customer form
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open
+    steps:
+      - Open a customer's detail form
+      - Click Read (btnRead)
+    expected:
+      - The read/scan action is invoked and its value is captured into the form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Read (btnRead) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 609, text: "btnReadClick" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-041
+    title: Loyalty Statement button opens the loyalty statement
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open for a loyalty customer
+    steps:
+      - Open a customer's detail form
+      - Click Loyalty Statement (btnStatements)
+    expected:
+      - The loyalty statement view opens for the customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Loyalty Statement (btnStatements) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 644, text: "btnStatementsClick Loyalty\r\nStatement" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-042
+    title: Selecting an address row loads it for editing
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with at least one saved address
+    steps:
+      - Open a customer's detail form
+      - Click a cell in the address grid (dgvAddress)
+    expected:
+      - The selected address is loaded into the address editor fields
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Address grid (dgvAddress)
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 660, text: "dgvAddressCellClick" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-043
+    title: Save (nav) persists the customer record
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with all required, valid fields
+    steps:
+      - Open a new customer detail form
+      - Fill required fields with valid values
+      - Click Save on the navigation bar (ucNav)
+    expected:
+      - The customer record save path runs (validates then persists)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertFirstName, InsertLastName, InsertPhone, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertFirstName, InsertLastName, InsertPhone, SaveRecord]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Navigation bar Save (ucNav) control
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 767, text: "ucNavOnSave" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-044
+    title: Reject customer save when TAX id is invalid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with an invalid TAX id
+    steps:
+      - Open a customer's detail form
+      - Enter an invalid TAX id
+      - Save the customer
+    expected:
+      - Warning dialog displays "Invalid TAX id."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - TAX id field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 771, text: "Invalid TAX id." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-045
+    title: Reject customer save when date of birth is invalid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with an invalid date of birth
+    steps:
+      - Open a customer's detail form
+      - Enter an invalid date of birth
+      - Save the customer
+    expected:
+      - Warning dialog displays "Invalid date of birth."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Date of birth field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 777, text: "Invalid date of birth." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-046
+    title: Reject customer save when phone number is required but missing
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open in a context that requires a phone number, left blank
+    steps:
+      - Open a customer's detail form
+      - Leave the phone number blank
+      - Save the customer
+    expected:
+      - Warning dialog displays "Phone number is required."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Phone number field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 784, text: "Phone number is required." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-047
+    title: Reject customer save when neither phone nor email is provided
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with both phone and email blank
+    steps:
+      - Open a customer's detail form
+      - Leave both phone and email blank
+      - Save the customer
+    expected:
+      - Warning dialog displays "Phone number or email is required."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Phone number and email fields
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 799, text: "Phone number or email is required." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-048
+    title: Reject customer save when email address is invalid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with a malformed email address
+    steps:
+      - Open a customer's detail form
+      - Enter a malformed email address
+      - Save the customer
+    expected:
+      - Warning dialog displays "Invalid email address."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertEmail, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertEmail]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Email field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 805, text: "Invalid email address." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-049
+    title: Reject customer save when credit limit is invalid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with a non-numeric/invalid credit limit
+    steps:
+      - Open a customer's detail form
+      - Enter an invalid credit limit
+      - Save the customer
+    expected:
+      - Warning dialog displays "Invalid credit limit."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Credit limit field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 815, text: "Invalid credit limit." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-050
+    title: Reject customer save when membership number is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open as a loyalty member with the membership number blank
+    steps:
+      - Open a customer's detail form
+      - Enable loyalty but leave the membership number blank
+      - Save the customer
+    expected:
+      - Warning dialog displays "Membership number cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Membership number field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 881, text: "Membership number cannot be blank." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-051
+    title: Reject customer save when membership number set but Loyalty Member toggle off
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with a membership number set but Loyalty Member toggle disabled
+    steps:
+      - Open a customer's detail form
+      - Enter a membership number with the Loyalty Member toggle off
+      - Save the customer
+    expected:
+      - Warning dialog displays "Loyalty Member toggle must be enabled when Membership Number is set."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Membership number field
+      - Loyalty Member toggle
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 889, text: "Loyalty Member toggle must be enabled when Membership Number is set." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-052
+    title: Reject customer save when loyalty expiration date is missing
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open as a loyalty member with no expiration date
+    steps:
+      - Open a customer's detail form
+      - Enable loyalty membership but leave the expiration date blank
+      - Save the customer
+    expected:
+      - Warning dialog displays "Loyalty expiration date is required."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Loyalty expiration date field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 897, text: "Loyalty expiration date is required." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-053
+    title: Reject customer save when membership number is already in use
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with a membership number already assigned to another customer
+    steps:
+      - Open a customer's detail form
+      - Enter a membership number already used by another customer
+      - Save the customer
+    expected:
+      - Warning dialog displays "Membership number is already in use."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Membership number field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 911, text: "Membership number is already in use." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-054
+    title: Saving a valid customer shows success
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with all required, valid fields
+    steps:
+      - Open a new customer detail form
+      - Fill first name, last name and a valid phone number
+      - Save the customer
+    expected:
+      - Success dialog displays "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertFirstName, InsertLastName, InsertPhone, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertFirstName, InsertLastName, InsertPhone, SaveRecord]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer detail required fields
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 1170, text: "Saved successfully." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-055
+    title: Add Card On File launches the card-on-file capture
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open on a saved customer
+    steps:
+      - Open a customer's detail form
+      - Click Add Card On File (btnAddCardOnFile)
+    expected:
+      - The card-on-file capture flow is launched for the customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Card On File (btnAddCardOnFile) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 1190, text: "btnAddCardOnFile_Click" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmCustSearch  (2.0.x/Customers/frmCustSearch.cs) - 8 anchors
+  # ===================================================================================
+  - id: CUST-056
+    title: Edit Customer is gated by the Customers.Customer permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.Customer right
+      - Customer search dialog open with a customer selected
+    steps:
+      - Open the customer search dialog
+      - Observe the Edit Customer (btnEdit) control
+    expected:
+      - The Edit Customer action is unavailable/disabled without the Customers.Customer permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToRegister, SearchForCustomerByName]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Edit Customer (btnEdit) button on the search dialog
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 62, text: "perm:Customers.Customer" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-057
+    title: Cancel closes the customer search dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer search dialog open
+    steps:
+      - Open the customer search dialog
+      - Click Cancel (btnCancel)
+    expected:
+      - The customer search dialog closes without selecting a customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer search Cancel (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 123, text: "btnCancelClick Cancel" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-058
+    title: Clear resets the customer search fields
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer search dialog open with search criteria entered
+    steps:
+      - Open the customer search dialog
+      - Enter search criteria
+      - Click Clear (btnClear)
+    expected:
+      - The search criteria and results are cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer search Clear (btnClear) button
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 128, text: "btnClearClick Clear" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-059
+    title: Edit Customer opens the selected customer for editing
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Customers.Customer right
+      - Customer search dialog open with a customer selected
+    steps:
+      - Open the customer search dialog
+      - Search for and select a customer
+      - Click Edit Customer (btnEdit)
+    expected:
+      - The customer detail form opens for the selected customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Edit Customer (btnEdit) button
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 140, text: "btnEditClick Edit\r\nCustomer" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-060
+    title: History opens the selected customer's history from search
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer search dialog open with a customer selected
+    steps:
+      - Open the customer search dialog
+      - Search for and select a customer
+      - Click History (btnHistory)
+    expected:
+      - The customer's history view opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - History (btnHistory) button on the search dialog
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 155, text: "btnHistoryClick History" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-061
+    title: New Customer opens a blank customer form from search
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer search dialog open
+    steps:
+      - Open the customer search dialog
+      - Click New Customer (btnNewCustomer)
+    expected:
+      - A blank customer detail form opens for a new customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - New Customer (btnNewCustomer) button
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 170, text: "btnNewCustomerClick New\r\nCustomer" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-062
+    title: Go To Order assigns the selected customer and returns to the order
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin with an open order
+      - Customer search dialog open with a customer selected
+    steps:
+      - Open the customer search dialog from an order
+      - Search for and select a customer
+      - Click Go To Order (btnOK)
+    expected:
+      - The selected customer is attached to the order and focus returns to the order
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, AssignCustomerToOrder, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, AssignCustomerToOrder]
+    binding: locators-known
+    matches_existing: AssignCustomerToOrder
+    new_controls: []
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 183, text: "btnOKClick Go\r\nTo Order" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-063
+    title: Double-clicking a search result selects that customer
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer search dialog open with results listed
+    steps:
+      - Open the customer search dialog
+      - Search to produce results
+      - Double-click a customer row (dgvCustomers)
+    expected:
+      - The double-clicked customer is selected/chosen
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer results grid (dgvCustomers)
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 188, text: "dgvCustomersCellDoubleClick" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmInfo  (2.0.x/Customers/frmInfo.cs) - 5 anchors
+  # ===================================================================================
+  - id: CUST-064
+    title: Cancel closes the customer info dialog without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInfo
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer info dialog open with unsaved edits
+    steps:
+      - Open the customer info dialog
+      - Make a change
+      - Click Close (btnCancel)
+    expected:
+      - The info dialog closes and edits are discarded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer info Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmInfo.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmInfo.cs, line: 122, text: "btnCancelClick Close" }
+    flow_hash: "F99532C7F86C0CEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-065
+    title: Save commits the quick customer info
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInfo
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer info dialog open with valid contact info
+    steps:
+      - Open the customer info dialog
+      - Enter valid contact info
+      - Click Save (btnOK)
+    expected:
+      - The quick customer info save path runs (validates then persists)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, InsertPhone, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, InsertPhone, SaveRecord]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer info Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmInfo.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmInfo.cs, line: 131, text: "btnOKClick Save" }
+    flow_hash: "F99532C7F86C0CEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-066
+    title: Reject info save when neither phone nor email is provided
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInfo
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer info dialog open with both phone and email blank
+    steps:
+      - Open the customer info dialog
+      - Leave both phone and email blank
+      - Click Save
+    expected:
+      - Warning dialog displays "Phone number or email is required."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Phone and email fields on the info dialog
+    source_files:
+      - 2.0.x/Customers/frmInfo.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmInfo.cs, line: 145, text: "Phone number or email is required." }
+    flow_hash: "F99532C7F86C0CEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-067
+    title: Reject info save when email address is invalid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInfo
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer info dialog open with a malformed email address
+    steps:
+      - Open the customer info dialog
+      - Enter a malformed email address
+      - Click Save
+    expected:
+      - Warning dialog displays "Email address invalid."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, InsertEmail, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, InsertEmail]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Email field on the info dialog
+    source_files:
+      - 2.0.x/Customers/frmInfo.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmInfo.cs, line: 151, text: "Email address invalid." }
+    flow_hash: "F99532C7F86C0CEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-068
+    title: Saving valid customer info shows success
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInfo
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer info dialog open with valid contact info
+    steps:
+      - Open the customer info dialog
+      - Enter a valid phone or email
+      - Click Save
+    expected:
+      - Success dialog displays "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, InsertPhone, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, InsertPhone, SaveRecord]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer info Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmInfo.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmInfo.cs, line: 213, text: "Saved successfully." }
+    flow_hash: "F99532C7F86C0CEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmList  (2.0.x/Customers/frmList.cs) - 8 anchors
+  # ===================================================================================
+  - id: CUST-069
+    title: Customer list access is gated by the Customers.Customer permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.Customer right
+    steps:
+      - Open Customers > Customer List
+      - Observe access to the list (_AccessObj)
+    expected:
+      - Customer list access is restricted without the Customers.Customer permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer list access object (_AccessObj)
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 45, text: "perm:Customers.Customer" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-070
+    title: Report button is gated by the Report.Customers permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Report.Customers right
+      - Customer list open
+    steps:
+      - Open Customers > Customer List
+      - Observe the Report (btnReport) control
+    expected:
+      - The Report action is unavailable/disabled without the Report.Customers permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report (btnReport) button on the customer list
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 46, text: "perm:Report.Customers" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-071
+    title: Clear Search Results empties the customer list grid
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Customer list showing search results
+    steps:
+      - Open Customers > Customer List
+      - Run a search to populate results
+      - Click Clear Search Results (btnClear)
+    expected:
+      - The customer list grid is cleared of results
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Clear Search Results (btnClear) button
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 172, text: "btnClearClick Clear\r\nSearch Results" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-072
+    title: Print List prints the current customer list
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Customer list populated
+    steps:
+      - Open Customers > Customer List
+      - Click Print List (btnPrint)
+    expected:
+      - The current customer list is sent to print
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Print List (btnPrint) button
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 191, text: "btnPrintClick Print List" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-073
+    title: Report button runs the customer report
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Report.Customers right
+      - Customer list open
+    steps:
+      - Open Customers > Customer List
+      - Click Report (btnReport)
+    expected:
+      - The customer report is generated
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report (btnReport) button
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 205, text: "btnReportClick Report" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-074
+    title: Advanced Customer Search opens the advanced search dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Customer list open
+    steps:
+      - Open Customers > Customer List
+      - Click Advanced Customer Search (btnSearch)
+    expected:
+      - The advanced customer search dialog opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Advanced Customer Search (btnSearch) button
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 210, text: "btnSearchClick Advanced\r\nCustomer Search" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-075
+    title: Selecting a customer row in the list opens/selects that customer
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Customer list populated
+    steps:
+      - Open Customers > Customer List
+      - Click a customer row cell (dgvList)
+    expected:
+      - The selected customer is opened/selected from the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer list grid (dgvList)
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 224, text: "dgvListCellClick" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-076
+    title: Clicking a column header sorts the customer list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Customer list populated with multiple rows
+    steps:
+      - Open Customers > Customer List
+      - Click a column header (dgvList)
+    expected:
+      - The customer list re-sorts by the clicked column
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer list column headers (dgvList)
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 239, text: "dgvListColumnHeaderMouseClick" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmListSearch  (2.0.x/Customers/frmListSearch.cs) - 2 anchors
+  # ===================================================================================
+  - id: CUST-077
+    title: Close dismisses the advanced list search dialog
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmListSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Advanced list search dialog open
+    steps:
+      - Open the advanced customer list search
+      - Click Close (btnCancel)
+    expected:
+      - The advanced search dialog closes without searching
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Advanced list search Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmListSearch.cs, line: 28, text: "btnCancelClick Close" }
+    flow_hash: "4018DE535DCC7127"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-078
+    title: Search runs the advanced list search
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmListSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Advanced list search dialog open with criteria entered
+    steps:
+      - Open the advanced customer list search
+      - Enter search criteria
+      - Click Search (btnOK)
+    expected:
+      - The advanced search runs and returns matching customers to the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Advanced list search Search (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmListSearch.cs, line: 33, text: "btnOKClick Search" }
+    flow_hash: "4018DE535DCC7127"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmMenu  (2.0.x/Customers/frmMenu.cs) - 9 anchors
+  # ===================================================================================
+  - id: CUST-079
+    title: Club Members button is gated by the Customers.Club permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.Club right
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Observe the Club Members (btnClubMembers) control
+    expected:
+      - The Club Members action is unavailable/disabled without the Customers.Club permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members (btnClubMembers) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 15, text: "perm:Customers.Club" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-080
+    title: Reactivate button is gated by the Customers.Customer permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.Customer right
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Observe the Reactivate (btnReactivateCustomers) control
+    expected:
+      - The Reactivate action is unavailable/disabled without the Customers.Customer permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reactivate (btnReactivateCustomers) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 18, text: "perm:Customers.Customer" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-081
+    title: Kiosk Mode button is gated by the Customers.Kiosk permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.Kiosk right
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Observe the Kiosk Mode (btnKiosk) control
+    expected:
+      - The Kiosk Mode action is unavailable/disabled without the Customers.Kiosk permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Kiosk Mode (btnKiosk) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 19, text: "perm:Customers.Kiosk" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-082
+    title: Club button opens the Club editor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Click Club (btnClub)
+    expected:
+      - The Club editor opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club (btnClub) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 27, text: "btnClubClick Club" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-083
+    title: Club Members button opens the Club Members form
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Customers.Club right
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Click Club Members (btnClubMembers)
+    expected:
+      - The Club Members form opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members (btnClubMembers) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 35, text: "btnClubMembersClick Club\r\nMembers" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-084
+    title: Customer List button opens the customer list
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Click Customer List (btnCustomerList)
+    expected:
+      - The customer list opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer List (btnCustomerList) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 42, text: "btnCustomerListClick Customer\r\nList" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-085
+    title: Customer Details button opens a new customer detail form
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Click Customer Details (btnCustomerNew)
+    expected:
+      - A new customer detail form opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer Details (btnCustomerNew) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 47, text: "btnCustomerNewClick Customer\r\nDetails" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-086
+    title: Kiosk Mode button enters kiosk mode
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Customers.Kiosk right
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Click Kiosk Mode (btnKiosk)
+    expected:
+      - The application enters customer kiosk mode
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Kiosk Mode (btnKiosk) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 52, text: "btnKioskClick Kiosk\r\nMode" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-087
+    title: Reactivate button opens the reactivate-customers flow
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Customers.Customer right
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Click Reactivate (btnReactivateCustomers)
+    expected:
+      - The reactivate-customers flow opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reactivate (btnReactivateCustomers) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 59, text: "btnReactivateCustomersClick Reactivate" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmNotes  (2.0.x/Customers/frmNotes.cs) - 3 anchors
+  # ===================================================================================
+  - id: CUST-088
+    title: Cancel closes the note editor without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmNotes
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Note editor open with unsaved text
+    steps:
+      - Open the customer note editor
+      - Enter some text
+      - Click Cancel (btnCancel)
+    expected:
+      - The note editor closes and the text is discarded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Note editor Cancel (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmNotes.cs, line: 56, text: "btnCancelClick Cancel" }
+    flow_hash: "4A881DA311C1500B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-089
+    title: Save commits the customer note
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmNotes
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Note editor open with non-empty text
+    steps:
+      - Open the customer note editor
+      - Enter note text
+      - Click Save (btnOK)
+    expected:
+      - The note is saved to the customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Note editor Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmNotes.cs, line: 65, text: "btnOKClick Save" }
+    flow_hash: "4A881DA311C1500B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-090
+    title: Reject saving an empty note
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmNotes
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Note editor open with the text field empty
+    steps:
+      - Open the customer note editor
+      - Leave the text field empty
+      - Click Save
+    expected:
+      - Warning dialog displays "Empty field."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Note editor text field
+    source_files:
+      - 2.0.x/Customers/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmNotes.cs, line: 69, text: "Empty field." }
+    flow_hash: "4A881DA311C1500B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmStatements  (2.0.x/Customers/frmStatements.cs) - 2 anchors
+  # ===================================================================================
+  - id: CUST-091
+    title: Loyalty statement lookup with no results warns Not found
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmStatements
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Loyalty statement open for a customer with no matching statement data
+    steps:
+      - Open a customer's loyalty statement
+      - Run the statement lookup with criteria that match nothing
+    expected:
+      - Warning dialog displays "Not found."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Loyalty statement lookup criteria
+    source_files:
+      - 2.0.x/Customers/frmStatements.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmStatements.cs, line: 50, text: "Not found." }
+    flow_hash: "D19363C5255FF91D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-092
+    title: Close dismisses the loyalty statement view
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmStatements
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Loyalty statement view open
+    steps:
+      - Open a customer's loyalty statement
+      - Click Close (btnOK)
+    expected:
+      - The loyalty statement view closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Loyalty statement Close (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmStatements.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmStatements.cs, line: 69, text: "btnOKClick Close" }
+    flow_hash: "D19363C5255FF91D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmTransactions  (2.0.x/Customers/frmTransactions.cs) - 3 anchors
+  # ===================================================================================
+  - id: CUST-093
+    title: Customer transactions lookup with no results warns Not found
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmTransactions
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer transactions view open with criteria that match nothing
+    steps:
+      - Open a customer's transactions view
+      - Run the lookup with criteria that match no transactions
+    expected:
+      - Warning dialog displays "Not found."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer transactions lookup criteria
+    source_files:
+      - 2.0.x/Customers/frmTransactions.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmTransactions.cs, line: 39, text: "Not found." }
+    flow_hash: "91ADE772C1BD74C2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-094
+    title: Email button emails the customer transactions
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmTransactions
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer transactions view open with results
+    steps:
+      - Open a customer's transactions view
+      - Click Email (btnOK)
+    expected:
+      - The customer transactions are emailed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Transactions Email (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmTransactions.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmTransactions.cs, line: 44, text: "btnOKClick Email" }
+    flow_hash: "91ADE772C1BD74C2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-095
+    title: Cancel closes the customer transactions view
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmTransactions
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer transactions view open
+    steps:
+      - Open a customer's transactions view
+      - Click Cancel (btnCancel)
+    expected:
+      - The customer transactions view closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Transactions Cancel (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmTransactions.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmTransactions.cs, line: 109, text: "btnCancelClick Cancel" }
+    flow_hash: "91ADE772C1BD74C2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # Composite end-to-end flows (chain atomic ids; add no new anchors)
+  # ===================================================================================
+  - id: CUST-900
+    title: Create a new customer end-to-end from the Customers menu
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    chains: [CUST-085, CUST-026, CUST-054]
+    preconditions:
+      - Logged in as admin with Customers access
+    steps:
+      - Open Customers > Customer Details to start a new customer
+      - Add a valid address (Accept)
+      - Fill required contact fields and Save
+    expected:
+      - "Address is accepted into the customer's address list"
+      - "Customer save shows: Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertFirstName, InsertLastName, InsertPhone, InsertAddress, InsertCity, SelectState, InsertZipCode, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertFirstName, InsertLastName, InsertPhone, InsertAddress, InsertCity, SelectState, InsertZipCode, SaveRecord]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - End-to-end new-customer flow across frmMenu and frmCustomers
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 1170, text: "Saved successfully." }
+    flow_hash: "0F3DAA860E54E18D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-901
+    title: Search for a customer and attach them to an order
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    chains: [CUST-063, CUST-062]
+    preconditions:
+      - Logged in as admin with an open order
+      - At least one customer exists
+    steps:
+      - Open the customer search dialog from an order
+      - Search and double-click a customer row to select them
+      - Click Go To Order to attach the customer and return to the order
+    expected:
+      - The selected customer is attached to the order and focus returns to the order
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, AssignCustomerToOrder, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, AssignCustomerToOrder]
+    binding: locators-known
+    matches_existing: AssignCustomerToOrder
+    new_controls: []
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 183, text: "btnOKClick Go\r\nTo Order" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-902
+    title: Add a member to a club end-to-end
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    chains: [CUST-083, CUST-013, CUST-018]
+    preconditions:
+      - Logged in as admin with the Customers.Club right
+      - At least one club and one eligible customer exist
+    steps:
+      - Open Club Members from the Customers menu
+      - Select an eligible customer and Add them with a unique member number
+      - Save the club member changes
+    expected:
+      - "The customer is added to the club"
+      - "Save shows: Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end club-member add flow across frmMenu and frmClubMembers
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 257, text: "Saved successfully." }
+    flow_hash: "4E81C192A140194C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: CUST-903
+    title: Find a customer from the list and edit their details
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    chains: [CUST-084, CUST-074, CUST-078, CUST-075]
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - At least one customer exists
+    steps:
+      - Open the customer list from the Customers menu
+      - Open Advanced Customer Search and run a search
+      - Select the resulting customer row to open them
+    expected:
+      - The advanced search returns the matching customer
+      - The selected customer opens from the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end list search-and-open flow across frmMenu, frmList and frmListSearch
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+      - 2.0.x/Customers/frmList.cs
+      - 2.0.x/Customers/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 224, text: "dgvListCellClick" }
+    flow_hash: "1B0AAB1F2C7485D7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

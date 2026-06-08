@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-002
+    title: Reject club save when price is not greater than previous club's price
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open in upgrade context where a previous club price exists
+      - New price entered is not greater than the previous club's price
+    steps:
+      - Open Customers > Club
+      - Enter a price equal to or less than the previous club's price
+      - Attempt to save the club
+    expected:
+      - Warning dialog displays "Price needs to be greater than previous club's price."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club editor price field
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 233, text: "Price needs to be greater than previous club's price." }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

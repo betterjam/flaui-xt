@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-033
+    title: Deleting a customer shows the deleted-success message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Staff right
+      - Customer detail form open on a deletable customer
+    steps:
+      - Open a customer's detail form
+      - Click Delete and confirm
+    expected:
+      - Success dialog displays "Deleted successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete (btnDelete) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 534, text: "Deleted successfully." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

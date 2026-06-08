@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-085
+    title: Customer Details button opens a new customer detail form
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Click Customer Details (btnCustomerNew)
+    expected:
+      - A new customer detail form opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Customer Details (btnCustomerNew) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 47, text: "btnCustomerNewClick Customer\r\nDetails" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

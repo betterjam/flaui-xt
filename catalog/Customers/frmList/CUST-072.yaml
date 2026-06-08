@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-072
+    title: Print List prints the current customer list
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Customer list populated
+    steps:
+      - Open Customers > Customer List
+      - Click Print List (btnPrint)
+    expected:
+      - The current customer list is sent to print
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Print List (btnPrint) button
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 191, text: "btnPrintClick Print List" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

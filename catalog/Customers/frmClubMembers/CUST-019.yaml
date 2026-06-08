@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-019
+    title: Saving club members shows success
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with valid changes ready to save
+    steps:
+      - Open Customers > Club Members
+      - Make valid changes and click Save
+    expected:
+      - Success dialog displays "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 257, text: "Saved successfully." }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

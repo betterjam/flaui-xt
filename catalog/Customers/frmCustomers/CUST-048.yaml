@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-048
+    title: Reject customer save when email address is invalid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open with a malformed email address
+    steps:
+      - Open a customer's detail form
+      - Enter a malformed email address
+      - Save the customer
+    expected:
+      - Warning dialog displays "Invalid email address."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertEmail, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertEmail]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Email field
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 805, text: "Invalid email address." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

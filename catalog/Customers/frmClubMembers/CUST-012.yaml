@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-012
+    title: Adding a club member shows the member-added success message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club Members open with a valid customer and unused member number
+    steps:
+      - Open Customers > Club Members
+      - Select a customer and a unique member number
+      - Click Add
+    expected:
+      - "Success dialog confirms the member was added (e.g. \"{mSelectValue[1]} {mSelectValue[2]} added successfully.\")"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club Members customer selector
+      - Add (btnAdd) button
+    source_files:
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 136, text: "{mSelectValue[1]} {mSelectValue[2]} added successfully." }
+    flow_hash: "F0FB9E16D2CB9383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

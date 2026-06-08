@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-055
+    title: Add Card On File launches the card-on-file capture
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer detail form open on a saved customer
+    steps:
+      - Open a customer's detail form
+      - Click Add Card On File (btnAddCardOnFile)
+    expected:
+      - The card-on-file capture flow is launched for the customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Card On File (btnAddCardOnFile) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 1190, text: "btnAddCardOnFile_Click" }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmCustSearch  (2.0.x/Customers/frmCustSearch.cs) - 8 anchors
+  # ===================================================================================

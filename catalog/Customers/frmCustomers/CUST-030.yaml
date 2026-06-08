@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-030
+    title: Reject address accept when Zip Code is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCustomers
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer address editor open with the Zip Code blank
+    steps:
+      - Open a customer's detail form
+      - Enter address, city and state but leave Zip Code blank
+      - Click Accept
+    expected:
+      - Warning dialog displays "Zip Code cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, InsertAddress, InsertCity, SelectState]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Zip Code field
+      - Accept (btnAccept) button
+    source_files:
+      - 2.0.x/Customers/frmCustomers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustomers.cs, line: 447, text: "Zip Code cannot be blank." }
+    flow_hash: "7245A08749A93BFE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

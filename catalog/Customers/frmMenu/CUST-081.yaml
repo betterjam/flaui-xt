@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-081
+    title: Kiosk Mode button is gated by the Customers.Kiosk permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Customer
+    preconditions:
+      - Logged in as a user lacking the Customers.Kiosk right
+      - Customers menu open
+    steps:
+      - Open the Customers module menu
+      - Observe the Kiosk Mode (btnKiosk) control
+    expected:
+      - The Kiosk Mode action is unavailable/disabled without the Customers.Kiosk permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Kiosk Mode (btnKiosk) menu button
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmMenu.cs, line: 19, text: "perm:Customers.Kiosk" }
+    flow_hash: "868CC51584719F6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

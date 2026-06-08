@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-091
+    title: Loyalty statement lookup with no results warns Not found
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmStatements
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Loyalty statement open for a customer with no matching statement data
+    steps:
+      - Open a customer's loyalty statement
+      - Run the statement lookup with criteria that match nothing
+    expected:
+      - Warning dialog displays "Not found."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Loyalty statement lookup criteria
+    source_files:
+      - 2.0.x/Customers/frmStatements.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmStatements.cs, line: 50, text: "Not found." }
+    flow_hash: "D19363C5255FF91D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

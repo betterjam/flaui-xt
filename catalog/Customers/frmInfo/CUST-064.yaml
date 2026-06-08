@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-064
+    title: Cancel closes the customer info dialog without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInfo
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - Customer info dialog open with unsaved edits
+    steps:
+      - Open the customer info dialog
+      - Make a change
+      - Click Close (btnCancel)
+    expected:
+      - The info dialog closes and edits are discarded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Customer info Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmInfo.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmInfo.cs, line: 122, text: "btnCancelClick Close" }
+    flow_hash: "F99532C7F86C0CEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

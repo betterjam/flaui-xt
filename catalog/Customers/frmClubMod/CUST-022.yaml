@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-022
+    title: OK confirms the selected club in the modify dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMod
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club selection dialog open with a club selected
+    steps:
+      - Open the Club selection dialog
+      - Select a club
+      - Click OK (btnOK)
+    expected:
+      - The selected club is confirmed and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection dialog OK (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClubMod.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMod.cs, line: 56, text: "btnOKClick OK" }
+    flow_hash: "3D588EB4991D1D60"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

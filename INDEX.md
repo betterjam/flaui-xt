@@ -4,18 +4,18 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**79.9% complete** - 2077 / 2600 testable code anchors covered. Complete: **NO**.
+**83.9% complete** - 2182 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
 | Reports | e2e | 295 | 249 | 118.5% | yes |
 | Integrations | e2e | 260 | 235 | 110.6% | yes |
-| Items | e2e | 346 | 346 | 100% | yes |
-| Calendar | e2e | 51 | 51 | 100% | yes |
+| Main | e2e | 105 | 104 | 101% | yes |
 | Settings | e2e | 343 | 343 | 100% | yes |
+| Items | e2e | 346 | 346 | 100% | yes |
 | Transactions | e2e | 738 | 738 | 100% | yes |
+| Calendar | e2e | 51 | 51 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
-| Main | e2e | 0 | 104 | 0% | - |
 | Managers | unit | 0 | 93 | 0% | - |
 | Customers | e2e | 0 | 95 | 0% | - |
 | SysForms | e2e | 0 | 91 | 0% | - |
@@ -79,6 +79,110 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `CAL-019` Move Appt. saves and switches the panel into appointment-move mode  _( P2 / frmCreate / Appointment / needs-recording )_
 - `CAL-018` Double-click look-up reassigns the appointment to a different customer  _( P3 / frmCreate / Appointment / needs-recording )_
 - `CAL-017` Delete Line removes the selected service from the appointment  _( P2 / frmCreate / Appointment / needs-recording )_
+
+### Customers  (99 tests: 95 atomic, 4 composite)
+
+**(uncategorized)** (99)
+
+- `CUST-066` Reject info save when neither phone nor email is provided  _( P1 / frmInfo / Customer / partial )_
+- `CUST-067` Reject info save when email address is invalid  _( P1 / frmInfo / Customer / partial )_
+- `CUST-068` Saving valid customer info shows success  _( P1 / frmInfo / Customer / partial )_
+- `CUST-063` Double-clicking a search result selects that customer  _( P2 / frmCustSearch / Customer / partial )_
+- `CUST-064` Cancel closes the customer info dialog without saving  _( P2 / frmInfo / Customer / partial )_
+- `CUST-065` Save commits the quick customer info  _( P1 / frmInfo / Customer / partial )_
+- `CUST-072` Print List prints the current customer list  _( P2 / frmList / Customer / needs-recording )_
+- `CUST-073` Report button runs the customer report  _( P2 / frmList / Customer / needs-recording )_
+- `CUST-074` Advanced Customer Search opens the advanced search dialog  _( P2 / frmList / Customer / needs-recording )_
+- `CUST-069` Customer list access is gated by the Customers.Customer permission  _( P2 / frmList / Customer / needs-recording )_
+- `CUST-070` Report button is gated by the Report.Customers permission  _( P2 / frmList / Customer / needs-recording )_
+- `CUST-071` Clear Search Results empties the customer list grid  _( P3 / frmList / Customer / needs-recording )_
+- `CUST-054` Saving a valid customer shows success  _( P1 / frmCustomers / Customer / partial )_
+- `CUST-055` Add Card On File launches the card-on-file capture  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-056` Edit Customer is gated by the Customers.Customer permission  _( P2 / frmCustSearch / Customer / partial )_
+- `CUST-051` Reject customer save when membership number set but Loyalty Member toggle off  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-052` Reject customer save when loyalty expiration date is missing  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-053` Reject customer save when membership number is already in use  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-060` History opens the selected customer's history from search  _( P2 / frmCustSearch / Customer / partial )_
+- `CUST-061` New Customer opens a blank customer form from search  _( P1 / frmCustSearch / Customer / partial )_
+- `CUST-062` Go To Order assigns the selected customer and returns to the order  _( P1 / frmCustSearch / Customer / locators-known )_
+- `CUST-057` Cancel closes the customer search dialog  _( P2 / frmCustSearch / Customer / partial )_
+- `CUST-058` Clear resets the customer search fields  _( P3 / frmCustSearch / Customer / partial )_
+- `CUST-059` Edit Customer opens the selected customer for editing  _( P1 / frmCustSearch / Customer / partial )_
+- `CUST-075` Selecting a customer row in the list opens/selects that customer  _( P2 / frmList / Customer / needs-recording )_
+- `CUST-091` Loyalty statement lookup with no results warns Not found  _( P2 / frmStatements / Customer / needs-recording )_
+- `CUST-092` Close dismisses the loyalty statement view  _( P3 / frmStatements / Customer / needs-recording )_
+- `CUST-093` Customer transactions lookup with no results warns Not found  _( P2 / frmTransactions / Customer / needs-recording )_
+- `CUST-088` Cancel closes the note editor without saving  _( P2 / frmNotes / Customer / needs-recording )_
+- `CUST-089` Save commits the customer note  _( P2 / frmNotes / Customer / needs-recording )_
+- `CUST-090` Reject saving an empty note  _( P2 / frmNotes / Customer / needs-recording )_
+- `CUST-901` Search for a customer and attach them to an order  _( P1 / frmCustSearch / Customer / locators-known )_
+- `CUST-902` Add a member to a club end-to-end  _( P2 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-903` Find a customer from the list and edit their details  _( P2 / frmList / Customer / needs-recording )_
+- `CUST-094` Email button emails the customer transactions  _( P2 / frmTransactions / Customer / needs-recording )_
+- `CUST-095` Cancel closes the customer transactions view  _( P3 / frmTransactions / Customer / needs-recording )_
+- `CUST-900` Create a new customer end-to-end from the Customers menu  _( P1 / frmCustomers / Customer / partial )_
+- `CUST-079` Club Members button is gated by the Customers.Club permission  _( P2 / frmMenu / Customer / needs-recording )_
+- `CUST-080` Reactivate button is gated by the Customers.Customer permission  _( P2 / frmMenu / Customer / needs-recording )_
+- `CUST-081` Kiosk Mode button is gated by the Customers.Kiosk permission  _( P2 / frmMenu / Customer / needs-recording )_
+- `CUST-076` Clicking a column header sorts the customer list  _( P3 / frmList / Customer / needs-recording )_
+- `CUST-077` Close dismisses the advanced list search dialog  _( P3 / frmListSearch / Customer / needs-recording )_
+- `CUST-078` Search runs the advanced list search  _( P2 / frmListSearch / Customer / needs-recording )_
+- `CUST-085` Customer Details button opens a new customer detail form  _( P1 / frmMenu / Customer / needs-recording )_
+- `CUST-086` Kiosk Mode button enters kiosk mode  _( P2 / frmMenu / Customer / needs-recording )_
+- `CUST-087` Reactivate button opens the reactivate-customers flow  _( P2 / frmMenu / Customer / needs-recording )_
+- `CUST-082` Club button opens the Club editor  _( P2 / frmMenu / Customer / needs-recording )_
+- `CUST-083` Club Members button opens the Club Members form  _( P2 / frmMenu / Customer / needs-recording )_
+- `CUST-084` Customer List button opens the customer list  _( P1 / frmMenu / Customer / needs-recording )_
+- `CUST-050` Reject customer save when membership number is blank  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-016` Remove All clears all members from the club  _( P2 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-017` Remove deletes the selected club member  _( P2 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-018` Save (btnOK) commits the club member changes  _( P1 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-013` Add button adds the selected customer to the club  _( P1 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-014` Close button closes the Club Members form  _( P2 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-015` Modify button edits the selected club member  _( P2 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-022` OK confirms the selected club in the modify dialog  _( P2 / frmClubMod / Club / needs-recording )_
+- `CUST-023` Reject club modify confirm when no club is selected  _( P1 / frmClubMod / Club / needs-recording )_
+- `CUST-024` Delete button is gated by the Staff permission  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-019` Saving club members shows success  _( P1 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-020` Club member row checkbox toggle selects/deselects the member  _( P3 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-021` Cancel closes the Club selection (modify) dialog  _( P2 / frmClubMod / Club / needs-recording )_
+- `CUST-004` Save a valid club shows success  _( P1 / frmClub / Club / needs-recording )_
+- `CUST-005` Cancel closes the Club editor without saving  _( P2 / frmClub / Club / needs-recording )_
+- `CUST-006` Save (btnOK) commits the club editor  _( P2 / frmClub / Club / needs-recording )_
+- `CUST-001` Reject club save when scanned UPC is not valid  _( P1 / frmClub / Club / needs-recording )_
+- `CUST-002` Reject club save when price is not greater than previous club's price  _( P1 / frmClub / Club / needs-recording )_
+- `CUST-003` Reject club save when no club is selected  _( P1 / frmClub / Club / needs-recording )_
+- `CUST-010` Reject club member add when member number already in use (on add)  _( P1 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-011` Reject club member modify when member number already in use (on modify)  _( P1 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-012` Adding a club member shows the member-added success message  _( P1 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-007` SKU button opens SKU entry from the Club editor  _( P3 / frmClub / Club / needs-recording )_
+- `CUST-008` Upgrade Mode toggle changes club editor behavior  _( P2 / frmClub / Club / needs-recording )_
+- `CUST-009` Reject adding a customer already a member of the club  _( P1 / frmClubMembers / ClubMember / needs-recording )_
+- `CUST-025` Remove Note button is gated by the Customers.CustomerNote permission  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-041` Loyalty Statement button opens the loyalty statement  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-042` Selecting an address row loads it for editing  _( P3 / frmCustomers / Customer / needs-recording )_
+- `CUST-043` Save (nav) persists the customer record  _( P1 / frmCustomers / Customer / partial )_
+- `CUST-038` Reject empty customer note  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-039` Remove Note deletes the selected customer note  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-040` Read button reads a card/scan into the customer form  _( P3 / frmCustomers / Customer / needs-recording )_
+- `CUST-047` Reject customer save when neither phone nor email is provided  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-048` Reject customer save when email address is invalid  _( P1 / frmCustomers / Customer / partial )_
+- `CUST-049` Reject customer save when credit limit is invalid  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-044` Reject customer save when TAX id is invalid  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-045` Reject customer save when date of birth is invalid  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-046` Reject customer save when phone number is required but missing  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-029` Reject address accept when State is blank  _( P1 / frmCustomers / Customer / partial )_
+- `CUST-030` Reject address accept when Zip Code is blank  _( P1 / frmCustomers / Customer / partial )_
+- `CUST-031` Cancel closes the customer detail form without saving  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-026` Accept commits a customer address entry  _( P2 / frmCustomers / Customer / partial )_
+- `CUST-027` Reject address accept when Address is blank  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-028` Reject address accept when City is blank  _( P1 / frmCustomers / Customer / partial )_
+- `CUST-035` Find Reference lookup from the customer detail form  _( P3 / frmCustomers / Customer / needs-recording )_
+- `CUST-036` History opens the customer purchase history  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-037` Add Note opens the note editor  _( P2 / frmCustomers / Customer / needs-recording )_
+- `CUST-032` Delete button removes the customer  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-033` Deleting a customer shows the deleted-success message  _( P1 / frmCustomers / Customer / needs-recording )_
+- `CUST-034` Find Reference (Alt) lookup from the customer detail form  _( P3 / frmCustomers / Customer / needs-recording )_
 
 ### Integrations  (265 tests: 260 atomic, 5 composite)
 

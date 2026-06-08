@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-901
+    title: Search for a customer and attach them to an order
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    chains: [CUST-063, CUST-062]
+    preconditions:
+      - Logged in as admin with an open order
+      - At least one customer exists
+    steps:
+      - Open the customer search dialog from an order
+      - Search and double-click a customer row to select them
+      - Click Go To Order to attach the customer and return to the order
+    expected:
+      - The selected customer is attached to the order and focus returns to the order
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, AssignCustomerToOrder, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, AssignCustomerToOrder]
+    binding: locators-known
+    matches_existing: AssignCustomerToOrder
+    new_controls: []
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 183, text: "btnOKClick Go\r\nTo Order" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

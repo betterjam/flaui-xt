@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-902
+    title: Add a member to a club end-to-end
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMembers
+      entity: ClubMember
+    chains: [CUST-083, CUST-013, CUST-018]
+    preconditions:
+      - Logged in as admin with the Customers.Club right
+      - At least one club and one eligible customer exist
+    steps:
+      - Open Club Members from the Customers menu
+      - Select an eligible customer and Add them with a unique member number
+      - Save the club member changes
+    expected:
+      - "The customer is added to the club"
+      - "Save shows: Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end club-member add flow across frmMenu and frmClubMembers
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+      - 2.0.x/Customers/frmClubMembers.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMembers.cs, line: 257, text: "Saved successfully." }
+    flow_hash: "4E81C192A140194C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

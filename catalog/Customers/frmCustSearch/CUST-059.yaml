@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-059
+    title: Edit Customer opens the selected customer for editing
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Customers.Customer right
+      - Customer search dialog open with a customer selected
+    steps:
+      - Open the customer search dialog
+      - Search for and select a customer
+      - Click Edit Customer (btnEdit)
+    expected:
+      - The customer detail form opens for the selected customer
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, SearchForCustomerByName]
+    binding: partial
+    matches_existing: null
+    new_controls:
+      - Edit Customer (btnEdit) button
+    source_files:
+      - 2.0.x/Customers/frmCustSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmCustSearch.cs, line: 140, text: "btnEditClick Edit\r\nCustomer" }
+    flow_hash: "2739AE2B53570807"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

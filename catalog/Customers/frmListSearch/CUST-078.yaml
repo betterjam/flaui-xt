@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-078
+    title: Search runs the advanced list search
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmListSearch
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - Advanced list search dialog open with criteria entered
+    steps:
+      - Open the advanced customer list search
+      - Enter search criteria
+      - Click Search (btnOK)
+    expected:
+      - The advanced search runs and returns matching customers to the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Advanced list search Search (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmListSearch.cs, line: 33, text: "btnOKClick Search" }
+    flow_hash: "4018DE535DCC7127"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ===================================================================================
+  # frmMenu  (2.0.x/Customers/frmMenu.cs) - 9 anchors
+  # ===================================================================================

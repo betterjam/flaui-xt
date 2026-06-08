@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-903
+    title: Find a customer from the list and edit their details
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    chains: [CUST-084, CUST-074, CUST-078, CUST-075]
+    preconditions:
+      - Logged in as admin with Customers > Customer List access
+      - At least one customer exists
+    steps:
+      - Open the customer list from the Customers menu
+      - Open Advanced Customer Search and run a search
+      - Select the resulting customer row to open them
+    expected:
+      - The advanced search returns the matching customer
+      - The selected customer opens from the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end list search-and-open flow across frmMenu, frmList and frmListSearch
+    source_files:
+      - 2.0.x/Customers/frmMenu.cs
+      - 2.0.x/Customers/frmList.cs
+      - 2.0.x/Customers/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 224, text: "dgvListCellClick" }
+    flow_hash: "1B0AAB1F2C7485D7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

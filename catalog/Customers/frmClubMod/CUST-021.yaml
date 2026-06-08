@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-021
+    title: Cancel closes the Club selection (modify) dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmClubMod
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club selection (modify) dialog open
+    steps:
+      - Open the Club selection dialog
+      - Click Close (btnCancel)
+    expected:
+      - The dialog closes without applying a selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection dialog Close (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmClubMod.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClubMod.cs, line: 47, text: "btnCancelClick Close" }
+    flow_hash: "3D588EB4991D1D60"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

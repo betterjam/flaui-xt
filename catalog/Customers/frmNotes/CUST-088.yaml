@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-088
+    title: Cancel closes the note editor without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmNotes
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Note editor open with unsaved text
+    steps:
+      - Open the customer note editor
+      - Enter some text
+      - Click Cancel (btnCancel)
+    expected:
+      - The note editor closes and the text is discarded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Note editor Cancel (btnCancel) button
+    source_files:
+      - 2.0.x/Customers/frmNotes.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmNotes.cs, line: 56, text: "btnCancelClick Cancel" }
+    flow_hash: "4A881DA311C1500B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

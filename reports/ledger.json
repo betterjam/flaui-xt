@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  2077,
-    "grandUncovered":  523,
-    "grandPct":  79.9,
+    "grandCovered":  2182,
+    "grandUncovered":  418,
+    "grandPct":  83.9,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Main",
-                      "layer":  "e2e",
-                      "total":  104,
-                      "covered":  0,
-                      "uncovered":  104,
-                      "pct":  0,
-                      "catalog":  false
-                  },
                   {
                       "area":  "Customers",
                       "layer":  "e2e",
@@ -78,19 +69,19 @@
                       "catalog":  true
                   },
                   {
-                      "area":  "Items",
+                      "area":  "Settings",
                       "layer":  "e2e",
-                      "total":  346,
-                      "covered":  346,
+                      "total":  343,
+                      "covered":  343,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true
                   },
                   {
-                      "area":  "Settings",
+                      "area":  "Items",
                       "layer":  "e2e",
-                      "total":  343,
-                      "covered":  343,
+                      "total":  346,
+                      "covered":  346,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true
@@ -102,6 +93,15 @@
                       "covered":  738,
                       "uncovered":  0,
                       "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Main",
+                      "layer":  "e2e",
+                      "total":  104,
+                      "covered":  105,
+                      "uncovered":  -1,
+                      "pct":  101,
                       "catalog":  true
                   },
                   {

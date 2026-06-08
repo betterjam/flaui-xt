@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-003
+    title: Reject club save when no club is selected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmClub
+      entity: Club
+    preconditions:
+      - Logged in as admin with Customers > Club access
+      - Club editor open with no club selected in the list
+    steps:
+      - Open Customers > Club
+      - Leave the club selection empty
+      - Attempt to save
+    expected:
+      - Warning dialog displays "No club selected, please select at least one."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Club selection list
+      - Club Save (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmClub.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmClub.cs, line: 243, text: "No club selected, please select at least one." }
+    flow_hash: "B12251D00553ABBE"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

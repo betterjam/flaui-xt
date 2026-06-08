@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-094
+    title: Email button emails the customer transactions
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmTransactions
+      entity: Customer
+    preconditions:
+      - Logged in as admin with Customers access
+      - Customer transactions view open with results
+    steps:
+      - Open a customer's transactions view
+      - Click Email (btnOK)
+    expected:
+      - The customer transactions are emailed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Transactions Email (btnOK) button
+    source_files:
+      - 2.0.x/Customers/frmTransactions.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmTransactions.cs, line: 44, text: "btnOKClick Email" }
+    flow_hash: "91ADE772C1BD74C2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

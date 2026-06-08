@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Customers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Customers
+test_case:
+  - id: CUST-073
+    title: Report button runs the customer report
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Customer
+    preconditions:
+      - Logged in as admin with the Report.Customers right
+      - Customer list open
+    steps:
+      - Open Customers > Customer List
+      - Click Report (btnReport)
+    expected:
+      - The customer report is generated
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report (btnReport) button
+    source_files:
+      - 2.0.x/Customers/frmList.cs
+    evidence:
+      - { file: 2.0.x/Customers/frmList.cs, line: 205, text: "btnReportClick Report" }
+    flow_hash: "60A092D487504AFC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
