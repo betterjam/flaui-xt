@@ -1,0 +1,1728 @@
+﻿feature: Calendar
+description: >
+  Appointment-book / scheduler for service businesses: a month calendar (frmCalendar),
+  a day grid of staff time slots (frmDay), the create/edit-appointment panel (frmCreate)
+  with its service selection, move/clone and check-out flows, plus the filter (frmFilter),
+  legend (frmLegend), conflict print (frmConflict) and multi-appointment check-out select
+  (frmSelect) dialogs. No existing Ranorex coverage touches a Calendar folder - this catalog
+  is net-new and grounded only in the Calendar/*.cs forms. There are no #if build-flavor
+  branches in Calendar/*.cs, so flavors is empty for every case.
+source_paths:
+  - 2.0.x/Calendar
+flavors: []          # no #if (CFD|BO|DEMO|TRAINING) branches in Calendar/*.cs alter user-facing flow
+
+test_cases:
+  # ----------------------------------------------------------------------------
+  # frmCalendar.cs - month calendar navigation (entity: Appointment)
+  # ----------------------------------------------------------------------------
+  - id: CAL-001
+    title: Cancel a pending appointment move from the month calendar
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move is in progress (btnCancel "Cancel Move" is visible)
+      - The month calendar (frmCalendar) is shown
+    steps:
+      - Click the "Cancel Move" button on the month calendar
+    expected:
+      - The Cancel Move button is hidden
+      - The day view's pending move is cancelled (frmDay.CancelMove)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Calendar module tile on the main menu
+      - frmCalendar btnCancel ("Cancel Move")
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 131, text: "btnCancelClick" }
+    flow_hash: "6CE4CAA5F87FA933"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-002
+    title: Month calendar back-year button steps the calendar back one year
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown
+    steps:
+      - Click the year-down button (btnDown) on the month calendar
+    expected:
+      - The displayed date moves back one year (Date = _Date.AddYears(-1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnDown (year back)
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 137, text: "btnDownClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-003
+    title: Month calendar next button advances one month
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown
+    steps:
+      - Click the next button (btnNext) on the month calendar
+    expected:
+      - The displayed date advances one month (Date = _Date.AddMonths(1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnNext (next month)
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 142, text: "btnNextClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-004
+    title: Month calendar previous button steps back one month
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown
+    steps:
+      - Click the previous button (btnPrev) on the month calendar
+    expected:
+      - The displayed date steps back one month (Date = _Date.AddMonths(-1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnPrev (previous month)
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 147, text: "btnPrevClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-005
+    title: Month calendar Today button jumps to the current date
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown on a non-current month
+    steps:
+      - Click the "Today" button (btnToday) on the month calendar
+    expected:
+      - The displayed date resets to DateTime.Today
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnToday
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 152, text: "btnTodayClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-006
+    title: Month calendar forward-year button advances the calendar one year
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown
+    steps:
+      - Click the year-up button (btnUp) on the month calendar
+    expected:
+      - The displayed date advances one year (Date = _Date.AddYears(1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnUp (year forward)
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 157, text: "btnUpClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmConflict.cs - appointment-conflict print dialog (entity: Appointment)
+  # ----------------------------------------------------------------------------
+  - id: CAL-007
+    title: Conflict dialog Cancel dismisses without printing
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmConflict
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The appointment-conflict dialog (frmConflict) is open with a conflict list
+    steps:
+      - Click Cancel on the conflict dialog
+    expected:
+      - The dialog closes with DialogResult.Cancel and nothing is printed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmConflict btnCancel
+    source_files:
+      - 2.0.x/Calendar/frmConflict.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmConflict.cs, line: 16, text: "btnCancelClick" }
+    flow_hash: "78AA18F5C728733F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-008
+    title: Conflict dialog Print confirms and prints the conflict slip
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmConflict
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The appointment-conflict dialog (frmConflict) is open with a conflict list
+    steps:
+      - Click "Print" (btnOK) on the conflict dialog
+    expected:
+      - The dialog closes with DialogResult.OK and the conflict slip is printed by the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmConflict btnOK ("Print")
+    source_files:
+      - 2.0.x/Calendar/frmConflict.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmConflict.cs, line: 21, text: "btnOKClick" }
+    flow_hash: "78AA18F5C728733F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmCreate.cs - create / edit appointment, services, move/clone, checkout
+  # (entity: Appointment)
+  # ----------------------------------------------------------------------------
+  - id: CAL-009
+    title: Adding a service that overruns the day's last slot warns "Time unavailable."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open with a start time near end of day
+      - The selected service's duration extends past the last time slot
+    steps:
+      - Select a start time late in the day
+      - Add a service whose duration runs past the final slot
+    expected:
+      - "Warning message is shown: Time unavailable."
+      - The service is not added (CheckTime returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvTime, dgvServices
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 444, text: "Time unavailable." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-010
+    title: Selecting a time outside the staff member's scheduled hours is blocked (create panel)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open for a staff member with defined work hours
+    steps:
+      - Select a time slot that falls in the staff member's disabled (off-hours) range
+      - Attempt to add a service at that time
+    expected:
+      - "Warning message is shown: You selected a time outside the staff member's scheduled hours. Cannot Proceed"
+      - The service is not added (CheckTime returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvTime, dgvServices
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 461, text: "You selected a time outside the staff member's scheduled hours. Cannot Proceed" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-011
+    title: Adding a service onto an already double-booked slot is blocked (create panel)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open
+      - Both staff columns at the chosen time already hold appointments
+    steps:
+      - Choose a start time where both columns are occupied
+      - Attempt to add a service there
+    expected:
+      - "Warning message is shown: Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time."
+      - The service is not added (CheckTime returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvTime, dgvServices
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 472, text: "Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-012
+    title: Month button on the create panel returns to the month calendar
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open with no unsaved changes
+    steps:
+      - Click the "Month" button (btnCalendar) on the create panel
+    expected:
+      - The panel closes with DialogResult.Ignore and the month calendar is shown
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCalendar ("Month")
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 625, text: "btnCalendarClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-013
+    title: Cancel an existing appointment from the create panel reports "Cancelled."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An existing appointment is open in the create-appointment panel
+    steps:
+      - Click "Cancel Appt." (btnCancelAppt)
+      - Confirm "Cancel appointment?"
+    expected:
+      - The appointment is flagged Cancelled and the customer Appts count is decremented
+      - "Warning message is shown: Cancelled."
+      - The panel closes with DialogResult.OK
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCancelAppt ("Cancel Appt."), confirm dialog
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 641, text: "btnCancelApptClick" }
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 658, text: "Cancelled." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-014
+    title: Close button on the create panel dismisses when there are no unsaved changes
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open with no unsaved changes
+    steps:
+      - Click "Close" (btnCancel) on the create panel
+    expected:
+      - The panel closes with DialogResult.Cancel (or Abort when in clone/move mode)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCancel ("Close")
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 662, text: "btnCancelClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-015
+    title: Check Out adds the appointment's services to an open order on the register
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment with at least one service is open in the create panel
+    steps:
+      - Click "Check Out" (btnCheckOut)
+      - Confirm "Service will be added to open order on the register, would you like to continue?"
+    expected:
+      - The appointment is saved, then its ApptIDs are collected (directly or via frmSelect)
+      - The panel closes with DialogResult.No so the register picks up the services
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCheckOut ("Check Out"), confirm dialog
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 671, text: "btnCheckOutClick" }
+    flow_hash: "218AB29B745214B7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-016
+    title: Customer History opens the customer's service-only info form from the create panel
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment with a customer is open in the create panel
+    steps:
+      - Click the Customer History button (btnCustomerHistory)
+    expected:
+      - The customer info form opens in service-only mode for that customer/staff
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCustomerHistory
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 698, text: "btnCustomerHistoryClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-017
+    title: Delete Line removes the selected service from the appointment
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel has at least one selected service row
+    steps:
+      - Select a service row in the selected-services grid
+      - Click "Delete Line" (btnDelete)
+    expected:
+      - The selected service row is marked deleted and the time block is freed/recomputed
+      - The Delete Line button is disabled after removal
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnDelete ("Delete Line"), dgvSeleted
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 707, text: "btnDeleteClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-018
+    title: Double-click look-up reassigns the appointment to a different customer
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel is open
+    steps:
+      - Trigger the customer look-up (btn double-click handler)
+      - Search and select an active customer
+    expected:
+      - The appointment is reset to a new appointment for the chosen customer
+      - The selected date is reapplied and double-book prompting is suppressed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForCustomerByName, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForCustomerByName]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btn (customer look-up), SysForms.frmSearch select flow
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 721, text: "btnDoubleClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-019
+    title: Move Appt. saves and switches the panel into appointment-move mode
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment with services is open in the create panel
+    steps:
+      - Click "Move Appt." (btnMove)
+    expected:
+      - The appointment is saved, the service filter is built from the selected rows
+      - The panel closes with DialogResult.Retry (or Yes when cloning) to start the move
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnMove ("Move Appt.")
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 748, text: "btnMoveClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-020
+    title: Saving an appointment with no services warns "Service not added."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel is open with an empty selected-services grid
+    steps:
+      - Click "Save" (btnOK) with no services selected
+    expected:
+      - "Warning message is shown: Service not added."
+      - No appointment is saved and the panel stays open
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnOK ("Save"), dgvSeleted
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 762, text: "btnOKClick" }
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 766, text: "Service not added." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-021
+    title: Saving a valid appointment reports "Saved successfully."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel has a customer, a staff member and at least one service selected
+    steps:
+      - Click "Save" (btnOK) with a complete appointment and no conflicts
+    expected:
+      - The appointment and its detail services are written to the database
+      - The customer visit counters are updated
+      - "Success message is shown: Saved successfully."
+      - The panel closes with DialogResult.OK
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnOK ("Save"), dgvServices, dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 890, text: "Saved successfully." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-022
+    title: Clear Services resets all selected services on the create panel
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel has one or more selected services
+    steps:
+      - Click "Clear Services" (btnReset)
+    expected:
+      - All selected service rows are marked deleted and the time block is reset
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnReset ("Clear Services")
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 910, text: "btnResetClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-023
+    title: Selecting an existing appointment row loads it into the create panel
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel shows the customer's existing appointments grid
+      - No unsaved changes are pending
+    steps:
+      - Click a row in the appointments grid (dgvApp)
+    expected:
+      - The clicked appointment's ApptID and start time load into the panel
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvApp
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 923, text: "dgvAppCellClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-024
+    title: Clicking a service before choosing a start time warns "Choose start time."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel is open with no start time selected (dgvTime.CurrentRow is null)
+    steps:
+      - Click an available service in dgvServices before picking a time slot
+    expected:
+      - "Warning message is shown: Choose start time."
+      - The service is not added
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvServices, dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 937, text: "dgvServicesCellClick" }
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 941, text: "Choose start time." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmDay.cs - day grid of staff time slots, navigation, move (entity: Appointment)
+  # ----------------------------------------------------------------------------
+  - id: CAL-025
+    title: Day view warns when no staff/services match the current filter and reverts
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - A staff or service filter is active that matches nothing for the selected day
+    steps:
+      - Open the day view for a date with no matching staff/services under the filter
+    expected:
+      - "Warning message is shown: Staff or services not available based on current filter criteria."
+      - The staff and service filters are cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime, btnFilter
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmFilter.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 152, text: "Staff or services not available based on current filter criteria." }
+    flow_hash: "869D442F5FD4A219"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-026
+    title: Close button on the day view returns to the month calendar
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click "Close" (btnCancel) on the day view
+    expected:
+      - The month calendar (frmCalendar) is shown for the same date with move/clone reset
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnCancel ("Close")
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 452, text: "btnCancelClick" }
+    flow_hash: "6CE4CAA5F87FA933"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-027
+    title: Cancel Move on the day view aborts a pending appointment move
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move is in progress in the day view
+    steps:
+      - Click "Cancel Move" (btnCancelMove) on the day view
+    expected:
+      - The pending move is cancelled (CancelMove) and the grid returns to normal
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnCancelMove ("Cancel Move")
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 463, text: "btnCancelMoveClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-028
+    title: Filter button opens the day-view filter dialog and applies the selection
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click "Filter" (btnFilter)
+      - Choose staff and/or services and confirm
+    expected:
+      - The day view re-renders limited to the chosen staff/services filter
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnFilter ("Filter"), frmFilter dialog
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmFilter.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 467, text: "btnFilterClick" }
+    flow_hash: "869D442F5FD4A219"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-029
+    title: Day view left scroll button shifts the staff columns left
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view has more staff columns than fit on screen
+    steps:
+      - Click the left-scroll button (btnLeft)
+    expected:
+      - The visible staff columns shift two columns to the left
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnLeft
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 483, text: "btnLeftClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-030
+    title: Day view left-page button pages the staff columns left
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view has more staff columns than fit on screen
+    steps:
+      - Click the left-page button (btnLeftPage)
+    expected:
+      - The visible staff columns page eight columns to the left
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnLeftPage
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 496, text: "btnLeftPageClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-031
+    title: Legend button opens the day-view colour legend dialog
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click "Legend" (btnLegend)
+    expected:
+      - The legend dialog (frmLegend) opens explaining the slot colours
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnLegend ("Legend"), frmLegend dialog
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmLegend.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 508, text: "btnLegendClick" }
+    flow_hash: "3C8B45EC55051029"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-032
+    title: Day view Next button advances the day by one
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click the next-day button (btnNext)
+    expected:
+      - The day view advances to the next calendar day (AddDays(1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnNext (next day)
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 515, text: "btnNextClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-033
+    title: Day view page-right button pages the staff columns right
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view has more staff columns than fit on screen
+    steps:
+      - Click the page-right button (btnPageRight)
+    expected:
+      - The visible staff columns page eight columns to the right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnPageRight
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 520, text: "btnPageRightClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-034
+    title: Day view Previous button steps the day back by one
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click the previous-day button (btnPrev)
+    expected:
+      - The day view steps to the previous calendar day (AddDays(-1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnPrev (previous day)
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 533, text: "btnPrevClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-035
+    title: Day view right scroll button shifts the staff columns right
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view has more staff columns than fit on screen
+    steps:
+      - Click the right-scroll button (btnRigth)
+    expected:
+      - The visible staff columns shift two columns to the right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnRigth
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 538, text: "btnRigthClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-036
+    title: Clicking an empty in-hours slot in the day view opens the create-appointment panel
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view shows a staff member with open in-hours slots
+      - No appointment move is in progress
+    steps:
+      - Click an empty time slot inside the staff member's scheduled hours (dgvTime)
+    expected:
+      - The create-appointment panel opens for that staff member and start time
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime, frmCreate panel
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 551, text: "dgvTimeCellClick" }
+    flow_hash: "9CC8994775DB8383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-037
+    title: Clicking an off-hours slot in the day view is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view shows a staff member with off-hours (disabled) slots
+    steps:
+      - Click a disabled time slot outside the staff member's scheduled hours
+    expected:
+      - "Warning message is shown: You selected a time outside the staff member's scheduled hours. Cannot Proceed"
+      - The create panel does not open
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 558, text: "You selected a time outside the staff member's scheduled hours. Cannot Proceed" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-038
+    title: Moving an appointment past the end of the day warns "Check start and end times."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move/clone is in progress in the day view
+    steps:
+      - Drop the moving appointment at a slot where its duration runs past the last row
+    expected:
+      - "Warning message is shown: Check start and end times."
+      - The move is not committed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 591, text: "Check start and end times." }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-039
+    title: Moving an appointment onto off-hours slots is blocked (day view move)
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move/clone is in progress in the day view
+    steps:
+      - Drop the moving appointment so it overlaps a disabled off-hours slot
+    expected:
+      - "Warning message is shown: You selected a time outside the staff member's scheduled hours. Cannot Proceed"
+      - The move is not committed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 601, text: "You selected a time outside the staff member's scheduled hours. Cannot Proceed" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-040
+    title: Moving an appointment onto a fully double-booked slot is blocked (day view move)
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move/clone is in progress in the day view
+      - Both columns of the target slot already hold appointments
+    steps:
+      - Drop the moving appointment on a slot where both columns are occupied
+    expected:
+      - "Warning message is shown: Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time."
+      - The move is not committed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 609, text: "Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time." }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmFilter.cs - day-view staff/service filter dialog (entity: Appointment)
+  # ----------------------------------------------------------------------------
+  - id: CAL-041
+    title: Filter dialog Cancel discards filter changes
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFilter
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day-view filter dialog (frmFilter) is open
+    steps:
+      - Click Cancel on the filter dialog
+    expected:
+      - The dialog closes with DialogResult.Cancel and the existing filter is unchanged
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmFilter btnCancel
+    source_files:
+      - 2.0.x/Calendar/frmFilter.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmFilter.cs, line: 103, text: "btnCancelClick" }
+    flow_hash: "89B95768562127FF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-042
+    title: Filter dialog Clear Filter removes the active staff/service filter
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFilter
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day-view filter dialog (frmFilter) is open with a filter applied
+    steps:
+      - Click "Clear Filter" (btnClear)
+    expected:
+      - Both the staff and service filters are cleared (set to null)
+      - The dialog closes with DialogResult.OK and the day view shows all staff
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmFilter btnClear ("Clear Filter")
+    source_files:
+      - 2.0.x/Calendar/frmFilter.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmFilter.cs, line: 108, text: "btnClearClick" }
+    flow_hash: "89B95768562127FF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-043
+    title: Filter dialog Show applies the selected staff and services
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFilter
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day-view filter dialog (frmFilter) is open
+    steps:
+      - Select one or more staff rows and/or service rows
+      - Click "Show" (btnOK)
+    expected:
+      - The staff filter and service filter are built from the selected rows
+      - The dialog closes and the day view re-renders limited to that selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmFilter btnOK ("Show"), dgvStaff, dgvServices
+    source_files:
+      - 2.0.x/Calendar/frmFilter.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmFilter.cs, line: 114, text: "btnOKClick" }
+    flow_hash: "89B95768562127FF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmLegend.cs - slot-colour legend dialog (entity: Appointment)
+  # ----------------------------------------------------------------------------
+  - id: CAL-044
+    title: Legend dialog Close button dismisses the legend
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLegend
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The legend dialog (frmLegend) is open
+    steps:
+      - Click "Close" (btnOK) on the legend dialog
+    expected:
+      - The legend dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLegend btnOK ("Close")
+    source_files:
+      - 2.0.x/Calendar/frmLegend.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmLegend.cs, line: 13, text: "btnOKClick" }
+    flow_hash: "83DADBC4214A3538"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmSelect.cs - multi-appointment check-out selection dialog (entity: Appointment)
+  # ----------------------------------------------------------------------------
+  - id: CAL-045
+    title: Check-out select dialog "Check Out All" selects every appointment
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSelect
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The check-out select dialog (frmSelect) is open with multiple appointments
+    steps:
+      - Click "Check Out All" (btnAll)
+    expected:
+      - Every appointment row's ApptID is added to ApptIDs
+      - The dialog closes with DialogResult.OK
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSelect btnAll ("Check Out All"), dgvApp
+    source_files:
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmSelect.cs, line: 43, text: "btnAllClick" }
+    flow_hash: "1CDE5C71CDD56C38"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-046
+    title: Check-out select dialog Cancel dismisses without selecting appointments
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSelect
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The check-out select dialog (frmSelect) is open
+    steps:
+      - Click Cancel on the select dialog
+    expected:
+      - The dialog closes with DialogResult.Cancel and no appointments are checked out
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSelect btnCancel
+    source_files:
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmSelect.cs, line: 51, text: "btnCancelClick" }
+    flow_hash: "1CDE5C71CDD56C38"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-047
+    title: Check-out select dialog Check Out confirms the highlighted appointments
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSelect
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The check-out select dialog (frmSelect) is open with at least one row selected
+    steps:
+      - Select one or more appointment rows
+      - Click "Check Out" (btnOK)
+    expected:
+      - The selected rows' ApptIDs are added to ApptIDs
+      - The dialog closes with DialogResult.OK
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSelect btnOK ("Check Out"), dgvApp
+    source_files:
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmSelect.cs, line: 56, text: "btnOKClick" }
+    flow_hash: "1CDE5C71CDD56C38"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-048
+    title: Check Out with no appointment row selected warns "Selection error."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmSelect
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The check-out select dialog (frmSelect) is open with no row selected
+    steps:
+      - Click "Check Out" (btnOK) without selecting an appointment
+    expected:
+      - "Warning message is shown: Selection error."
+      - The dialog stays open and no appointment is checked out
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSelect btnOK ("Check Out"), dgvApp
+    source_files:
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmSelect.cs, line: 60, text: "Selection error." }
+    flow_hash: "1CDE5C71CDD56C38"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # Composite end-to-end flows (chain atomic ids; no new evidence anchors)
+  # ----------------------------------------------------------------------------
+  - id: CAL-049
+    title: End-to-end - book an appointment then check it out to the register
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    chains: [CAL-036, CAL-021, CAL-015]
+    preconditions:
+      - Logged in as admin with full Calendar access
+      - At least one bookable service and a scheduled staff member exist
+    steps:
+      - Open an empty in-hours slot in the day view (CAL-036)
+      - Add a service and save the appointment (CAL-021)
+      - Check the appointment out to an open register order (CAL-015)
+    expected:
+      - The appointment is saved (Saved successfully.) and its services flow to the register
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmCreate.cs
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence: []
+    flow_hash: "FBBC416CD430E1C8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-050
+    title: Appointment-time validation walk (no service / start time / off-hours / double-book)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCreate
+      entity: Appointment
+    chains: [CAL-020, CAL-024, CAL-010, CAL-011]
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open
+    steps:
+      - Attempt to save with no services (CAL-020)
+      - Click a service before choosing a start time (CAL-024)
+      - Add a service outside the staff member's scheduled hours (CAL-010)
+      - Add a service onto an already double-booked slot (CAL-011)
+    expected:
+      - Each guard fires its respective warning and blocks the action
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence: []
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: CAL-051
+    title: Day-view move validation walk (end-of-day / off-hours / double-book guards)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmDay
+      entity: Appointment
+    chains: [CAL-038, CAL-039, CAL-040]
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move/clone is in progress in the day view
+    steps:
+      - Drop the moving appointment past the end of the day (CAL-038)
+      - Drop it onto an off-hours slot (CAL-039)
+      - Drop it onto a fully double-booked slot (CAL-040)
+    expected:
+      - Each guard fires its respective warning and blocks the move
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence: []
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

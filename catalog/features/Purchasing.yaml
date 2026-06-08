@@ -1,0 +1,1619 @@
+﻿feature: Purchasing
+description: >
+  Vendor management, purchase-order creation/auto-generation/completion, PO emailing,
+  and receiving stock into inventory. No existing Ranorex coverage (0 recordings under a
+  Purchasing folder) - this catalog is net-new and grounded in the Purchasing/*.cs forms.
+source_paths:
+  - 2.0.x/Purchasing
+flavors: []          # no #if (CFD|BO|DEMO|TRAINING) branches in Purchasing/*.cs alter user-facing flow
+
+test_cases:
+  # ----------------------------------------------------------------------------
+  # frmVendors.cs - Vendor create / save / delete / history (entity: Vendor)
+  # ----------------------------------------------------------------------------
+  - id: PUR-001
+    title: Save a new vendor with required contact info succeeds
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+    steps:
+      - Go to the Purchasing module and open New Vendor
+      - Enter a company name in txtName
+      - Enter a phone number in ucPhone1
+      - Save the record via the nav Save
+    expected:
+      - "Success message is shown: Saved successfully."
+      - Vendor is persisted and Delete/History buttons become enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Purchasing module tile on the main menu (frmMenu)
+      - frmMenu btnVendorNew button
+      - frmVendors txtName, ucPhone1, txtEmail, nav Save (ucNav)
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 384, text: "Saved successfully." }
+    flow_hash: "E37AE3B281FE2160"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-002
+    title: Vendor save blocked when name is blank
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - On the New Vendor form
+    steps:
+      - Leave txtName empty
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Vendor name cannot be blank."
+      - Save does not proceed and focus returns to the name field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors txtName, nav Save (ucNav)
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 285, text: "Vendor name cannot be blank." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-003
+    title: Vendor save blocked when no phone, fax or email provided
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - On the New Vendor form with a company name entered
+    steps:
+      - Enter a company name but leave phone, fax and email empty
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Phone number or email is required."
+      - Save does not proceed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors txtName, ucPhone1, ucPhone2, txtEmail, nav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 305, text: "Phone number or email is required." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-004
+    title: Vendor save blocked on invalid email address
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - On the New Vendor form with name and a phone entered
+    steps:
+      - Enter a malformed email address in txtEmail
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Invalid email address."
+      - Save does not proceed and focus returns to the email field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors txtEmail, nav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 311, text: "Invalid email address." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-005
+    title: Vendor save blocked when no LCB vendor type selected (LCB enabled)
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - License.LCBEnabled is true
+      - On the New Vendor form with name and contact entered
+    steps:
+      - Leave all LCB type radio buttons (NonLCB/PA/NonPA/Import) unselected
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Must select an LCB vendor type"
+      - Save does not proceed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors rbnNonLCB, rbnPA, rbnNonPA, rbnImport radio buttons, nav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 319, text: "Must select an LCB vendor type" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-006
+    title: Vendor save blocked when FEIN missing for Non-PA manufacturer LCB type
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - License.LCBEnabled is true
+      - On the New Vendor form with name and contact entered
+    steps:
+      - Select the Non-PA manufacturer LCB type (rbnNonPA)
+      - Leave txtTaxID (FEIN) empty
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Must provide FEIN when LCB type of Non PA manufacturer is selected"
+      - Save does not proceed and focus returns to the FEIN field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors rbnNonPA, txtTaxID, nav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 325, text: "Must provide FEIN when LCB type\\nof Non PA manufacturer is selected" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-007
+    title: Delete vendor confirms and reports success
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - An existing vendor (not tied to an open/pending PO) is loaded
+    steps:
+      - Click Delete on the vendor record
+      - Confirm the delete dialog
+    expected:
+      - "Confirm delete dialog appears, then Success message: Deleted successfully."
+      - Vendor is deactivated (Active=0) and its items reassigned to vendor 1
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnDelete, Confirm delete dialog OK/Cancel
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 226, text: "Deleted successfully." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-008
+    title: Vendor history shows warning when vendor has no POs
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - A vendor with zero purchase orders is loaded
+    steps:
+      - Click the History button on the vendor record
+    expected:
+      - "Warning message is shown: No purchase order history to display."
+      - The history form is not opened
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnHistory
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+      - 2.0.x/Purchasing/frmHistory.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 255, text: "No purchase order history to display." }
+    flow_hash: "073DD361F79C8F5D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmPO.cs - Purchase order load / item add / guards (entity: PurchaseOrder/Item)
+  # ----------------------------------------------------------------------------
+  - id: PUR-009
+    title: Loading a non-existent PO id warns "Purchase order not found"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Enter a PO number that does not exist in txtPONum
+      - Trigger the lookup
+    expected:
+      - "Warning message is shown: Purchase order not found."
+      - The PO number field is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtPONum, btnPO lookup
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 103, text: "Purchase order not found." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-010
+    title: Adding an item to a voided PO is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A voided PO is loaded on the Purchase Order form
+    steps:
+      - Attempt to add an item to the voided PO
+    expected:
+      - "Warning message is shown: Purchase order has been voided, and cannot be modified."
+      - The item is not added (AddItem returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 175, text: "Purchase order has been voided, and cannot be modified." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-011
+    title: Adding an item whose master record was removed warns (initial lookup)
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+      - An item that no longer exists in the Items table is selected
+    steps:
+      - Attempt to add the missing item to the PO (first Items lookup)
+    expected:
+      - "Warning message is shown: Items {pDesc} was removed."
+      - The item is not added (AddItem returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 189, text: "Items {pDesc} was removed." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-012
+    title: Adding an item whose detail row resolves to nothing warns (detail lookup)
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+      - An item that passes the first lookup but resolves no detail row (e.g. missing vendor/SKU join)
+    steps:
+      - Attempt to add such an item to the PO (second detail lookup)
+    expected:
+      - "Warning message is shown: Items {pDesc} was removed."
+      - The item is not added (AddItem returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 353, text: "Items {pDesc} was removed." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-013
+    title: Adding an item in an inactive category is blocked
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+      - The item's category is marked inactive (CatActive=false)
+    steps:
+      - Attempt to add the item whose category is inactive
+    expected:
+      - "Warning message is shown: Category: {category} is marked as inactive."
+      - The item is not added (AddItem returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 363, text: "Category: {mSqlReader[" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-014
+    title: Adding an item in an inactive subcategory is blocked
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+      - The item's subcategory is marked inactive (SubActive=false)
+    steps:
+      - Attempt to add the item whose subcategory is inactive
+    expected:
+      - "Warning message is shown: Subcategory: {subcat} of category: {category} is marked as inactive."
+      - The item is not added (AddItem returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 371, text: "Subcategory: {mSqlReader[" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-015
+    title: Adding a discontinued item to a PO warns but still allows add
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+      - The item is flagged Discontinued
+    steps:
+      - Add the discontinued item to the PO
+    expected:
+      - "Warning message is shown: Item marked as discontinued."
+      - The add flow continues (quantity/cost dialog still opens)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 378, text: "Item marked as discontinued." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-016
+    title: Auto-generate PO warns when nothing is below reorder level
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A vendor is selected whose items are all above reorder level
+    steps:
+      - Click the Auto button to auto-generate PO lines
+    expected:
+      - "Warning message is shown: Nothing below reorder level."
+      - The Auto button becomes disabled and no lines are added
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnAuto, btnFindVendor
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 566, text: "Nothing below reorder level." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-017
+    title: Completing a PO marks it received successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO with at least one line and a valid reference/received date is loaded
+    steps:
+      - Click Complete
+      - Confirm "Are you sure you want to mark as received?"
+    expected:
+      - "Success message is shown: Receive completed successfully."
+      - The PO is saved and closed (MainID cleared)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnComplete, confirm dialog, txtReference, dtpRecDate
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 602, text: "Receive completed successfully." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-018
+    title: Clicking OK on a PO with no changes warns "Nothing changed"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO is loaded with no modifications made
+    steps:
+      - Click OK without changing anything
+    expected:
+      - "Warning message is shown: Nothing changed."
+      - No save occurs
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 729, text: "Nothing changed." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-019
+    title: Saving a PO with an empty detail grid warns "Nothing to save"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A modified PO whose detail grid has zero rows
+    steps:
+      - Click OK to save the PO with no lines
+    expected:
+      - "Warning message is shown: Nothing to save."
+      - No save occurs
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, dgvPO
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 739, text: "Nothing to save." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-020
+    title: Saving a PO with a line missing description warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A modified PO with a detail row whose description is blank
+    steps:
+      - Click OK to save
+    expected:
+      - "Warning message is shown: Must enter item description"
+      - The grid enters edit on the description cell and no save occurs
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, dgvPO colDesc
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 746, text: "Must enter item description" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-021
+    title: Saving a PO with non-whole qty for a non-SBF item warns invalid number format
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with a non-sold-by-fraction (SBF=false) line having a fractional Qty or QtyRec
+    steps:
+      - Click OK to save the PO
+    expected:
+      - "Warning message is shown: Invalid number format."
+      - Qty/QtyRec are truncated and no save occurs
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, dgvPO colQty
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 771, text: "Invalid number format." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-022
+    title: Saving a PO with received qty but blank reference warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line has a non-zero QtyRec (receiving) but txtReference is blank
+    steps:
+      - Click OK to save
+    expected:
+      - "Warning message is shown: Reference cannot be blank."
+      - Save does not proceed and focus moves to the reference field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, txtReference
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 780, text: "Reference cannot be blank." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-023
+    title: Saving a PO with received qty but invalid/future received date warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line has a non-zero QtyRec and the received date is blank or in the future
+    steps:
+      - Click OK to save
+    expected:
+      - "Warning message is shown: Invalid recieved date."
+      - Save does not proceed and focus moves to the received date field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, dtpRecDate
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 786, text: "Invalid recieved date." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-024
+    title: Saving received PO items with invalid UPCs warns no labels printed
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with received lines flagged for labels but having invalid UPC/SKU values
+    steps:
+      - Click OK to save/receive
+    expected:
+      - "Warning message is shown: One or more items have invalid UPC's and no labels could be printed for them."
+      - The save still completes for valid items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, chkLabel
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 974, text: "One or more items have invalid UPC's and no labels could be printed for them." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-025
+    title: Clicking OK on a modified PO saves and reports "Updated successfully"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with valid lines and modifications is loaded
+    steps:
+      - Click OK to save the PO
+    expected:
+      - "Success message is shown: Updated successfully."
+      - The PO is persisted and the form closes (MainID cleared)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 981, text: "Updated successfully." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-026
+    title: Sending PO via POSCloud blocked when no valid sender email is configured
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - Email.UsePOSCloudPO is enabled
+      - The user profile and Business Details have no valid email
+    steps:
+      - Click Send on the PO
+    expected:
+      - "Warning message is shown: A valid email address is required for your profile or a valid contact name and email address be defined in Settings, Business Details in order to send POs using POSCloud."
+      - The send is aborted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnSend
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1067, text: "A valid email address is required for your profile or a valid contact name and email address be defined in Settings, Business Details in order to send POs using POSCloud." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-027
+    title: Emailing a PO via POSCloud reports "Emailed successfully"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - Email.UsePOSCloudPO is enabled with a valid sender email
+      - A PO with a recipient vendor email is loaded
+    steps:
+      - Click Send on the PO and let the POSCloud send complete
+    expected:
+      - "Success message is shown: Emailed successfully."
+      - The PO is flagged SentbyEmail
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnSend
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1173, text: "Emailed successfully." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-028
+    title: Emailing a PO via SMTP (non-POSCloud) reports "Emailed successfully"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - Email.UsePOSCloudPO is disabled (direct SMTP send)
+      - A PO with a recipient vendor email is loaded
+    steps:
+      - Click Send on the PO and let the SMTP send complete
+    expected:
+      - "Success message is shown: Emailed successfully."
+      - The PO is flagged SentbyEmail
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnSend
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1176, text: "Emailed successfully." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-029
+    title: Editing item details from a PO line saves and reports "Updated Item successfully"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected and an item-detail field (description/price/qty) was changed
+    steps:
+      - Click Save in the item-details panel
+      - Confirm applying changes to Item Details
+    expected:
+      - "Success message is shown: Updated Item successfully."
+      - The item record is updated and an ItemsTx row written when QtyOnHand changed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnSave (item details panel), txtDesc, txtPrice, txtQtyOnHand
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1272, text: "Updated Item successfully." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-030
+    title: Voiding a PO reverses stock and reports "Voided successfully"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open or pending PO is loaded
+    steps:
+      - Click Void
+      - Confirm "Confirm PO void?"
+    expected:
+      - "Success message is shown: Voided successfully."
+      - PO status becomes Voided, received qty reversed from inventory, form closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnVoid, confirm dialog
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1308, text: "Voided successfully." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-031
+    title: Editing a PO line qty below order minimum warns and resets to minimum
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line whose item has an OrderMin greater than zero is in the grid
+    steps:
+      - Edit the line Qty cell to a value below OrderMin
+    expected:
+      - "Warning message is shown: Minimum order quantity required is: <min>"
+      - The Qty is reset up to the order minimum
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO dgvPO colQty
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1335, text: "Minimum order quantity required is: " }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-032
+    title: Clearing the item-detail description on a PO line warns and undoes
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected in the item-details panel
+    steps:
+      - Clear the txtDesc (description) field
+    expected:
+      - "Warning message is shown: Description cannot be blank"
+      - The description edit is undone
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtDesc (item details panel)
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1413, text: "Description cannot be blank" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-033
+    title: Setting order-min above reorder qty on a PO line warns and undoes
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected in the item-details panel
+    steps:
+      - Enter a Minimum Order quantity greater than the Reorder quantity in txtOrderMin
+    expected:
+      - "Warning message is shown: Minimum Order quantity should be equal to or less than the Reorder quantity."
+      - The order-min edit is undone
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtOrderMin, txtQtyReorder
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1430, text: "Minimum Order quantity should be equal to or\\nless than the Reorder quantity." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-034
+    title: Typing a PO number that parses to zero warns "Invalid PO ID"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Type a non-numeric / zero PO number into txtPONum so it parses to 0
+    expected:
+      - "Warning message is shown: Invalid PO ID."
+      - No PO is loaded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtPONum
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1452, text: "Invalid PO ID." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-035
+    title: Setting a PO-line retail price below the defined minimum/SRP warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected whose item has a non-zero suggested price (PriceSuggest)
+    steps:
+      - Enter a retail price in txtPrice below the suggested/state-minimum price
+    expected:
+      - "Warning message is shown: Price is less than defined state minimum/SRP."
+      - The price is undone when LMI is enabled and the item has a tax code
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtPrice (item details panel)
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1470, text: "Price is less than defined " }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-036
+    title: Setting reorder qty below order-min on a PO line warns and undoes
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected in the item-details panel
+    steps:
+      - Enter a Reorder quantity less than the Minimum Order quantity in txtQtyReorder
+    expected:
+      - "Warning message is shown: Reorder quantity should be equal to or greater than the minimum order quantity."
+      - The reorder-qty edit is undone
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtQtyReorder, txtOrderMin
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1538, text: "Reorder quantity should be equal to or\\ngreater than the minimum order quantity." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmQtyCost.cs - Qty/Cost dialog when adding an item to a PO (entity: Item)
+  # ----------------------------------------------------------------------------
+  - id: PUR-037
+    title: Qty/Cost dialog warns when entered qty is below order minimum
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open for an item with an OrderMin
+    steps:
+      - Enter a quantity below the order minimum in txtQty
+      - Click OK
+    expected:
+      - "Warning message is shown: Minimum order quantity required is: <min>"
+      - The qty is reset to the minimum and the dialog does not close
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost txtQty, btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 93, text: "Minimum order quantity required is: " }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-038
+    title: Qty/Cost dialog warns when qty x cost exceeds the maximum allowed amount
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: edge-case
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open
+    steps:
+      - Enter a qty and cost whose product exceeds 99,999,999.99
+      - Click OK
+    expected:
+      - "Warning message is shown: Warning! You have exceeded the maximum amount allowed of 99,999,999.99"
+      - The dialog does not close
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost txtQty, txtCost, btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 109, text: "Warning! You have exceeded the maximum amount allowed of 99,999,999.99" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmReceiving.cs - standalone receiving session (entity: Receiving)
+  # ----------------------------------------------------------------------------
+  - id: PUR-039
+    title: Adding a discontinued item to a receiving session warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - On the Receiving form
+    steps:
+      - Search and select a discontinued item to receive
+    expected:
+      - "Warning message is shown: Item marked as discontinued."
+      - The Qty/Cost dialog still opens for the item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnItem, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 99, text: "Item marked as discontinued." }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-040
+    title: Finishing a receiving session posts stock and reports "Saved successfully"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session has at least one item with a non-zero qty
+    steps:
+      - Click Finish
+      - Enter a valid received date and confirm in the receiving-proc dialog
+    expected:
+      - "Success message is shown: Saved successfully."
+      - Item QtyOnHand and cost figures are updated from the received quantities
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnFinish, frmReceivingProc dtpRecDate/btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 252, text: "Saved successfully." }
+    flow_hash: "4F4D96C57168DF6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-041
+    title: Finishing a receiving session with invalid UPCs warns no labels printed
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session contains items flagged for labels with invalid UPC/SKU values
+    steps:
+      - Click Finish and complete the receiving-proc dialog with label printing
+    expected:
+      - "Warning message is shown: One or more items have invalid UPC's and no labels could be printed for them."
+      - The receiving still saves for valid items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnFinish, frmReceivingProc chkLabel
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 262, text: "One or more items have invalid UPC's and no labels could be printed for them." }
+    flow_hash: "4F4D96C57168DF6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-042
+    title: Saving a receiving session via OK persists session and reports "Saved successfully"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session has at least one item row
+    steps:
+      - Click OK to save the receiving session (without finishing/posting)
+    expected:
+      - "Success message is shown: Saved successfully."
+      - The session rows are written to POSession and the form closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 300, text: "Saved successfully." }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-043
+    title: Receiving grid warns when qty x cost exceeds the maximum allowed amount
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: edge-case
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session has an editable line in the grid
+    steps:
+      - Edit a line's qty/cost so the extended value exceeds 99,999,999.99
+    expected:
+      - "Warning message is shown: Warning! You have exceeded the maximum amount allowed of 99,999,999.99"
+      - The editing control text is reset
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving dgvRC colQty, colCost
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 311, text: "Warning! You have exceeded the maximum amount allowed of 99,999,999.99" }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmReceivingProc.cs - receiving processing dialog (entity: Receiving)
+  # ----------------------------------------------------------------------------
+  - id: PUR-044
+    title: Receiving-proc dialog warns on invalid/future received date
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReceivingProc
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - The receiving-proc dialog is open (from Finish)
+    steps:
+      - Set the received date to blank or a future date in dtpRecDate
+      - Click OK
+    expected:
+      - "Warning message is shown: Invalid received date."
+      - The dialog does not accept and focus returns to the date field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceivingProc dtpRecDate, btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceivingProc.cs, line: 28, text: "Invalid received date." }
+    flow_hash: "E0F4D171B15D4772"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # Composite end-to-end flows (chain atomic ids; no new evidence anchors)
+  # ----------------------------------------------------------------------------
+  - id: PUR-045
+    title: End-to-end - create vendor, build PO, receive stock
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    chains: [PUR-001, PUR-017, PUR-040]
+    preconditions:
+      - Logged in as admin with full Purchasing access
+      - At least one orderable item exists
+    steps:
+      - Create a new vendor (PUR-001)
+      - Create a PO for that vendor and complete/receive it (PUR-017)
+      - Post received stock into inventory via a receiving session (PUR-040)
+    expected:
+      - "Vendor saved (Saved successfully.), PO received (Receive completed successfully.), stock posted (Saved successfully.)"
+      - Inventory QtyOnHand reflects the received quantities
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+      - 2.0.x/Purchasing/frmPO.cs
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence: []
+    flow_hash: "73EF5411710F8926"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-046
+    title: Purchase-order validation walk (empty / blank desc / received-date guards)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    chains: [PUR-019, PUR-020, PUR-021, PUR-022, PUR-023]
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Attempt to save an empty PO (PUR-019)
+      - Attempt to save a line with blank description (PUR-020)
+      - Attempt to save a fractional qty for a non-SBF item (PUR-021)
+      - Attempt to save received qty with blank reference (PUR-022)
+      - Attempt to save received qty with invalid received date (PUR-023)
+    expected:
+      - Each guard fires its respective warning and blocks the save
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence: []
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-047
+    title: Vendor validation walk (name / contact / email / LCB guards)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    chains: [PUR-002, PUR-003, PUR-004, PUR-005, PUR-006]
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - License.LCBEnabled is true (for the LCB guards)
+      - On the New Vendor form
+    steps:
+      - Attempt to save with blank name (PUR-002)
+      - Attempt to save with no phone/email (PUR-003)
+      - Attempt to save with invalid email (PUR-004)
+      - Attempt to save with no LCB type selected (PUR-005)
+      - Attempt to save Non-PA manufacturer without FEIN (PUR-006)
+    expected:
+      - Each guard fires its respective warning and blocks the save
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence: []
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

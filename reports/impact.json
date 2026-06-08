@@ -1,0 +1,92 @@
+﻿{
+    "changedFiles":  "2.0.x\\Purchasing\\frmVendors.cs",
+    "update":  [
+                   {
+                       "id":  "PUR-001",
+                       "title":  "Create a vendor with required contact info",
+                       "catalog":  "Purchasing.yaml",
+                       "changedSourceFiles":  [
+                                                  "2.0.x/Purchasing/frmVendors.cs"
+                                              ]
+                   },
+                   {
+                       "id":  "PUR-002",
+                       "title":  "Vendor save is rejected when name is blank",
+                       "catalog":  "Purchasing.yaml",
+                       "changedSourceFiles":  [
+                                                  "2.0.x/Purchasing/frmVendors.cs"
+                                              ]
+                   },
+                   {
+                       "id":  "PUR-003",
+                       "title":  "Vendor save requires a phone number or email",
+                       "catalog":  "Purchasing.yaml",
+                       "changedSourceFiles":  [
+                                                  "2.0.x/Purchasing/frmVendors.cs"
+                                              ]
+                   },
+                   {
+                       "id":  "PUR-008",
+                       "title":  "View vendor purchase-order history",
+                       "catalog":  "Purchasing.yaml",
+                       "changedSourceFiles":  [
+                                                  "2.0.x/Purchasing/frmVendors.cs"
+                                              ]
+                   }
+               ],
+    "new":  [
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  226,
+                    "kind":  "Success",
+                    "text":  "Deleted successfully."
+                },
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  255,
+                    "kind":  "Warning",
+                    "text":  "No purchase order history to display."
+                },
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  285,
+                    "kind":  "Warning",
+                    "text":  "Vendor name cannot be blank."
+                },
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  305,
+                    "kind":  "Warning",
+                    "text":  "Phone number or email is required."
+                },
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  311,
+                    "kind":  "Warning",
+                    "text":  "Invalid email address."
+                },
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  319,
+                    "kind":  "Warning",
+                    "text":  "Must select an LCB vendor type"
+                },
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  325,
+                    "kind":  "Warning",
+                    "text":  "Must provide FEIN when LCB type\\nof Non PA manufacturer is selected"
+                },
+                {
+                    "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                    "line":  384,
+                    "kind":  "Success",
+                    "text":  "Saved successfully."
+                }
+            ],
+    "summary":  {
+                    "new":  8,
+                    "update":  4
+                },
+    "action":  "UPDATE: agent regenerates these case ids from current code. NEW: agent authors a test citing each anchor. Then run impact.ps1 -Stamp."
+}

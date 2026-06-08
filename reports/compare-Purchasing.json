@@ -1,0 +1,51 @@
+﻿{
+    "feature":  "Purchasing",
+    "ranorexFeatures":  [
+                            "Purchasing"
+                        ],
+    "agentCaseCount":  8,
+    "existingCount":  0,
+    "matched":  {
+                    "existing":  "null    # net-new: no Purchasing recording exists",
+                    "title":  "Create a vendor with required contact info",
+                    "id":  "PUR-001"
+                },
+    "new":  [
+                {
+                    "id":  "PUR-002",
+                    "title":  "Vendor save is rejected when name is blank"
+                },
+                {
+                    "id":  "PUR-003",
+                    "title":  "Vendor save requires a phone number or email"
+                },
+                {
+                    "id":  "PUR-004",
+                    "title":  "Create a purchase order for a vendor and add items"
+                },
+                {
+                    "id":  "PUR-005",
+                    "title":  "A voided purchase order cannot be modified"
+                },
+                {
+                    "id":  "PUR-006",
+                    "title":  "Receive stock against a purchase order updates on-hand quantity"
+                },
+                {
+                    "id":  "PUR-007",
+                    "title":  "Receiving warns when an item is discontinued"
+                },
+                {
+                    "id":  "PUR-008",
+                    "title":  "View vendor purchase-order history"
+                }
+            ],
+    "missed":  {
+
+               },
+    "summary":  {
+                    "missed":  0,
+                    "new":  7,
+                    "matched":  null
+                }
+}

@@ -1,0 +1,2449 @@
+﻿{
+    "feature":  "Settings",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Settings"
+                    ],
+    "formCount":  23,
+    "anchorTotal":  343,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  3,
+                   "action":  130,
+                   "message":  130,
+                   "toggle":  80
+               },
+    "forms":  [
+                  {
+                      "form":  "frmAccessProfiles",
+                      "file":  "2.0.x\\Settings\\frmAccessProfiles.cs",
+                      "anchorCount":  12,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  227,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  246,
+                                          "handler":  "btnCopyClick",
+                                          "control":  "btnCopy",
+                                          "label":  "Copy"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  260,
+                                          "kind":  "Warning",
+                                          "text":  "There is already a profile with this name"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  288,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  319,
+                                          "handler":  "btnRenameClick",
+                                          "control":  "btnRename",
+                                          "label":  "Rename"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  328,
+                                          "kind":  "Warning",
+                                          "text":  "There is already a profile with this name"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  339,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  365,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate name in active or inactive profile list."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  445,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  456,
+                                          "handler":  "chkDeletedCheckedChanged",
+                                          "control":  "chkDeleted",
+                                          "label":  "Show Inactive"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  466,
+                                          "handler":  "dgvAccessCellClick",
+                                          "control":  "dgvAccess",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  587,
+                                          "kind":  "Warning",
+                                          "text":  "Error deserializing Security profile."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmAccount",
+                      "file":  "2.0.x\\Settings\\frmAccount.cs",
+                      "anchorCount":  54,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  345,
+                                          "kind":  "Warning",
+                                          "text":  "LMP has been activated, but no tax groups have been defined.\\nPlease define at least one Tax Group before continuing with LMP setup."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  826,
+                                          "kind":  "Warning",
+                                          "text":  "LMP has been activated, but no tax groups have been defined.\\nPlease define at least one Tax Group before continuing with LMP setup."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  907,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  924,
+                                          "handler":  "btnLogoClick",
+                                          "control":  "btnLogo",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  960,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  971,
+                                          "kind":  "Warning",
+                                          "text":  "Merchant ID missing"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  977,
+                                          "kind":  "Warning",
+                                          "text":  "Location ID missing"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  983,
+                                          "kind":  "Warning",
+                                          "text":  "Terminal ID missing"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1001,
+                                          "kind":  "Warning",
+                                          "text":  "Percentage value must not be greater than 100."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1009,
+                                          "kind":  "Warning",
+                                          "text":  "Dual Price cannot be active when Tender Discount is applied"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1017,
+                                          "kind":  "Warning",
+                                          "text":  "Tender Fee cannot be active when Tender discount is in use"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1032,
+                                          "kind":  "Warning",
+                                          "text":  "Tender Fee amount cannot be zero when any tender is toggled on"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1040,
+                                          "kind":  "Warning",
+                                          "text":  "Tender Fee amount cannot be zero when dual price is toggled on"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1055,
+                                          "kind":  "Warning",
+                                          "text":  "MinQty cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1062,
+                                          "kind":  "Warning",
+                                          "text":  "MaxQty must be 1 or greater."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1069,
+                                          "kind":  "Warning",
+                                          "text":  "Discount cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1076,
+                                          "kind":  "Warning",
+                                          "text":  "Start Date cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1083,
+                                          "kind":  "Warning",
+                                          "text":  "End Date cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1090,
+                                          "kind":  "Warning",
+                                          "text":  "Start Date cannot be geater than End Date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1107,
+                                          "kind":  "Warning",
+                                          "text":  "F4 API information is required"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1117,
+                                          "kind":  "Warning",
+                                          "text":  "Points per dollar cannot be zero."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1123,
+                                          "kind":  "Warning",
+                                          "text":  "Dollars per point cannot be zero."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1137,
+                                          "kind":  "Warning",
+                                          "text":  "Surcharge text cannot be empty"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1144,
+                                          "kind":  "Warning",
+                                          "text":  "Surcharge text cannot be more than 25 characters long"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1150,
+                                          "kind":  "Warning",
+                                          "text":  "Surcharge text must be a-z, and can contain () and %"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1161,
+                                          "kind":  "Warning",
+                                          "text":  "Offline processing must be disabled when Surcharge is active"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1188,
+                                          "kind":  "Warning",
+                                          "text":  "Incorrect IP Address"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1195,
+                                          "kind":  "Warning",
+                                          "text":  " The Backend MID entered does not appear to be a valid entry. Please confirm that it is correct in ISO Interface."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1231,
+                                          "kind":  "Warning",
+                                          "text":  "Account init error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1241,
+                                          "kind":  "Warning",
+                                          "text":  "Account init error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1299,
+                                          "kind":  "Warning",
+                                          "text":  "Error moving merchant backup."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1832,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1836,
+                                          "handler":  "cboIndustrySelectedIndexChanged",
+                                          "control":  "cboIndustry",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1852,
+                                          "kind":  "Warning",
+                                          "text":  "EBT is only valid on Retail environment.\\nEBT will be disabled."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1863,
+                                          "handler":  "cboPlatformSelectedIndexChanged",
+                                          "control":  "cboPlatform",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1879,
+                                          "handler":  "chkAllowSignCheckedChanged",
+                                          "control":  "chkAllowSign",
+                                          "label":  "Allow signature"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1894,
+                                          "handler":  "chkInactiveCheckedChanged",
+                                          "control":  "chkInactive",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1899,
+                                          "handler":  "chkLoyaltyCheckedChanged",
+                                          "control":  "chkLoyalty",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1950,
+                                          "handler":  "chkLoyaltyProgramCheckedChanged",
+                                          "control":  "chkLoyaltyProgram",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1958,
+                                          "handler":  "chkMsgCheckedChanged",
+                                          "control":  "chkMsg",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1977,
+                                          "handler":  "chkOfflineCheckedChanged",
+                                          "control":  "chkOffline",
+                                          "label":  "Offline Processing"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1983,
+                                          "kind":  "Warning",
+                                          "text":  "Offline Processing is unavailable while Surcharging is enabled."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2011,
+                                          "handler":  "chkOfflineDaysCheckedChanged",
+                                          "control":  "chkOfflineDays",
+                                          "label":  "Allow Offline Payments For (Days)"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2016,
+                                          "handler":  "chkOfflineLimitCheckedChanged",
+                                          "control":  "chkOfflineLimit",
+                                          "label":  "Offline Order Limit ($)"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2021,
+                                          "handler":  "chkOfflineTotalCheckedChanged",
+                                          "control":  "chkOfflineTotal",
+                                          "label":  "Total Offline Order Limit ($)"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2026,
+                                          "handler":  "chkOffSendEmailCheckedChanged",
+                                          "control":  "chkOffSendEmail",
+                                          "label":  "Send Email Alerts To: "
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2033,
+                                          "handler":  "chkTFDualPriceCheckedChanged",
+                                          "control":  "chkTFDualPrice",
+                                          "label":  "Dual Price"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2136,
+                                          "handler":  "chkTFSurchargeCheckedChanged",
+                                          "control":  "chkTFSurcharge",
+                                          "label":  "Surcharge"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2149,
+                                          "handler":  "chkTFTaxCheckedChanged",
+                                          "control":  "chkTFTax",
+                                          "label":  "Apply Fee to Taxes"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2171,
+                                          "handler":  "chkTipReqEnabledChanged",
+                                          "control":  "chkTipReqEnabled",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2177,
+                                          "handler":  "chkTipSecurityCheckedChanged",
+                                          "control":  "chkTipSecurity",
+                                          "label":  "Tip Security"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2182,
+                                          "handler":  "dgvLoyaltyCategoryCellClick",
+                                          "control":  "dgvLoyaltyCategory",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2188,
+                                          "handler":  "dgvLoyaltyServiceCellClick",
+                                          "control":  "dgvLoyaltyService",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2194,
+                                          "handler":  "dgvScanDataCellClick",
+                                          "control":  "dgvScanData",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmActivation",
+                      "file":  "2.0.x\\Settings\\frmActivation.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  154,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  159,
+                                          "handler":  "btnCopyClick",
+                                          "control":  "btnCopy",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  177,
+                                          "handler":  "chkLMPCheckedChanged",
+                                          "control":  "chkLMP",
+                                          "label":  "OH Liquor"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  200,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  241,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully..\\nRestart required for setting change to take effect."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  254,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid software key."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  277,
+                                          "kind":  "Success",
+                                          "text":  "Trial activated."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  279,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  284,
+                                          "handler":  "btnRemoteClick",
+                                          "control":  "btnRemote",
+                                          "label":  "Remote\\r\\nSupport"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  291,
+                                          "handler":  "btnPasteClick",
+                                          "control":  "btnPaste",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmAdmin",
+                      "file":  "2.0.x\\Settings\\frmAdmin.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  15,
+                                          "handler":  "btnReadCardAltClick",
+                                          "control":  "btnReadCardAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  22,
+                                          "handler":  "btnReadCardClick",
+                                          "control":  "btnReadCard",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  46,
+                                          "kind":  "Warning",
+                                          "text":  "Either Access PIN or Access Card\\nis required in order to save."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  55,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid PIN length."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  61,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid PIN format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  75,
+                                          "kind":  "Warning",
+                                          "text":  "PIN or Access Card already in use."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCompany",
+                      "file":  "2.0.x\\Settings\\frmCompany.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  151,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  162,
+                                          "handler":  "btnCloseClick",
+                                          "control":  "btnClose",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  170,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  209,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times for {mLbl[i].Text}"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  224,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  280,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid Website URL format"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  307,
+                                          "kind":  "Warning",
+                                          "text":  "M.L. Price URL is missing in Business Details."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  316,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid M.L. Price URL format"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  352,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  358,
+                                          "handler":  "cboStateSelectedIndexChanged",
+                                          "control":  "cboState",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCustomButtons",
+                      "file":  "2.0.x\\Settings\\frmCustomButtons.cs",
+                      "anchorCount":  14,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  284,
+                                          "handler":  "btnClearAllClick",
+                                          "control":  "btnClearAll",
+                                          "label":  "Clear\\r\\nAll Pages"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  292,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nButton"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  298,
+                                          "handler":  "btnClearPageClick",
+                                          "control":  "btnClearPage",
+                                          "label":  "Clear\\r\\nPage"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  307,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  326,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  334,
+                                          "handler":  "btnDefaultClick",
+                                          "control":  "btnDefault",
+                                          "label":  "Reset\\r\\nDefault"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  343,
+                                          "kind":  "Success",
+                                          "text":  "Successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  347,
+                                          "handler":  "btnLegendClick",
+                                          "control":  "btnLegend",
+                                          "label":  "Legend"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  354,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  365,
+                                          "kind":  "Warning",
+                                          "text":  "Enable lines in numeric order."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  393,
+                                          "kind":  "Success",
+                                          "text":  "Saved successful."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  398,
+                                          "handler":  "chkSingleCheckedChanged",
+                                          "control":  "chkSingle",
+                                          "label":  "Single Item/Service"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  410,
+                                          "handler":  "chkSystemColorCheckedChanged",
+                                          "control":  "chkSystemColor",
+                                          "label":  "Use System \\r\\nColor"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  415,
+                                          "handler":  "chkOrderCheckedChanged",
+                                          "control":  "chkOrder",
+                                          "label":  "Entire Order"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCustomTender",
+                      "file":  "2.0.x\\Settings\\frmCustomTender.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  119,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  127,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nButton"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  142,
+                                          "handler":  "btnClearPageClick",
+                                          "control":  "btnClearPage",
+                                          "label":  "Clear\\r\\nPage"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  172,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  187,
+                                          "handler":  "btnColorClick",
+                                          "control":  "btnColor",
+                                          "label":  "Pick\\r\\nColor"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  210,
+                                          "handler":  "btnDefaultClick",
+                                          "control":  "btnDefault",
+                                          "label":  "Reset\\r\\nDefault"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  218,
+                                          "kind":  "Success",
+                                          "text":  "Successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  222,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  267,
+                                          "kind":  "Warning",
+                                          "text":  "At least one payment needs to be selected."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  273,
+                                          "kind":  "Success",
+                                          "text":  "Saved successful."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDelivery",
+                      "file":  "2.0.x\\Settings\\frmDelivery.cs",
+                      "anchorCount":  18,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  98,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  107,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "New"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  121,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  129,
+                                          "kind":  "Warning",
+                                          "text":  "Percent cannot be greater than 100%."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  147,
+                                          "kind":  "Warning",
+                                          "text":  "Description cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  157,
+                                          "kind":  "Warning",
+                                          "text":  "Account number cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  172,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate name."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  193,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times for {mLbl[i].Text}"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  211,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times for {mLbl[i].Text}"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  310,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  315,
+                                          "handler":  "chkEmailCheckedChanged",
+                                          "control":  "chkEmail",
+                                          "label":  "Driver Delivery Receipt? Email"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  322,
+                                          "handler":  "chkEmailPrintCheckedChanged",
+                                          "control":  "chkEmailPrint",
+                                          "label":  "Or Email \u0026 Print"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  329,
+                                          "handler":  "chkFlatFeeCheckedChanged",
+                                          "control":  "chkFlatFee",
+                                          "label":  "Charge a Flat Fee?"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  344,
+                                          "handler":  "chkShowOnlyDeletedCheckedChanged",
+                                          "control":  "chkShowOnlyDeleted",
+                                          "label":  "Show Only Deleted"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  353,
+                                          "handler":  "dgvAccountsCellClick",
+                                          "control":  "dgvAccounts",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  383,
+                                          "handler":  "dgvZonesCellClick",
+                                          "control":  "dgvZones",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  400,
+                                          "handler":  "btnSyncSettingsClick",
+                                          "control":  "btnSyncSettings",
+                                          "label":  "Sync Settings"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  452,
+                                          "handler":  "btnSyncItemsClick",
+                                          "control":  "btnSyncItems",
+                                          "label":  "Sync Items"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmFieldManager",
+                      "file":  "2.0.x\\Settings\\frmFieldManager.cs",
+                      "anchorCount":  14,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  165,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  "Add\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  202,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  210,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  240,
+                                          "kind":  "Warning",
+                                          "text":  "{colName.HeaderText} cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  266,
+                                          "kind":  "Warning",
+                                          "text":  "Department {colValue.HeaderText} field cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  286,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate {colValue.HeaderText} in Departments."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  331,
+                                          "kind":  "Warning",
+                                          "text":  "At least one needs to be activated in {Lib.GetEnumDescription(field.Key)}"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  365,
+                                          "kind":  "Warning",
+                                          "text":  "At least one category or item is set to this department. Please unassign them in order to deactivate this department."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  401,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate name : {mQuery.First().Key.mName}"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  588,
+                                          "kind":  "Success",
+                                          "text":  "Successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  592,
+                                          "handler":  "dgvFieldsCellClick",
+                                          "control":  "dgvFields",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  631,
+                                          "kind":  "Warning",
+                                          "text":  "Cannot delete default order type."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  638,
+                                          "kind":  "Warning",
+                                          "text":  "Order type is assigned to a custom button on the register.\\nPlease remove it from the register before deleting."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  655,
+                                          "kind":  "Warning",
+                                          "text":  "Quick payout is assigned to a custom button on the register.\\nPlease remove it from the register before deleting."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmFileName",
+                      "file":  "2.0.x\\Settings\\frmFileName.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  20,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  26,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  30,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLegend",
+                      "file":  "2.0.x\\Settings\\frmLegend.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  21,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Settings\\frmMenu.cs",
+                      "anchorCount":  16,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  37,
+                                          "control":  "btnTaxes",
+                                          "right":  "Settings.Business",
+                                          "label":  "Tax Group\\r\\nSettings"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  43,
+                                          "control":  "btnSettingsProfile",
+                                          "right":  "Settings.Preference",
+                                          "label":  "Settings\\r\\nProfile"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  45,
+                                          "control":  "btnSecurity",
+                                          "right":  "Settings.Security",
+                                          "label":  "Security\\r\\nProfile"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  51,
+                                          "handler":  "btnAccountClick",
+                                          "control":  "btnAccount",
+                                          "label":  "Account"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  56,
+                                          "handler":  "btnActivationClick",
+                                          "control":  "btnActivation",
+                                          "label":  "Activation"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  62,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid information in settings."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  74,
+                                          "handler":  "btnCompanyClick",
+                                          "control":  "btnCompany",
+                                          "label":  "Business\\r\\nDetails"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  79,
+                                          "handler":  "btnFloorPlanClick",
+                                          "control":  "btnFloorPlan",
+                                          "label":  "Floor Plan\\r\\nDesigner"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  84,
+                                          "handler":  "btnPreferenceClick",
+                                          "control":  "btnPreference",
+                                          "label":  "Preferences"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  89,
+                                          "handler":  "btnPrinterClick",
+                                          "control":  "btnPrinter",
+                                          "label":  "Print\\r\\nSettings"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  94,
+                                          "handler":  "btnRegPrefClick",
+                                          "control":  "btnRegPref",
+                                          "label":  "Register\\r\\nPreferences"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  99,
+                                          "handler":  "btnReservedClick",
+                                          "control":  "btnReserved",
+                                          "label":  "Reserved"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  104,
+                                          "handler":  "btnSecurityClick",
+                                          "control":  "btnSecurity",
+                                          "label":  "Security\\r\\nProfile"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  109,
+                                          "handler":  "btnSettingsProfileClick",
+                                          "control":  "btnSettingsProfile",
+                                          "label":  "Settings\\r\\nProfile"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  116,
+                                          "handler":  "btnSystemSettingsClick",
+                                          "control":  "btnSystemSettings",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  137,
+                                          "handler":  "btnTaxesClick",
+                                          "control":  "btnTaxes",
+                                          "label":  "Tax Group\\r\\nSettings"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmOffline",
+                      "file":  "2.0.x\\Settings\\frmOffline.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  17,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Decline"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  22,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Accept"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPreference",
+                      "file":  "2.0.x\\Settings\\frmPreference.cs",
+                      "anchorCount":  31,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  357,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  374,
+                                          "kind":  "Warning",
+                                          "text":  "Unable to load {mPath}."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  406,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  419,
+                                          "handler":  "btnImgDownClick",
+                                          "control":  "btnImgDown",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  424,
+                                          "handler":  "btnImgUpClick",
+                                          "control":  "btnImgUp",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  429,
+                                          "handler":  "btnManageClick",
+                                          "control":  "btnManage",
+                                          "label":  "Custom\\r\\nVars"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  434,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  441,
+                                          "kind":  "Warning",
+                                          "text":  "Selection error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  459,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  466,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  473,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  480,
+                                          "kind":  "Warning",
+                                          "text":  "Minimum cannot be greater than maximum"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  510,
+                                          "kind":  "Warning",
+                                          "text":  "No internet connection found.\\nCannot verify email setting."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  519,
+                                          "kind":  "Warning",
+                                          "text":  "No internet connection found.\\nCannot verify email setting."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  627,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid email pop3 settings."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  676,
+                                          "kind":  "Success",
+                                          "text":  "Test email sent successfully."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  681,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid email Smtp settings."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  772,
+                                          "kind":  "Success",
+                                          "text":  "Saved.\\nRestart required for setting change to take effect."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  774,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  779,
+                                          "handler":  "btnRemoveClick",
+                                          "control":  "btnRemove",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  812,
+                                          "handler":  "btnUpdateCostsClick",
+                                          "control":  "btnUpdateCosts",
+                                          "label":  "Update All Items"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  828,
+                                          "kind":  "Warning",
+                                          "text":  "All items on inventory must have 0 quantity to convert to non-inventory"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  873,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  877,
+                                          "handler":  "chkCFDTotalCheckedChanged",
+                                          "control":  "chkCFDTotal",
+                                          "label":  "Display Total"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  890,
+                                          "handler":  "chkOneTimePINCheckedChanged",
+                                          "control":  "chkOneTimePIN",
+                                          "label":  "One-Time Supervisor PINs"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  895,
+                                          "handler":  "chkOSKCheckedChanged",
+                                          "control":  "chkOSK",
+                                          "label":  "On-Screen Keyboard"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  902,
+                                          "handler":  "chkQuickLockCheckedChanged",
+                                          "control":  "chkQuickLock",
+                                          "label":  "Quick Lock"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  909,
+                                          "handler":  "chkSignatureCheckedChanged",
+                                          "control":  "chkSignature",
+                                          "label":  "Sign on Screen"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  927,
+                                          "handler":  "chkTimeOutCheckedChanged",
+                                          "control":  "chkTimeOut",
+                                          "label":  "PIN Timeout"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  934,
+                                          "handler":  "dgvImgListCellDoubleClick",
+                                          "control":  "dgvImgListCell",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  956,
+                                          "handler":  "dgvImgSelectedCellDoubleClick",
+                                          "control":  "dgvImgSelectedCell",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPrinter",
+                      "file":  "2.0.x\\Settings\\frmPrinter.cs",
+                      "anchorCount":  33,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  260,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  268,
+                                          "handler":  "btnManagePrintersClick",
+                                          "control":  "btnManagePrinters",
+                                          "label":  "Manage Printers"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  277,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  300,
+                                          "kind":  "Warning",
+                                          "text":  "Check "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  305,
+                                          "kind":  "Warning",
+                                          "text":  "Check "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  324,
+                                          "kind":  "Warning",
+                                          "text":  "Check "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  561,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  565,
+                                          "handler":  "chkDayPartCheckedChanged",
+                                          "control":  "chkDayPart",
+                                          "label":  "Day Part"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  580,
+                                          "handler":  "chkDefaultToEmailCheckedChanged",
+                                          "control":  "chkDefaultToEmail",
+                                          "label":  "Print Default To Email"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  596,
+                                          "handler":  "chkEachTenderCheckedChanged",
+                                          "control":  "chkEachTender",
+                                          "label":  "Print Receipt For Each Tender"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  602,
+                                          "handler":  "chkGoRemoteCheckedChanged",
+                                          "control":  "chkGoRemote",
+                                          "label":  "Print On Accepted Payment"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  608,
+                                          "handler":  "chkNoReceiptCheckedChanged",
+                                          "control":  "chkNoReceipt",
+                                          "label":  "Don\\\u0027t Print QSR Receipts"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  626,
+                                          "handler":  "chkNoSigRequiredCheckedChanged",
+                                          "control":  "chkNoSigRequired",
+                                          "label":  "No Signature Required Receipts"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  636,
+                                          "handler":  "chkOnlySignCheckedChanged",
+                                          "control":  "chkOnlySign",
+                                          "label":  "Signature Copy Only"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  642,
+                                          "handler":  "chkPayTransCheckedChanged",
+                                          "control":  "chkPayTrans",
+                                          "label":  "All"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  656,
+                                          "handler":  "chkPayTransChildCheckedChanged",
+                                          "control":  "chkPayTransChild",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  673,
+                                          "handler":  "chkPrintLabelCheckedChanged",
+                                          "control":  "chkPrintLabel",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  680,
+                                          "handler":  "chkReceiptMessageCheckedChanged",
+                                          "control":  "chkReceiptMessage",
+                                          "label":  "Receipt Message"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  685,
+                                          "handler":  "chkReceiptPromptCheckedChanged",
+                                          "control":  "chkReceiptPrompt",
+                                          "label":  "Receipt Prompt"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  703,
+                                          "handler":  "chkRemoteCCCheckedChanged",
+                                          "control":  "chkRemoteCC",
+                                          "label":  "Print Delivery Receipt On:"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  708,
+                                          "handler":  "chkRemoteOnSaveCheckedChanged",
+                                          "control":  "chkRemoteOnSave",
+                                          "label":  "Print On Save "
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  722,
+                                          "handler":  "chkSalesCheckedChanged",
+                                          "control":  "chkSales",
+                                          "label":  "All"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  737,
+                                          "handler":  "chkSalesChildCheckedChanged",
+                                          "control":  "chkSalesChild",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  747,
+                                          "handler":  "chkSecondCheckedChanged",
+                                          "control":  "chkSecond",
+                                          "label":  "Print Customer Receipt"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  757,
+                                          "handler":  "chkSSPayTransCheckedChanged",
+                                          "control":  "chkSSPayTrans",
+                                          "label":  "All"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  771,
+                                          "handler":  "chkSSPayTransChildCheckedChanged",
+                                          "control":  "chkSSPayTransChild",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  788,
+                                          "handler":  "chkSSSalesCheckedChanged",
+                                          "control":  "chkSSSales",
+                                          "label":  "All"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  803,
+                                          "handler":  "chkSSSalesChilCheckedChanged",
+                                          "control":  "chkSSSalesChil",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  813,
+                                          "handler":  "chkStaffCheckedChanged",
+                                          "control":  "chkStaff",
+                                          "label":  "Sales By Staff"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  826,
+                                          "handler":  "chkStaffChildCheckedChanged",
+                                          "control":  "chkStaffChild",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  836,
+                                          "handler":  "chkTemporaryMsgCheckedChanged",
+                                          "control":  "chkTemporaryMsg",
+                                          "label":  "Temporary Message"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  975,
+                                          "handler":  "chkStickyCheckedChanged",
+                                          "control":  "chkSticky",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  991,
+                                          "handler":  "chkOrderOnSaveCheckedChanged",
+                                          "control":  "chkOrderOnSave",
+                                          "label":  "Print Order On Save"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmQuickPick",
+                      "file":  "2.0.x\\Settings\\frmQuickPick.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  97,
+                                          "kind":  "Success",
+                                          "text":  "Service added successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  106,
+                                          "handler":  "btnAddItemClick",
+                                          "control":  "btnAddItem",
+                                          "label":  "Add\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  128,
+                                          "handler":  "btnAddMiscClick",
+                                          "control":  "btnAddMisc",
+                                          "label":  "Add\\r\\nMisc"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  171,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  179,
+                                          "handler":  "btnDelAllClick",
+                                          "control":  "btnDelAll",
+                                          "label":  "Delete\\r\\nAll"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  192,
+                                          "handler":  "btnDelClick",
+                                          "control":  "btnDel",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  210,
+                                          "handler":  "btnDownClick",
+                                          "control":  "btnDown",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  218,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  246,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  250,
+                                          "handler":  "btnUpClick",
+                                          "control":  "btnUp",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmRegPref",
+                      "file":  "2.0.x\\Settings\\frmRegPref.cs",
+                      "anchorCount":  33,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  193,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  202,
+                                          "handler":  "btnCustomClick",
+                                          "control":  "btnCustom",
+                                          "label":  "Custom\\r\\nButtons"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  207,
+                                          "handler":  "btnDeliveryClick",
+                                          "control":  "btnDelivery",
+                                          "label":  "Delivery"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  212,
+                                          "handler":  "btnDRVItemAltClick",
+                                          "control":  "btnDRVItemAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  222,
+                                          "handler":  "btnDRVItemClick",
+                                          "control":  "btnDRVItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  243,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  250,
+                                          "kind":  "Warning",
+                                          "text":  "Either eGift or Gift certificate must be selected to proceed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  256,
+                                          "kind":  "Warning",
+                                          "text":  "Custom prompt cannot be enabled with a blank prompt message."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  265,
+                                          "kind":  "Warning",
+                                          "text":  "Tab Auth cannot be enabled with a zero minimun charge."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  273,
+                                          "kind":  "Warning",
+                                          "text":  "The tip percent exceeds the allowed\\npercentage ({Global.Settings.Account.FraudControl.TipSecurity:P2})."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  429,
+                                          "kind":  "Success",
+                                          "text":  "Saved.\\nRestart required for setting change to take effect."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  431,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  436,
+                                          "handler":  "btnPromoClick",
+                                          "control":  "btnPromo",
+                                          "label":  "Disable All Promo"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  465,
+                                          "handler":  "btnQuickPickClick",
+                                          "control":  "btnQuickPick",
+                                          "label":  "Quick\\r\\nPick"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  470,
+                                          "handler":  "btnTenderClick",
+                                          "control":  "btnTender",
+                                          "label":  "Custom\\r\\nTenders"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  475,
+                                          "handler":  "chkAllowCheckCheckedChanged",
+                                          "control":  "chkAllowCheck",
+                                          "label":  "Allow Customer Check"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  482,
+                                          "handler":  "chkAutoTipCheckedChanged",
+                                          "control":  "chkAutoTip",
+                                          "label":  "Automatic By:"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  489,
+                                          "handler":  "chkCustomLabelCheckedChanged",
+                                          "control":  "chkCustomLabel",
+                                          "label":  "Custom Label"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  494,
+                                          "handler":  "chkFullGiftCheckedChanged",
+                                          "control":  "chkFullGift",
+                                          "label":  "Allow Refunds To Gift Certs/eGift"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  508,
+                                          "handler":  "chkLabelOnOrderCheckedChanged",
+                                          "control":  "chkLabelOnOrder",
+                                          "label":  "Label Order"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  521,
+                                          "handler":  "chkQuickPayCheckedChanged",
+                                          "control":  "chkQuickPay",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  530,
+                                          "handler":  "chkRefGCCheckedChanged",
+                                          "control":  "chkRefGC",
+                                          "label":  "Only To Gift Certs/eGift"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  542,
+                                          "handler":  "chkRefOpenEndedCheckedChanged",
+                                          "control":  "chkRefOpenEnded",
+                                          "label":  "Allow Open-Ended Refund"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  547,
+                                          "handler":  "chkRefWithoutReceiptCheckedChanged",
+                                          "control":  "chkRefWithoutReceipt",
+                                          "label":  "Allow Refund Without Receipt"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  558,
+                                          "handler":  "chkRoundCheckedChanged",
+                                          "control":  "chkRound",
+                                          "label":  "Rounding"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  563,
+                                          "handler":  "chkShareItemCheckedChanged",
+                                          "control":  "chkShareItem",
+                                          "label":  "Share Item"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  577,
+                                          "handler":  "chkShowOrderTypeCheckedChanged",
+                                          "control":  "chkShowOrderType",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  584,
+                                          "handler":  "chkShowChangeCheckedChanged",
+                                          "control":  "chkShowChange",
+                                          "label":  "Show Change Due Amount"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  589,
+                                          "handler":  "chkSimpleModeCheckedChanged",
+                                          "control":  "chkSimpleMode",
+                                          "label":  "Simple Mode"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  594,
+                                          "handler":  "chkStaffPromptCheckedChanged",
+                                          "control":  "chkStaffPrompt",
+                                          "label":  "Custom Prompt"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  599,
+                                          "handler":  "chkTabEnabledCheckedChanged",
+                                          "control":  "chkTabEnabled",
+                                          "label":  "Tab Auth"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  612,
+                                          "handler":  "chkTipsCheckedChanged",
+                                          "control":  "chkTips",
+                                          "label":  "Allow Tips"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  624,
+                                          "handler":  "chkWeightLabelCheckedChanged",
+                                          "control":  "chkWeightLabel",
+                                          "label":  "Random Weight/Price Embedded On EAN/UPC Barcode"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmReserved",
+                      "file":  "2.0.x\\Settings\\frmReserved.cs",
+                      "anchorCount":  40,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  153,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nLog"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  162,
+                                          "handler":  "btnControlClick",
+                                          "control":  "btnControl",
+                                          "label":  "Run"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  238,
+                                          "handler":  "btnCustBulkUploadClick",
+                                          "control":  "btnCustBulkUpload",
+                                          "label":  "Customer Cloud Upload"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  243,
+                                          "kind":  "Warning",
+                                          "text":  "This feature requires a valid Merchant and Location ID"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  254,
+                                          "kind":  "Success",
+                                          "text":  "Customers Bulk Upload - Success"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  267,
+                                          "kind":  "Warning",
+                                          "text":  "Customers Bulk Upload - Error"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  274,
+                                          "handler":  "btnDevicesClick",
+                                          "control":  "btnDevices",
+                                          "label":  "USB\\r\\nDevices"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  307,
+                                          "handler":  "btnForceClick",
+                                          "control":  "btnForce",
+                                          "label":  "Force\\r\\nUpdate"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  320,
+                                          "handler":  "btnHistoryClick",
+                                          "control":  "btnHistory",
+                                          "label":  "6"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  329,
+                                          "handler":  "btnImportDBClick",
+                                          "control":  "btnImportDB",
+                                          "label":  "Import DB"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  372,
+                                          "kind":  "Warning",
+                                          "text":  "File name cannot be more than 12 digits in length"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  463,
+                                          "kind":  "Warning",
+                                          "text":  "Could not get file {mFileNamePrompFormResponse}.bak from {mZipFileName}"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  489,
+                                          "kind":  "Warning",
+                                          "text":  "XTTDB.bak file is in the restore folder, and will process next time exatouch is restarted"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  496,
+                                          "kind":  "Warning",
+                                          "text":  "There was an error please see the logs for more details"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  506,
+                                          "handler":  "btnImportClick",
+                                          "control":  "btnImport",
+                                          "label":  "Import"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  513,
+                                          "handler":  "btnLogClick",
+                                          "control":  "btnLog",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  530,
+                                          "kind":  "Success",
+                                          "text":  "Successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  534,
+                                          "handler":  "btnOfflineClick",
+                                          "control":  "btnOffline",
+                                          "label":  "Offline"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  595,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  599,
+                                          "kind":  "Warning",
+                                          "text":  "Assign unique port for each device."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  605,
+                                          "kind":  "Warning",
+                                          "text":  "Must select Scale Protocol."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  678,
+                                          "kind":  "Success",
+                                          "text":  "Saved.\\nRestart required for setting change to take effect."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  681,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset\\r\\nFactory"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  931,
+                                          "kind":  "Success",
+                                          "text":  "System reset complete. Restart now."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  940,
+                                          "handler":  "btnResetTrxClick",
+                                          "control":  "btnResetTrx",
+                                          "label":  "Reset\\r\\nTrxs"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  947,
+                                          "kind":  "Success",
+                                          "text":  "Reset successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  951,
+                                          "handler":  "btnRunClick",
+                                          "control":  "btnRun",
+                                          "label":  "Run"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  973,
+                                          "kind":  "Success",
+                                          "text":  "Successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  985,
+                                          "handler":  "btnServerClick",
+                                          "control":  "btnServer",
+                                          "label":  "Update Server DB"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1035,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1038,
+                                          "handler":  "btnExportDBClick",
+                                          "control":  "btnExportDB",
+                                          "label":  "Export DB"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1069,
+                                          "kind":  "Warning",
+                                          "text":  "File name must be 12 or less digits in length"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1096,
+                                          "handler":  "btnTransferSetupFilesClick",
+                                          "control":  "btnTransferSetupFiles",
+                                          "label":  "Transfer Setup Files"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1106,
+                                          "kind":  "Warning",
+                                          "text":  "FrontEnd Merchant MID required to be set in Settings \u003e\u003e Account form in order to get file list from Setup Files Bucket in S3"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1120,
+                                          "kind":  "Success",
+                                          "text":  "Files Download Completed Succesfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1131,
+                                          "handler":  "cboCFDSelectedIndexChanged",
+                                          "control":  "cboCFD",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1137,
+                                          "handler":  "cboScaleSelectedIndexChanged",
+                                          "control":  "cboScale",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1255,
+                                          "handler":  "btnSendSummary_Click",
+                                          "control":  "btnSendSummary_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1271,
+                                          "kind":  "Success",
+                                          "text":  "Sales Summary Report Completed Successfully"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1273,
+                                          "kind":  "Warning",
+                                          "text":  "Sales Summary Report Failed with Error Message: {Environment.NewLine} {mError}"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSettingsProfile",
+                      "file":  "2.0.x\\Settings\\frmSettingsProfile.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  36,
+                                          "kind":  "Warning",
+                                          "text":  "Profile name already exists, choose another."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  68,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  78,
+                                          "handler":  "btnCurrentClick",
+                                          "control":  "btnCurrent",
+                                          "label":  "Save\\r\\nCurrent\\r\\nSettings"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  89,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  110,
+                                          "handler":  "btnLoadProfileClick",
+                                          "control":  "btnLoadProfile",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  130,
+                                          "kind":  "Warning",
+                                          "text":  "Error deserializing Settings profile."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  156,
+                                          "handler":  "btnRenameClick",
+                                          "control":  "btnRename",
+                                          "label":  "Rename"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSetup",
+                      "file":  "2.0.x\\Settings\\frmSetup.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  43,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Accept"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  57,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Decline"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  63,
+                                          "handler":  "btnRemoteClick",
+                                          "control":  "btnRemote",
+                                          "label":  "Remote\\r\\nSupport"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSystem",
+                      "file":  "2.0.x\\Settings\\frmSystem.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  60,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  69,
+                                          "handler":  "btnFindServerClick",
+                                          "control":  "btnFindServer",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  86,
+                                          "handler":  "btnInternetRefreshClick",
+                                          "control":  "btnInternetRefresh",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  91,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  95,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  101,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid characters."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  127,
+                                          "kind":  "Warning",
+                                          "text":  "Sidekick cannot be its own server."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  133,
+                                          "kind":  "Warning",
+                                          "text":  "Server is unavailable."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  147,
+                                          "kind":  "Success",
+                                          "text":  "Settings changed, system will be restarted."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  157,
+                                          "handler":  "cboMachineTypeSelectedIndexChanged",
+                                          "control":  "cboMachineType",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmTaxes",
+                      "file":  "2.0.x\\Settings\\frmTaxes.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  179,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  187,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  345,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmUpdate",
+                      "file":  "2.0.x\\Settings\\frmUpdate.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  37,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  42,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Update"
+                                      }
+                                  ]
+                  }
+              ]
+}

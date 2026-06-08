@@ -1,0 +1,4 @@
+agent/node_modules/
+reports/*.log
+reports/heartbeat.json
+reports/runner.pid

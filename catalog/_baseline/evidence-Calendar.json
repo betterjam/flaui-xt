@@ -1,0 +1,410 @@
+﻿{
+    "feature":  "Calendar",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Calendar"
+                    ],
+    "formCount":  7,
+    "anchorTotal":  51,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  0,
+                   "action":  38,
+                   "message":  13,
+                   "toggle":  0
+               },
+    "forms":  [
+                  {
+                      "form":  "frmCalendar",
+                      "file":  "2.0.x\\Calendar\\frmCalendar.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  131,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel\\r\\nMove"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  137,
+                                          "handler":  "btnDownClick",
+                                          "control":  "btnDown",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  142,
+                                          "handler":  "btnNextClick",
+                                          "control":  "btnNext",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  147,
+                                          "handler":  "btnPrevClick",
+                                          "control":  "btnPrev",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  152,
+                                          "handler":  "btnTodayClick",
+                                          "control":  "btnToday",
+                                          "label":  "Today"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  157,
+                                          "handler":  "btnUpClick",
+                                          "control":  "btnUp",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmConflict",
+                      "file":  "2.0.x\\Calendar\\frmConflict.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  16,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  21,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Print"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCreate",
+                      "file":  "2.0.x\\Calendar\\frmCreate.cs",
+                      "anchorCount":  19,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  444,
+                                          "kind":  "Warning",
+                                          "text":  "Time unavailable."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  461,
+                                          "kind":  "Warning",
+                                          "text":  "You selected a time outside the staff member\u0027s scheduled hours. Cannot Proceed"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  472,
+                                          "kind":  "Warning",
+                                          "text":  "Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  625,
+                                          "handler":  "btnCalendarClick",
+                                          "control":  "btnCalendar",
+                                          "label":  "Month"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  641,
+                                          "handler":  "btnCancelApptClick",
+                                          "control":  "btnCancelAppt",
+                                          "label":  "Cancel\\r\\nAppt."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  658,
+                                          "kind":  "Warning",
+                                          "text":  "Cancelled."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  662,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  671,
+                                          "handler":  "btnCheckOutClick",
+                                          "control":  "btnCheckOut",
+                                          "label":  "Check\\r\\nOut"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  698,
+                                          "handler":  "btnCustomerHistoryClick",
+                                          "control":  "btnCustomerHistory",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  707,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  721,
+                                          "handler":  "btnDoubleClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  748,
+                                          "handler":  "btnMoveClick",
+                                          "control":  "btnMove",
+                                          "label":  "Move\\r\\nAppt."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  762,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  766,
+                                          "kind":  "Warning",
+                                          "text":  "Service not added."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  890,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  910,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Clear\\r\\nServices"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  923,
+                                          "handler":  "dgvAppCellClick",
+                                          "control":  "dgvApp",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  937,
+                                          "handler":  "dgvServicesCellClick",
+                                          "control":  "dgvServices",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  941,
+                                          "kind":  "Warning",
+                                          "text":  "Choose start time."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDay",
+                      "file":  "2.0.x\\Calendar\\frmDay.cs",
+                      "anchorCount":  16,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  152,
+                                          "kind":  "Warning",
+                                          "text":  "Staff or services not available based on current filter criteria."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  452,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  463,
+                                          "handler":  "btnCancelMoveClick",
+                                          "control":  "btnCancelMove",
+                                          "label":  "Cancel\\r\\nMove"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  467,
+                                          "handler":  "btnFilterClick",
+                                          "control":  "btnFilter",
+                                          "label":  "Filter"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  483,
+                                          "handler":  "btnLeftClick",
+                                          "control":  "btnLeft",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  496,
+                                          "handler":  "btnLeftPageClick",
+                                          "control":  "btnLeftPage",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  508,
+                                          "handler":  "btnLegendClick",
+                                          "control":  "btnLegend",
+                                          "label":  "Legend"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  515,
+                                          "handler":  "btnNextClick",
+                                          "control":  "btnNext",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  520,
+                                          "handler":  "btnPageRightClick",
+                                          "control":  "btnPageRight",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  533,
+                                          "handler":  "btnPrevClick",
+                                          "control":  "btnPrev",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  538,
+                                          "handler":  "btnRigthClick",
+                                          "control":  "btnRigth",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  551,
+                                          "handler":  "dgvTimeCellClick",
+                                          "control":  "dgvTime",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  558,
+                                          "kind":  "Warning",
+                                          "text":  "You selected a time outside the staff member\u0027s scheduled hours. Cannot Proceed"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  591,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  601,
+                                          "kind":  "Warning",
+                                          "text":  "You selected a time outside the staff member\u0027s scheduled hours. Cannot Proceed"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  609,
+                                          "kind":  "Warning",
+                                          "text":  "Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmFilter",
+                      "file":  "2.0.x\\Calendar\\frmFilter.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  103,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  108,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nFilter"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  114,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Show"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLegend",
+                      "file":  "2.0.x\\Calendar\\frmLegend.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  13,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSelect",
+                      "file":  "2.0.x\\Calendar\\frmSelect.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  43,
+                                          "handler":  "btnAllClick",
+                                          "control":  "btnAll",
+                                          "label":  "Check\\r\\nOut All"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  51,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  56,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Check\\r\\nOut"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  60,
+                                          "kind":  "Warning",
+                                          "text":  "Selection error."
+                                      }
+                                  ]
+                  }
+              ]
+}

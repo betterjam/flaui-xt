@@ -1,0 +1,891 @@
+﻿{
+    "feature":  "Managers",
+    "managerCount":  29,
+    "anchorTotal":  93,
+    "calcMethods":  8,
+    "managers":  [
+                     {
+                         "manager":  "GiftCardManager",
+                         "file":  "2.0.x\\Managers\\GiftCardManager.cs",
+                         "methodCount":  16,
+                         "calcCount":  2,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  41,
+                                             "name":  "GetAllByFilter",
+                                             "returns":  "IEnumerable\u003cGiftCard\u003e",
+                                             "signature":  "IEnumerable\u003cGiftCard\u003e GetAllByFilter(FilterGiftCardParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  67,
+                                             "name":  "GetByGiftCode",
+                                             "returns":  "GiftCard",
+                                             "signature":  "GiftCard GetByGiftCode(string pGiftCode)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  86,
+                                             "name":  "HasAnyBeenUsed",
+                                             "returns":  "bool",
+                                             "signature":  "bool HasAnyBeenUsed(FilterGiftCardParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  105,
+                                             "name":  "ApplyPayment",
+                                             "returns":  "void",
+                                             "signature":  "void ApplyPayment(GiftCard pGiftCard, decimal pAmountToApply)"
+                                         },
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  129,
+                                             "name":  "IncreaseBalanceBy",
+                                             "returns":  "void",
+                                             "signature":  "void IncreaseBalanceBy(string pGiftCode, decimal pAmountToIncrease)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  149,
+                                             "name":  "CancelByGiftCode",
+                                             "returns":  "void",
+                                             "signature":  "void CancelByGiftCode(string pGiftCode)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  177,
+                                             "name":  "CheckOnline",
+                                             "returns":  "bool",
+                                             "signature":  "bool CheckOnline()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  243,
+                                             "name":  "EnsureReturnability",
+                                             "returns":  "void",
+                                             "signature":  "void EnsureReturnability(string pGiftCardNumber, decimal pOriginalAmount, TransactionReversalType pMoneyBackType)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  274,
+                                             "name":  "GiftCertificateDialog",
+                                             "returns":  "GiftCertificateDialogResult",
+                                             "signature":  "GiftCertificateDialogResult GiftCertificateDialog(string pDialogMessage, bool pProcessCertificate)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  370,
+                                             "name":  "CreateGiftCertificate",
+                                             "returns":  "GiftCard",
+                                             "signature":  "GiftCard CreateGiftCertificate(CreateGiftCardCertificateParameters pParameter, IUnitOfWork pUnitOfWork = null)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  421,
+                                             "name":  "RevertAnyGiftCardOrCertificate",
+                                             "returns":  "void",
+                                             "signature":  "void RevertAnyGiftCardOrCertificate(int pPaymentID, out List\u003cstring\u003e pErrorMessages)"
+                                         },
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  482,
+                                             "name":  "GetBalance",
+                                             "returns":  "GiftCardProcessResult",
+                                             "signature":  "GiftCardProcessResult GetBalance(csGift pGift)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  500,
+                                             "name":  "CompleteAuth",
+                                             "returns":  "GiftCardProcessResult",
+                                             "signature":  "GiftCardProcessResult CompleteAuth(csGift pGift)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  520,
+                                             "name":  "Activate",
+                                             "returns":  "GiftCardProcessResult",
+                                             "signature":  "GiftCardProcessResult Activate(csGift pGift, bool pIssueCertificateOnFailure)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  563,
+                                             "name":  "AddValue",
+                                             "returns":  "GiftCardProcessResult",
+                                             "signature":  "GiftCardProcessResult AddValue(csGift pGift)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  581,
+                                             "name":  "Redeem",
+                                             "returns":  "GiftCardProcessResult",
+                                             "signature":  "GiftCardProcessResult Redeem(csGift pGift)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "CustomFieldsManager",
+                         "file":  "2.0.x\\Managers\\CustomFieldsManager.cs",
+                         "methodCount":  7,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  15,
+                                             "name":  "GetByCustomID",
+                                             "returns":  "CustomField",
+                                             "signature":  "CustomField GetByCustomID(int pCustomFieldID)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  21,
+                                             "name":  "GetByCustomFieldByCustomTypeEnum",
+                                             "returns":  "List\u003cCustomField\u003e",
+                                             "signature":  "List\u003cCustomField\u003e GetByCustomFieldByCustomTypeEnum(CustomType pCustomType)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  33,
+                                             "name":  "HasDuplicateInternalDepartmentID",
+                                             "returns":  "bool",
+                                             "signature":  "bool HasDuplicateInternalDepartmentID(object pCustomID, object pCustomValue)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  67,
+                                             "name":  "Update",
+                                             "returns":  "bool",
+                                             "signature":  "bool Update(DataRow pRow)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  89,
+                                             "name":  "IsDepartmentAssignedToCategoryOrItem",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsDepartmentAssignedToCategoryOrItem(int pCustomID)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  102,
+                                             "name":  "ConvertColumnToVarBinary",
+                                             "returns":  "byte[]",
+                                             "signature":  "byte[] ConvertColumnToVarBinary(DataRow row, string columnName)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  116,
+                                             "name":  "AddPaddingToDepartmentValueField",
+                                             "returns":  "string",
+                                             "signature":  "string AddPaddingToDepartmentValueField(string pAccountingID)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "InternalConnectionManager",
+                         "file":  "2.0.x\\Managers\\InternalConnectionManager.cs",
+                         "methodCount":  6,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  24,
+                                             "name":  "StartSocket",
+                                             "returns":  "void",
+                                             "signature":  "void StartSocket()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  115,
+                                             "name":  "StartSocketLRS",
+                                             "returns":  "void",
+                                             "signature":  "void StartSocketLRS()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  161,
+                                             "name":  "ReconnectSocket",
+                                             "returns":  "void",
+                                             "signature":  "void ReconnectSocket()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  219,
+                                             "name":  "SocketSend",
+                                             "returns":  "void",
+                                             "signature":  "void SocketSend(Sidekick pSidekick, byte[] pBuffer)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  298,
+                                             "name":  "ConnectToServer",
+                                             "returns":  "void",
+                                             "signature":  "void ConnectToServer()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  385,
+                                             "name":  "ClientUpdate",
+                                             "returns":  "void",
+                                             "signature":  "void ClientUpdate()"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "AccountReceivableManager",
+                         "file":  "2.0.x\\Managers\\AccountReceivableManager.cs",
+                         "methodCount":  5,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  42,
+                                             "name":  "CreateTransaction",
+                                             "returns":  "string",
+                                             "signature":  "string CreateTransaction(CreateTransactionParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  60,
+                                             "name":  "DeleteTransaction",
+                                             "returns":  "bool",
+                                             "signature":  "bool DeleteTransaction(string pTransactionId)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  83,
+                                             "name":  "UpdateTransactionOrderId",
+                                             "returns":  "bool",
+                                             "signature":  "bool UpdateTransactionOrderId(string pTransactionId, object orderId, string pCloudId)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  111,
+                                             "name":  "GetAllTransactionsByDate",
+                                             "returns":  "GetAllTransactionsBalanceResult",
+                                             "signature":  "GetAllTransactionsBalanceResult GetAllTransactionsByDate(DateTime pFrom, DateTime pTo)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  129,
+                                             "name":  "UpdateAccountReceivableSettings",
+                                             "returns":  "void",
+                                             "signature":  "void UpdateAccountReceivableSettings(string pCustomerId, bool pAllowARCharges, decimal pCreditLimit)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "ItemManager",
+                         "file":  "2.0.x\\Managers\\ItemManager.cs",
+                         "methodCount":  4,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  13,
+                                             "name":  "GetItemByPLUCode",
+                                             "returns":  "Item",
+                                             "signature":  "Item GetItemByPLUCode(string pPLUCode)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  21,
+                                             "name":  "GetItemByItemID",
+                                             "returns":  "Item",
+                                             "signature":  "Item GetItemByItemID(int pItemID)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  28,
+                                             "name":  "IsDepartmentAssignedToItem",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsDepartmentAssignedToItem(int pItemID)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  44,
+                                             "name":  "IsAnyItemAssignedToADepartment",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsAnyItemAssignedToADepartment(int pCustomFieldId)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "CRMServiceManager",
+                         "file":  "2.0.x\\Managers\\CRMServiceManager.cs",
+                         "methodCount":  4,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  14,
+                                             "name":  "IsEnabled",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsEnabled()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  22,
+                                             "name":  "CreateCardOnFile",
+                                             "returns":  "void",
+                                             "signature":  "void CreateCardOnFile(CreateCardOnFileParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  65,
+                                             "name":  "CheckTenderEligibility",
+                                             "returns":  "CheckTenderEligibilityResult",
+                                             "signature":  "CheckTenderEligibilityResult CheckTenderEligibility(CheckTenderEligibilityParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  94,
+                                             "name":  "GetPrimaryCardOnFile",
+                                             "returns":  "void",
+                                             "signature":  "void GetPrimaryCardOnFile(GetPrimaryCardOnFileParameters pParameters, Action\u003cGetPrimaryCardOnFileResult\u003e pOnComplete)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "NotificationsManager",
+                         "file":  "2.0.x\\Managers\\NotificationsManager.cs",
+                         "methodCount":  4,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  15,
+                                             "name":  "GetMinutesBeforeClosingByDayOfTheWeek",
+                                             "returns":  "int",
+                                             "signature":  "int GetMinutesBeforeClosingByDayOfTheWeek()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  36,
+                                             "name":  "HasActiveNotification",
+                                             "returns":  "bool",
+                                             "signature":  "bool HasActiveNotification()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  42,
+                                             "name":  "GetActiveNotificationByNotificationType",
+                                             "returns":  "Notifications",
+                                             "signature":  "Notifications GetActiveNotificationByNotificationType(NotificationType pNotificationType)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  62,
+                                             "name":  "ShowNotification",
+                                             "returns":  "void",
+                                             "signature":  "void ShowNotification(IWin32Window sender, NotificationAcknowledgedType pNotificationAcknowledgedType, bool pForceDisplay = false)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "APIConfigurationManager",
+                         "file":  "2.0.x\\Managers\\APIConfigurationManager.cs",
+                         "methodCount":  4,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  27,
+                                             "name":  "ConfigureExternal",
+                                             "returns":  "void",
+                                             "signature":  "void ConfigureExternal()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  60,
+                                             "name":  "UpdateConfigurationFile",
+                                             "returns":  "void",
+                                             "signature":  "void UpdateConfigurationFile()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  88,
+                                             "name":  "GetSettingByApplicationName",
+                                             "returns":  "ECMKey",
+                                             "signature":  "ECMKey GetSettingByApplicationName(string appName)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  98,
+                                             "name":  "HasValidCredentials",
+                                             "returns":  "bool",
+                                             "signature":  "bool HasValidCredentials()"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "OrderManager",
+                         "file":  "2.0.x\\Managers\\OrderManager.cs",
+                         "methodCount":  4,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  21,
+                                             "name":  "RequestRemoteReprint",
+                                             "returns":  "void",
+                                             "signature":  "void RequestRemoteReprint(int pOrderId)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  42,
+                                             "name":  "HasRequestRemoteReprint",
+                                             "returns":  "bool",
+                                             "signature":  "bool HasRequestRemoteReprint(int pOrderId)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  56,
+                                             "name":  "VoidOrder",
+                                             "returns":  "void",
+                                             "signature":  "void VoidOrder(VoidOrderParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  223,
+                                             "name":  "UpdateOrderDetailAfterEmitGiftCert",
+                                             "returns":  "bool",
+                                             "signature":  "bool UpdateOrderDetailAfterEmitGiftCert(UpdateOrderDetailParameters pParameters)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "AccountPaymentManager",
+                         "file":  "2.0.x\\Managers\\AccountPaymentManager.cs",
+                         "methodCount":  3,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  22,
+                                             "name":  "TakeAccountPayment",
+                                             "returns":  "TakeAccountPaymentResult",
+                                             "signature":  "TakeAccountPaymentResult TakeAccountPayment(TakeAccountPaymentParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  78,
+                                             "name":  "GetReceiptsParameters",
+                                             "returns":  "PrintReceiptsParameters",
+                                             "signature":  "PrintReceiptsParameters GetReceiptsParameters(int accountPaymentId)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  101,
+                                             "name":  "UpdateAccountPaymentRate",
+                                             "returns":  "void",
+                                             "signature":  "void UpdateAccountPaymentRate(int pAccountPaymentId, short pStars)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "ScaleManager",
+                         "file":  "2.0.x\\Managers\\ScaleManager.cs",
+                         "methodCount":  3,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  24,
+                                             "name":  "StartWatchdog",
+                                             "returns":  "void",
+                                             "signature":  "void StartWatchdog()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  47,
+                                             "name":  "StopWatchdog",
+                                             "returns":  "void",
+                                             "signature":  "void StopWatchdog()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  145,
+                                             "name":  "IsReadingSuccess",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsReadingSuccess(DataRow pRow)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "PaymentManager",
+                         "file":  "2.0.x\\Managers\\PaymentManager.cs",
+                         "methodCount":  3,
+                         "calcCount":  null,
+                         "methods":  [
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  25,
+                                             "name":  "UpdateTip",
+                                             "returns":  "bool",
+                                             "signature":  "bool UpdateTip(int pPaymentId, decimal pTip)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  39,
+                                             "name":  "GetPaymentsToVoid",
+                                             "returns":  "IEnumerable\u003cPayment\u003e",
+                                             "signature":  "IEnumerable\u003cPayment\u003e GetPaymentsToVoid(IUnitOfWork pUnitOfWork, int pOrderId)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  54,
+                                             "name":  "VoidCardPayment",
+                                             "returns":  "bool",
+                                             "signature":  "bool VoidCardPayment(IUnitOfWork pUnitOfWork, Payment pPayment)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "InternalTaskSchedulerManager",
+                         "file":  "2.0.x\\Managers\\InternalTaskSchedulerManager.cs",
+                         "methodCount":  3,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  75,
+                                             "name":  "GetInternalTaskSchedulerByTaskCode",
+                                             "returns":  "InternalTaskScheduler",
+                                             "signature":  "InternalTaskScheduler GetInternalTaskSchedulerByTaskCode(int pInternalTaskCode)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  86,
+                                             "name":  "RunInternalSchedulerTasks",
+                                             "returns":  "Task",
+                                             "signature":  "Task RunInternalSchedulerTasks()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  298,
+                                             "name":  "ProcessGetKeySalesSummaryInternalTask",
+                                             "returns":  "bool",
+                                             "signature":  "bool ProcessGetKeySalesSummaryInternalTask(DateTime? mDate, out string outErrorMsg)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "AdminFeeManager",
+                         "file":  "2.0.x\\Managers\\AdminFeeManager.cs",
+                         "methodCount":  3,
+                         "calcCount":  2,
+                         "methods":  [
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  10,
+                                             "name":  "Clear",
+                                             "returns":  "void",
+                                             "signature":  "void Clear(this AdminFeeModel pAdminFeeModel)"
+                                         },
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  23,
+                                             "name":  "CreatePaymentFormMessage",
+                                             "returns":  "string",
+                                             "signature":  "string CreatePaymentFormMessage(AdminFeeModel pAdminFeeModel)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  52,
+                                             "name":  "DigitsLeftOfDecimal",
+                                             "returns":  "int",
+                                             "signature":  "int DigitsLeftOfDecimal(decimal number)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "CategoryManager",
+                         "file":  "2.0.x\\Managers\\CategoryManager.cs",
+                         "methodCount":  3,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  14,
+                                             "name":  "GetByCatID",
+                                             "returns":  "Category",
+                                             "signature":  "Category GetByCatID(int pCatID)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  21,
+                                             "name":  "IsDepartmentAssignedToCategory",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsDepartmentAssignedToCategory(int pCategoryID)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  37,
+                                             "name":  "IsAnyCategoryAssignedToADepartment",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsAnyCategoryAssignedToADepartment(int pCustomFieldId)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "NetworkManager",
+                         "file":  "2.0.x\\Managers\\NetworkManager.cs",
+                         "methodCount":  2,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  15,
+                                             "name":  "ConfigureMAC",
+                                             "returns":  "bool",
+                                             "signature":  "bool ConfigureMAC()"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  57,
+                                             "name":  "ConfigureMACOffline",
+                                             "returns":  "bool",
+                                             "signature":  "bool ConfigureMACOffline()"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "ReceiptManager",
+                         "file":  "2.0.x\\Managers\\ReceiptManager.cs",
+                         "methodCount":  2,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  14,
+                                             "name":  "PrintReceipts",
+                                             "returns":  "void",
+                                             "signature":  "void PrintReceipts(PrintReceiptsParameters pParameters)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  31,
+                                             "name":  "PrintReceipt",
+                                             "returns":  "void",
+                                             "signature":  "void PrintReceipt(string pTextToPrint, string pTitle)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "AuditManager",
+                         "file":  "2.0.x\\Managers\\AuditManager.cs",
+                         "methodCount":  2,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  16,
+                                             "name":  "WriteLog",
+                                             "returns":  "void",
+                                             "signature":  "void WriteLog(object pObject, bool pSaveSingleLog = false)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  83,
+                                             "name":  "WriteLog",
+                                             "returns":  "void",
+                                             "signature":  "void WriteLog(Module pModule, Access pAccessLevel, SqlCommand pSqlCmd)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "OrdersTipsManager",
+                         "file":  "2.0.x\\Managers\\OrdersTipsManager.cs",
+                         "methodCount":  2,
+                         "calcCount":  2,
+                         "methods":  [
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  19,
+                                             "name":  "PaymentsHasInTransactionCFDTipAdded",
+                                             "returns":  "bool",
+                                             "signature":  "bool PaymentsHasInTransactionCFDTipAdded(int pPayID)"
+                                         },
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  34,
+                                             "name":  "GetOrdersTipsByPayID",
+                                             "returns":  "List\u003cOrdersTips\u003e",
+                                             "signature":  "List\u003cOrdersTips\u003e GetOrdersTipsByPayID(int pPayID)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "DialogManager",
+                         "file":  "2.0.x\\Managers\\DialogManager.cs",
+                         "methodCount":  2,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  9,
+                                             "name":  "Dialog",
+                                             "returns":  "DialogResult",
+                                             "signature":  "DialogResult Dialog(string pMsg, MessageBoxButtons pButtons = MessageBoxButtons.YesNo, MessageBoxButtonsOverWrite pMessageBoxButtonsOverWrite = default)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  42,
+                                             "name":  "ClearAllDialog",
+                                             "returns":  "DialogResult",
+                                             "signature":  "DialogResult ClearAllDialog()"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "CryptoManager",
+                         "file":  "2.0.x\\Managers\\CryptoManager.cs",
+                         "methodCount":  2,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  14,
+                                             "name":  "EncryptString",
+                                             "returns":  "string",
+                                             "signature":  "string EncryptString(string pTextToEncrypt)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  51,
+                                             "name":  "DecryptString",
+                                             "returns":  "string",
+                                             "signature":  "string DecryptString(string pEncryptedText)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "SecurityManager",
+                         "file":  "2.0.x\\Managers\\SecurityManager.cs",
+                         "methodCount":  2,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  13,
+                                             "name":  "Login",
+                                             "returns":  "bool",
+                                             "signature":  "bool Login(object pObject)"
+                                         },
+                                         {
+                                             "type":  "method",
+                                             "line":  68,
+                                             "name":  "CreateSecurityProfile",
+                                             "returns":  "int",
+                                             "signature":  "int CreateSecurityProfile(SecurityProfile pSecurityProfile)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "StaffManager",
+                         "file":  "2.0.x\\Managers\\StaffManager.cs",
+                         "methodCount":  1,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  8,
+                                             "name":  "GetCurrentStaffName",
+                                             "returns":  "string",
+                                             "signature":  "string GetCurrentStaffName()"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "TipManager",
+                         "file":  "2.0.x\\Managers\\TipManager.cs",
+                         "methodCount":  1,
+                         "calcCount":  null,
+                         "methods":  [
+                                         {
+                                             "type":  "calc-method",
+                                             "line":  8,
+                                             "name":  "GetSuggestedTips",
+                                             "returns":  "List\u003cSuggestedTip\u003e",
+                                             "signature":  "List\u003cSuggestedTip\u003e GetSuggestedTips(decimal pSubTotal, decimal pItemTotal)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "DepartmentsManager",
+                         "file":  "2.0.x\\Managers\\DepartmentsManager.cs",
+                         "methodCount":  1,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  14,
+                                             "name":  "GetDefaultDepartment",
+                                             "returns":  "CustomField",
+                                             "signature":  "CustomField GetDefaultDepartment()"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "ImageManager",
+                         "file":  "2.0.x\\Managers\\ImageManager.cs",
+                         "methodCount":  1,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  8,
+                                             "name":  "ConfigureLogoCFD",
+                                             "returns":  "void",
+                                             "signature":  "void ConfigureLogoCFD(PictureBox mPictureBox)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "CreditCardManager",
+                         "file":  "2.0.x\\Managers\\CreditCardManager.cs",
+                         "methodCount":  1,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  12,
+                                             "name":  "IsCardNumberValid",
+                                             "returns":  "bool",
+                                             "signature":  "bool IsCardNumberValid(string pCardNumber)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "CardTransactionManager",
+                         "file":  "2.0.x\\Managers\\CardTransactionManager.cs",
+                         "methodCount":  1,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  20,
+                                             "name":  "UpdateNumber",
+                                             "returns":  "void",
+                                             "signature":  "void UpdateNumber(int pCCTxId, string pRawNumber)"
+                                         }
+                                     ]
+                     },
+                     {
+                         "manager":  "ExternalCredentialsManager",
+                         "file":  "2.0.x\\Managers\\ExternalCredentialsManager.cs",
+                         "methodCount":  1,
+                         "calcCount":  0,
+                         "methods":  [
+                                         {
+                                             "type":  "method",
+                                             "line":  19,
+                                             "name":  "GetAmazonS3Client",
+                                             "returns":  "AmazonS3Client",
+                                             "signature":  "AmazonS3Client GetAmazonS3Client(AmazonS3BucketAccount pAccount)"
+                                         }
+                                     ]
+                     }
+                 ]
+}

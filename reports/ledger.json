@@ -1,0 +1,126 @@
+﻿{
+    "grandTotal":  2600,
+    "grandCovered":  95,
+    "grandUncovered":  2505,
+    "grandPct":  3.7,
+    "complete":  false,
+    "areas":  [
+                  {
+                      "area":  "Transactions",
+                      "layer":  "e2e",
+                      "total":  738,
+                      "covered":  0,
+                      "uncovered":  738,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Items",
+                      "layer":  "e2e",
+                      "total":  346,
+                      "covered":  0,
+                      "uncovered":  346,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Settings",
+                      "layer":  "e2e",
+                      "total":  343,
+                      "covered":  0,
+                      "uncovered":  343,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Reports",
+                      "layer":  "e2e",
+                      "total":  249,
+                      "covered":  0,
+                      "uncovered":  249,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Integrations",
+                      "layer":  "e2e",
+                      "total":  235,
+                      "covered":  0,
+                      "uncovered":  235,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Main",
+                      "layer":  "e2e",
+                      "total":  104,
+                      "covered":  0,
+                      "uncovered":  104,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Customers",
+                      "layer":  "e2e",
+                      "total":  95,
+                      "covered":  0,
+                      "uncovered":  95,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Managers",
+                      "layer":  "unit",
+                      "total":  93,
+                      "covered":  0,
+                      "uncovered":  93,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "SysForms",
+                      "layer":  "e2e",
+                      "total":  91,
+                      "covered":  0,
+                      "uncovered":  91,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Staff",
+                      "layer":  "e2e",
+                      "total":  88,
+                      "covered":  0,
+                      "uncovered":  88,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Purchasing",
+                      "layer":  "e2e",
+                      "total":  111,
+                      "covered":  44,
+                      "uncovered":  67,
+                      "pct":  39.6,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Utility",
+                      "layer":  "e2e",
+                      "total":  56,
+                      "covered":  0,
+                      "uncovered":  56,
+                      "pct":  0,
+                      "catalog":  false
+                  },
+                  {
+                      "area":  "Calendar",
+                      "layer":  "e2e",
+                      "total":  51,
+                      "covered":  51,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  }
+              ]
+}

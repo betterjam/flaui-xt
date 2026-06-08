@@ -1,0 +1,827 @@
+﻿{
+    "feature":  "Purchasing",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Purchasing"
+                    ],
+    "formCount":  11,
+    "anchorTotal":  111,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  8,
+                   "action":  58,
+                   "message":  44,
+                   "toggle":  1
+               },
+    "forms":  [
+                  {
+                      "form":  "frmHistory",
+                      "file":  "2.0.x\\Purchasing\\frmHistory.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  20,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  25,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Open"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  31,
+                                          "handler":  "dgvHistoryCellDoubleClick",
+                                          "control":  "dgvHistoryCell",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Purchasing\\frmMenu.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  16,
+                                          "control":  "btnPOList",
+                                          "right":  "Purchasing.PO",
+                                          "label":  "PO List"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  20,
+                                          "control":  "btnVendorsList",
+                                          "right":  "Purchasing.Vendors",
+                                          "label":  "Vendor List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  23,
+                                          "handler":  "btnCreatePOClick",
+                                          "control":  "btnCreatePO",
+                                          "label":  "PO\\r\\nDetails"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  28,
+                                          "handler":  "btnPOListClick",
+                                          "control":  "btnPOList",
+                                          "label":  "PO List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  33,
+                                          "handler":  "btnReactivateVendorClick",
+                                          "control":  "btnReactivateVendor",
+                                          "label":  "Reactivate"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  40,
+                                          "handler":  "btnReceivingClick",
+                                          "control":  "btnReceiving",
+                                          "label":  "Receive"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  47,
+                                          "handler":  "btnVendorListClick",
+                                          "control":  "btnVendorList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  52,
+                                          "handler":  "btnVendorNewClick",
+                                          "control":  "btnVendorNew",
+                                          "label":  "Vendor\\r\\nDetails"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPO",
+                      "file":  "2.0.x\\Purchasing\\frmPO.cs",
+                      "anchorCount":  45,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  103,
+                                          "kind":  "Warning",
+                                          "text":  "Purchase order not found."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  175,
+                                          "kind":  "Warning",
+                                          "text":  "Purchase order has been voided, and cannot be modified."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  189,
+                                          "kind":  "Warning",
+                                          "text":  "Items {pDesc} was removed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  353,
+                                          "kind":  "Warning",
+                                          "text":  "Items {pDesc} was removed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  363,
+                                          "kind":  "Warning",
+                                          "text":  "Category: {mSqlReader["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  371,
+                                          "kind":  "Warning",
+                                          "text":  "Subcategory: {mSqlReader["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  378,
+                                          "kind":  "Warning",
+                                          "text":  "Item marked as discontinued."
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  487,
+                                          "control":  "btnVoid",
+                                          "right":  "Purchasing.PO",
+                                          "label":  "Void"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  532,
+                                          "handler":  "btnAutoClick",
+                                          "control":  "btnAuto",
+                                          "label":  "Reorder\\r\\nLow Level"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  566,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing below reorder level."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  589,
+                                          "handler":  "btnCompleteClick",
+                                          "control":  "btnComplete",
+                                          "label":  "Receive\\r\\nComplete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  602,
+                                          "kind":  "Success",
+                                          "text":  "Receive completed successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  606,
+                                          "handler":  "btnFindItemsClick",
+                                          "control":  "btnFindItems",
+                                          "label":  "Find\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  614,
+                                          "handler":  "btnFindVendorAltClick",
+                                          "control":  "btnFindVendorAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  620,
+                                          "handler":  "btnFindVendorClick",
+                                          "control":  "btnFindVendor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  639,
+                                          "handler":  "btnItemClick",
+                                          "control":  "btnItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  715,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  729,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing changed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  739,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing to save."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  746,
+                                          "kind":  "Warning",
+                                          "text":  "Must enter item description"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  771,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid number format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  780,
+                                          "kind":  "Warning",
+                                          "text":  "Reference cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  786,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid recieved date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  974,
+                                          "kind":  "Warning",
+                                          "text":  "One or more items have invalid UPC\u0027s and no labels could be printed for them."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  981,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  998,
+                                          "handler":  "btnPaidClick",
+                                          "control":  "btnPaid",
+                                          "label":  "Paid"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1013,
+                                          "handler":  "btnPOClick",
+                                          "control":  "btnPO",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1035,
+                                          "handler":  "btnPOListClick",
+                                          "control":  "btnPOList",
+                                          "label":  "PO List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1040,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1067,
+                                          "kind":  "Warning",
+                                          "text":  "A valid email address is required for your profile or a valid contact name and email address be defined in Settings, Business Details in order to send POs using POSCloud."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1173,
+                                          "kind":  "Success",
+                                          "text":  "Emailed successfully."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1176,
+                                          "kind":  "Success",
+                                          "text":  "Emailed successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1200,
+                                          "handler":  "btnRemoveClick",
+                                          "control":  "btnRemove",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1229,
+                                          "handler":  "btnSaveClick",
+                                          "control":  "btnSave",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1272,
+                                          "kind":  "Success",
+                                          "text":  "Updated Item successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1276,
+                                          "handler":  "btnVendorDetailsClick",
+                                          "control":  "btnVendorDetails",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1283,
+                                          "handler":  "btnVoidClick",
+                                          "control":  "btnVoid",
+                                          "label":  "Void"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1308,
+                                          "kind":  "Success",
+                                          "text":  "Voided successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1312,
+                                          "handler":  "dgvPOCellDoubleClick",
+                                          "control":  "dgvPOCell",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1335,
+                                          "kind":  "Warning",
+                                          "text":  "Minimum order quantity required is: "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1413,
+                                          "kind":  "Warning",
+                                          "text":  "Description cannot be blank"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1430,
+                                          "kind":  "Warning",
+                                          "text":  "Minimum Order quantity should be equal to or\\nless than the Reorder quantity."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1452,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid PO ID."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1470,
+                                          "kind":  "Warning",
+                                          "text":  "Price is less than defined "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1538,
+                                          "kind":  "Warning",
+                                          "text":  "Reorder quantity should be equal to or\\ngreater than the minimum order quantity."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPOList",
+                      "file":  "2.0.x\\Purchasing\\frmPOList.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  43,
+                                          "control":  "_AccessObj",
+                                          "right":  "Purchasing.PO",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  44,
+                                          "control":  "btnReport",
+                                          "right":  "Report.Purchasing",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  108,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nSearch Results"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  127,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  141,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  146,
+                                          "handler":  "btnSearchClick",
+                                          "control":  "btnSearch",
+                                          "label":  "Advanced\\r\\nPO Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  160,
+                                          "handler":  "dgvListCellClick",
+                                          "control":  "dgvList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  175,
+                                          "handler":  "dgvListColumnHeaderMouseClick",
+                                          "control":  "dgvListColumnHeaderMouse",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPOListSearch",
+                      "file":  "2.0.x\\Purchasing\\frmPOListSearch.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  25,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  30,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Search"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmQtyCost",
+                      "file":  "2.0.x\\Purchasing\\frmQtyCost.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  55,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  74,
+                                          "handler":  "btnCloseClick",
+                                          "control":  "btnClose",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  79,
+                                          "handler":  "btnDecimalClick",
+                                          "control":  "btnDecimal",
+                                          "label":  "."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  88,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  93,
+                                          "kind":  "Warning",
+                                          "text":  "Minimum order quantity required is: "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  109,
+                                          "kind":  "Warning",
+                                          "text":  "Warning! You have exceeded the maximum amount allowed of 99,999,999.99"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  116,
+                                          "handler":  "btnQtyUpdateClick",
+                                          "control":  "btnQtyUpdate",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmReceiving",
+                      "file":  "2.0.x\\Purchasing\\frmReceiving.cs",
+                      "anchorCount":  11,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  99,
+                                          "kind":  "Warning",
+                                          "text":  "Item marked as discontinued."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  134,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  144,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  153,
+                                          "handler":  "btnDelLineClick",
+                                          "control":  "btnDelLine",
+                                          "label":  "Delete\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  170,
+                                          "handler":  "btnFinishClick",
+                                          "control":  "btnFinish",
+                                          "label":  "Finish"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  252,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  262,
+                                          "kind":  "Warning",
+                                          "text":  "One or more items have invalid UPC\u0027s and no labels could be printed for them."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  270,
+                                          "handler":  "btnItemClick",
+                                          "control":  "btnItem",
+                                          "label":  "Add\\r\\nItem"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  279,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  300,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  311,
+                                          "kind":  "Warning",
+                                          "text":  "Warning! You have exceeded the maximum amount allowed of 99,999,999.99"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmReceivingProc",
+                      "file":  "2.0.x\\Purchasing\\frmReceivingProc.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  19,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  24,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  28,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid received date."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmVendors",
+                      "file":  "2.0.x\\Purchasing\\frmVendors.cs",
+                      "anchorCount":  14,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  151,
+                                          "control":  "btnDelete",
+                                          "right":  "Purchasing.Vendors",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  183,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  226,
+                                          "kind":  "Success",
+                                          "text":  "Deleted successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  230,
+                                          "handler":  "btnHistoryClick",
+                                          "control":  "btnHistory",
+                                          "label":  "History"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  255,
+                                          "kind":  "Warning",
+                                          "text":  "No purchase order history to display."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  258,
+                                          "handler":  "btnVendorSearchClick",
+                                          "control":  "btnVendorSearch",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  263,
+                                          "handler":  "chkDynamicCheckedChanged",
+                                          "control":  "chkDynamic",
+                                          "label":  "Auto Dynamic Reordering"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  281,
+                                          "handler":  "ucNavOnSave",
+                                          "control":  "ucNav",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  285,
+                                          "kind":  "Warning",
+                                          "text":  "Vendor name cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  305,
+                                          "kind":  "Warning",
+                                          "text":  "Phone number or email is required."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  311,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid email address."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  319,
+                                          "kind":  "Warning",
+                                          "text":  "Must select an LCB vendor type"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  325,
+                                          "kind":  "Warning",
+                                          "text":  "Must provide FEIN when LCB type\\nof Non PA manufacturer is selected"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  384,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmVendorsList",
+                      "file":  "2.0.x\\Purchasing\\frmVendorsList.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  43,
+                                          "control":  "_AccessObj",
+                                          "right":  "Purchasing.Vendors",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  44,
+                                          "control":  "btnReport",
+                                          "right":  "Report.Purchasing",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  108,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nSearch Results"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  127,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  141,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  146,
+                                          "handler":  "btnSearchClick",
+                                          "control":  "btnSearch",
+                                          "label":  "Advanced\\r\\nVendor Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  160,
+                                          "handler":  "dgvListCellClick",
+                                          "control":  "dgvList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  175,
+                                          "handler":  "dgvListColumnHeaderMouseClick",
+                                          "control":  "dgvListColumnHeaderMouse",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmVendorsListSearch",
+                      "file":  "2.0.x\\Purchasing\\frmVendorsListSearch.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  23,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  28,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Search"
+                                      }
+                                  ]
+                  }
+              ]
+}

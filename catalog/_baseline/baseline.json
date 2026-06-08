@@ -1,0 +1,86 @@
+﻿{
+    "appRoot":  "C:\\Dev\\Exatouch\\2.0.x",
+    "ranorexRoot":  "C:\\Dev\\Exatouch\\MyFirstExatouchTest\\MyFirstExatouchTest",
+    "appFeatureFolders":  [
+                              "Calendar",
+                              "Customers",
+                              "Data",
+                              "Integrations",
+                              "Items",
+                              "Main",
+                              "Managers",
+                              "Purchasing",
+                              "Reports",
+                              "Services",
+                              "Settings",
+                              "Staff",
+                              "SysForms",
+                              "Transactions",
+                              "Utility"
+                          ],
+    "ranorexFeatures":  [
+                            "Customers",
+                            "Delivery Manager",
+                            "Delivery Service",
+                            "Home",
+                            "Items",
+                            "Large Test Cases",
+                            "Lock Screen Actions",
+                            "Register",
+                            "Security Settings",
+                            "Settings",
+                            "SetupTearDownActions"
+                        ],
+    "totals":  {
+                   "recordings":  135,
+                   "suites":  7,
+                   "features":  15
+               },
+    "recordingsByFeature":  [
+                                {
+                                    "feature":  "Register",
+                                    "recordings":  61
+                                },
+                                {
+                                    "feature":  "Items",
+                                    "recordings":  18
+                                },
+                                {
+                                    "feature":  "Settings",
+                                    "recordings":  18
+                                },
+                                {
+                                    "feature":  "Customers",
+                                    "recordings":  11
+                                },
+                                {
+                                    "feature":  "Large Test Cases",
+                                    "recordings":  6
+                                },
+                                {
+                                    "feature":  "Home",
+                                    "recordings":  6
+                                },
+                                {
+                                    "feature":  "Delivery Manager",
+                                    "recordings":  5
+                                },
+                                {
+                                    "feature":  "Lock Screen Actions",
+                                    "recordings":  5
+                                },
+                                {
+                                    "feature":  "SetupTearDownActions",
+                                    "recordings":  3
+                                },
+                                {
+                                    "feature":  "Delivery Service",
+                                    "recordings":  1
+                                },
+                                {
+                                    "feature":  "Security Settings",
+                                    "recordings":  1
+                                }
+                            ],
+    "note":  "Mapping app folder -\u003e ranorex feature is fuzzy by design; the discovery agent confirms it semantically."
+}

@@ -1,0 +1,1117 @@
+﻿[
+    {
+        "name":  "GoToCustomerDetails",
+        "feature":  "Customers",
+        "path":  "Customers\\GoToCustomerDetails.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToCustomers",
+        "feature":  "Customers",
+        "path":  "Customers\\GoToCustomers.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "InsertAddress",
+        "feature":  "Customers",
+        "path":  "Customers\\InsertAddress.rxrec",
+        "variables":  [
+                          "txtAddress"
+                      ]
+    },
+    {
+        "name":  "InsertCity",
+        "feature":  "Customers",
+        "path":  "Customers\\InsertCity.rxrec",
+        "variables":  [
+                          "txtCity"
+                      ]
+    },
+    {
+        "name":  "InsertEmail",
+        "feature":  "Customers",
+        "path":  "Customers\\InsertEmail.rxrec",
+        "variables":  [
+                          "txtEmailAddress"
+                      ]
+    },
+    {
+        "name":  "InsertFirstName",
+        "feature":  "Customers",
+        "path":  "Customers\\InsertFirstName.rxrec",
+        "variables":  [
+                          "txtFirstName"
+                      ]
+    },
+    {
+        "name":  "InsertLastName",
+        "feature":  "Customers",
+        "path":  "Customers\\InsertLastName.rxrec",
+        "variables":  [
+                          "txtLastName"
+                      ]
+    },
+    {
+        "name":  "InsertPhone",
+        "feature":  "Customers",
+        "path":  "Customers\\InsertPhone.rxrec",
+        "variables":  [
+                          "txtPhoneNumber"
+                      ]
+    },
+    {
+        "name":  "InsertZipCode",
+        "feature":  "Customers",
+        "path":  "Customers\\InsertZipCode.rxrec",
+        "variables":  [
+                          "txtZipCode"
+                      ]
+    },
+    {
+        "name":  "SaveRecord",
+        "feature":  "Customers",
+        "path":  "Customers\\SaveRecord.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SelectState",
+        "feature":  "Customers",
+        "path":  "Customers\\SelectState.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AssignDriverFromAllStaff",
+        "feature":  "Delivery Manager",
+        "path":  "Delivery Manager\\AssignDriverFromAllStaff.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ChangeStatusToReady",
+        "feature":  "Delivery Manager",
+        "path":  "Delivery Manager\\ChangeStatusToReady.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SelectDeliveryOrder",
+        "feature":  "Delivery Manager",
+        "path":  "Delivery Manager\\SelectDeliveryOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifyDeliveryStatus",
+        "feature":  "Delivery Manager",
+        "path":  "Delivery Manager\\VerifyDeliveryStatus.rxrec",
+        "variables":  [
+                          "varDeliveryStatus"
+                      ]
+    },
+    {
+        "name":  "VerifyDriversAvailable",
+        "feature":  "Delivery Manager",
+        "path":  "Delivery Manager\\VerifyDriversAvailable.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "DeliveryServiceWithoutCustomer",
+        "feature":  "Delivery Service",
+        "path":  "Delivery Service\\DeliveryServiceWithoutCustomer.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToItems",
+        "feature":  "Home",
+        "path":  "Home\\GoToItems.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToModule",
+        "feature":  "Home",
+        "path":  "Home\\GoToModule.rxrec",
+        "variables":  [
+                          "lblSectionName"
+                      ]
+    },
+    {
+        "name":  "GoToRegister",
+        "feature":  "Home",
+        "path":  "Home\\GoToRegister.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToSettings",
+        "feature":  "Home",
+        "path":  "Home\\GoToSettings.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "MainMenuBackIcon",
+        "feature":  "Home",
+        "path":  "Home\\MainMenuBackIcon.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "MainMenuHomeIcon",
+        "feature":  "Home",
+        "path":  "Home\\MainMenuHomeIcon.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddItemToFreshSheet",
+        "feature":  "Items",
+        "path":  "Items\\Fresh Sheet\\AddItemToFreshSheet.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddServiceToFreshSheet",
+        "feature":  "Items",
+        "path":  "Items\\Fresh Sheet\\AddServiceToFreshSheet.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "DeleteAllFromFreshSheet",
+        "feature":  "Items",
+        "path":  "Items\\Fresh Sheet\\DeleteAllFromFreshSheet.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifyItemWithZeroQty",
+        "feature":  "Items",
+        "path":  "Items\\Fresh Sheet\\VerifyItemWithZeroQty.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddCategorySubCategory",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\AddCategorySubCategory.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddCost",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\AddCost.rxrec",
+        "variables":  [
+                          "txtCost"
+                      ]
+    },
+    {
+        "name":  "AddDetailedDescriptionAndVerifyDescriptions",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\AddDetailedDescriptionAndVerifyDescriptions.rxrec",
+        "variables":  [
+                          "txtDescription",
+                          "txtItemName"
+                      ]
+    },
+    {
+        "name":  "AddNew",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\AddNew.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddNewItem",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\AddNewItem.rxrec",
+        "variables":  [
+                          "txtPriceOfItem",
+                          "txtItemName",
+                          "txtDescription",
+                          "txtCost"
+                      ]
+    },
+    {
+        "name":  "AddPrice",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\AddPrice.rxrec",
+        "variables":  [
+                          "txtPriceOfItem"
+                      ]
+    },
+    {
+        "name":  "AddSkuAndDescription",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\AddSkuAndDescription.rxrec",
+        "variables":  [
+                          "txtItemName"
+                      ]
+    },
+    {
+        "name":  "InventoryQtyToAdd",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\InventoryQtyToAdd.rxrec",
+        "variables":  [
+                          "txtQtyToAdd"
+                      ]
+    },
+    {
+        "name":  "SaveItem",
+        "feature":  "Items",
+        "path":  "Items\\Item Details\\SaveItem.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SearchForItem",
+        "feature":  "Items",
+        "path":  "Items\\Item List\\SearchForItem.rxrec",
+        "variables":  [
+                          "txtSearchItem"
+                      ]
+    },
+    {
+        "name":  "VerifyItemExistsInList",
+        "feature":  "Items",
+        "path":  "Items\\Item List\\VerifyItemExistsInList.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifySearchedItemInItemList",
+        "feature":  "Items",
+        "path":  "Items\\Item List\\VerifySearchedItemInItemList.rxrec",
+        "variables":  [
+                          "txtSearchedItem"
+                      ]
+    },
+    {
+        "name":  "GoToItemDetails",
+        "feature":  "Items",
+        "path":  "Items\\Navigation\\GoToItemDetails.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToItemsList",
+        "feature":  "Items",
+        "path":  "Items\\Navigation\\GoToItemsList.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddAgeRestrictedItemToOrder",
+        "feature":  "Large Test Cases",
+        "path":  "Large Test Cases\\AddAgeRestrictedItemToOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "JoinInDeliveryOrders",
+        "feature":  "Large Test Cases",
+        "path":  "Large Test Cases\\JoinInDeliveryOrders.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "RegisterCustPayoutCashTend20715",
+        "feature":  "Large Test Cases",
+        "path":  "Large Test Cases\\RegisterCustPayoutCashTend20715.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "RegisterPayoutIncorrectAmt20587",
+        "feature":  "Large Test Cases",
+        "path":  "Large Test Cases\\RegisterPayoutIncorrectAmt20587.rxrec",
+        "variables":  [
+                          "NewVariable"
+                      ]
+    },
+    {
+        "name":  "RepeatOrderCustomerHistory21207",
+        "feature":  "Large Test Cases",
+        "path":  "Large Test Cases\\RepeatOrderCustomerHistory21207.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "TestingSelectingDropDown",
+        "feature":  "Large Test Cases",
+        "path":  "Large Test Cases\\TestingSelectingDropDown.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToLockScreen",
+        "feature":  "Lock Screen Actions",
+        "path":  "Lock Screen Actions\\GoToLockScreen.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "LoginAsAdminUser",
+        "feature":  "Lock Screen Actions",
+        "path":  "Lock Screen Actions\\LoginAsAdminUser.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "LoginAsDeliveryDriver",
+        "feature":  "Lock Screen Actions",
+        "path":  "Lock Screen Actions\\LoginAsDeliveryDriver.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "LoginAsRegularUser",
+        "feature":  "Lock Screen Actions",
+        "path":  "Lock Screen Actions\\LoginAsRegularUser.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifyFreshSheetEntry",
+        "feature":  "Lock Screen Actions",
+        "path":  "Lock Screen Actions\\VerifyFreshSheetEntry.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CalculateGrandTotals",
+        "feature":  "Register",
+        "path":  "Register\\CalculateGrandTotals.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CalculatePayTotals",
+        "feature":  "Register",
+        "path":  "Register\\CalculatePayTotals.rxrec",
+        "variables":  [
+                          "varPayTotSubtotal",
+                          "varPayTotDiscount",
+                          "varPayTotTax",
+                          "varPayTotTip",
+                          "varPayTotOther",
+                          "varPayTotTotal"
+                      ]
+    },
+    {
+        "name":  "CalculateRegisterTotals",
+        "feature":  "Register",
+        "path":  "Register\\CalculateRegisterTotals.rxrec",
+        "variables":  [
+                          "varTotSubtotal",
+                          "varTotItemCount",
+                          "varTotDiscount",
+                          "varTotTax",
+                          "varTotTip",
+                          "varTotOther",
+                          "varTotTotal"
+                      ]
+    },
+    {
+        "name":  "OpenItemNonTaxable",
+        "feature":  "Register",
+        "path":  "Register\\OpenItemNonTaxable.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifyTapeTotalsInRegisterTab",
+        "feature":  "Register",
+        "path":  "Register\\VerifyTapeTotalsInRegisterTab.rxrec",
+        "variables":  [
+                          "varItemCountTxt",
+                          "varSubtotal",
+                          "varDiscount",
+                          "varTax",
+                          "varOther",
+                          "varTotal",
+                          "varPaid",
+                          "varBalanceDue"
+                      ]
+    },
+    {
+        "name":  "AssignCustomerToOrder",
+        "feature":  "Register",
+        "path":  "Register\\Details Tab\\AssignCustomerToOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToLocalMenuButtonOption",
+        "feature":  "Register",
+        "path":  "Register\\Local Menu Actions\\GoToLocalMenuButtonOption.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "RefundVoidRecreate",
+        "feature":  "Register",
+        "path":  "Register\\Local Menu Actions\\RefundVoidRecreate.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SelectLocalMenuButton",
+        "feature":  "Register",
+        "path":  "Register\\Local Menu Actions\\SelectLocalMenuButton.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ApplyOverallDiscount",
+        "feature":  "Register",
+        "path":  "Register\\Pay Tab\\ApplyOverallDiscount.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PayWithCashPayTab",
+        "feature":  "Register",
+        "path":  "Register\\Pay Tab\\PayWithCashPayTab.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PayWithCreditPayTab",
+        "feature":  "Register",
+        "path":  "Register\\Pay Tab\\PayWithCreditPayTab.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PeformPayout",
+        "feature":  "Register",
+        "path":  "Register\\Pay Tab\\PeformPayout.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "RemoveDiscountViaPaymentGrid",
+        "feature":  "Register",
+        "path":  "Register\\Pay Tab\\RemoveDiscountViaPaymentGrid.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ResetPaymentGrid",
+        "feature":  "Register",
+        "path":  "Register\\Pay Tab\\ResetPaymentGrid.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PerformRefundCancelEGift",
+        "feature":  "Register",
+        "path":  "Register\\Refund\\PerformRefundCancelEGift.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "RefundFindOrder",
+        "feature":  "Register",
+        "path":  "Register\\Refund\\RefundFindOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddItemToOrder",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\AddItemToOrder.rxrec",
+        "variables":  [
+                          "varItemN"
+                      ]
+    },
+    {
+        "name":  "ApplyDiscountRegisterTab",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\ApplyDiscountRegisterTab.rxrec",
+        "variables":  [
+                          "StaffMember"
+                      ]
+    },
+    {
+        "name":  "ApplyGroupTip",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\ApplyGroupTip.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ApplyTaxExemptMultipleItems",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\ApplyTaxExemptMultipleItems.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ApplyTaxExemptSingleItem",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\ApplyTaxExemptSingleItem.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ChangeQtyOnComposer",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\ChangeQtyOnComposer.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ChooseCustomerForDeliveryOrPickup",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\ChooseCustomerForDeliveryOrPickup.rxrec",
+        "variables":  [
+                          "varCustomerPhone",
+                          "varCustomer"
+                      ]
+    },
+    {
+        "name":  "ChooseOrderType",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\ChooseOrderType.rxrec",
+        "variables":  [
+                          "varOrderType"
+                      ]
+    },
+    {
+        "name":  "CourseFire",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CourseFire.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateMiscSale",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateMiscSale.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GetOrderButton",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\GetOrderButton.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToPayTab",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\GoToPayTab.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "OpenItemTaxable",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\OpenItemTaxable.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PayWithCash",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\PayWithCash.rxrec",
+        "variables":  [
+                          "CashCollected"
+                      ]
+    },
+    {
+        "name":  "PayWithCredit",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\PayWithCredit.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PayWithPaymentTypeOnPayTab",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\PayWithPaymentTypeOnPayTab.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PriceOverrideManagerPinRequired",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\PriceOverrideManagerPinRequired.rxrec",
+        "variables":  [
+                          "varItemPrice"
+                      ]
+    },
+    {
+        "name":  "RemoveLineFunction",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\RemoveLineFunction.rxrec",
+        "variables":  [
+                          "varCount",
+                          "varItemRemoved",
+                          "varItemRemovedTwo"
+                      ]
+    },
+    {
+        "name":  "RepeatLineFunction",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\RepeatLineFunction.rxrec",
+        "variables":  [
+                          "varTotalItemCount"
+                      ]
+    },
+    {
+        "name":  "SaveOptionalMod",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\SaveOptionalMod.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SearchCustomerByPhone",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\SearchCustomerByPhone.rxrec",
+        "variables":  [
+                          "varPhoneNumber",
+                          "varCustomerFullName"
+                      ]
+    },
+    {
+        "name":  "SearchForCustomerByName",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\SearchForCustomerByName.rxrec",
+        "variables":  [
+                          "varCustomerName",
+                          "varFirstName",
+                          "varLastName"
+                      ]
+    },
+    {
+        "name":  "SearchForCustomerForDeliveryOrPickup",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\SearchForCustomerForDeliveryOrPickup.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SendOrder",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\SendOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SplitByItem",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\SplitByItem.rxrec",
+        "variables":  [
+                          "varOrdersCreated",
+                          "varSubtotal1",
+                          "varSubtotal2",
+                          "varSubtotal3"
+                      ]
+    },
+    {
+        "name":  "Testing",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\Testing.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifyNumberOfRowsInGrid",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\VerifyNumberOfRowsInGrid.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifyRegisterOtherAmt",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\VerifyRegisterOtherAmt.rxrec",
+        "variables":  [
+                          "varOtherAmt"
+                      ]
+    },
+    {
+        "name":  "VerifyRegisterTotals",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\VerifyRegisterTotals.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateDeliveryOrder",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateDeliveryOrder.rxrec",
+        "variables":  [
+                          "EnterPhoneNumber",
+                          "OrderLabel"
+                      ]
+    },
+    {
+        "name":  "CreateLabelForOrder",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateLabelForOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateOrder",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateOrderItem86",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderItem86.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateOrderItems",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderItems.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateOrderWithCustomLabel",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderWithCustomLabel.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateOrderWithModPrices",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderWithModPrices.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateOrderWithOpenModifier",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderWithOpenModifier.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CreateOrderWithOptionalMods",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderWithOptionalMods.rxrec",
+        "variables":  [
+                          "varModName1",
+                          "varModName2",
+                          "varModName3",
+                          "varItemName"
+                      ]
+    },
+    {
+        "name":  "CreateOrderWithRequiredMods",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderWithRequiredMods.rxrec",
+        "variables":  [
+                          "varRequiredMod"
+                      ]
+    },
+    {
+        "name":  "CreateOrderWithSpecialInstructions",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateOrderWithSpecialInstructions.rxrec",
+        "variables":  [
+                          "varSpecialInstruction"
+                      ]
+    },
+    {
+        "name":  "CreateSimpleOrder",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\CreateOrders\\CreateSimpleOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "JoinInOrder",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\GetOrder\\JoinInOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SelectOrderToOpen",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\GetOrder\\SelectOrderToOpen.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "VerifyOrderStatus",
+        "feature":  "Register",
+        "path":  "Register\\Register Tab\\GetOrder\\VerifyOrderStatus.rxrec",
+        "variables":  [
+                          "varOrderTypeSymbol"
+                      ]
+    },
+    {
+        "name":  "EnterManagerPin",
+        "feature":  "Security Settings",
+        "path":  "Security Settings\\EnterManagerPin.rxrec",
+        "variables":  [
+                          "StaffMember"
+                      ]
+    },
+    {
+        "name":  "PrintCustomerReceiptOption",
+        "feature":  "Settings",
+        "path":  "Settings\\Print Settings\\PrintCustomerReceiptOption.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PrintNoSignatureRequiredReceiptsOption",
+        "feature":  "Settings",
+        "path":  "Settings\\Print Settings\\PrintNoSignatureRequiredReceiptsOption.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "SignatureCopyOnly",
+        "feature":  "Settings",
+        "path":  "Settings\\Print Settings\\SignatureCopyOnly.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AddressVerification",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\AddressVerification.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AllowCashBackOnCheckPayment",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\AllowCashBackOnCheckPayment.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AllowCustomerCheck",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\AllowCustomerCheck.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AllowTipsOption",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\AllowTipsOption.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ApplyTaxOnPromoAndDiscountOption",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\ApplyTaxOnPromoAndDiscountOption.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AutoGroupItems",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\AutoGroupItems.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AutoRefreshPromoDiscount",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\AutoRefreshPromoDiscount.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "AutoSaveOpenOrder",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\AutoSaveOpenOrder.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ForcePromoQty",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\ForcePromoQty.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "GoToDeliveryPreferences",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\GoToDeliveryPreferences.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "PayOutNonCashTips",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\PayOutNonCashTips.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "QuickPayPrompt",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\QuickPayPrompt.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "QuickServeQuantity",
+        "feature":  "Settings",
+        "path":  "Settings\\Register Preferences\\QuickServeQuantity.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ClearLog",
+        "feature":  "Settings",
+        "path":  "Settings\\Reserved\\ClearLog.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "ResetTransactions",
+        "feature":  "Settings",
+        "path":  "Settings\\Reserved\\ResetTransactions.rxrec",
+        "variables":  [
+
+                      ]
+    },
+    {
+        "name":  "CloseAUT",
+        "feature":  "SetupTearDownActions",
+        "path":  "SetupTearDownActions\\CloseAUT.rxrec",
+        "variables":  [
+                          "CloseAutProcessIDVar"
+                      ]
+    },
+    {
+        "name":  "StartAUT",
+        "feature":  "SetupTearDownActions",
+        "path":  "SetupTearDownActions\\StartAUT.rxrec",
+        "variables":  [
+                          "StartAutProcessIDVar"
+                      ]
+    },
+    {
+        "name":  "TestingDatabaseRestore",
+        "feature":  "SetupTearDownActions",
+        "path":  "SetupTearDownActions\\RestoreDatabase\\TestingDatabaseRestore.rxrec",
+        "variables":  [
+
+                      ]
+    }
+]
