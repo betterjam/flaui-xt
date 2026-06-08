@@ -1,0 +1,567 @@
+  - id: ITEM-430
+    title: Restrict the Reclassify action by the Settings Preference permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as a user whose Settings > Preference permission is being evaluated
+      - Service editor open
+    steps:
+      - Open Items > Services
+      - Observe the Reclassify (btnRClass) control state for the current permission
+      - Attempt to use the Reclassify action
+    expected:
+      - The Reclassify action is allowed or blocked according to the Settings.Preference permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reclassify button
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 198, text: "Settings.Preference" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-431
+    title: Restrict the Delete action by the Items Services permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as a user whose Items > Services permission is being evaluated
+      - Service editor open
+    steps:
+      - Open Items > Services
+      - Observe the Delete (btnDelete) control state for the current permission
+      - Attempt to use the Delete action
+    expected:
+      - The Delete action is allowed or blocked according to the Items.Services permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 199, text: "Items.Services" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-432
+    title: Warn when adding a staff member that is already added to the service
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open with a staff member already assigned
+    steps:
+      - Open Items > Services
+      - Select a staff member that is already added to the service
+      - Click Add to add the staff member again
+    expected:
+      - Warning dialog displays "Staff already added."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Staff selector
+      - Add Staff button
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 299, text: "Staff already added." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-433
+    title: Confirm success message when a staff member is added to the service
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open with an unassigned staff member available
+    steps:
+      - Open Items > Services
+      - Select a staff member not yet assigned to the service
+      - Click Add to add the staff member
+    expected:
+      - Success dialog displays "Staff {mStaff} added successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Staff selector
+      - Add Staff button
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 305, text: "added successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-434
+    title: Add a staff member to the service via the Add button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open with a staff member selected to add
+    steps:
+      - Open Items > Services
+      - Select a staff member
+      - Click Add
+    expected:
+      - The selected staff member is added to the service staff list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Staff button
+      - Staff grid
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 308, text: "btnAddStaffClick Add" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-435
+    title: Delete a service via the Delete button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - A deletable service exists and is selected
+    steps:
+      - Open Items > Services
+      - Select an existing service
+      - Click Delete
+    expected:
+      - The selected service is deleted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button
+      - Services grid
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 320, text: "btnDeleteClick Delete" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-436
+    title: Block service deletion when open appointments use the service
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - A service that has current open appointments is selected
+    steps:
+      - Open Items > Services
+      - Select a service that has current open appointments
+      - Click Delete
+    expected:
+      - Warning dialog displays "Service cannot be deleted because there are current open appointments with this service"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button
+      - Services grid
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 332, text: "Service cannot be deleted because there are current open appointments with this service" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-437
+    title: Confirm success message after a service is deleted
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - A deletable service with no open appointments is selected
+    steps:
+      - Open Items > Services
+      - Select a deletable service
+      - Click Delete and confirm
+    expected:
+      - Success dialog displays "Deleted successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button
+      - Delete success dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 350, text: "Deleted successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-438
+    title: Remove a staff member from the service via the Delete Staff button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open with an assigned staff member selected
+    steps:
+      - Open Items > Services
+      - Select an assigned staff member in the staff list
+      - Click Delete
+    expected:
+      - The selected staff member is removed from the service staff list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete Staff button
+      - Staff grid
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 354, text: "btnDelStaffClick Delete" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-439
+    title: Duplicate a service via the Duplicate button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - An existing service is selected to duplicate
+    steps:
+      - Open Items > Services
+      - Select an existing service
+      - Click Duplicate
+    expected:
+      - A duplicate copy of the selected service is created
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Duplicate button
+      - Services grid
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 363, text: "btnDuplicateClick Duplicate" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-440
+    title: Toggle the All Staff checkbox for the service
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open
+    steps:
+      - Open Items > Services
+      - Toggle the All Staff checkbox
+    expected:
+      - The service All Staff state updates to reflect the toggle
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - All Staff checkbox
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 375, text: "chkAllStaffCheckedChanged All Staff" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-441
+    title: Toggle the Exclude From Promotions checkbox for the service
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open
+    steps:
+      - Open Items > Services
+      - Toggle the Exclude From Promotions checkbox
+    expected:
+      - The service Exclude From Promotions state updates to reflect the toggle
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Exclude From Promotions checkbox
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 388, text: "chkExcludePromosCheckedChanged Exclude From Promotions" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-442
+    title: Toggle the Visible On Register checkbox for the service
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open
+    steps:
+      - Open Items > Services
+      - Toggle the Visible On Register checkbox
+    expected:
+      - The service Visible On Register state updates to reflect the toggle
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Visible On Register checkbox
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 399, text: "chkVisibleCheckedChanged Visible On Register" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-443
+    title: Select a staff row by clicking a cell in the staff grid
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - At least one staff row exists in the staff grid
+    steps:
+      - Open Items > Services
+      - Click a cell in a staff grid row
+    expected:
+      - The clicked staff row becomes the active selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Staff grid
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 404, text: "dgvStaffCellClick grid row select" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-444
+    title: Save the service via the navigation Save action
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open with valid pending edits
+    steps:
+      - Open Items > Services
+      - Make valid edits to the service
+      - Click Save in the navigation bar
+    expected:
+      - The service edits are persisted via the navigation Save action
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Navigation Save button
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 419, text: "ucNavOnSave" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-445
+    title: Reject save when the service time is invalid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open with an invalid time value entered
+    steps:
+      - Open Items > Services
+      - Enter an invalid time on the service
+      - Click Save
+    expected:
+      - Warning dialog displays "Invalid time."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Service time field
+      - Navigation Save button
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 423, text: "Invalid time." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-446
+    title: Confirm success message after saving the service successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Service editor open with valid pending edits
+    steps:
+      - Open Items > Services
+      - Make valid edits to the service
+      - Click Save
+    expected:
+      - Success dialog displays "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Navigation Save button
+      - Save success dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServices.cs, line: 565, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

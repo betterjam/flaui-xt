@@ -1,0 +1,3234 @@
+  - id: ITEM-110
+    title: Inventory Adjustment tab gated by Items.Count.ManualEntry permission
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item is open in the item editor
+    steps:
+      - Open an item in the editor and observe the Inventory Adjustment tab
+      - Confirm the Inventory Adjustment tab is enabled/visible only when the user holds the Items.Count.ManualEntry right
+    expected:
+      - Inventory Adjustment tab is accessible only for users granted Items.Count.ManualEntry; otherwise it is disabled/hidden
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Inventory Adjustment tab page (tpgInventoryAdjust) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1051, text: "Items.Count.ManualEntry (tpgInventoryAdjust)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-111
+    title: Add Category button opens category assignment
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the General tab
+    steps:
+      - Open an item in the editor
+      - Click the Add Category button
+    expected:
+      - Category/subcategory selection opens so a category can be assigned to the item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Category button (btnAddCat) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1642, text: "btnAddCatClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-112
+    title: Add Member button adds a matrix member
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A group/matrix item is open in the editor
+    steps:
+      - Open a matrix group item in the editor
+      - Click the Add Member button
+    expected:
+      - A new member row is added to the members grid for the matrix item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Member button (btnAddMember) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1698, text: "btnAddMemberClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-113
+    title: Adding an already-inserted item warns the user
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with at least one already-inserted member/link is open in the editor
+    steps:
+      - Attempt to insert an item that is already present in the list
+    expected:
+      - "Warning is shown: Selected item is already inserted."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item selection/insert controls on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1722, text: "Selected item is already inserted." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-114
+    title: Clone button duplicates the current item
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An existing item is open in the editor
+    steps:
+      - Open an item in the editor
+      - Click the Clone button
+    expected:
+      - A new item is created pre-populated as a copy of the current item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Clone button (btnClone) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1727, text: "btnCloneClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-115
+    title: Delete button removes the current item
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An existing deletable item is open in the editor
+    steps:
+      - Open an item in the editor
+      - Click the Delete button and confirm
+    expected:
+      - The item is deleted and removed from the item list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button (btnDelete) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1765, text: "btnDeleteClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-116
+    title: Successful delete confirmation message
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An existing deletable item is open in the editor
+    steps:
+      - Delete an existing item and confirm
+    expected:
+      - "Success message is shown: Deleted successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button (btnDelete) and confirmation dialog on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1828, text: "Deleted successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-117
+    title: Delete All removes all modifiers
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with multiple modifiers is open in the editor
+    steps:
+      - Open an item with modifiers in the editor
+      - Click Delete All in the modifiers section
+    expected:
+      - All modifier rows are removed from the modifiers grid
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete All button (btnDelModAll) for modifiers on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1831, text: "btnDelModAllClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-118
+    title: Delete removes the selected modifier
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with at least one modifier is open in the editor
+    steps:
+      - Select a modifier row
+      - Click Delete in the modifiers section
+    expected:
+      - The selected modifier row is removed from the modifiers grid
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete modifier button (btnDelMod) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1846, text: "btnDelModClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-119
+    title: New CRV button creates a container redemption value record
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Open an item in the editor
+      - Click the New CRV button
+    expected:
+      - The CRV (deposit/redemption value) editor opens to define a new CRV
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New CRV button (btnDRV) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1859, text: "btnDRVClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-120
+    title: Find Group (alternate) lookup for group assignment
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the alternate SKU/group area
+    steps:
+      - Click the Find Group (alternate) button
+    expected:
+      - A group search/lookup opens so a group can be selected for the alternate context
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Find Group alternate button (btnFindGroupAlt) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1866, text: "btnFindGroupAltClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-121
+    title: Find Group lookup for group assignment
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Click the Find Group button
+    expected:
+      - A group search/lookup opens so a group can be selected for the item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Find Group button (btnFindGroup) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1872, text: "btnFindGroupClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-122
+    title: Find Link (alternate) lookup for linked item
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the alternate link area
+    steps:
+      - Click the Find Link (alternate) button
+    expected:
+      - An item search/lookup opens to select a linked item for the alternate context
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Find Link alternate button (btnFindLinkAlt) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1897, text: "btnFindLinkAltClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-123
+    title: Find Link lookup for linked item
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Click the Find Link button
+    expected:
+      - An item search/lookup opens to select a linked item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Find Link button (btnFindLink) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1905, text: "btnFindLinkClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-124
+    title: Go To Group navigates to the group item
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item that belongs to a group is open in the editor
+    steps:
+      - Click the Go To Group button
+    expected:
+      - The editor navigates to and opens the associated group item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Go To Group button (btnGoGroup) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1931, text: "btnGoGroupClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-125
+    title: Go To member navigates to the selected member item
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members is open and a member row is selected
+    steps:
+      - Select a member row
+      - Click the Go To button
+    expected:
+      - The editor navigates to and opens the selected member item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Go To member button (btnGoMember) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1938, text: "btnGoMemberClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-126
+    title: Go To member with no row selected warns the user
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item is open with no member row selected
+    steps:
+      - Click the Go To button without selecting a member row
+    expected:
+      - "Warning is shown: No item row selected"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Go To member button (btnGoMember) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1942, text: "No item row selected" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-127
+    title: Go To Modifier navigates to the modifier item
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a selected modifier is open in the editor
+    steps:
+      - Select a modifier row
+      - Click Go To Modifier
+    expected:
+      - The editor navigates to and opens the selected modifier item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Go To Modifier button (btnGoTo) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1950, text: "btnGoToClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-128
+    title: Manage Group opens the group manager
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A group/matrix item is open in the editor
+    steps:
+      - Click the Manage Group button
+    expected:
+      - The group manager dialog opens for the current group
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Manage Group button (btnManage) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1955, text: "btnManageClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-129
+    title: New Member creates a fresh matrix member
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix group item is open in the editor
+    steps:
+      - Click the New Member button
+    expected:
+      - A new blank member is created and added to the group for editing
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New Member button (btnNewMember) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 1981, text: "btnNewMemberClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-130
+    title: New Order creates a purchase order for the item
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item with a vendor is open in the editor
+    steps:
+      - Click the New Order button
+    expected:
+      - A new purchase order is started for the item with its vendor
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New Order button (btnNewOrder) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2010, text: "btnNewOrderClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-131
+    title: Manual Refresh reloads the item view
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Click the Manual Refresh button
+    expected:
+      - The item data is reloaded/refreshed from the database
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Manual Refresh button (btnRefresh) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2027, text: "btnRefreshClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-132
+    title: Inventory Movement report opens for the item
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item is open in the editor
+    steps:
+      - Click the Inventory Movement button
+    expected:
+      - The inventory movement report for the item is generated/displayed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Inventory Movement button (btnReport) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2035, text: "btnReportClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-133
+    title: Required modifier (alternate) lookup
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the required modifiers area
+    steps:
+      - Click the Required (alternate) button
+    expected:
+      - An item lookup opens to add a required modifier in the alternate context
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Required modifier alternate button (btnReqAlt) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2052, text: "btnReqAltClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-134
+    title: Required modifier lookup
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the required modifiers area
+    steps:
+      - Click the Required button
+    expected:
+      - An item lookup opens to add a required modifier to the item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Required modifier button (btnReq) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2062, text: "btnReqClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-135
+    title: Item cannot be its own required modifier
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the required modifiers area
+    steps:
+      - Attempt to add the current item itself as a required modifier
+    expected:
+      - "Warning is shown: Item cannot be its own required modifier."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Required modifier add controls on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2081, text: "Item cannot be its own required modifier." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-136
+    title: Search button opens item search
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item editor is open
+    steps:
+      - Click the Search button
+    expected:
+      - An item search dialog opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Search button (btnSearch) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2096, text: "btnSearchClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-137
+    title: Set button applies the selected value
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item editor is open with a value pending selection
+    steps:
+      - Click the Set button
+    expected:
+      - The chosen value/selection is applied to the item field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Set button (btnSet) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2104, text: "btnSetClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-138
+    title: SKU1 button assigns/generates the primary SKU
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A new or existing item is open in the editor
+    steps:
+      - Click the SKU1 button
+    expected:
+      - A primary SKU is generated/assigned to the item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - SKU1 button (btnSKU1) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2114, text: "btnSKU1Click" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-139
+    title: Changing pack unit updates dependent fields
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the Pricing/pack section
+    steps:
+      - Change the selection in the Pack Unit dropdown
+    expected:
+      - Pack-unit-dependent fields recalculate/update based on the selected pack unit
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack Unit dropdown (cboPackUnit) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2121, text: "cboPackUnitSelectedIndexChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-140
+    title: Changing price quantity prompt updates behavior
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the Pricing section
+    steps:
+      - Change the Price/Qty Prompt dropdown selection
+    expected:
+      - The price/quantity prompt behavior updates per the selected option
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Price/Qty Prompt dropdown (cboPriceQtyPrompt) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2153, text: "cboPriceQtyPromptSelectedIndexChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-141
+    title: Discontinued toggle marks item discontinued
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Toggle the Discontinued checkbox
+    expected:
+      - The item discontinued state updates and dependent fields adjust accordingly
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Discontinued checkbox (chkDiscontinued) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2164, text: "chkDiscontinuedCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-142
+    title: Dynamic Reordering toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item is open in the editor
+    steps:
+      - Toggle the Dynamic Reordering checkbox
+    expected:
+      - Dynamic reordering is enabled/disabled and reorder fields adjust accordingly
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Dynamic Reordering checkbox (chkDynamic) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2169, text: "chkDynamicCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-143
+    title: Exclude From Promotions toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Toggle the Exclude From Promotions checkbox
+    expected:
+      - The item is included/excluded from promotions per the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Exclude From Promotions checkbox (chkExcludePromos) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2175, text: "chkExcludePromosCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-144
+    title: Allow Sale Qty Less Than One toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Toggle the Allow Sale Qty Less Than One checkbox
+    expected:
+      - Fractional sale quantities are allowed/disallowed per the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Allow Sale Qty Less Than One checkbox (chkLessOne) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2186, text: "chkLessOneCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-145
+    title: Markup By toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the Pricing section
+    steps:
+      - Toggle the Markup By checkbox
+    expected:
+      - Markup-by mode is enabled/disabled and the price/markup fields adjust accordingly
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Markup By checkbox (chkMatkupBy) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2219, text: "chkMatkupByCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-146
+    title: Markup toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the Pricing section
+    steps:
+      - Toggle the Markup checkbox
+    expected:
+      - Markup mode is enabled/disabled and the price calculation adjusts accordingly
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Markup checkbox (chkMatkup) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2243, text: "chkMatkupCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-147
+    title: Modifier toggle marks item as a modifier
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Toggle the Modifier checkbox
+    expected:
+      - The item is flagged as a modifier and modifier-related fields adjust accordingly
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modifier checkbox (chkModifier) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2286, text: "chkModifierCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-148
+    title: Modifier Price Rollup toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with modifiers is open in the editor
+    steps:
+      - Toggle the Modifier Price Rollup checkbox
+    expected:
+      - Modifier price rollup is enabled/disabled per the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modifier Price Rollup checkbox (chkModRollup) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2340, text: "chkModRollupCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-149
+    title: Sold By Weight toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the Pricing section
+    steps:
+      - Toggle the Sold By Weight checkbox
+    expected:
+      - Sold-by-weight mode is enabled/disabled and pack unit/weight fields adjust accordingly
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Sold By Weight checkbox (chkSBF) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2349, text: "chkSBFCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-150
+    title: Show Inactive Members toggle
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with inactive members is open in the editor
+    steps:
+      - Toggle the Show Inactive Members checkbox
+    expected:
+      - Inactive member rows are shown/hidden in the members grid per the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Show Inactive Members checkbox (chkShowInactive) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2409, text: "chkShowInactiveCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-151
+    title: Tax Included toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the Pricing/tax section
+    steps:
+      - Toggle the Tax Included checkbox
+    expected:
+      - Tax-included pricing is enabled/disabled per the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Tax Included checkbox (chkTaxIncluded) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2414, text: "chkTaxIncludedCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-152
+    title: Show On Register toggle
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor
+    steps:
+      - Toggle the Show On Register (Visible) checkbox
+    expected:
+      - The item visibility on the register is enabled/disabled per the toggle state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Show On Register checkbox (chkVisible) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2456, text: "chkVisibleCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-153
+    title: Clicking an alternate SKU cell selects/edits the row
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with alternate SKUs is open in the editor
+    steps:
+      - Click a cell in the Alternate SKUs grid
+    expected:
+      - The clicked alternate SKU row becomes active for editing/removal
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Alternate SKUs grid (dgvAltSkus) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2504, text: "dgvAltSkusCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-154
+    title: Clicking a member cell selects the member row
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members is open in the editor
+    steps:
+      - Click a cell in the Members grid
+    expected:
+      - The clicked member row becomes the active selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid (dgvMembers) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2538, text: "dgvMembersCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-155
+    title: Members with duplicate size/color/style warns on member grid interaction
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members sharing the same size/color/style is open
+    steps:
+      - Interact with the members grid so duplicate size/color/style members are detected
+    expected:
+      - "Warning is shown: There are members (active or inactive) with duplicate size, color and style values."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid (dgvMembers) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2593, text: "There are members (active or inactive) with duplicate size, color and style values." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-156
+    title: Clicking a modifier cell selects the modifier row
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with modifiers is open in the editor
+    steps:
+      - Click a cell in the Modifiers grid
+    expected:
+      - The clicked modifier row becomes the active selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modifiers grid (dgvMods) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2606, text: "dgvModsCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-157
+    title: Clicking a parent (required item) cell selects the row
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with parent/required relations is open in the editor
+    steps:
+      - Click a cell in the Parent grid
+    expected:
+      - The clicked parent row becomes the active selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Parent grid (dgvParent) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2619, text: "dgvParentCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-158
+    title: Cannot define the same item multiple times in parent grid
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with parent/required relations is open in the editor
+    steps:
+      - Attempt to add the same item more than once in the parent grid
+    expected:
+      - "Warning is shown: Cannot define same item multiple times."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Parent grid (dgvParent) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2639, text: "Cannot define same item multiple times." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-159
+    title: Double-clicking a parent cell opens that item
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with parent/required relations is open in the editor
+    steps:
+      - Double-click a row in the Parent grid
+    expected:
+      - The parent item referenced by the row is opened
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Parent grid (dgvParent) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2659, text: "dgvParentCellDoubleClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-160
+    title: Parent item marked as not an inventory item warns
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item whose parent is a non-inventory item is open in the editor
+    steps:
+      - Trigger a parent-item movement/operation where the parent is not an inventory item
+    expected:
+      - "Warning is shown: Parent item marked as not an inventory item."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Parent grid (dgvParent) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2665, text: "Parent item marked as not an inventory item." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-161
+    title: Insufficient quantity for parent movement warns
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A parent/child movement with insufficient stock is attempted
+    steps:
+      - Attempt a parent/child movement that exceeds available quantity
+    expected:
+      - "Warning is shown: Insufficient quantity for this movement."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Parent grid (dgvParent) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2675, text: "Insufficient quantity for this movement." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-162
+    title: Invalid parent and/or child item warns
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A parent/child relationship with an invalid item is attempted
+    steps:
+      - Attempt a parent/child operation with an invalid parent or child item
+    expected:
+      - "Warning is shown: Invalid parent and/or child item."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Parent grid (dgvParent) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2701, text: "Invalid parent and/or child item." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-163
+    title: Clicking a stock location cell selects the row
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item with stock locations is open in the editor
+    steps:
+      - Click a cell in the Stock Location grid
+    expected:
+      - The clicked stock location row becomes the active selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Stock Location grid (dgvStockLocation) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2732, text: "dgvStockLocationCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-164
+    title: Clicking a vendor cell selects the row
+    kind: atomic
+    priority: P3 edge
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with vendors is open in the editor
+    steps:
+      - Click a cell in the Vendors grid
+    expected:
+      - The clicked vendor row becomes the active selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Vendors grid (dgvVendors) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2753, text: "dgvVendorsCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-165
+    title: Adding a duplicate vendor warns
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with at least one vendor is open in the editor
+    steps:
+      - Attempt to add a vendor already assigned to the item
+    expected:
+      - "Warning is shown: Vendor already exists."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Vendors grid (dgvVendors) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2832, text: "Vendor already exists." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-166
+    title: Cannot convert to Non-Inventory while quantity is not zero
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item with non-zero on-hand quantity is open in the editor
+    steps:
+      - Attempt to change the item stock type to Non-Inventory while quantity is not zero
+    expected:
+      - "Warning is shown: Item cannot be converted to Non-Inventory when quantity is not 0."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Stock type selection on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2961, text: "Item cannot be converted to Non-Inventory when quantity is not 0." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-167
+    title: Cannot convert item while on an open purchase order or receiver
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item that is on an open purchase order or receiver is open in the editor
+    steps:
+      - Attempt to convert the item type while it is on an open receiving document
+    expected:
+      - "Warning is shown: Item is currently on an open purchase order or receiver, and cannot be converted until the receiving document is closed and quantity is 0."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Stock type selection on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 2966, text: "Item is currently on an open purchase order or receiver" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-168
+    title: Save via navigation control persists the item
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A valid item is open in the editor with required fields filled
+    steps:
+      - Click Save on the navigation control (ucNav)
+    expected:
+      - The item passes validation and is saved
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Navigation Save control (ucNav OnSave) on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3113, text: "ucNavOnSave" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-169
+    title: Save blocked when cost is required
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with no cost entered is open in the editor
+    steps:
+      - Attempt to save the item with the cost field blank
+    expected:
+      - "Warning is shown: Cost is required"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Cost field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3119, text: "Cost is required" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-170
+    title: Save blocked when no department assigned
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item whose category and item both lack a department is open in the editor
+    steps:
+      - Attempt to save the item with no department on the item or its category
+    expected:
+      - "Warning is shown: Department must be assigned to the item or the category associated with the item"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Department/category fields and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3144, text: "Department must be assigned to the item or the category associated with the item" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-171
+    title: Save blocked when sold by weight is on without valid pack unit
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with Sold By Weight on and no valid pack unit is open in the editor
+    steps:
+      - Attempt to save with Sold By Weight enabled but no valid pack unit selected
+    expected:
+      - "Warning is shown: Tab: Pricing. [Sold by weight] option is on, please select a valid pack unit."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Sold By Weight checkbox and Pack Unit dropdown on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3152, text: "[Sold by weight] option is on, please select a valid pack unit." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-172
+    title: Save blocked when PLU code is not unique
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a PLU code already used by another item is open in the editor
+    steps:
+      - Attempt to save with a PLU code that duplicates another item
+    expected:
+      - "Warning is shown: Tab: Inventory. [PLU Code] must be unique and it is being used by [<item description>]"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - PLU Code field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3178, text: "[PLU Code] must be unique and it is being used by" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-173
+    title: Save blocked with invalid group (price validation context)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item referencing an invalid group is open in the editor
+    steps:
+      - Attempt to save with an invalid group assignment
+    expected:
+      - "Warning is shown: Invalid group."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Group field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3207, text: "Invalid group." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-174
+    title: Save blocked when price is blank (first price guard)
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a blank price is open in the editor
+    steps:
+      - Attempt to save with the price field blank
+    expected:
+      - "Warning is shown: Price cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Price field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3213, text: "Price cannot be blank." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-175
+    title: Save blocked when price is blank (second price guard)
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a blank secondary price is open in the editor
+    steps:
+      - Attempt to save with the second price field blank
+    expected:
+      - "Warning is shown: Price cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Price fields and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3219, text: "Price cannot be blank." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-176
+    title: Save blocked with invalid primary SKU length/check digit
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a SKU of invalid UPC length is open in the editor
+    steps:
+      - Attempt to save with a primary SKU whose length is not a valid UPC/EAN length
+    expected:
+      - "Warning about invalid SKU length is shown (UPC-A 12 / EAN-13 13 digit check)"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - SKU field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3238, text: "{(mLen.Equals(13) ?" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-177
+    title: Save blocked when SKU is blank
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a blank SKU is open in the editor
+    steps:
+      - Attempt to save with the SKU field blank
+    expected:
+      - "Warning is shown: SKU cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - SKU field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3291, text: "SKU cannot be blank." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-178
+    title: Alternate SKU cannot equal the primary SKU
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item is open in the editor on the alternate SKUs section
+    steps:
+      - Enter an alternate SKU equal to the primary SKU and attempt to save
+    expected:
+      - "Warning is shown: Alternate SKU can be the same as the primary SKU."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Alternate SKUs grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3299, text: "Alternate SKU can be the same as the primary SKU." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-179
+    title: Save blocked with invalid alternate SKU length/check digit
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with an alternate SKU of invalid UPC length is open in the editor
+    steps:
+      - Attempt to save with an alternate SKU whose length is not a valid UPC/EAN length
+    expected:
+      - "Warning about invalid alternate SKU length is shown (UPC-A 12 / EAN-13 13 digit check)"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Alternate SKUs grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3307, text: "{(mLen.Equals(13) ?" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-180
+    title: Duplicate alternate SKUs not permitted (guard A)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with two identical alternate SKUs is open in the editor
+    steps:
+      - Attempt to save with duplicate alternate SKU values
+    expected:
+      - "Warning is shown: Duplicate alternate SKUs not permitted."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Alternate SKUs grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3314, text: "Duplicate alternate SKUs not permitted." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-181
+    title: Duplicate alternate SKUs not permitted (guard B)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item whose alternate SKU duplicates another item is open in the editor
+    steps:
+      - Attempt to save with an alternate SKU that duplicates an existing SKU
+    expected:
+      - "Warning is shown: Duplicate alternate SKUs not permitted."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Alternate SKUs grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3323, text: "Duplicate alternate SKUs not permitted." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-182
+    title: Duplicate stock location not permitted
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with two identical stock locations is open in the editor
+    steps:
+      - Attempt to save with a duplicate stock location
+    expected:
+      - "Warning is shown: Duplicate location not permitted."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Stock Location grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3339, text: "Duplicate location not permitted." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-183
+    title: Save blocked when pack unit type is blank
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a missing pack unit type is open in the editor
+    steps:
+      - Attempt to save with the pack unit type blank
+    expected:
+      - "Warning is shown: Pack Unit Type cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack Unit Type field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3361, text: "Pack Unit Type cannot be blank." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-184
+    title: Save blocked when pack unit size is blank
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a missing pack unit size is open in the editor
+    steps:
+      - Attempt to save with the pack unit size blank
+    expected:
+      - "Warning is shown: Pack Unit Size cannot be blank."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack Unit Size field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3368, text: "Pack Unit Size cannot be blank." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-185
+    title: Save blocked when pack unit amount is blank or zero
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a blank or zero pack unit amount is open in the editor
+    steps:
+      - Attempt to save with the pack unit amount blank or zero
+    expected:
+      - "Warning is shown: Pack Unit Amount cannot be blank or zero."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack Unit Amount field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3375, text: "Pack Unit Amount cannot be blank or zero." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-186
+    title: Save blocked when a required attribute is missing (guard A)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item missing a required attribute is open in the editor
+    steps:
+      - Attempt to save with a required item attribute missing
+    expected:
+      - "Warning is shown: This item requires a <attribute>"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item attribute fields and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3391, text: "This item requires a" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-187
+    title: Save blocked when a required attribute is missing (guard B)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item missing a second required attribute is open in the editor
+    steps:
+      - Attempt to save with another required item attribute missing
+    expected:
+      - "Warning is shown: This item requires a <attribute>"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item attribute fields and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3403, text: "This item requires a" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-188
+    title: Save warns when price is below the defined minimum margin
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item priced below the configured minimum margin is open in the editor
+    steps:
+      - Attempt to save with a price lower than the defined minimum margin/markup
+    expected:
+      - "Warning is shown: Price is less than defined <minimum margin/markup>"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Price field and margin validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3418, text: "Price is less than defined" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-189
+    title: Save blocked when future price has no effective date
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a future price but no effective date is open in the editor
+    steps:
+      - Attempt to save a future price without a take-effect date
+    expected:
+      - "Warning is shown: You must define a date for the future price to take effect."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Future price fields and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3432, text: "You must define a date for the future price to take effect." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-190
+    title: Group item cannot be a member
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A group item is being added as a member of another group
+    steps:
+      - Attempt to save a group item as a member
+    expected:
+      - "Warning is shown: Group item (<SKU>) cant be a member."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3449, text: "Group item ({mSKU1}) cant be a member." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-191
+    title: Save blocked when pack size is blank
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a blank pack size is open in the editor
+    steps:
+      - Attempt to save with a blank pack size
+    expected:
+      - "Warning is shown: Blank pack size not allowed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack size fields and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3460, text: "Blank pack size not allowed." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-192
+    title: Save blocked when pack unit amount is 0.00
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a 0.00 pack unit amount is open in the editor
+    steps:
+      - Attempt to save with a pack unit amount of 0.00
+    expected:
+      - "Warning is shown: 0.00 pack unit amount not allowed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack Unit Amount field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3468, text: "0.00 pack unit amount not allowed." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-193
+    title: Save blocked when liquid pack unit is invalid (guard A)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A liquid-volume item with an invalid pack unit is open in the editor
+    steps:
+      - Attempt to save with a pack unit that is not a valid liquid measure
+    expected:
+      - "Warning is shown: Pack unit must be Gallon, Liter, Milliliter, Fluid Ounces or Pint."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack Unit dropdown and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3480, text: "Pack unit must be Gallon, Liter, Milliliter, Fluid Ounces or Pint." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-194
+    title: Save blocked when members have no size defined
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members lacking a size is open in the editor
+    steps:
+      - Attempt to save with members that have no size defined
+    expected:
+      - "Warning is shown: There are members with no size defined."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3532, text: "There are members with no size defined." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-195
+    title: Save blocked when members have no color defined
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members lacking a color is open in the editor
+    steps:
+      - Attempt to save with members that have no color defined
+    expected:
+      - "Warning is shown: There are members with no color defined."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3539, text: "There are members with no color defined." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-196
+    title: Save blocked when members have no style defined
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members lacking a style is open in the editor
+    steps:
+      - Attempt to save with members that have no style defined
+    expected:
+      - "Warning is shown: There are members with no style defined."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3545, text: "There are members with no style defined." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-197
+    title: Save blocked when a member UPC is not correct
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with a member having an invalid UPC is open in the editor
+    steps:
+      - Attempt to save with a member whose UPC fails the check digit
+    expected:
+      - "Warning is shown: UPC is not correct (<SKU>)."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3563, text: "UPC is not correct ({mSKU})." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-198
+    title: Save blocked when members have a duplicate SKU
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with two members sharing a SKU is open in the editor
+    steps:
+      - Attempt to save with members that have a duplicate SKU
+    expected:
+      - "Warning is shown: There are members with duplicate SKU (<SKU>)."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3570, text: "There are members with duplicate SKU ({mSKU})." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-199
+    title: Save blocked when members have a duplicate SKU in alternate SKU
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with a member SKU duplicated in alternate SKUs is open in the editor
+    steps:
+      - Attempt to save with a member SKU duplicated as an alternate SKU
+    expected:
+      - "Warning is shown: There are members with duplicate SKU (<SKU>) in alternate SKU."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and alternate SKUs validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3577, text: "There are members with duplicate SKU ({mSKU}) in alternate SKU." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-200
+    title: Save blocked on duplicate member size/color/style (save-time guard)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members sharing size/color/style is open in the editor
+    steps:
+      - Attempt to save with members that have duplicate size, color and style
+    expected:
+      - "Warning is shown: There are members (active or inactive) with duplicate size, color and style values."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3596, text: "There are members (active or inactive) with duplicate size, color and style values." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-201
+    title: Save blocked with invalid group (matrix save guard)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item referencing an invalid group is open in the editor
+    steps:
+      - Attempt to save with an invalid matrix group
+    expected:
+      - "Warning is shown: Invalid group."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Matrix group field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3606, text: "Invalid group." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-202
+    title: Save blocked with invalid size
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item referencing an invalid size is open in the editor
+    steps:
+      - Attempt to save with an invalid size value
+    expected:
+      - "Warning is shown: Invalid size."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Size field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3612, text: "Invalid size." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-203
+    title: Save blocked with invalid color
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item referencing an invalid color is open in the editor
+    steps:
+      - Attempt to save with an invalid color value
+    expected:
+      - "Warning is shown: Invalid color."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Color field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3618, text: "Invalid color." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-204
+    title: Save blocked with invalid style
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item referencing an invalid style is open in the editor
+    steps:
+      - Attempt to save with an invalid style value
+    expected:
+      - "Warning is shown: Invalid style."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Style field and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3624, text: "Invalid style." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-205
+    title: Save blocked on duplicate color, size and form
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A matrix item with members sharing color/size/form is open in the editor
+    steps:
+      - Attempt to save with duplicate color, size and form values
+    expected:
+      - "Warning is shown: Duplicate color, size and form"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Members grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3644, text: "Duplicate color, size and form" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-206
+    title: Save blocked when liquid pack unit is invalid (guard B)
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A liquid-volume member item with an invalid pack unit is open in the editor
+    steps:
+      - Attempt to save with a member pack unit that is not a valid liquid measure
+    expected:
+      - "Warning is shown: Pack unit must be Gallon, Liter, Milliliter, Fluid Ounces or Pint."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Pack Unit dropdown and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3654, text: "Pack unit must be Gallon, Liter, Milliliter, Fluid Ounces or Pint." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-207
+    title: Inventory adjustment blocked on insufficient quantity
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item is open on the Inventory Adjustment tab
+    steps:
+      - Enter an adjustment that would reduce quantity below available stock and apply
+    expected:
+      - "Warning is shown: Insufficient quantity for this movement."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Inventory Adjustment tab controls on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3723, text: "Insufficient quantity for this movement." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-208
+    title: Inventory adjustment requires a reason
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item is open on the Inventory Adjustment tab
+    steps:
+      - Apply an inventory adjustment without selecting a reason
+    expected:
+      - "Warning is shown: Must input inventory adjustment reason"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Inventory Adjustment reason control on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3729, text: "Must input inventory adjustment reason" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-209
+    title: Reorder quantity must be at least the minimum order quantity
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An inventory item with reorder settings is open in the editor
+    steps:
+      - Enter a reorder quantity below the minimum order quantity and attempt to save
+    expected:
+      - "Warning is shown: Reorder quantity should be equal to or greater than the minimum order quantity."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reorder/minimum order quantity fields on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3739, text: "Reorder quantity should be equal to or greater than the minimum order quantity." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-210
+    title: Required modifier row validation warning
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a required modifier row needing validation is open in the editor
+    steps:
+      - Attempt to save with a required modifier row that fails validation
+    expected:
+      - "Warning referencing the required modifier row is shown"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Required modifiers grid and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3764, text: "{mReqRow[" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-211
+    title: Required modifier minimum quantity validation
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a required modifier whose minimum is invalid is open in the editor
+    steps:
+      - Attempt to save with an invalid required modifier minimum quantity
+    expected:
+      - "Warning referencing the required modifier minimum is shown"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Required modifiers grid (minimum) and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3779, text: "Minimum {mReqRow[" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-212
+    title: Required modifier maximum quantity validation
+    kind: atomic
+    priority: P2 regression
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - An item with a required modifier whose maximum is invalid is open in the editor
+    steps:
+      - Attempt to save with an invalid required modifier maximum quantity
+    expected:
+      - "Warning referencing the required modifier maximum is shown"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Required modifiers grid (maximum) and Save validation on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 3785, text: "Maximum {mReqRow[" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-213
+    title: Item saved successfully
+    kind: atomic
+    priority: P1 money/core path
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - A valid new or edited item with all required fields is open in the editor
+    steps:
+      - Fill all required fields and click Save
+    expected:
+      - "Success message is shown: Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, AddSkuAndDescription, AddCategorySubCategory, AddCost, AddPrice, SaveItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save control and confirmation dialog on the item editor
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 4716, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

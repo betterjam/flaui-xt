@@ -1,0 +1,1089 @@
+  - id: ITEM-360
+    title: Adding a promo member item succeeds with confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo is open in the editor with at least one selectable item
+    steps:
+      - Open a promo in frmPromo
+      - Add an item to the promo
+      - Confirm the item is inserted
+    expected:
+      - "{pDescription} added successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promo member items grid
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 123, text: "added successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-361
+    title: Adding an already inserted promo member item is blocked with notice
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo already contains the target item
+    steps:
+      - Open a promo in frmPromo
+      - Attempt to add an item already present in the promo
+      - Observe the duplicate notice
+    expected:
+      - "{pDescription} already inserted."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promo member items grid
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 126, text: "already inserted." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-362
+    title: Adding a promo item via second path succeeds with confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo is open with a selectable item available
+    steps:
+      - Open a promo in frmPromo
+      - Add an item through the secondary add path
+      - Confirm the item is inserted
+    expected:
+      - "{pDescription} added successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promo member items grid
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 143, text: "added successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-363
+    title: Adding an already inserted promo item via second path is blocked
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo already contains the target item
+    steps:
+      - Open a promo in frmPromo
+      - Attempt to add a duplicate item through the secondary add path
+      - Observe the duplicate notice
+    expected:
+      - "{pDescription} already inserted."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promo member items grid
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 146, text: "already inserted." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-364
+    title: Add Member button adds a member item to the promo
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo is open in the editor
+    steps:
+      - Open a promo in frmPromo
+      - Click the Add Member button
+      - Observe a member item added to the promo
+    expected:
+      - A member item is added to the promo member list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Member button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 209, text: "btnAddMemberClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-365
+    title: Cancel button closes the promo editor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo is open in the editor
+    steps:
+      - Open a promo in frmPromo
+      - Click the Cancel button
+      - Observe the editor closes
+    expected:
+      - The promo editor closes without saving
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Cancel button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 234, text: "btnCancelClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-366
+    title: Coupon button opens the coupon editor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo is open in the editor
+    steps:
+      - Open a promo in frmPromo
+      - Click the Coupon button
+      - Observe the coupon editor opens
+    expected:
+      - The coupon editor opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Coupon button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 242, text: "btnCouponClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-367
+    title: Delete All Members button removes all member items
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo with multiple member items is open
+    steps:
+      - Open a promo in frmPromo
+      - Click the Delete All button
+      - Observe all member items removed
+    expected:
+      - All member items are removed from the promo
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete All button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 251, text: "btnDelAllMembersClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-368
+    title: Delete Member button removes the selected member item
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo with at least one member item is open
+    steps:
+      - Open a promo in frmPromo
+      - Select a member item
+      - Click the Delete button
+    expected:
+      - The selected member item is removed from the promo
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 266, text: "btnDelMemberClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-369
+    title: Item List button opens the item list to pick members
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo is open in the editor
+    steps:
+      - Open a promo in frmPromo
+      - Click the Item List button
+      - Observe the item list opens for picking members
+    expected:
+      - The item list opens to select promo member items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item List button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 275, text: "btnItemListClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-370
+    title: New button starts a new promo
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open frmPromo
+      - Click the New button
+      - Observe a blank promo form ready for input
+    expected:
+      - A new blank promo is created in the editor
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 282, text: "btnNewClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-371
+    title: OK button saves the promo
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A valid promo with required fields is open
+    steps:
+      - Open a promo in frmPromo
+      - Fill in required promo fields
+      - Click the Save button
+    expected:
+      - The promo is saved
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 333, text: "btnOKClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-372
+    title: Saving with no changes warns nothing changed
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo is open with no edits made
+    steps:
+      - Open a promo in frmPromo
+      - Click Save without making any changes
+      - Observe the warning
+    expected:
+      - "Nothing changed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 337, text: "Nothing changed." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-373
+    title: Saving a promo row with invalid dates warns to check dates
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo row has an invalid date range
+    steps:
+      - Open a promo in frmPromo
+      - Enter an invalid start/end date on a promo row
+      - Click Save and observe the warning
+    expected:
+      - "Check dates on"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promo row date fields
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 348, text: "Check dates on" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-374
+    title: Discount percent over 100 is rejected on save
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo row uses a percent discount type
+    steps:
+      - Open a promo in frmPromo
+      - Enter a discount percent greater than 100
+      - Click Save and observe the warning
+    expected:
+      - "Discount Percent amount cannot be greater than 100%."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Discount percent field
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 355, text: "Discount Percent amount cannot be greater than 100%." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-375
+    title: Saving with invalid happy hour dates warns to check happy hour dates
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo row uses happy hour with an invalid date range
+    steps:
+      - Open a promo in frmPromo
+      - Configure a happy hour row with invalid dates
+      - Click Save and observe the warning
+    expected:
+      - "Check Happy Hour dates on"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Happy hour date fields
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 372, text: "Check Happy Hour dates on" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-376
+    title: Saving a happy hour row with no day of week selected warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A happy hour promo row has no day of week selected
+    steps:
+      - Open a promo in frmPromo
+      - Configure a happy hour row without selecting a day of week
+      - Click Save and observe the warning
+    expected:
+      - "No day of week selected on"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Day of week selectors
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 380, text: "No day of week selected on" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-377
+    title: Saving with invalid mix and match dates warns to check those dates
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A mix and match promo row has an invalid date range
+    steps:
+      - Open a promo in frmPromo
+      - Configure a mix and match row with invalid dates
+      - Click Save and observe the warning
+    expected:
+      - "Check Mix & Match dates on"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Mix and match date fields
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 398, text: "Check Mix" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-378
+    title: Saving a mix and match row with no day of week selected warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A mix and match promo row has no day of week selected
+    steps:
+      - Open a promo in frmPromo
+      - Configure a mix and match row without selecting a day of week
+      - Click Save and observe the warning
+    expected:
+      - "No day of week selected on"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Day of week selectors
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 406, text: "No day of week selected on" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-379
+    title: Mix and match validation blocks save with a mix and match warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A mix and match promo row fails validation
+    steps:
+      - Open a promo in frmPromo
+      - Configure an invalid mix and match row
+      - Click Save and observe the warning
+    expected:
+      - "Mix & Match:"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Mix and match configuration fields
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 415, text: "Mix" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-380
+    title: Member item validation blocks save with an item warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A promo member item row fails validation
+    steps:
+      - Open a promo in frmPromo
+      - Configure an invalid member item row
+      - Click Save and observe the warning
+    expected:
+      - "Item"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promo member item rows
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 495, text: "Item" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-381
+    title: Saving a valid promo confirms saved successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - A valid promo with all required fields is open
+    steps:
+      - Open a promo in frmPromo
+      - Fill in all required and valid promo fields
+      - Click Save and observe the confirmation
+    expected:
+      - "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 663, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-382
+    title: List button opens the Promo Report
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open frmPromo
+      - Click the Promo Report button
+      - Observe the Promo Report opens
+    expected:
+      - The Promo Report is displayed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promo Report button
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 667, text: "btnListClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-383
+    title: Changing discount type updates the promo form fields
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Select a different discount type in the dropdown
+      - Observe the form fields update accordingly
+    expected:
+      - The promo form fields change to match the selected discount type
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Discount type dropdown
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 673, text: "cboDiscTypeSelectedIndexChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-384
+    title: Apply to All toggle changes promo scope behavior
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Apply to All checkbox
+      - Observe the form behavior updates
+    expected:
+      - The Apply to All toggle updates the promo scope
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Apply to All checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 690, text: "chkApplytoAllCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-385
+    title: Coupon toggle changes promo coupon behavior
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Coupon checkbox
+      - Observe the coupon-related fields update
+    expected:
+      - The Coupon toggle updates the coupon-related form fields
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Coupon checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 705, text: "chkCouponCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-386
+    title: Active toggle enables or disables the promo discount
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Active checkbox
+      - Observe the discount enabled state updates
+    expected:
+      - The Active toggle enables or disables the promo discount
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Active checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 713, text: "chkDiscEnableCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-387
+    title: Show Deleted toggle changes the displayed discount rows
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Show Deleted checkbox
+      - Observe the displayed discount rows update
+    expected:
+      - The Show Deleted toggle updates which discount rows are shown
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Show Deleted checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 719, text: "chkDiscShowDeletedCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-388
+    title: Group Active toggle filters active promo groups
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Group Active checkbox
+      - Observe the active groups filter updates
+    expected:
+      - The Group Active toggle filters the displayed active promo groups
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Group Active checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 724, text: "chkGrpActiveCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-389
+    title: Group Inactive toggle filters inactive promo groups
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Group Inactive checkbox
+      - Observe the inactive groups filter updates
+    expected:
+      - The Group Inactive toggle filters the displayed inactive promo groups
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Group Inactive checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 733, text: "chkGrpInactiveCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-390
+    title: Manufacturer toggle changes manufacturer coupon behavior
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Manufacturer checkbox
+      - Observe the manufacturer-related fields update
+    expected:
+      - The Manufacturer toggle updates manufacturer coupon behavior
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Manufacturer checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 760, text: "chkMfgCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-391
+    title: Order toggle changes order-level promo behavior
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Order checkbox
+      - Observe the order-level promo fields update
+    expected:
+      - The Order toggle updates order-level promo behavior
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Order checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 767, text: "chkOrderCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-392
+    title: Single toggle changes single-use promo behavior
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmPromo
+      entity: Promotion
+    preconditions:
+      - Logged in as admin with Items > Promos access
+      - The promo editor is open
+    steps:
+      - Open a promo in frmPromo
+      - Toggle the Single checkbox
+      - Observe the single-use promo fields update
+    expected:
+      - The Single toggle updates single-use promo behavior
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Single checkbox
+    source_files:
+      - 2.0.x/Items/frmPromo.cs
+    evidence:
+      - { file: 2.0.x/Items/frmPromo.cs, line: 779, text: "chkSingleCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

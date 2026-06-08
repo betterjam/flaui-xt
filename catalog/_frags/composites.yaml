@@ -1,0 +1,145 @@
+  - id: ITEM-900
+    title: Create a category then create an item assigned to it
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItems
+      entity: Item
+    chains: [ITEM-007, ITEM-015, ITEM-111, ITEM-213]
+    preconditions:
+      - Logged in as admin with Items and Items > Categories access
+    steps:
+      - Open Categories and create a new category, then Save
+      - Open a new item, assign the new category, fill required fields
+      - Save the item
+    expected:
+      - "Category save shows: Saved successfully."
+      - "Item save shows: Saved successfully."
+      - The item is persisted under the new category
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, AddCategorySubCategory, AddNewItem, AddSkuAndDescription, AddPrice, AddCost, SaveItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, AddCategorySubCategory, AddNewItem, AddSkuAndDescription, AddPrice, AddCost, SaveItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end category-then-item flow across frmCategory and frmItems
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+      - 2.0.x/Items/frmItems.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItems.cs, line: 4716, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-901
+    title: Create an item, then bulk-update its price via Modify All List Items
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    chains: [ITEM-213, ITEM-226, ITEM-252, ITEM-253]
+    preconditions:
+      - Logged in as admin with Items access
+      - At least one item exists in the list
+    steps:
+      - Create and save an item
+      - Open the item list and choose Modify All List Items
+      - Update the cost for the selected items and apply
+    expected:
+      - "Item save shows: Saved successfully."
+      - "Bulk update shows: Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, AddNewItem, SaveItem, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, AddNewItem, SaveItem, GoToItemsList]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end item-create then bulk-modify flow across frmItems, frmItemsList and frmItemsMod
+    source_files:
+      - 2.0.x/Items/frmItems.cs
+      - 2.0.x/Items/frmItemsList.cs
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 984, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-902
+    title: Build a fresh sheet then save it
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    chains: [ITEM-060, ITEM-061, ITEM-067]
+    preconditions:
+      - Logged in as admin with Items access
+      - At least one item and one service exist
+    steps:
+      - Open the Fresh Sheet
+      - Add items and services to the sheet
+      - Save the fresh sheet
+    expected:
+      - "Save shows: Saved successfully."
+      - The fresh sheet retains the added items and services
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, AddItemToFreshSheet, AddServiceToFreshSheet, VerifyFreshSheetEntry, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, AddItemToFreshSheet, AddServiceToFreshSheet, VerifyFreshSheetEntry]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end fresh-sheet build-and-save flow in frmFreshSheet
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 224, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-903
+    title: Create a service then bulk-update its price via Modify All List Services
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    chains: [ITEM-446, ITEM-454, ITEM-487]
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - At least one service exists
+    steps:
+      - Create and save a service
+      - Open the services list and choose Modify All List Services
+      - Update the price and apply
+    expected:
+      - "Service save shows: Saved successfully."
+      - "Bulk update shows: Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - End-to-end service-create then bulk-modify flow across frmServices, frmServicesList and frmServicesMod
+    source_files:
+      - 2.0.x/Items/Services/frmServices.cs
+      - 2.0.x/Items/Services/frmServicesList.cs
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 419, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

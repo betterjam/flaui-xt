@@ -1,0 +1,131 @@
+  - id: ITEM-240
+    title: Close items list search form via Close button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsListSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Items List Search form is open
+    steps:
+      - Open the Items List Search form
+      - Click the Close button
+    expected:
+      - The Items List Search form closes without searching
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the Items List Search form
+    source_files:
+      - 2.0.x/Items/frmItemsListSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsListSearch.cs, line: 65, text: "btnCancelClick \"Close\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-241
+    title: Run items list search via Search button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsListSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Items List Search form is open with search criteria entered
+    steps:
+      - Open the Items List Search form
+      - Enter search criteria
+      - Click the Search button
+    expected:
+      - The search runs and matching items are returned
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Search button on the Items List Search form
+    source_files:
+      - 2.0.x/Items/frmItemsListSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsListSearch.cs, line: 70, text: "btnOKClick \"Search\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-242
+    title: Reset items list search criteria via Reset button
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsListSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Items List Search form is open with search criteria entered
+    steps:
+      - Open the Items List Search form
+      - Enter search criteria
+      - Click the Reset button
+    expected:
+      - The search criteria are cleared back to defaults
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reset button on the Items List Search form
+    source_files:
+      - 2.0.x/Items/frmItemsListSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsListSearch.cs, line: 137, text: "btnResetClick \"Reset\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-243
+    title: Pick a vendor filter on items list search
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsListSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Items List Search form is open
+    steps:
+      - Open the Items List Search form
+      - Click the Vendor button
+      - Select a vendor
+    expected:
+      - The selected vendor is applied as a search filter
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Vendor picker button on the Items List Search form
+    source_files:
+      - 2.0.x/Items/frmItemsListSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsListSearch.cs, line: 142, text: "btnVendorClick (pick vendor)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

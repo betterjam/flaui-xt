@@ -1,0 +1,130 @@
+  - id: ITEM-420
+    title: New Service button requires Items.Services permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmSearchServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items access
+      - Search Services form is open
+      - User lacks the Items.Services permission
+    steps:
+      - Open the Search Services form as a user without Items.Services
+      - Attempt to use the New Service button
+    expected:
+      - The New Service action is blocked because the Items.Services permission is required
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New Service button on the Search Services form gated by Items.Services permission
+    source_files:
+      - 2.0.x/Items/frmSearchServices.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearchServices.cs, line: 38, text: "Items.Services (btnNew \"New Service\")" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-421
+    title: Close search services form via Close button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearchServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items access
+      - Search Services form is open
+    steps:
+      - Open the Search Services form
+      - Click the Close button
+    expected:
+      - The Search Services form closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the Search Services form
+    source_files:
+      - 2.0.x/Items/frmSearchServices.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearchServices.cs, line: 63, text: "btnCloseClick \"Close\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-422
+    title: Create a new service via New Service button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearchServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items access
+      - Search Services form is open
+      - User has the Items.Services permission
+    steps:
+      - Open the Search Services form
+      - Click the New Service button
+    expected:
+      - The new service editor opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New Service button on the Search Services form
+    source_files:
+      - 2.0.x/Items/frmSearchServices.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearchServices.cs, line: 68, text: "btnNewClick \"New Service\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-423
+    title: Select a services grid row via cell click
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearchServices
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items access
+      - Search Services form is open with one or more rows in the services grid
+    steps:
+      - Open the Search Services form with rows present
+      - Click a cell in the services grid
+    expected:
+      - The clicked grid row becomes selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Services grid on the Search Services form
+    source_files:
+      - 2.0.x/Items/frmSearchServices.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearchServices.cs, line: 82, text: "dgvServicesCellClick (grid row select)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

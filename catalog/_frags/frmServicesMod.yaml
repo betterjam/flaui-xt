@@ -1,0 +1,404 @@
+  - id: ITEM-480
+    title: Clear button resets pending bulk service modifications
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with edits entered
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Enter changes in the modify fields
+      - Click Clear
+    expected:
+      - The pending modify fields are cleared back to their default state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Clear button
+      - Bulk modify services fields
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 123, text: "btnClearClick Clear" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-481
+    title: Close button dismisses the bulk modify services dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Click Close
+    expected:
+      - The bulk modify services dialog closes without applying changes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button
+      - Bulk modify services dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 146, text: "btnCancelClick Close" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-482
+    title: Delete removes the selected services in bulk modify
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with services selected
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Select one or more services
+      - Click Delete
+    expected:
+      - The selected services are removed from the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button
+      - Bulk modify services grid
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 155, text: "btnDeleteClick Delete" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-483
+    title: Successful bulk modify save shows confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with valid changes pending
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Apply valid changes to the selected services
+      - Save the modifications
+    expected:
+      - Success dialog displays "Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Bulk modify services dialog
+      - Success confirmation dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 171, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-484
+    title: OK applies bulk service modifications and closes the dialog
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with valid changes pending
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Apply valid changes
+      - Click OK
+    expected:
+      - The bulk modifications are committed and the dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Bulk modify services dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 175, text: "btnOkClick OK" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-485
+    title: Warn when applying bulk modify with no changes made
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with no field changed
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Do not change any modify field
+      - Attempt to apply the update
+    expected:
+      - Warning dialog displays "Nothing changed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Bulk modify services dialog
+      - Nothing changed warning dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 374, text: "Nothing changed." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-486
+    title: Set button applies the chosen value to selected services
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with services selected and a set value entered
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Select services and enter a value to set
+      - Click Set
+    expected:
+      - The chosen value is applied to the selected services
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Set button
+      - Set value field
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 386, text: "btnSetClick set" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-487
+    title: Update Price applies the new price to selected services
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with services selected and a price entered
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Select services and enter a new price
+      - Click Update Price
+    expected:
+      - The new price is applied to the selected services
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Update Price button
+      - Price input field
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 393, text: "btnUpdateClick Update Price" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-488
+    title: Successful price update shows confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with a valid price update applied
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Select services and enter a valid new price
+      - Click Update Price
+    expected:
+      - Success dialog displays "Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Update Price button
+      - Success confirmation dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 419, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-489
+    title: Checking a service row marks it for bulk modification
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with service rows listed
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Toggle the checkbox on a service row
+    expected:
+      - The service row's checked state updates and the row is included in or excluded from the bulk operation accordingly
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Service row checkbox
+      - Bulk modify services grid
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 429, text: "chkCheckedChanged row check" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-490
+    title: Toggling Visible On Register updates the service visibility flag
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with a service row selected
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Toggle the Visible On Register checkbox for a service
+    expected:
+      - The service's Visible On Register flag updates to match the toggled state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Visible On Register checkbox
+      - Bulk modify services grid
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 458, text: "chkVisibleCheckedChanged Visible On Register" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-491
+    title: Selecting a historic grid row loads the service history entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesMod
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with historic rows displayed
+    steps:
+      - Open Items > Services and launch bulk modify services
+      - Click a row in the historic grid
+    expected:
+      - The selected historic row is highlighted and its details are loaded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Historic services grid
+      - Grid row selection handler
+    source_files:
+      - 2.0.x/Items/Services/frmServicesMod.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesMod.cs, line: 464, text: "dgvHistoricCellClick grid row select" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

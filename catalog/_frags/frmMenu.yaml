@@ -1,0 +1,533 @@
+  - id: ITEM-340
+    title: Categories button gated by Items.Categories access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Observe the Categories button on the Items menu
+      - Verify its enabled/visible state reflects the Items.Categories permission
+    expected:
+      - The Categories button is gated by the Items.Categories access right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 15, text: "Items.Categories" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-341
+    title: Count button gated by Items.Count.Access access right
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Observe the Count button on the Items menu
+      - Verify its enabled/visible state reflects the Items.Count.Access permission
+    expected:
+      - The Count button is gated by the Items.Count.Access access right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Count button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 16, text: "Items.Count.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-342
+    title: Labels button gated by Items.Labels access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Observe the Labels button on the Items menu
+      - Verify its enabled/visible state reflects the Items.Labels permission
+    expected:
+      - The Labels button is gated by the Items.Labels access right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Labels button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 17, text: "Items.Labels" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-343
+    title: Promos button gated by Items.Promos access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Observe the Promos button on the Items menu
+      - Verify its enabled/visible state reflects the Items.Promos permission
+    expected:
+      - The Promos button is gated by the Items.Promos access right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promos button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 18, text: "Items.Promos" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-344
+    title: Reactivate button gated by Items.Item access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Observe the Reactivate button on the Items menu
+      - Verify its enabled/visible state reflects the Items.Item permission
+    expected:
+      - The Reactivate button is gated by the Items.Item access right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reactivate button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 24, text: "Items.Item" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-345
+    title: Service List button gated by Items.Services access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Observe the Service List button on the Items menu
+      - Verify its enabled/visible state reflects the Items.Services permission
+    expected:
+      - The Service List button is gated by the Items.Services access right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Service List button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 27, text: "Items.Services" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-346
+    title: Categories button opens Categories
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Categories button on the Items menu
+    expected:
+      - The Categories screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 30, text: "btnCategoriesClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-347
+    title: Count button opens Item Count
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Count button on the Items menu
+    expected:
+      - The Item Count screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Count button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 37, text: "btnItemCountClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-348
+    title: Item List button opens the item list
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Item List button on the Items menu
+    expected:
+      - The item list screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item List button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 44, text: "btnItemListClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-349
+    title: New Item button opens a new item form
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the New Item button on the Items menu
+    expected:
+      - A new item form opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New Item button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 49, text: "btnItemNewClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-350
+    title: Labels button opens Labels
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Labels button on the Items menu
+    expected:
+      - The Labels screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Labels button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 54, text: "btnLabelsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-351
+    title: Matrix button opens Matrix Inventory
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Matrix button on the Items menu
+    expected:
+      - The Matrix Inventory screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Matrix button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 59, text: "btnMatrixInventoryClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-352
+    title: Promos button opens Promos
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Promos button on the Items menu
+    expected:
+      - The Promos screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Promos button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 64, text: "btnPromoClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-353
+    title: Reactivate button opens Reactivate Items
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Reactivate button on the Items menu
+    expected:
+      - The Reactivate Items screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reactivate button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 71, text: "btnReactivateItemsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-354
+    title: Service List button opens the service list
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Service List button on the Items menu
+    expected:
+      - The service list screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Service List button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 78, text: "btnServiceListClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-355
+    title: New Service button opens Service Details
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the New Service button on the Items menu
+    expected:
+      - The Service Details form opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New Service button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 83, text: "btnServiceNewClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-356
+    title: Fresh Sheet button opens the Fresh Sheet
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Item
+    preconditions:
+      - Logged in as admin
+      - On the Items module menu
+    steps:
+      - Click the Fresh Sheet button on the Items menu
+    expected:
+      - The Fresh Sheet screen opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Fresh Sheet button
+    source_files:
+      - 2.0.x/Items/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMenu.cs, line: 88, text: "btnFreshSheetClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

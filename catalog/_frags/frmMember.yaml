@@ -1,0 +1,64 @@
+  - id: ITEM-330
+    title: Close member items form via Close button
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMember
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Member items form is open
+    steps:
+      - Open the Member items form
+      - Click the Close button
+    expected:
+      - The Member items form closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the Member items form
+    source_files:
+      - 2.0.x/Items/frmMember.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMember.cs, line: 18, text: "btnOKClick \"Close\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-331
+    title: Select a member items grid row via cell content click
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMember
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Member items form is open with one or more rows in the items grid
+    steps:
+      - Open the Member items form with rows present
+      - Click a cell in the items grid
+    expected:
+      - The clicked grid row becomes selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Items grid on the Member items form
+    source_files:
+      - 2.0.x/Items/frmMember.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMember.cs, line: 23, text: "dgvItemsCellContentClick (grid row select)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

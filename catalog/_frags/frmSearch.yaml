@@ -1,0 +1,320 @@
+  - id: ITEM-400
+    title: Add New Item button gated by Items.Item permission (line 72)
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search/insert form is open
+    steps:
+      - Open the item search form
+      - Confirm the Add New Item button (btnNew) is enabled only when the user holds the Items.Item right
+    expected:
+      - Add New Item button is accessible only for users granted Items.Item; otherwise it is disabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add New Item button (btnNew) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 72, text: "Items.Item (btnNew Add New Item)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-401
+    title: Add New Item button gated by Items.Item permission (line 111)
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search/insert form is open
+    steps:
+      - Open the item search form
+      - Confirm the Add New Item button (btnNew) honors the Items.Item right on re-evaluation
+    expected:
+      - Add New Item button remains accessible only for users granted Items.Item; otherwise it is disabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add New Item button (btnNew) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 111, text: "Items.Item (btnNew Add New Item)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-402
+    title: Insert All button inserts all listed items
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form lists one or more items
+    steps:
+      - Open the item search form with results listed
+      - Click the Insert All button (btnAll)
+    expected:
+      - All listed items are inserted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Insert All button (btnAll) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 277, text: "btnAllClick Insert All" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-403
+    title: Successful item insert shows Added successfully confirmation
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form has a selectable item
+    steps:
+      - Open the item search form
+      - Select an item and complete the insert
+    expected:
+      - Added successfully.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog on item insert
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 284, text: "Success Added successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-404
+    title: Close button dismisses the item search form
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form is open
+    steps:
+      - Open the item search form
+      - Click the Close button (btnCancel)
+    expected:
+      - The item search form closes without inserting an item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button (btnCancel) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 287, text: "btnCancelClick Close" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-405
+    title: Add New Item button opens the new item editor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form is open
+    steps:
+      - Open the item search form
+      - Click the Add New Item button (btnNew)
+    expected:
+      - The new item editor opens to create an item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add New Item button (btnNew) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 292, text: "btnNewClick Add New Item" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-406
+    title: OK button inserts the selected item
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form has a selected item
+    steps:
+      - Open the item search form and select an item
+      - Click OK to insert the selected item
+    expected:
+      - The selected item is inserted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button (btnOK) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 313, text: "btnOKClick insert selected" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-407
+    title: Vendor Items button opens vendor item lookup
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form is open
+    steps:
+      - Open the item search form
+      - Click the Vendor Items button (btnVendor)
+    expected:
+      - The vendor items lookup opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Vendor Items button (btnVendor) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 318, text: "btnVendorClick Vendor Items" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-408
+    title: Need To Order toggle filters the item list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form is open with items listed
+    steps:
+      - Open the item search form
+      - Toggle the Need To Order checkbox (chkOption)
+    expected:
+      - The item list is filtered to items flagged Need To Order when the toggle is checked
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Need To Order checkbox (chkOption) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 326, text: "chkOptionCheckedChanged Need To Order" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-409
+    title: Selecting a grid row selects the item for insert
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item search form lists one or more items
+    steps:
+      - Open the item search form with results listed
+      - Click a row in the items grid (dgvItems)
+    expected:
+      - The clicked row is selected as the active item for insert
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Items grid (dgvItems) on the item search form
+    source_files:
+      - 2.0.x/Items/frmSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmSearch.cs, line: 331, text: "dgvItemsCellClick grid row select" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

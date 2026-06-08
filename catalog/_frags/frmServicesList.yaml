@@ -1,0 +1,335 @@
+  - id: ITEM-450
+    title: Block access to Services list when Customers.Customer permission is denied
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Test user role has Customers.Customer access object revoked
+    steps:
+      - Sign in as a user whose role lacks the Customers.Customer access object
+      - Open Items > Services list
+      - Observe the access check on the protected customer-linked features
+    expected:
+      - The Customers.Customer access object gate denies the protected functionality on the Services list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Services list form
+      - Customer-linked feature gated by access object
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 43, text: "Customers.Customer (_AccessObj permission check)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-451
+    title: Gate Modify All List Services on Items.Services permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Test user role has Items.Services permission revoked
+    steps:
+      - Sign in as a user whose role lacks the Items.Services permission
+      - Open Items > Services list
+      - Attempt to use the Modify All List Services button
+    expected:
+      - The Modify All List Services action is blocked by the Items.Services permission check
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modify All List Services button
+      - Items.Services permission gate
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 44, text: "Items.Services permission guards btnModify Modify All List Services" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-452
+    title: Clear Search Results resets the Services list search
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Services list open with an active search filter applied
+    steps:
+      - Open Items > Services list
+      - Apply a search filter so results are narrowed
+      - Click Clear Search Results
+    expected:
+      - The search criteria are cleared and the Services list returns to its unfiltered state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Clear Search Results button
+      - Services list grid
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 151, text: "btnClearClick Clear Search Results" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-453
+    title: Modify All List Services opens the bulk modify dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Services list open with at least one service listed
+    steps:
+      - Open Items > Services list
+      - Click Modify All List Services
+    expected:
+      - The bulk modify services dialog opens for the listed services
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modify All List Services button
+      - Bulk modify services dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 177, text: "btnModifyClick Modify All List Services" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-454
+    title: Successful bulk update of services shows confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Bulk modify services dialog open with valid changes pending
+    steps:
+      - Open Items > Services list
+      - Click Modify All List Services and apply valid changes
+      - Confirm the bulk update
+    expected:
+      - Success dialog displays "Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Bulk modify services dialog
+      - Success confirmation dialog
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 198, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-455
+    title: Print List produces the Services list printout
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Services list open with at least one service listed
+    steps:
+      - Open Items > Services list
+      - Click Print List
+    expected:
+      - The Services list print preview or print output is generated
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Print List button
+      - Print preview window
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 201, text: "btnPrintClick Print List" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-456
+    title: Report button generates the Services report
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Services list open with at least one service listed
+    steps:
+      - Open Items > Services list
+      - Click Report
+    expected:
+      - The Services report is generated and displayed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report button
+      - Services report viewer
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 215, text: "btnReportClick Report" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-457
+    title: Advanced Services Search filters the Services list
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Services list open with search criteria entered
+    steps:
+      - Open Items > Services list
+      - Enter advanced search criteria
+      - Click Search
+    expected:
+      - The Services list is filtered to match the advanced search criteria
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Advanced search input fields
+      - Search button
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 220, text: "btnSearchClick Advanced Services Search" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-458
+    title: Selecting a Services list grid row loads the service
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Services list open with at least one service row displayed
+    steps:
+      - Open Items > Services list
+      - Click a row in the services grid
+    expected:
+      - The selected service row is highlighted and its details are loaded for action
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Services list grid
+      - Grid row selection handler
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 235, text: "dgvListCellClick grid row select" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-459
+    title: Clicking a Services grid column header sorts the list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmServicesList
+      entity: Service
+    preconditions:
+      - Logged in as admin with Items > Services access
+      - Services list open with multiple service rows displayed
+    steps:
+      - Open Items > Services list
+      - Click a column header in the services grid
+    expected:
+      - The Services list is sorted by the clicked column
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Services list grid column header
+      - Column sort handler
+    source_files:
+      - 2.0.x/Items/Services/frmServicesList.cs
+    evidence:
+      - { file: 2.0.x/Items/Services/frmServicesList.cs, line: 250, text: "dgvListColumnHeaderMouseClick column sort" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

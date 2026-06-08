@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Items",
+    "anchorsTotal":  346,
+    "covered":  346,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  350,
+    "atomic":  346,
+    "composite":  4,
+    "uncoveredAnchors":  [
+
+                         ]
+}

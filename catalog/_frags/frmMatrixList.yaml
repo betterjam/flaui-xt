@@ -1,0 +1,320 @@
+  - id: ITEM-300
+    title: Matrix list access gated by Items.Item permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form is open
+    steps:
+      - Open the matrix item list form
+      - Confirm access to the list is governed by the Items.Item right (_AccessObj)
+    expected:
+      - The matrix list is accessible only for users granted Items.Item; otherwise access is denied
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Access object guard (_AccessObj) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 47, text: "Items.Item (_AccessObj)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-301
+    title: Modify All List Matrix button gated by Items.Item permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form is open
+    steps:
+      - Open the matrix item list form
+      - Confirm the Modify All List Matrix button (btnModify) is enabled only when the user holds the Items.Item right
+    expected:
+      - Modify All List Matrix button is accessible only for users granted Items.Item; otherwise it is disabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modify All List Matrix button (btnModify) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 48, text: "Items.Item (btnModify Modify All List Matrix)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-302
+    title: Report button gated by Report.Items permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form is open
+    steps:
+      - Open the matrix item list form
+      - Confirm the Report button (btnReport) is enabled only when the user holds the Report.Items right
+    expected:
+      - Report button is accessible only for users granted Report.Items; otherwise it is disabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report button (btnReport) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 49, text: "Report.Items (btnReport Report)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-303
+    title: Clear Search Results button empties the matrix list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form shows search results
+    steps:
+      - Open the matrix item list form with results listed
+      - Click the Clear Search Results button (btnClear)
+    expected:
+      - The search results are cleared from the matrix list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Clear Search Results button (btnClear) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 137, text: "btnClearClick Clear Search Results" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-304
+    title: Modify All List Matrix button opens bulk matrix modify
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form shows search results
+    steps:
+      - Open the matrix item list form with results listed
+      - Click the Modify All List Matrix button (btnModify)
+    expected:
+      - Bulk modify opens for all listed matrix items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modify All List Matrix button (btnModify) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 164, text: "btnModifyClick Modify All List Matrix" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-305
+    title: Print List button prints the matrix list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form shows search results
+    steps:
+      - Open the matrix item list form with results listed
+      - Click the Print List button (btnPrint)
+    expected:
+      - The matrix list is sent to print
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Print List button (btnPrint) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 178, text: "btnPrintClick Print List" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-306
+    title: Report button opens the matrix report
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form shows search results
+    steps:
+      - Open the matrix item list form with results listed
+      - Click the Report button (btnReport)
+    expected:
+      - The matrix report opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report button (btnReport) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 192, text: "btnReportClick Report" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-307
+    title: Advanced Matrix Search button opens advanced search
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form is open
+    steps:
+      - Open the matrix item list form
+      - Click the Advanced Matrix Search button (btnSearch)
+    expected:
+      - The advanced matrix search opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Advanced Matrix Search button (btnSearch) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 197, text: "btnSearchClick Advanced Matrix Search" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-308
+    title: Selecting a grid row selects the matrix item
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form shows search results
+    steps:
+      - Open the matrix item list form with results listed
+      - Click a row in the list grid (dgvList)
+    expected:
+      - The clicked row is selected as the active matrix item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - List grid (dgvList) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 217, text: "dgvListCellClick grid row select" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-309
+    title: Clicking a column header sorts the matrix list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The matrix item list form shows search results
+    steps:
+      - Open the matrix item list form with results listed
+      - Click a column header in the list grid (dgvList)
+    expected:
+      - The matrix list is sorted by the clicked column
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - List grid column header sort (dgvList) on the matrix list form
+    source_files:
+      - 2.0.x/Items/frmMatrixList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixList.cs, line: 232, text: "dgvListColumnHeaderMouseClick column sort" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,98 @@
+  - id: ITEM-320
+    title: Close matrix list search form via Close button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixListSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Matrix List Search form is open
+    steps:
+      - Open the Matrix List Search form
+      - Click the Close button
+    expected:
+      - The Matrix List Search form closes without searching
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the Matrix List Search form
+    source_files:
+      - 2.0.x/Items/frmMatrixListSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixListSearch.cs, line: 62, text: "btnCancelClick \"Close\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-321
+    title: Run matrix list search via Search button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixListSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Matrix List Search form is open with search criteria entered
+    steps:
+      - Open the Matrix List Search form
+      - Enter search criteria
+      - Click the Search button
+    expected:
+      - The search runs and matching matrix items are returned
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Search button on the Matrix List Search form
+    source_files:
+      - 2.0.x/Items/frmMatrixListSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixListSearch.cs, line: 67, text: "btnOKClick \"Search\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-322
+    title: Pick a vendor filter on matrix list search
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMatrixListSearch
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Matrix List Search form is open
+    steps:
+      - Open the Matrix List Search form
+      - Click the Vendor button
+      - Select a vendor
+    expected:
+      - The selected vendor is applied as a search filter
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Vendor picker button on the Matrix List Search form
+    source_files:
+      - 2.0.x/Items/frmMatrixListSearch.cs
+    evidence:
+      - { file: 2.0.x/Items/frmMatrixListSearch.cs, line: 131, text: "btnVendorClick (pick vendor)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

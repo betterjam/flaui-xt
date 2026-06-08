@@ -1,0 +1,2487 @@
+﻿{
+    "feature":  "Items",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Items"
+                    ],
+    "formCount":  24,
+    "anchorTotal":  346,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  21,
+                   "action":  161,
+                   "message":  120,
+                   "toggle":  44
+               },
+    "forms":  [
+                  {
+                      "form":  "frmCategory",
+                      "file":  "2.0.x\\Items\\frmCategory.cs",
+                      "anchorCount":  21,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  127,
+                                          "kind":  "Warning",
+                                          "text":  "Description cannot be blank"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  185,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  195,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete\\r\\nCategory"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  209,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate category \u0027{mRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  261,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate subcategory \u0027{mRow["
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  304,
+                                          "handler":  "btnDownClick",
+                                          "control":  "btnDown",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  309,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "New\\r\\nCategory"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  368,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  403,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate category \u0027{mDuplicate["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  425,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate subcategory \u0027{mSubDuplicate["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  450,
+                                          "kind":  "Warning",
+                                          "text":  "Description cannot be blank"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  462,
+                                          "kind":  "Warning",
+                                          "text":  "Selection error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  485,
+                                          "kind":  "Warning",
+                                          "text":  "Description cannot be blank"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  498,
+                                          "kind":  "Warning",
+                                          "text":  "Selection error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  650,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  654,
+                                          "handler":  "btnSetClick",
+                                          "control":  "btnSet",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  665,
+                                          "handler":  "btnUpClick",
+                                          "control":  "btnUp",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  670,
+                                          "handler":  "chkCheckedChanged",
+                                          "control":  "chk",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  761,
+                                          "handler":  "chkVisibleCheckedChanged",
+                                          "control":  "chkVisible",
+                                          "label":  "Visible On Register"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  767,
+                                          "handler":  "dgvCatCellClick",
+                                          "control":  "dgvCat",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  895,
+                                          "kind":  "Warning",
+                                          "text":  "Description cannot be blank"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCoupon",
+                      "file":  "2.0.x\\Items\\frmCoupon.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  26,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  39,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDateRange",
+                      "file":  "2.0.x\\Items\\frmDateRange.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  42,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  47,
+                                          "handler":  "btnFindItemClick",
+                                          "control":  "btnFindItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  60,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  64,
+                                          "kind":  "Warning",
+                                          "text":  "Please select an item."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDRV",
+                      "file":  "2.0.x\\Items\\frmDRV.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "toggle",
+                                          "line":  122,
+                                          "handler":  "chkEBTCheckedChanged",
+                                          "control":  "chkEBT",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  133,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  142,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  166,
+                                          "kind":  "Success",
+                                          "text":  "Deleted successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  169,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  235,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  239,
+                                          "handler":  "chkTaxIncludedCheckedChanged",
+                                          "control":  "chkTaxIncluded",
+                                          "label":  "Tax Included"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmFreshSheet",
+                      "file":  "2.0.x\\Items\\frmFreshSheet.cs",
+                      "anchorCount":  9,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  134,
+                                          "handler":  "btnAddItemClick",
+                                          "control":  "btnAddItem",
+                                          "label":  "Add\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  142,
+                                          "handler":  "btnAddServiceClick",
+                                          "control":  "btnAddService",
+                                          "label":  "Add\\r\\nServices"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  157,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  165,
+                                          "handler":  "btnDelAllClick",
+                                          "control":  "btnDelAll",
+                                          "label":  "Delete\\r\\nAll"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  177,
+                                          "handler":  "btnDelClick",
+                                          "control":  "btnDel",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  194,
+                                          "handler":  "btnDownClick",
+                                          "control":  "btnDown",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  202,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  224,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  228,
+                                          "handler":  "btnUpClick",
+                                          "control":  "btnUp",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmGroupManager",
+                      "file":  "2.0.x\\Items\\frmGroupManager.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  18,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  23,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  30,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  37,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  44,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  51,
+                                          "kind":  "Warning",
+                                          "text":  "Minimum cannot be greater than maximum"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmHistory",
+                      "file":  "2.0.x\\Items\\frmHistory.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  21,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  26,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Open"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmInventory",
+                      "file":  "2.0.x\\Items\\frmInventory.cs",
+                      "anchorCount":  18,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  25,
+                                          "control":  "btnReset",
+                                          "right":  "Items.Count.Reconcile",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  72,
+                                          "kind":  "Warning",
+                                          "text":  "Not found."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  78,
+                                          "kind":  "Warning",
+                                          "text":  "Module is not designed for use with sold by unit of measure items."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  86,
+                                          "kind":  "Warning",
+                                          "text":  "Module is not designed for use with \\"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  130,
+                                          "handler":  "btnAllClick",
+                                          "control":  "btnAll",
+                                          "label":  "Select\\r\\nAll"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  136,
+                                          "handler":  "btnCloseClick",
+                                          "control":  "btnClose",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  144,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  173,
+                                          "handler":  "btnFindItemClick",
+                                          "control":  "btnFindItem",
+                                          "label":  "Add\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  196,
+                                          "handler":  "btnNoneClick",
+                                          "control":  "btnNone",
+                                          "label":  "Select\\r\\nNone"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  202,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  238,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  243,
+                                          "handler":  "btnReconClick",
+                                          "control":  "btnRecon",
+                                          "label":  "Reconcile"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  249,
+                                          "kind":  "Warning",
+                                          "text":  "No items selected."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  257,
+                                          "kind":  "Warning",
+                                          "text":  "Empty field."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  272,
+                                          "kind":  "Warning",
+                                          "text":  "No items selected."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  421,
+                                          "kind":  "Success",
+                                          "text":  "Reconciled successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  427,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  446,
+                                          "handler":  "dgvItemsCellClick",
+                                          "control":  "dgvItems",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmItems",
+                      "file":  "2.0.x\\Items\\frmItems.cs",
+                      "anchorCount":  104,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  1051,
+                                          "control":  "tpgInventoryAdjust",
+                                          "right":  "Items.Count.ManualEntry",
+                                          "label":  "Inventory Adjustment"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1642,
+                                          "handler":  "btnAddCatClick",
+                                          "control":  "btnAddCat",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1698,
+                                          "handler":  "btnAddMemberClick",
+                                          "control":  "btnAddMember",
+                                          "label":  "Add\\r\\nMember\\r\\n"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1722,
+                                          "kind":  "Warning",
+                                          "text":  "Selected item is already inserted."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1727,
+                                          "handler":  "btnCloneClick",
+                                          "control":  "btnClone",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1765,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1828,
+                                          "kind":  "Success",
+                                          "text":  "Deleted successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1831,
+                                          "handler":  "btnDelModAllClick",
+                                          "control":  "btnDelModAll",
+                                          "label":  "Delete\\r\\nAll"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1846,
+                                          "handler":  "btnDelModClick",
+                                          "control":  "btnDelMod",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1859,
+                                          "handler":  "btnDRVClick",
+                                          "control":  "btnDRV",
+                                          "label":  "New \\r\\nCRV"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1866,
+                                          "handler":  "btnFindGroupAltClick",
+                                          "control":  "btnFindGroupAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1872,
+                                          "handler":  "btnFindGroupClick",
+                                          "control":  "btnFindGroup",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1897,
+                                          "handler":  "btnFindLinkAltClick",
+                                          "control":  "btnFindLinkAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1905,
+                                          "handler":  "btnFindLinkClick",
+                                          "control":  "btnFindLink",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1931,
+                                          "handler":  "btnGoGroupClick",
+                                          "control":  "btnGoGroup",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1938,
+                                          "handler":  "btnGoMemberClick",
+                                          "control":  "btnGoMember",
+                                          "label":  "Go To"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1942,
+                                          "kind":  "Warning",
+                                          "text":  "No item row selected"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1950,
+                                          "handler":  "btnGoToClick",
+                                          "control":  "btnGoTo",
+                                          "label":  "Go To\\r\\nModifier"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1955,
+                                          "handler":  "btnManageClick",
+                                          "control":  "btnManage",
+                                          "label":  "Manage\\r\\nGroup"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1981,
+                                          "handler":  "btnNewMemberClick",
+                                          "control":  "btnNewMember",
+                                          "label":  "New\\r\\nMember"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2010,
+                                          "handler":  "btnNewOrderClick",
+                                          "control":  "btnNewOrder",
+                                          "label":  "New \\r\\nOrder"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2027,
+                                          "handler":  "btnRefreshClick",
+                                          "control":  "btnRefresh",
+                                          "label":  "Manual\\r\\nRefresh"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2035,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Inventory\\r\\nMovement"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2052,
+                                          "handler":  "btnReqAltClick",
+                                          "control":  "btnReqAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2062,
+                                          "handler":  "btnReqClick",
+                                          "control":  "btnReq",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2081,
+                                          "kind":  "Warning",
+                                          "text":  "Item cannot be its own required modifier."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2096,
+                                          "handler":  "btnSearchClick",
+                                          "control":  "btnSearch",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2104,
+                                          "handler":  "btnSetClick",
+                                          "control":  "btnSet",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2114,
+                                          "handler":  "btnSKU1Click",
+                                          "control":  "btnSKU1",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2121,
+                                          "handler":  "cboPackUnitSelectedIndexChanged",
+                                          "control":  "cboPackUnit",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2153,
+                                          "handler":  "cboPriceQtyPromptSelectedIndexChanged",
+                                          "control":  "cboPriceQtyPrompt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2164,
+                                          "handler":  "chkDiscontinuedCheckedChanged",
+                                          "control":  "chkDiscontinued",
+                                          "label":  "Discontinued"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2169,
+                                          "handler":  "chkDynamicCheckedChanged",
+                                          "control":  "chkDynamic",
+                                          "label":  "Dynamic Reordering"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2175,
+                                          "handler":  "chkExcludePromosCheckedChanged",
+                                          "control":  "chkExcludePromos",
+                                          "label":  "Exclude From Promotions"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2186,
+                                          "handler":  "chkLessOneCheckedChanged",
+                                          "control":  "chkLessOne",
+                                          "label":  "Allow Sale Qty Less Than One"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2219,
+                                          "handler":  "chkMatkupByCheckedChanged",
+                                          "control":  "chkMatkupBy",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2243,
+                                          "handler":  "chkMatkupCheckedChanged",
+                                          "control":  "chkMatkup",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2286,
+                                          "handler":  "chkModifierCheckedChanged",
+                                          "control":  "chkModifier",
+                                          "label":  "Modifier"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2340,
+                                          "handler":  "chkModRollupCheckedChanged",
+                                          "control":  "chkModRollup",
+                                          "label":  "Modifier Price Rollup"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2349,
+                                          "handler":  "chkSBFCheckedChanged",
+                                          "control":  "chkSBF",
+                                          "label":  "Sold By Weight"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2409,
+                                          "handler":  "chkShowInactiveCheckedChanged",
+                                          "control":  "chkShowInactive",
+                                          "label":  "Show Inactive Members"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2414,
+                                          "handler":  "chkTaxIncludedCheckedChanged",
+                                          "control":  "chkTaxIncluded",
+                                          "label":  "Tax Included"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  2456,
+                                          "handler":  "chkVisibleCheckedChanged",
+                                          "control":  "chkVisible",
+                                          "label":  "Show On Register"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2504,
+                                          "handler":  "dgvAltSkusCellClick",
+                                          "control":  "dgvAltSkus",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2538,
+                                          "handler":  "dgvMembersCellClick",
+                                          "control":  "dgvMembers",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2593,
+                                          "kind":  "Warning",
+                                          "text":  "There are members (active or inactive) with duplicate size, color and style values."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2606,
+                                          "handler":  "dgvModsCellClick",
+                                          "control":  "dgvMods",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2619,
+                                          "handler":  "dgvParentCellClick",
+                                          "control":  "dgvParent",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2639,
+                                          "kind":  "Warning",
+                                          "text":  "Cannot define same item multiple times."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2659,
+                                          "handler":  "dgvParentCellDoubleClick",
+                                          "control":  "dgvParentCell",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2665,
+                                          "kind":  "Warning",
+                                          "text":  "Parent item marked as not an inventory item."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2675,
+                                          "kind":  "Warning",
+                                          "text":  "Insufficient quantity for this movement."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2701,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid parent and/or child item."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2732,
+                                          "handler":  "dgvStockLocationCellClick",
+                                          "control":  "dgvStockLocation",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2753,
+                                          "handler":  "dgvVendorsCellClick",
+                                          "control":  "dgvVendors",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2832,
+                                          "kind":  "Warning",
+                                          "text":  "Vendor already exists."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2961,
+                                          "kind":  "Warning",
+                                          "text":  "Item cannot be converted to Non-Inventory when quantity is not 0."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2966,
+                                          "kind":  "Warning",
+                                          "text":  "Item is currently on an open purchase order or receiver,\\r\\nand cannot be converted until the receiving document\\r\\nis closed and quantity is 0."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3113,
+                                          "handler":  "ucNavOnSave",
+                                          "control":  "ucNav",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3119,
+                                          "kind":  "Warning",
+                                          "text":  "Cost is required"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3144,
+                                          "kind":  "Warning",
+                                          "text":  "Department must be assigned to the item or the category associated with the item"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3152,
+                                          "kind":  "Warning",
+                                          "text":  "Tab: Pricing.\\n\\n[Sold by weight] option is on, please select a valid pack unit."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3178,
+                                          "kind":  "Warning",
+                                          "text":  "Tab: Inventory.\\n\\n[PLU Code] must be unique and it is being used by [{mDupePLUCodeDescription}]"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3207,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid group."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3213,
+                                          "kind":  "Warning",
+                                          "text":  "Price cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3219,
+                                          "kind":  "Warning",
+                                          "text":  "Price cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3238,
+                                          "kind":  "Warning",
+                                          "text":  "{(mLen.Equals(13) ? "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3291,
+                                          "kind":  "Warning",
+                                          "text":  "SKU cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3299,
+                                          "kind":  "Warning",
+                                          "text":  "Alternate SKU can be the same as the primary SKU."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3307,
+                                          "kind":  "Warning",
+                                          "text":  "{(mLen.Equals(13) ? "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3314,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate alternate SKUs not permitted."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3323,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate alternate SKUs not permitted."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3339,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate location not permitted."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3361,
+                                          "kind":  "Warning",
+                                          "text":  "Pack Unit Type cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3368,
+                                          "kind":  "Warning",
+                                          "text":  "Pack Unit Size cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3375,
+                                          "kind":  "Warning",
+                                          "text":  "Pack Unit Amount cannot be blank or zero."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3391,
+                                          "kind":  "Warning",
+                                          "text":  "This item requires a \\"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3403,
+                                          "kind":  "Warning",
+                                          "text":  "This item requires a \\"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3418,
+                                          "kind":  "Warning",
+                                          "text":  "Price is less than defined {(Global.Settings.License.LMIEnabled ? "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3432,
+                                          "kind":  "Warning",
+                                          "text":  "You must define a date for the future price to take effect."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3449,
+                                          "kind":  "Warning",
+                                          "text":  "Group item ({mSKU1}) cant be a member."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3460,
+                                          "kind":  "Warning",
+                                          "text":  "Blank pack size not allowed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3468,
+                                          "kind":  "Warning",
+                                          "text":  "0.00 pack unit amount not allowed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3480,
+                                          "kind":  "Warning",
+                                          "text":  "Pack unit must be Gallon, Liter, Milliliter, Fluid Ounces or Pint."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3532,
+                                          "kind":  "Warning",
+                                          "text":  "There are members with no size defined."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3539,
+                                          "kind":  "Warning",
+                                          "text":  "There are members with no color defined."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3545,
+                                          "kind":  "Warning",
+                                          "text":  "There are members with no style defined."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3563,
+                                          "kind":  "Warning",
+                                          "text":  "UPC is not correct ({mSKU})."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3570,
+                                          "kind":  "Warning",
+                                          "text":  "There are members with duplicate SKU ({mSKU})."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3577,
+                                          "kind":  "Warning",
+                                          "text":  "There are members with duplicate SKU ({mSKU}) in alternate SKU."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3596,
+                                          "kind":  "Warning",
+                                          "text":  "There are members (active or inactive) with duplicate size, color and style values."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3606,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid group."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3612,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid size."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3618,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid color."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3624,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid style."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3644,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate color, size and form"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3654,
+                                          "kind":  "Warning",
+                                          "text":  "Pack unit must be Gallon, Liter, Milliliter, Fluid Ounces or Pint."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3723,
+                                          "kind":  "Warning",
+                                          "text":  "Insufficient quantity for this movement."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3729,
+                                          "kind":  "Warning",
+                                          "text":  "Must input inventory adjustment reason"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3739,
+                                          "kind":  "Warning",
+                                          "text":  "Reorder quantity should be equal to or\\ngreater than the minimum order quantity."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3764,
+                                          "kind":  "Warning",
+                                          "text":  "{mReqRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3779,
+                                          "kind":  "Warning",
+                                          "text":  "Minimum {mReqRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3785,
+                                          "kind":  "Warning",
+                                          "text":  "Maximum {mReqRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  4716,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmItemsList",
+                      "file":  "2.0.x\\Items\\frmItemsList.cs",
+                      "anchorCount":  12,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  47,
+                                          "control":  "_AccessObj",
+                                          "right":  "Items.Item",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  48,
+                                          "control":  "btnModify",
+                                          "right":  "Items.Item",
+                                          "label":  "Modify All List\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  49,
+                                          "control":  "btnReport",
+                                          "right":  "Report.Items",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  153,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nSearch Results"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  180,
+                                          "handler":  "btnGetPriceClick",
+                                          "control":  "btnGetPrice",
+                                          "label":  "Get All\\r\\nPrices"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  196,
+                                          "kind":  "Warning",
+                                          "text":  "M.L. Price URL is missing in Business Details."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  214,
+                                          "handler":  "btnModifyClick",
+                                          "control":  "btnModify",
+                                          "label":  "Modify All List\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  228,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  242,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  247,
+                                          "handler":  "btnSearchClick",
+                                          "control":  "btnSearch",
+                                          "label":  "Advanced\\r\\nItem Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  267,
+                                          "handler":  "dgvListCellClick",
+                                          "control":  "dgvList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  282,
+                                          "handler":  "dgvListColumnHeaderMouseClick",
+                                          "control":  "dgvListColumnHeaderMouse",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmItemsListSearch",
+                      "file":  "2.0.x\\Items\\frmItemsListSearch.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  65,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  70,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  137,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  142,
+                                          "handler":  "btnVendorClick",
+                                          "control":  "btnVendor",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmItemsMod",
+                      "file":  "2.0.x\\Items\\frmItemsMod.cs",
+                      "anchorCount":  30,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  429,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  438,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  453,
+                                          "handler":  "btnCostUpdateClick",
+                                          "control":  "btnCostUpdate",
+                                          "label":  "Update\\r\\nCost\\r\\n"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  485,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  488,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  504,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  508,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  974,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing changed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  984,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  991,
+                                          "handler":  "btnReqItemAltClick",
+                                          "control":  "btnReqItemAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  998,
+                                          "handler":  "btnReqItemClick",
+                                          "control":  "btnReqItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1022,
+                                          "handler":  "btnSetClick",
+                                          "control":  "btnSet",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1030,
+                                          "handler":  "btnUpdateClick",
+                                          "control":  "btnUpdate",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1062,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1066,
+                                          "handler":  "cboPriceQtyPromptSelectedIndexChanged",
+                                          "control":  "cboPriceQtyPrompt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1077,
+                                          "handler":  "cboStockTypeSelectedIndexChanged",
+                                          "control":  "cboStockType",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1083,
+                                          "kind":  "Warning",
+                                          "text":  "Selected Inventory list items \\"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1091,
+                                          "handler":  "cboTaxTypeSelectedIndexChanged",
+                                          "control":  "cboTaxType",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1094,
+                                          "kind":  "Warning",
+                                          "text":  "Tax Type will only be updated on items that have all three Pack Size values defined."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1097,
+                                          "handler":  "chkCostCheckStateChanged",
+                                          "control":  "chkCostCheckState",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1116,
+                                          "handler":  "chkDynamicCheckedChanged",
+                                          "control":  "chkDynamic",
+                                          "label":  "Dynamic Reordering"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1121,
+                                          "handler":  "chkEBTCheckedChanged",
+                                          "control":  "chkEBT",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1133,
+                                          "handler":  "chkPriceCheckStateChanged",
+                                          "control":  "chkPriceCheckState",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1152,
+                                          "handler":  "chkRSDCheckedChanged",
+                                          "control":  "chkRSD",
+                                          "label":  "RJ Reynolds Scan Data"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1159,
+                                          "kind":  "Warning",
+                                          "text":  "RJ Reynolds Scan Data will only be updated on items that have all three Pack Size values defined."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1163,
+                                          "handler":  "chkScanDataCheckedChanged",
+                                          "control":  "chkScanData",
+                                          "label":  "Altria Scan Data"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1170,
+                                          "kind":  "Warning",
+                                          "text":  "Altria Scan Data will only be updated on items that have all three Pack Size values defined."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  1181,
+                                          "handler":  "chkVisibleCheckedChanged",
+                                          "control":  "chkVisible",
+                                          "label":  "Show On Register"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1192,
+                                          "handler":  "dgvHistoricCostCellClick",
+                                          "control":  "dgvHistoricCost",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1211,
+                                          "handler":  "dgvHistoricPriceCellClick",
+                                          "control":  "dgvHistoricPrice",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLabel",
+                      "file":  "2.0.x\\Items\\frmLabel.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  101,
+                                          "kind":  "Warning",
+                                          "text":  "Cannot print label, not a valid UPCA or UPCE SKU"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  161,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  186,
+                                          "handler":  "btnItemSearchClick",
+                                          "control":  "btnItemSearch",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  200,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Print"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  222,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Reset\\r\\nList"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  230,
+                                          "handler":  "dgvItemsCellClick",
+                                          "control":  "dgvItems",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMatrixList",
+                      "file":  "2.0.x\\Items\\frmMatrixList.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  47,
+                                          "control":  "_AccessObj",
+                                          "right":  "Items.Item",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  48,
+                                          "control":  "btnModify",
+                                          "right":  "Items.Item",
+                                          "label":  "Modify All List\\r\\nMatrix"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  49,
+                                          "control":  "btnReport",
+                                          "right":  "Report.Items",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  137,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nSearch Results"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  164,
+                                          "handler":  "btnModifyClick",
+                                          "control":  "btnModify",
+                                          "label":  "Modify All List\\r\\nMatrix"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  178,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  192,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  197,
+                                          "handler":  "btnSearchClick",
+                                          "control":  "btnSearch",
+                                          "label":  "Advanced\\r\\nMatrix Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  217,
+                                          "handler":  "dgvListCellClick",
+                                          "control":  "dgvList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  232,
+                                          "handler":  "dgvListColumnHeaderMouseClick",
+                                          "control":  "dgvListColumnHeaderMouse",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMatrixListSearch",
+                      "file":  "2.0.x\\Items\\frmMatrixListSearch.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  62,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  67,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  131,
+                                          "handler":  "btnVendorClick",
+                                          "control":  "btnVendor",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMember",
+                      "file":  "2.0.x\\Items\\frmMember.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  18,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  23,
+                                          "handler":  "dgvItemsCellContentClick",
+                                          "control":  "dgvItems",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Items\\frmMenu.cs",
+                      "anchorCount":  17,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  15,
+                                          "control":  "btnCategories",
+                                          "right":  "Items.Categories",
+                                          "label":  "Categories"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  16,
+                                          "control":  "btnItemCount",
+                                          "right":  "Items.Count.Access",
+                                          "label":  "Count"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  17,
+                                          "control":  "btnLabels",
+                                          "right":  "Items.Labels",
+                                          "label":  "Labels"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  18,
+                                          "control":  "btnPromo",
+                                          "right":  "Items.Promos",
+                                          "label":  "Promos"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  24,
+                                          "control":  "btnReactivateItems",
+                                          "right":  "Items.Item",
+                                          "label":  "Reactivate"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  27,
+                                          "control":  "btnServiceList",
+                                          "right":  "Items.Services",
+                                          "label":  "Service\\r\\nList"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  30,
+                                          "handler":  "btnCategoriesClick",
+                                          "control":  "btnCategories",
+                                          "label":  "Categories"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  37,
+                                          "handler":  "btnItemCountClick",
+                                          "control":  "btnItemCount",
+                                          "label":  "Count"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  44,
+                                          "handler":  "btnItemListClick",
+                                          "control":  "btnItemList",
+                                          "label":  "Item\\r\\nList"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  49,
+                                          "handler":  "btnItemNewClick",
+                                          "control":  "btnItemNew",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  54,
+                                          "handler":  "btnLabelsClick",
+                                          "control":  "btnLabels",
+                                          "label":  "Labels"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  59,
+                                          "handler":  "btnMatrixInventoryClick",
+                                          "control":  "btnMatrixInventory",
+                                          "label":  "Matrix"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  64,
+                                          "handler":  "btnPromoClick",
+                                          "control":  "btnPromo",
+                                          "label":  "Promos"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  71,
+                                          "handler":  "btnReactivateItemsClick",
+                                          "control":  "btnReactivateItems",
+                                          "label":  "Reactivate"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  78,
+                                          "handler":  "btnServiceListClick",
+                                          "control":  "btnServiceList",
+                                          "label":  "Service\\r\\nList"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  83,
+                                          "handler":  "btnServiceNewClick",
+                                          "control":  "btnServiceNew",
+                                          "label":  "Service\\r\\nDetails"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  88,
+                                          "handler":  "btnFreshSheetClick",
+                                          "control":  "btnFreshSheet",
+                                          "label":  "Fresh\\r\\nSheet"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPromo",
+                      "file":  "2.0.x\\Items\\frmPromo.cs",
+                      "anchorCount":  33,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  123,
+                                          "kind":  "Success",
+                                          "text":  "{pDescription} added successfully."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  126,
+                                          "kind":  "Success",
+                                          "text":  "{pDescription} already inserted."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  143,
+                                          "kind":  "Success",
+                                          "text":  "{pDescription} added successfully."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  146,
+                                          "kind":  "Success",
+                                          "text":  "{pDescription} already inserted."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  209,
+                                          "handler":  "btnAddMemberClick",
+                                          "control":  "btnAddMember",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  234,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  242,
+                                          "handler":  "btnCouponClick",
+                                          "control":  "btnCoupon",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  251,
+                                          "handler":  "btnDelAllMembersClick",
+                                          "control":  "btnDelAllMembers",
+                                          "label":  "Delete\\r\\nAll"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  266,
+                                          "handler":  "btnDelMemberClick",
+                                          "control":  "btnDelMember",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  275,
+                                          "handler":  "btnItemListClick",
+                                          "control":  "btnItemList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  282,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "New"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  333,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  337,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing changed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  348,
+                                          "kind":  "Warning",
+                                          "text":  "Check dates on {mRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  355,
+                                          "kind":  "Warning",
+                                          "text":  "Discount Percent amount cannot be greater than 100%."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  372,
+                                          "kind":  "Warning",
+                                          "text":  "Check Happy Hour dates on {mRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  380,
+                                          "kind":  "Warning",
+                                          "text":  "No day of week selected on {mRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  398,
+                                          "kind":  "Warning",
+                                          "text":  "Check Mix \u0026 Match dates on {mRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  406,
+                                          "kind":  "Warning",
+                                          "text":  "No day of week selected on {mRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  415,
+                                          "kind":  "Warning",
+                                          "text":  "Mix \u0026 Match:\\n{mRow["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  495,
+                                          "kind":  "Warning",
+                                          "text":  "Item {mRowB["
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  663,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  667,
+                                          "handler":  "btnListClick",
+                                          "control":  "btnList",
+                                          "label":  "Promo\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  673,
+                                          "handler":  "cboDiscTypeSelectedIndexChanged",
+                                          "control":  "cboDiscType",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  690,
+                                          "handler":  "chkApplytoAllCheckedChanged",
+                                          "control":  "chkApplytoAll",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  705,
+                                          "handler":  "chkCouponCheckedChanged",
+                                          "control":  "chkCoupon",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  713,
+                                          "handler":  "chkDiscEnableCheckedChanged",
+                                          "control":  "chkDiscEnable",
+                                          "label":  "Active"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  719,
+                                          "handler":  "chkDiscShowDeletedCheckedChanged",
+                                          "control":  "chkDiscShowDeleted",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  724,
+                                          "handler":  "chkGrpActiveCheckedChanged",
+                                          "control":  "chkGrpActive",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  733,
+                                          "handler":  "chkGrpInactiveCheckedChanged",
+                                          "control":  "chkGrpInactive",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  760,
+                                          "handler":  "chkMfgCheckedChanged",
+                                          "control":  "chkMfg",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  767,
+                                          "handler":  "chkOrderCheckedChanged",
+                                          "control":  "chkOrder",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  779,
+                                          "handler":  "chkSingleCheckedChanged",
+                                          "control":  "chkSingle",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSearch",
+                      "file":  "2.0.x\\Items\\frmSearch.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  72,
+                                          "control":  "btnNew",
+                                          "right":  "Items.Item",
+                                          "label":  "Add\\r\\nNew Item"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  111,
+                                          "control":  "btnNew",
+                                          "right":  "Items.Item",
+                                          "label":  "Add\\r\\nNew Item"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  277,
+                                          "handler":  "btnAllClick",
+                                          "control":  "btnAll",
+                                          "label":  "Insert\\r\\nAll"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  284,
+                                          "kind":  "Success",
+                                          "text":  "Added successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  287,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  292,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "Add\\r\\nNew Item"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  313,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  318,
+                                          "handler":  "btnVendorClick",
+                                          "control":  "btnVendor",
+                                          "label":  "Vendor\\r\\nItems"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  326,
+                                          "handler":  "chkOptionCheckedChanged",
+                                          "control":  "chkOption",
+                                          "label":  "Need To Order"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  331,
+                                          "handler":  "dgvItemsCellClick",
+                                          "control":  "dgvItems",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSearchServices",
+                      "file":  "2.0.x\\Items\\frmSearchServices.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  38,
+                                          "control":  "btnNew",
+                                          "right":  "Items.Services",
+                                          "label":  "New\\r\\nService"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  63,
+                                          "handler":  "btnCloseClick",
+                                          "control":  "btnClose",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  68,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "New\\r\\nService"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  82,
+                                          "handler":  "dgvServicesCellClick",
+                                          "control":  "dgvServices",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmServices",
+                      "file":  "2.0.x\\Items\\Services\\frmServices.cs",
+                      "anchorCount":  17,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  198,
+                                          "control":  "btnRClass",
+                                          "right":  "Settings.Preference",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  199,
+                                          "control":  "btnDelete",
+                                          "right":  "Items.Services",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  299,
+                                          "kind":  "Warning",
+                                          "text":  "Staff already added."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  305,
+                                          "kind":  "Success",
+                                          "text":  "Staff {mStaff}\\nadded successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  308,
+                                          "handler":  "btnAddStaffClick",
+                                          "control":  "btnAddStaff",
+                                          "label":  "Add"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  320,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  332,
+                                          "kind":  "Warning",
+                                          "text":  "Service cannot be deleted because there are current open appointments with this service"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  350,
+                                          "kind":  "Success",
+                                          "text":  "Deleted successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  354,
+                                          "handler":  "btnDelStaffClick",
+                                          "control":  "btnDelStaff",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  363,
+                                          "handler":  "btnDuplicateClick",
+                                          "control":  "btnDuplicate",
+                                          "label":  "Duplicate"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  375,
+                                          "handler":  "chkAllStaffCheckedChanged",
+                                          "control":  "chkAllStaff",
+                                          "label":  "All Staff"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  388,
+                                          "handler":  "chkExcludePromosCheckedChanged",
+                                          "control":  "chkExcludePromos",
+                                          "label":  "Exclude From Promotions"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  399,
+                                          "handler":  "chkVisibleCheckedChanged",
+                                          "control":  "chkVisible",
+                                          "label":  "Visible On Register"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  404,
+                                          "handler":  "dgvStaffCellClick",
+                                          "control":  "dgvStaff",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  419,
+                                          "handler":  "ucNavOnSave",
+                                          "control":  "ucNav",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  423,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid time."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  565,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmServicesList",
+                      "file":  "2.0.x\\Items\\Services\\frmServicesList.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  43,
+                                          "control":  "_AccessObj",
+                                          "right":  "Customers.Customer",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  44,
+                                          "control":  "btnModify",
+                                          "right":  "Items.Services",
+                                          "label":  "Modify All List Services"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  151,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nSearch Results"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  177,
+                                          "handler":  "btnModifyClick",
+                                          "control":  "btnModify",
+                                          "label":  "Modify All List Services"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  198,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  201,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  215,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  220,
+                                          "handler":  "btnSearchClick",
+                                          "control":  "btnSearch",
+                                          "label":  "Advanced\\r\\n Services Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  235,
+                                          "handler":  "dgvListCellClick",
+                                          "control":  "dgvList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  250,
+                                          "handler":  "dgvListColumnHeaderMouseClick",
+                                          "control":  "dgvListColumnHeaderMouse",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmServicesListSearch",
+                      "file":  "2.0.x\\Items\\Services\\frmServicesListSearch.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  45,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  50,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  78,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmServicesMod",
+                      "file":  "2.0.x\\Items\\Services\\frmServicesMod.cs",
+                      "anchorCount":  12,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  123,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  146,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  155,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  171,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  175,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  374,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing changed."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  386,
+                                          "handler":  "btnSetClick",
+                                          "control":  "btnSet",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  393,
+                                          "handler":  "btnUpdateClick",
+                                          "control":  "btnUpdate",
+                                          "label":  "Update\\r\\nPrice"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  419,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  429,
+                                          "handler":  "chkCheckedChanged",
+                                          "control":  "chk",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  458,
+                                          "handler":  "chkVisibleCheckedChanged",
+                                          "control":  "chkVisible",
+                                          "label":  "Visible On Register"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  464,
+                                          "handler":  "dgvHistoricCellClick",
+                                          "control":  "dgvHistoric",
+                                          "label":  null
+                                      }
+                                  ]
+                  }
+              ]
+}

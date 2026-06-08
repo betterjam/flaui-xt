@@ -1,0 +1,11 @@
+feature: Items
+description: >
+  Item, category, matrix, service, promotion, coupon, label, fresh-sheet, inventory-count
+  and bulk modify-all flows for the Exatouch Items module. Net-new catalog grounded in the
+  2.0.x/Items/*.cs forms (and Items/Services/*.cs). No existing Ranorex recordings target these
+  forms directly; cases reference the generic Items building-block recordings as locator ground.
+source_paths:
+  - 2.0.x/Items
+flavors: []          # no #if (CFD|BO|DEMO|TRAINING) branch in Items/*.cs alters the user-facing flows enumerated here
+
+test_cases:

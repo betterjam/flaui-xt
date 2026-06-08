@@ -1,0 +1,710 @@
+  - id: ITEM-001
+    title: Reject new category save when Description is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Category editor open on a new row with Description left empty
+    steps:
+      - Open Items > Categories
+      - Add a new category and leave the Description field blank
+      - Attempt to save the row
+    expected:
+      - Warning dialog displays "Description cannot be blank"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories grid
+      - Category Description text field
+      - Save button
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 127, text: "Description cannot be blank" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-002
+    title: Cancel button closes the Category editor without saving
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Category editor open with unsaved edits
+    steps:
+      - Open Items > Categories
+      - Make a change to a category row
+      - Click Cancel
+    expected:
+      - The Category editor closes and edits are discarded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Cancel button
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 185, text: "btnCancelClick Close" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-003
+    title: Delete a category via the Delete Category button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - At least one deletable category exists and is selected
+    steps:
+      - Open Items > Categories
+      - Select an existing category row
+      - Click Delete Category
+    expected:
+      - The selected category is removed from the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories grid
+      - Delete Category button
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 195, text: "btnDeleteClick Delete Category" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-004
+    title: Reject duplicate category name on row edit
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - At least one existing category exists to collide with
+    steps:
+      - Open Items > Categories
+      - Edit a category row to use the name of another existing category
+      - Commit the row edit
+    expected:
+      - Warning dialog displays "Duplicate category"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories grid
+      - Category Description text field
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 209, text: "Duplicate category" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-005
+    title: Reject duplicate subcategory name on row edit
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - A category with at least one existing subcategory exists to collide with
+    steps:
+      - Open Items > Categories
+      - Edit a subcategory row to use the name of another existing subcategory in the same category
+      - Commit the row edit
+    expected:
+      - Warning dialog displays "Duplicate subcategory"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Subcategories grid
+      - Subcategory Description text field
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 261, text: "Duplicate subcategory" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-006
+    title: Move a category down in the ordering via the Down button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - At least two categories exist and a non-last category is selected
+    steps:
+      - Open Items > Categories
+      - Select a category that is not last in the list
+      - Click the Down (move down) button
+    expected:
+      - The selected category moves one position lower in the list order
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories grid
+      - Move Down button
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 304, text: "btnDownClick move category down" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-007
+    title: Create a new category via the New Category button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Category editor open
+    steps:
+      - Open Items > Categories
+      - Click New Category
+    expected:
+      - A new editable category row is added to the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - New Category button
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 309, text: "btnNewClick New Category" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-008
+    title: Save category changes via the OK button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Category editor open with valid pending edits
+    steps:
+      - Open Items > Categories
+      - Make valid edits to category and subcategory rows
+      - Click OK to save
+    expected:
+      - The edits are persisted and the editor processes the save
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 368, text: "btnOKClick Save" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-009
+    title: Reject save when a duplicate category name is detected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Two category rows share the same name pending save
+    steps:
+      - Open Items > Categories
+      - Create or edit two categories so they have identical names
+      - Click OK to save
+    expected:
+      - Warning dialog displays "Duplicate category"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 403, text: "Duplicate category" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-010
+    title: Reject save when a duplicate subcategory name is detected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Two subcategory rows in the same category share the same name pending save
+    steps:
+      - Open Items > Categories
+      - Create or edit two subcategories under one category so they have identical names
+      - Click OK to save
+    expected:
+      - Warning dialog displays "Duplicate subcategory"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Subcategories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 425, text: "Duplicate subcategory" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-011
+    title: Reject save when a category Description is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - A category row has an empty Description pending save
+    steps:
+      - Open Items > Categories
+      - Add or edit a category and leave the Description blank
+      - Click OK to save
+    expected:
+      - Warning dialog displays "Description cannot be blank"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Category Description text field
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 450, text: "Description cannot be blank" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-012
+    title: Reject save when a category selection error occurs
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Category editor in a state that triggers a selection error on save
+    steps:
+      - Open Items > Categories
+      - Leave the category selection in an invalid state
+      - Click OK to save
+    expected:
+      - Warning dialog displays "Selection error."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 462, text: "Selection error." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-013
+    title: Reject save when a subcategory Description is blank
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - A subcategory row has an empty Description pending save
+    steps:
+      - Open Items > Categories
+      - Add or edit a subcategory and leave the Description blank
+      - Click OK to save
+    expected:
+      - Warning dialog displays "Description cannot be blank"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Subcategory Description text field
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 485, text: "Description cannot be blank" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-014
+    title: Reject save when a subcategory selection error occurs
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Category editor in a state that triggers a subcategory selection error on save
+    steps:
+      - Open Items > Categories
+      - Leave the subcategory selection in an invalid state
+      - Click OK to save
+    expected:
+      - Warning dialog displays "Selection error."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Subcategories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 498, text: "Selection error." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-015
+    title: Confirm success message after saving categories successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - Category editor open with valid pending edits
+    steps:
+      - Open Items > Categories
+      - Make valid edits to categories and subcategories
+      - Click OK to save
+    expected:
+      - Success dialog displays "Saved successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button
+      - Save success dialog
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 650, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-016
+    title: Assign selection via the Set button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - A category or subcategory is selected for assignment
+    steps:
+      - Open Items > Categories
+      - Select a category or subcategory
+      - Click the Set (assign) button
+    expected:
+      - The selection is set or assigned as expected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Set button
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 654, text: "btnSetClick set/assign" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-017
+    title: Move a category up in the ordering via the Up button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - At least two categories exist and a non-first category is selected
+    steps:
+      - Open Items > Categories
+      - Select a category that is not first in the list
+      - Click the Up (move up) button
+    expected:
+      - The selected category moves one position higher in the list order
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories grid
+      - Move Up button
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 665, text: "btnUpClick move category up" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-018
+    title: Toggle the category active/checked checkbox
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - A category row is selected
+    steps:
+      - Open Items > Categories
+      - Select a category row
+      - Toggle the active/checked checkbox
+    expected:
+      - The category active/checked state updates to reflect the toggle
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Active/Checked checkbox
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 670, text: "chkCheckedChanged active/checked" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-019
+    title: Toggle the Visible On Register checkbox for a category
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - A category row is selected
+    steps:
+      - Open Items > Categories
+      - Select a category row
+      - Toggle the Visible On Register checkbox
+    expected:
+      - The category Visible On Register state updates to reflect the toggle
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Visible On Register checkbox
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 761, text: "Visible On Register" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-020
+    title: Select a category row by clicking a cell in the grid
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - At least one category exists in the grid
+    steps:
+      - Open Items > Categories
+      - Click a cell in a category grid row
+    expected:
+      - The clicked category row becomes the active selection
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 767, text: "dgvCatCellClick grid row select" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-021
+    title: Reject blank Description in the secondary category validation path
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCategory
+      entity: Category
+    preconditions:
+      - Logged in as admin with Items > Categories access
+      - A category or subcategory row reaches the secondary validation path with a blank Description
+    steps:
+      - Open Items > Categories
+      - Edit a row so its Description is blank
+      - Trigger the secondary validation path on commit or save
+    expected:
+      - Warning dialog displays "Description cannot be blank"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Category Description text field
+      - Categories grid
+    source_files:
+      - 2.0.x/Items/frmCategory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmCategory.cs, line: 895, text: "Description cannot be blank" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

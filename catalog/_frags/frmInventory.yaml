@@ -1,0 +1,569 @@
+  - id: ITEM-090
+    title: Reset button is gated by Items.Count.Reconcile permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - User lacks the Items.Count.Reconcile permission
+    steps:
+      - Open the inventory count/reconcile form
+      - Observe the Reset (btnReset) control
+    expected:
+      - The Reset action is unavailable/disabled without the Items.Count.Reconcile permission
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reset button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 25, text: "Items.Count.Reconcile" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-091
+    title: Adding an item not found warns "Not found."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open
+    steps:
+      - Add Items and enter an item identifier that does not exist
+      - Confirm the lookup
+    expected:
+      - 'A warning is displayed: Not found.'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item lookup field on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 72, text: "Not found." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-092
+    title: Sold-by unit-of-measure item is blocked from the count module
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open
+      - An item configured as sold by unit of measure exists
+    steps:
+      - Add Items and select an item that is sold by unit of measure
+    expected:
+      - 'A warning is displayed: Module is not designed for use with sold by unit of measure items.'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item lookup field on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 78, text: "Module is not designed for use with sold by unit of measure items." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-093
+    title: Sold-by type guard blocks unsupported item type from the count module
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open
+      - An item with an unsupported sold-by type exists
+    steps:
+      - Add Items and select an item whose sold-by type is not supported by the module
+    expected:
+      - 'A warning is displayed: Module is not designed for use with ...'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item lookup field on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 86, text: "Module is not designed for use with " }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-094
+    title: Select All marks every grid row
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open with multiple items in the grid
+    steps:
+      - Click Select All (btnAll)
+    expected:
+      - All rows in the items grid are selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Select All button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 130, text: "btnAllClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-095
+    title: Close dismisses the inventory count/reconcile form
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open
+    steps:
+      - Click Close (btnClose)
+    expected:
+      - The inventory count/reconcile form is dismissed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 136, text: "btnCloseClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-096
+    title: Delete Line removes the selected grid row
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open with at least one item row selected
+    steps:
+      - Select a row in the items grid
+      - Click Delete Line (btnDelete)
+    expected:
+      - The selected line is removed from the items grid
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete Line button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 144, text: "btnDeleteClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-097
+    title: Add Items opens the item finder and adds a selected item to the grid
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open
+    steps:
+      - Click Add Items (btnFindItem)
+      - Find and select an existing item
+    expected:
+      - The selected item is added as a new row in the items grid
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Items button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 173, text: "btnFindItemClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-098
+    title: Select None clears all grid row selections
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open with multiple selected rows
+    steps:
+      - Click Select None (btnNone)
+    expected:
+      - No rows in the items grid remain selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Select None button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 196, text: "btnNoneClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-099
+    title: Save persists the current inventory count
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open with at least one counted item
+    steps:
+      - Enter count values for the item rows
+      - Click Save (btnOK)
+    expected:
+      - The inventory count is saved
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 202, text: "btnOKClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-100
+    title: Saving a valid count confirms "Saved successfully."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open with a valid counted item
+    steps:
+      - Enter count values for the item rows
+      - Click Save (btnOK)
+    expected:
+      - 'A success message is displayed: Saved successfully.'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 238, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-101
+    title: Reconcile commits the counted inventory adjustments
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count > Reconcile access
+      - The inventory count/reconcile form is open with counted items selected
+    steps:
+      - Select the counted item rows
+      - Click Reconcile (btnRecon)
+    expected:
+      - The selected counted items are reconciled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reconcile button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 243, text: "btnReconClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-102
+    title: Reconcile with no rows selected warns "No items selected."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count > Reconcile access
+      - The inventory count/reconcile form is open with no rows selected
+    steps:
+      - Click Reconcile (btnRecon) without selecting any rows
+    expected:
+      - 'A warning is displayed: No items selected.'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reconcile button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 249, text: "No items selected." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-103
+    title: Reconcile with an empty required field warns "Empty field."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count > Reconcile access
+      - The inventory count/reconcile form is open with selected rows missing a required value
+    steps:
+      - Select a counted item row that has an empty required field
+      - Click Reconcile (btnRecon)
+    expected:
+      - 'A warning is displayed: Empty field.'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reconcile button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 257, text: "Empty field." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-104
+    title: Reconcile validation re-checks empty selection warns "No items selected."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count > Reconcile access
+      - The inventory count/reconcile form is open with no eligible items selected for reconcile
+    steps:
+      - Trigger Reconcile when no eligible items remain selected
+    expected:
+      - 'A warning is displayed: No items selected.'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reconcile button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 272, text: "No items selected." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-105
+    title: Successful reconcile confirms "Reconciled successfully."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count > Reconcile access
+      - The inventory count/reconcile form is open with valid counted items selected
+    steps:
+      - Select the counted item rows
+      - Click Reconcile (btnRecon)
+    expected:
+      - 'A success message is displayed: Reconciled successfully.'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reconcile button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 421, text: "Reconciled successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-106
+    title: Reset clears the current inventory count session
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items.Count.Reconcile permission
+      - The inventory count/reconcile form is open with items in the grid
+    steps:
+      - Click Reset (btnReset)
+    expected:
+      - The current inventory count session is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reset button on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 427, text: "btnResetClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-107
+    title: Clicking a grid cell selects the item row
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmInventory
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items > Count access
+      - The inventory count/reconcile form is open with items in the grid
+    steps:
+      - Click a cell in a row of the items grid (dgvItems)
+    expected:
+      - The clicked grid row is selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Items grid on the inventory count/reconcile form
+    source_files:
+      - 2.0.x/Items/frmInventory.cs
+    evidence:
+      - { file: 2.0.x/Items/frmInventory.cs, line: 446, text: "dgvItemsCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

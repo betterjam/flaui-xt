@@ -1,0 +1,386 @@
+  - id: ITEM-220
+    title: Item list access gated by Items.Item permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form is open
+    steps:
+      - Open the item list form
+      - Confirm access to the list is governed by the Items.Item right (_AccessObj)
+    expected:
+      - The item list is accessible only for users granted Items.Item; otherwise access is denied
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Access object guard (_AccessObj) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 47, text: "Items.Item (_AccessObj)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-221
+    title: Modify All List Items button gated by Items.Item permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form is open
+    steps:
+      - Open the item list form
+      - Confirm the Modify All List Items button (btnModify) is enabled only when the user holds the Items.Item right
+    expected:
+      - Modify All List Items button is accessible only for users granted Items.Item; otherwise it is disabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modify All List Items button (btnModify) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 48, text: "Items.Item (btnModify Modify All List Items)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-222
+    title: Report button gated by Report.Items permission
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form is open
+    steps:
+      - Open the item list form
+      - Confirm the Report button (btnReport) is enabled only when the user holds the Report.Items right
+    expected:
+      - Report button is accessible only for users granted Report.Items; otherwise it is disabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report button (btnReport) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 49, text: "Report.Items (btnReport Report)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-223
+    title: Clear Search Results button empties the item list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+    steps:
+      - Open the item list form with results listed
+      - Click the Clear Search Results button (btnClear)
+    expected:
+      - The search results are cleared from the item list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Clear Search Results button (btnClear) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 153, text: "btnClearClick Clear Search Results" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-224
+    title: Get All Prices button retrieves prices for listed items
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+      - The M.L. Price URL is configured in Business Details
+    steps:
+      - Open the item list form with results listed
+      - Click the Get All Prices button (btnGetPrice)
+    expected:
+      - Prices are retrieved and populated for all listed items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Get All Prices button (btnGetPrice) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 180, text: "btnGetPriceClick Get All Prices" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-225
+    title: Get All Prices warns when M.L. Price URL is missing
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+      - The M.L. Price URL is not configured in Business Details
+    steps:
+      - Open the item list form with results listed
+      - Click the Get All Prices button (btnGetPrice) with no M.L. Price URL configured
+    expected:
+      - M.L. Price URL is missing in Business Details.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Warning dialog for missing M.L. Price URL
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 196, text: "Warning M.L. Price URL is missing in Business Details." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-226
+    title: Modify All List Items button opens bulk modify
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+    steps:
+      - Open the item list form with results listed
+      - Click the Modify All List Items button (btnModify)
+    expected:
+      - Bulk modify opens for all listed items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Modify All List Items button (btnModify) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 214, text: "btnModifyClick Modify All List Items" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-227
+    title: Print List button prints the item list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+    steps:
+      - Open the item list form with results listed
+      - Click the Print List button (btnPrint)
+    expected:
+      - The item list is sent to print
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Print List button (btnPrint) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 228, text: "btnPrintClick Print List" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-228
+    title: Report button opens the items report
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+    steps:
+      - Open the item list form with results listed
+      - Click the Report button (btnReport)
+    expected:
+      - The items report opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Report button (btnReport) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 242, text: "btnReportClick Report" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-229
+    title: Advanced Item Search button opens advanced search
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form is open
+    steps:
+      - Open the item list form
+      - Click the Advanced Item Search button (btnSearch)
+    expected:
+      - The advanced item search opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Advanced Item Search button (btnSearch) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 247, text: "btnSearchClick Advanced Item Search" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-230
+    title: Selecting a grid row selects the list item
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+    steps:
+      - Open the item list form with results listed
+      - Click a row in the list grid (dgvList)
+    expected:
+      - The clicked row is selected as the active list item
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - List grid (dgvList) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 267, text: "dgvListCellClick grid row select" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-231
+    title: Clicking a column header sorts the item list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsList
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - The item list form shows search results
+    steps:
+      - Open the item list form with results listed
+      - Click a column header in the list grid (dgvList)
+    expected:
+      - The item list is sorted by the clicked column
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, GoToItemsList, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - List grid column header sort (dgvList) on the item list form
+    source_files:
+      - 2.0.x/Items/frmItemsList.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsList.cs, line: 282, text: "dgvListColumnHeaderMouseClick column sort" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

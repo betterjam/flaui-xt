@@ -1,0 +1,941 @@
+  - id: ITEM-250
+    title: Close the Modify All List Items form via Close button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Open the Modify All List Items form with items selected
+      - Click the Close button
+    expected:
+      - The Modify All List Items form closes without applying changes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 429, text: "btnCancelClick (Close)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-251
+    title: Clear all pending modifications via Clear button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Enter or toggle one or more modification fields
+      - Click the Clear button
+    expected:
+      - All pending modification fields on the form are reset/cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Clear button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 438, text: "btnClearClick (Clear)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-252
+    title: Update Cost on all selected items via Update Cost button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Enter a new cost value in the cost modification field
+      - Click the Update Cost button
+    expected:
+      - The cost is updated on all selected items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Update Cost button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 453, text: "btnCostUpdateClick (Update Cost)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-253
+    title: Update Cost shows success confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Enter a new cost value in the cost modification field
+      - Click the Update Cost button and confirm
+    expected:
+      - A success message is shown reading "Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog after cost update
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 485, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-254
+    title: Delete pending cost modification via Delete button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Select a pending cost modification entry
+      - Click the Delete button
+    expected:
+      - The selected pending modification entry is removed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 488, text: "btnDeleteClick (Delete)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-255
+    title: Delete operation shows success confirmation message
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Select a pending modification entry
+      - Click the Delete button and confirm
+    expected:
+      - A success message is shown reading "Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog after delete
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 504, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-256
+    title: Commit all modifications via OK button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Configure one or more modification fields
+      - Click the OK button
+    expected:
+      - The modifications are committed and the form closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 508, text: "btnOkClick (OK)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-257
+    title: Applying with no changes warns Nothing changed
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Do not modify any fields
+      - Click OK / apply to commit
+    expected:
+      - A warning is shown reading "Nothing changed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Nothing-changed warning dialog
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 974, text: "Nothing changed." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-258
+    title: Applying modifications shows success confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Modify one or more fields
+      - Apply the modifications and confirm
+    expected:
+      - A success message is shown reading "Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog after applying modifications
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 984, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-259
+    title: Request item alternate update via Req Item Alt button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Click the request item alternate button
+    expected:
+      - The request item alternate action is performed for the selected items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Request item alternate button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 991, text: "btnReqItemAltClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-260
+    title: Request item update via Req Item button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Click the request item button
+    expected:
+      - The request item action is performed for the selected items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Request item button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 998, text: "btnReqItemClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-261
+    title: Apply set/group modification via Set button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Click the Set button to apply the configured set modification
+    expected:
+      - The set modification is applied to the selected items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Set button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1022, text: "btnSetClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-262
+    title: Apply update via Update button
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Configure modification fields
+      - Click the Update button
+    expected:
+      - The configured update is applied to the selected items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Update button on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1030, text: "btnUpdateClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-263
+    title: Update button shows success confirmation message
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Configure modification fields
+      - Click the Update button and confirm
+    expected:
+      - A success message is shown reading "Updated successfully."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog after update
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1062, text: "Updated successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-264
+    title: Selecting a Price/Qty prompt option toggles related fields
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Change the Price/Qty Prompt dropdown selection
+    expected:
+      - The form updates its state to reflect the selected price/qty prompt option
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Price/Qty Prompt dropdown on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1066, text: "cboPriceQtyPromptSelectedIndexChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-265
+    title: Selecting a Stock Type option toggles related fields
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Change the Stock Type dropdown selection
+    expected:
+      - The form updates its state to reflect the selected stock type
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Stock Type dropdown on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1077, text: "cboStockTypeSelectedIndexChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-266
+    title: Changing Stock Type warns about Inventory list items restriction
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Change the Stock Type dropdown selection for inventory list items
+    expected:
+      - A warning is shown beginning "Selected Inventory list items ..."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Stock Type inventory restriction warning dialog
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1083, text: "Selected Inventory list items ..." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-267
+    title: Selecting a Tax Type option toggles related fields
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Change the Tax Type dropdown selection
+    expected:
+      - The form updates its state to reflect the selected tax type
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Tax Type dropdown on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1091, text: "cboTaxTypeSelectedIndexChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-268
+    title: Changing Tax Type warns it only updates items with all three Pack Sizes
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Change the Tax Type dropdown selection
+    expected:
+      - A warning is shown reading "Tax Type will only be updated on items that have all three Pack Size values defined."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Tax Type Pack Size warning dialog
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1094, text: "Tax Type will only be updated on items that have all three Pack Size values defined." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-269
+    title: Toggling Cost checkbox enables/disables cost modification
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the Cost checkbox check state
+    expected:
+      - The cost modification fields are enabled or disabled to match the checkbox state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Cost checkbox on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1097, text: "chkCostCheckStateChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-270
+    title: Toggling Dynamic Reordering checkbox updates reorder setting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the Dynamic Reordering checkbox
+    expected:
+      - The Dynamic Reordering modification state updates to match the checkbox
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Dynamic Reordering checkbox on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1116, text: "chkDynamicCheckedChanged (Dynamic Reordering)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-271
+    title: Toggling EBT checkbox updates EBT eligibility setting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the EBT checkbox
+    expected:
+      - The EBT modification state updates to match the checkbox
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - EBT checkbox on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1121, text: "chkEBTCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-272
+    title: Toggling Price checkbox enables/disables price modification
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the Price checkbox check state
+    expected:
+      - The price modification fields are enabled or disabled to match the checkbox state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Price checkbox on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1133, text: "chkPriceCheckStateChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-273
+    title: Toggling RJ Reynolds Scan Data checkbox updates scan data setting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the RJ Reynolds Scan Data checkbox
+    expected:
+      - The RJ Reynolds Scan Data modification state updates to match the checkbox
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - RJ Reynolds Scan Data checkbox on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1152, text: "chkRSDCheckedChanged (RJ Reynolds Scan Data)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-274
+    title: Enabling RJ Reynolds Scan Data warns it only updates items with all three Pack Sizes
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the RJ Reynolds Scan Data checkbox on
+    expected:
+      - A warning is shown reading "RJ Reynolds Scan Data will only be updated on items that have all three Pack Size values defined."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - RJ Reynolds Scan Data Pack Size warning dialog
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1159, text: "RJ Reynolds Scan Data will only be updated on items that have all three Pack Size values defined." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-275
+    title: Toggling Altria Scan Data checkbox updates scan data setting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the Altria Scan Data checkbox
+    expected:
+      - The Altria Scan Data modification state updates to match the checkbox
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Altria Scan Data checkbox on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1163, text: "chkScanDataCheckedChanged (Altria Scan Data)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-276
+    title: Enabling Altria Scan Data warns it only updates items with all three Pack Sizes
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the Altria Scan Data checkbox on
+    expected:
+      - A warning is shown reading "Altria Scan Data will only be updated on items that have all three Pack Size values defined."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Altria Scan Data Pack Size warning dialog
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1170, text: "Altria Scan Data will only be updated on items that have all three Pack Size values defined." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-277
+    title: Toggling Show On Register checkbox updates visibility setting
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Toggle the Show On Register checkbox
+    expected:
+      - The Show On Register modification state updates to match the checkbox
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Show On Register checkbox on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1181, text: "chkVisibleCheckedChanged (Show On Register)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-278
+    title: Clicking a historic cost grid cell selects the historic cost entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Click a cell in the historic cost grid
+    expected:
+      - The clicked historic cost entry is selected/applied
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Historic cost grid on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1192, text: "dgvHistoricCostCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-279
+    title: Clicking a historic price grid cell selects the historic price entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmItemsMod
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - On the Modify All List Items form with items selected
+    steps:
+      - Click a cell in the historic price grid
+    expected:
+      - The clicked historic price entry is selected/applied
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Historic price grid on the Modify All List Items form
+    source_files:
+      - 2.0.x/Items/frmItemsMod.cs
+    evidence:
+      - { file: 2.0.x/Items/frmItemsMod.cs, line: 1211, text: "dgvHistoricPriceCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

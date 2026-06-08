@@ -1,0 +1,295 @@
+  - id: ITEM-060
+    title: Add items to fresh sheet via Add Items button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open
+    steps:
+      - Open the Fresh Sheet form
+      - Click the Add Items button
+      - Select one or more items
+    expected:
+      - The selected items are added to the fresh sheet
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, AddItemToFreshSheet, VerifyFreshSheetEntry, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Items button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 134, text: "btnAddItemClick \"Add Items\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-061
+    title: Add services to fresh sheet via Add Services button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open
+    steps:
+      - Open the Fresh Sheet form
+      - Click the Add Services button
+      - Select one or more services
+    expected:
+      - The selected services are added to the fresh sheet
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, AddServiceToFreshSheet, VerifyFreshSheetEntry, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Add Services button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 142, text: "btnAddServiceClick \"Add Services\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-062
+    title: Close fresh sheet form via Close button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open
+    steps:
+      - Open the Fresh Sheet form
+      - Click the Close button
+    expected:
+      - The Fresh Sheet form closes without saving changes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 157, text: "btnCancelClick \"Close\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-063
+    title: Delete all entries from fresh sheet via Delete All button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open with one or more entries
+    steps:
+      - Open the Fresh Sheet form with entries present
+      - Click the Delete All button
+    expected:
+      - All entries are removed from the fresh sheet
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, DeleteAllFromFreshSheet, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete All button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 165, text: "btnDelAllClick \"Delete All\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-064
+    title: Delete a selected entry from fresh sheet via Delete button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open with an entry selected
+    steps:
+      - Open the Fresh Sheet form with entries present
+      - Select an entry
+      - Click the Delete button
+    expected:
+      - The selected entry is removed from the fresh sheet
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 177, text: "btnDelClick \"Delete\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-065
+    title: Move a fresh sheet entry down via Down button
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open with multiple entries and one selected
+    steps:
+      - Open the Fresh Sheet form with multiple entries
+      - Select an entry that is not last
+      - Click the Down button
+    expected:
+      - The selected entry moves down one position in the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Down (move down) button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 194, text: "btnDownClick (move down)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-066
+    title: Save fresh sheet via Save button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open with valid entries
+    steps:
+      - Open the Fresh Sheet form
+      - Add valid entries
+      - Click the Save button
+    expected:
+      - The Save action is triggered for the fresh sheet
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 202, text: "btnOKClick \"Save\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-067
+    title: Saving the fresh sheet shows saved-successfully confirmation
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open with valid entries
+    steps:
+      - Open the Fresh Sheet form
+      - Add valid entries
+      - Click the Save button
+    expected:
+      - Saved successfully.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 224, text: "Success \"Saved successfully.\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-068
+    title: Move a fresh sheet entry up via Up button
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFreshSheet
+      entity: FreshSheet
+    preconditions:
+      - Logged in as admin with Items access
+      - Fresh Sheet form is open with multiple entries and one selected
+    steps:
+      - Open the Fresh Sheet form with multiple entries
+      - Select an entry that is not first
+      - Click the Up button
+    expected:
+      - The selected entry moves up one position in the list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Up (move up) button on the Fresh Sheet form
+    source_files:
+      - 2.0.x/Items/frmFreshSheet.cs
+    evidence:
+      - { file: 2.0.x/Items/frmFreshSheet.cs, line: 228, text: "btnUpClick (move up)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

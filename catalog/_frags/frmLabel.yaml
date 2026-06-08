@@ -1,0 +1,196 @@
+  - id: ITEM-290
+    title: Printing a label for an invalid SKU shows invalid-UPC warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - Logged in as admin with Items access
+      - Label form is open with an item whose SKU is not a valid UPCA or UPCE
+    steps:
+      - Open the Label form
+      - Add an item with an invalid UPCA/UPCE SKU
+      - Click the Print button
+    expected:
+      - Cannot print label, not a valid UPCA or UPCE SKU
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Warning dialog on the Label form
+    source_files:
+      - 2.0.x/Items/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/Items/frmLabel.cs, line: 101, text: "Warning \"Cannot print label, not a valid UPCA or UPCE SKU\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-291
+    title: Delete a label line via Delete Line button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - Logged in as admin with Items access
+      - Label form is open with one or more lines and a line selected
+    steps:
+      - Open the Label form with lines present
+      - Select a line
+      - Click the Delete Line button
+    expected:
+      - The selected line is removed from the label list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete Line button on the Label form
+    source_files:
+      - 2.0.x/Items/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/Items/frmLabel.cs, line: 161, text: "btnDeleteClick \"Delete Line\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-292
+    title: Search for an item to add to the label list
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - Logged in as admin with Items access
+      - Label form is open
+    steps:
+      - Open the Label form
+      - Click the Item Search button
+      - Select an item
+    expected:
+      - The selected item is added to the label list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Item Search button on the Label form
+    source_files:
+      - 2.0.x/Items/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/Items/frmLabel.cs, line: 186, text: "btnItemSearchClick (search item)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-293
+    title: Print labels via Print button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - Logged in as admin with Items access
+      - Label form is open with one or more valid label lines
+    steps:
+      - Open the Label form
+      - Add one or more valid label lines
+      - Click the Print button
+    expected:
+      - The labels are sent to print
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Print button on the Label form
+    source_files:
+      - 2.0.x/Items/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/Items/frmLabel.cs, line: 200, text: "btnOKClick \"Print\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-294
+    title: Reset the label list via Reset List button
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - Logged in as admin with Items access
+      - Label form is open with one or more lines
+    steps:
+      - Open the Label form with lines present
+      - Click the Reset List button
+    expected:
+      - The label list is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Reset List button on the Label form
+    source_files:
+      - 2.0.x/Items/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/Items/frmLabel.cs, line: 222, text: "btnCancelClick \"Reset List\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-295
+    title: Select a label grid row via cell click
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLabel
+      entity: Label
+    preconditions:
+      - Logged in as admin with Items access
+      - Label form is open with one or more rows in the items grid
+    steps:
+      - Open the Label form with rows present
+      - Click a cell in the items grid
+    expected:
+      - The clicked grid row becomes selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Items grid on the Label form
+    source_files:
+      - 2.0.x/Items/frmLabel.cs
+    evidence:
+      - { file: 2.0.x/Items/frmLabel.cs, line: 230, text: "dgvItemsCellClick (grid row select)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,131 @@
+  - id: ITEM-040
+    title: Cancel date range form via Cancel button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateRange
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Date Range form is open
+    steps:
+      - Open the Date Range form
+      - Click the Cancel button
+    expected:
+      - The Date Range form closes without applying a range
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Cancel button on the Date Range form
+    source_files:
+      - 2.0.x/Items/frmDateRange.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDateRange.cs, line: 42, text: "btnCancelClick \"Cancel\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-041
+    title: Find item from date range form
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateRange
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Date Range form is open
+    steps:
+      - Open the Date Range form
+      - Click the Find Item button
+      - Select an item from the search results
+    expected:
+      - The selected item is loaded into the Date Range form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Find Item button on the Date Range form
+    source_files:
+      - 2.0.x/Items/frmDateRange.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDateRange.cs, line: 47, text: "btnFindItemClick (find item)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-042
+    title: Confirm date range via OK button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDateRange
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Date Range form is open with an item selected and a valid range entered
+    steps:
+      - Open the Date Range form
+      - Select an item and enter a date range
+      - Click the OK button
+    expected:
+      - The date range is confirmed and the form proceeds
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button on the Date Range form
+    source_files:
+      - 2.0.x/Items/frmDateRange.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDateRange.cs, line: 60, text: "btnOKClick (confirm range)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-043
+    title: Confirming date range without an item shows please-select warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmDateRange
+      entity: Item
+    preconditions:
+      - Logged in as admin with Items access
+      - Date Range form is open with no item selected
+    steps:
+      - Open the Date Range form
+      - Leave the item unselected
+      - Click the OK button
+    expected:
+      - Please select an item.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Warning dialog on the Date Range form
+    source_files:
+      - 2.0.x/Items/frmDateRange.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDateRange.cs, line: 64, text: "Warning \"Please select an item.\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

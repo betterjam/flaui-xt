@@ -1,0 +1,226 @@
+  - id: ITEM-050
+    title: Toggle EBT checkbox on CRV form
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmDRV
+      entity: CRV
+    preconditions:
+      - Logged in as admin with Items access
+      - CRV/DRV form is open
+    steps:
+      - Open the CRV/DRV form
+      - Toggle the EBT checkbox
+    expected:
+      - The EBT setting reflects the new checked state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - EBT checkbox on the CRV/DRV form
+    source_files:
+      - 2.0.x/Items/frmDRV.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDRV.cs, line: 122, text: "chkEBTCheckedChanged (EBT)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-051
+    title: Close CRV form via Close button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDRV
+      entity: CRV
+    preconditions:
+      - Logged in as admin with Items access
+      - CRV/DRV form is open
+    steps:
+      - Open the CRV/DRV form
+      - Click the Close button
+    expected:
+      - The CRV/DRV form closes without saving changes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the CRV/DRV form
+    source_files:
+      - 2.0.x/Items/frmDRV.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDRV.cs, line: 133, text: "btnCancelClick \"Close\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-052
+    title: Delete CRV record via Delete button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDRV
+      entity: CRV
+    preconditions:
+      - Logged in as admin with Items access
+      - CRV/DRV form is open on an existing record
+    steps:
+      - Open an existing CRV/DRV record
+      - Click the Delete button
+    expected:
+      - The Delete action is triggered for the CRV record
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Delete button on the CRV/DRV form
+    source_files:
+      - 2.0.x/Items/frmDRV.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDRV.cs, line: 142, text: "btnDeleteClick \"Delete\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-053
+    title: Deleting a CRV record shows deleted-successfully confirmation
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDRV
+      entity: CRV
+    preconditions:
+      - Logged in as admin with Items access
+      - CRV/DRV form is open on an existing record
+    steps:
+      - Open an existing CRV/DRV record
+      - Click the Delete button and confirm
+    expected:
+      - Deleted successfully.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog on the CRV/DRV form
+    source_files:
+      - 2.0.x/Items/frmDRV.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDRV.cs, line: 166, text: "Success \"Deleted successfully.\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-054
+    title: Save CRV record via Save button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDRV
+      entity: CRV
+    preconditions:
+      - Logged in as admin with Items access
+      - CRV/DRV form is open with valid details entered
+    steps:
+      - Open the CRV/DRV form
+      - Enter valid CRV details
+      - Click the Save button
+    expected:
+      - The Save action is triggered for the CRV record
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Save button on the CRV/DRV form
+    source_files:
+      - 2.0.x/Items/frmDRV.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDRV.cs, line: 169, text: "btnOKClick \"Save\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-055
+    title: Saving a CRV record shows saved-successfully confirmation
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDRV
+      entity: CRV
+    preconditions:
+      - Logged in as admin with Items access
+      - CRV/DRV form is open with valid details entered
+    steps:
+      - Open the CRV/DRV form
+      - Enter valid CRV details
+      - Click the Save button
+    expected:
+      - Saved successfully.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Success confirmation dialog on the CRV/DRV form
+    source_files:
+      - 2.0.x/Items/frmDRV.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDRV.cs, line: 235, text: "Success \"Saved successfully.\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-056
+    title: Toggle Tax Included checkbox on CRV form
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmDRV
+      entity: CRV
+    preconditions:
+      - Logged in as admin with Items access
+      - CRV/DRV form is open
+    steps:
+      - Open the CRV/DRV form
+      - Toggle the Tax Included checkbox
+    expected:
+      - The Tax Included setting reflects the new checked state
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Tax Included checkbox on the CRV/DRV form
+    source_files:
+      - 2.0.x/Items/frmDRV.cs
+    evidence:
+      - { file: 2.0.x/Items/frmDRV.cs, line: 239, text: "chkTaxIncludedCheckedChanged \"Tax Included\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

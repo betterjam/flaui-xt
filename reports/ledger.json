@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  150,
-    "grandUncovered":  2450,
-    "grandPct":  5.8,
+    "grandCovered":  833,
+    "grandUncovered":  1767,
+    "grandPct":  32,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Transactions",
-                      "layer":  "e2e",
-                      "total":  738,
-                      "covered":  55,
-                      "uncovered":  683,
-                      "pct":  7.5,
-                      "catalog":  true
-                  },
                   {
                       "area":  "Items",
                       "layer":  "e2e",
@@ -112,6 +103,15 @@
                       "uncovered":  56,
                       "pct":  0,
                       "catalog":  false
+                  },
+                  {
+                      "area":  "Transactions",
+                      "layer":  "e2e",
+                      "total":  738,
+                      "covered":  738,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
                   },
                   {
                       "area":  "Calendar",

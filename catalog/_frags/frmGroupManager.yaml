@@ -1,0 +1,197 @@
+  - id: ITEM-070
+    title: Close group manager form via Close button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmGroupManager
+      entity: ItemGroup
+    preconditions:
+      - Logged in as admin with Items access
+      - Group Manager form is open
+    steps:
+      - Open the Group Manager form
+      - Click the Close button
+    expected:
+      - The Group Manager form closes without saving changes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Close button on the Group Manager form
+    source_files:
+      - 2.0.x/Items/frmGroupManager.cs
+    evidence:
+      - { file: 2.0.x/Items/frmGroupManager.cs, line: 18, text: "btnCancelClick \"Close\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-071
+    title: Confirm item group via OK button
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmGroupManager
+      entity: ItemGroup
+    preconditions:
+      - Logged in as admin with Items access
+      - Group Manager form is open with valid group fields entered
+    steps:
+      - Open the Group Manager form
+      - Enter valid group fields
+      - Click the OK button
+    expected:
+      - The item group is accepted and the form closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - OK button on the Group Manager form
+    source_files:
+      - 2.0.x/Items/frmGroupManager.cs
+    evidence:
+      - { file: 2.0.x/Items/frmGroupManager.cs, line: 23, text: "btnOKClick \"OK\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-072
+    title: Confirming item group with first required field empty shows empty-field warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmGroupManager
+      entity: ItemGroup
+    preconditions:
+      - Logged in as admin with Items access
+      - Group Manager form is open with the first required field left empty
+    steps:
+      - Open the Group Manager form
+      - Leave the first required field empty
+      - Click the OK button
+    expected:
+      - Empty field.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Warning dialog on the Group Manager form
+    source_files:
+      - 2.0.x/Items/frmGroupManager.cs
+    evidence:
+      - { file: 2.0.x/Items/frmGroupManager.cs, line: 30, text: "Warning \"Empty field.\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-073
+    title: Confirming item group with second required field empty shows empty-field warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmGroupManager
+      entity: ItemGroup
+    preconditions:
+      - Logged in as admin with Items access
+      - Group Manager form is open with the second required field left empty
+    steps:
+      - Open the Group Manager form
+      - Leave the second required field empty
+      - Click the OK button
+    expected:
+      - Empty field.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Warning dialog on the Group Manager form
+    source_files:
+      - 2.0.x/Items/frmGroupManager.cs
+    evidence:
+      - { file: 2.0.x/Items/frmGroupManager.cs, line: 37, text: "Warning \"Empty field.\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-074
+    title: Confirming item group with third required field empty shows empty-field warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmGroupManager
+      entity: ItemGroup
+    preconditions:
+      - Logged in as admin with Items access
+      - Group Manager form is open with the third required field left empty
+    steps:
+      - Open the Group Manager form
+      - Leave the third required field empty
+      - Click the OK button
+    expected:
+      - Empty field.
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Warning dialog on the Group Manager form
+    source_files:
+      - 2.0.x/Items/frmGroupManager.cs
+    evidence:
+      - { file: 2.0.x/Items/frmGroupManager.cs, line: 44, text: "Warning \"Empty field.\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: ITEM-075
+    title: Confirming item group with minimum greater than maximum shows range warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmGroupManager
+      entity: ItemGroup
+    preconditions:
+      - Logged in as admin with Items access
+      - Group Manager form is open with a minimum value greater than the maximum
+    steps:
+      - Open the Group Manager form
+      - Enter a minimum value greater than the maximum
+      - Click the OK button
+    expected:
+      - Minimum cannot be greater than maximum
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Warning dialog on the Group Manager form
+    source_files:
+      - 2.0.x/Items/frmGroupManager.cs
+    evidence:
+      - { file: 2.0.x/Items/frmGroupManager.cs, line: 51, text: "Warning \"Minimum cannot be greater than maximum\"" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
