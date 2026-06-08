@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-044
+    title: Close dismisses the recover dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRecover
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The recover dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The recover dialog closes with no recovery performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRecover btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmRecover.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmRecover.cs, line: 103, text: "btnCancelClick (Close)" }
+    flow_hash: "C8E0C681B2C60A0A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

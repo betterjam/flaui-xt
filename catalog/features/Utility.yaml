@@ -1,0 +1,1886 @@
+﻿feature: Utility
+description: >
+  Back-office Utility module of Exatouch: database backup/restore/recover, USB drive
+  selection & verification, data export/import (including setup-file download from S3
+  buckets and customer bulk upload), license reactivation, wireless network connection,
+  print-queue clearing, training-mode switch, system-time set, internet test, and the
+  Utility main menu that gates each tool behind a Utilities.* permission. Every case is
+  grounded in a deterministic code anchor from catalog/_baseline/evidence-Utility.json
+  (the extract-evidence.ps1 output over 2.0.x/Utility); message text is copied verbatim
+  from that anchor. The Utility forms are reached from the main menu Utility module and
+  use the generic StartAUT/LoginAsAdminUser/GoToModule building blocks; their dialog
+  controls are net-new, so most e2e cases are needs-recording.
+source_paths:
+  - 2.0.x/Utility
+flavors: []
+
+test_cases:
+  # ============================================================================
+  # frmBackUp.cs - manual database backup dialog (entity: Backup)
+  # ============================================================================
+  - id: UTIL-001
+    title: Declining the backup confirmation aborts the backup
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmBackUp
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The backup dialog is open
+    steps:
+      - Start a backup
+      - Decline the backup confirmation prompt
+    expected:
+      - 'A warning is shown: "Backup declined."'
+      - The backup does not proceed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBackUp backup confirmation prompt
+    source_files:
+      - 2.0.x/Utility/frmBackUp.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmBackUp.cs, line: 237, text: "Backup declined." }
+    flow_hash: "25AD0F0B2083C503"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-002
+    title: Cancel closes the backup dialog without backing up
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmBackUp
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The backup dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The backup dialog closes with no backup performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBackUp btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmBackUp.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmBackUp.cs, line: 265, text: "btnCancelClick (Cancel)" }
+    flow_hash: "25AD0F0B2083C503"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmCustomerBulkUpload.cs - bulk customer import dialog (entity: Customer)
+  # ============================================================================
+  - id: UTIL-003
+    title: Upload runs the customer bulk upload
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomerBulkUpload
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - The customer bulk upload dialog is open with a file selected
+    steps:
+      - Click Upload
+    expected:
+      - The customer bulk upload runs against the selected file
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCustomerBulkUpload btnRun button
+    source_files:
+      - 2.0.x/Utility/frmCustomerBulkUpload.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmCustomerBulkUpload.cs, line: 35, text: "btnRunClick (Upload)" }
+    flow_hash: "C512B8E83FE2079E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-004
+    title: Cancel closes the customer bulk upload dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomerBulkUpload
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - The customer bulk upload dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The customer bulk upload dialog closes with no upload performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCustomerBulkUpload btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmCustomerBulkUpload.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmCustomerBulkUpload.cs, line: 42, text: "btnCancelClick (Cancel)" }
+    flow_hash: "C512B8E83FE2079E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmExport.cs - data export dialog (entity: Export)
+  # ============================================================================
+  - id: UTIL-005
+    title: Export with nothing to export reports nothing for export
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmExport
+      entity: Export
+    preconditions:
+      - Logged in as admin
+      - The export dialog is open with no data selected to export
+    steps:
+      - Click Export
+    expected:
+      - 'A message is shown: "Nothing for Export."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmExport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmExport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmExport.cs, line: 289, text: "Nothing for Export." }
+    flow_hash: "845439F22555C92D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-006
+    title: Export of selected data completes successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmExport
+      entity: Export
+    preconditions:
+      - Logged in as admin
+      - The export dialog is open with data selected to export
+    steps:
+      - Select data to export
+      - Click Export
+    expected:
+      - 'A success message is shown: "Export Successful."'
+      - The export file is written
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmExport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmExport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmExport.cs, line: 310, text: "Export Successful." }
+    flow_hash: "845439F22555C92D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-007
+    title: Close dismisses the export dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmExport
+      entity: Export
+    preconditions:
+      - Logged in as admin
+      - The export dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The export dialog closes with no export performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmExport btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmExport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmExport.cs, line: 332, text: "btnCancelClick (Close)" }
+    flow_hash: "845439F22555C92D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-008
+    title: Export button triggers the export action
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmExport
+      entity: Export
+    preconditions:
+      - Logged in as admin
+      - The export dialog is open
+    steps:
+      - Click Export
+    expected:
+      - The export action is invoked
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmExport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmExport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmExport.cs, line: 337, text: "btnOKClick (Export)" }
+    flow_hash: "845439F22555C92D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmImport.cs - data import dialog (entity: Import)
+  # ============================================================================
+  - id: UTIL-009
+    title: Back returns to the previous import step
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open past the first step
+    steps:
+      - Click Back
+    expected:
+      - The import dialog returns to the previous step
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnBack button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2070, text: "btnBackClick" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-010
+    title: Close dismisses the import dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The import dialog closes with no import performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2082, text: "btnCancelClick (Close)" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-011
+    title: Accept runs the import of the selected data
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open with data prepared to import
+    steps:
+      - Click Accept
+    expected:
+      - The selected data is imported
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2087, text: "btnOKClick (Accept)" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-012
+    title: Import surfaces an XML file creation error
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open
+      - The XML file cannot be created
+    steps:
+      - Click Accept to run the import
+    expected:
+      - 'A warning is shown: "Error creating XML File"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2110, text: "Error creating XML File" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-013
+    title: Import reports failure when the import does not complete
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open
+      - The import operation fails
+    steps:
+      - Click Accept to run the import
+    expected:
+      - 'A warning is shown: "Import Failed."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2114, text: "Import Failed." }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-014
+    title: Cancelling an in-progress import reports cancelled by user
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - An import is in progress
+    steps:
+      - Cancel the import
+    expected:
+      - 'A warning is shown: "Canceled by user"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2118, text: "Canceled by user" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmImportSetupFiles.cs - download/import setup files from S3 bucket
+  # (entity: SetupFile)
+  # ============================================================================
+  - id: UTIL-015
+    title: Download File(s) downloads the selected setup files
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open with files selected
+    steps:
+      - Select one or more setup files
+      - Click Download File(s)
+    expected:
+      - The selected setup files are downloaded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 69, text: "btnOKClick (Download File(s))" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-016
+    title: Downloading with no files selected prompts to select files
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open with no files selected
+    steps:
+      - Click Download File(s) without selecting any file
+    expected:
+      - 'A warning is shown: "Please select the files that need to be imported"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 78, text: "Please select the files that need to be imported" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-017
+    title: A failed setup-file download surfaces the error message
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open with files selected
+      - The download fails (e.g. network/bucket error)
+    steps:
+      - Click Download File(s)
+    expected:
+      - 'A warning is shown: "Error downloading file: {ex.Message}"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 86, text: "Error downloading file: {ex.Message}" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-018
+    title: Cancel closes the import setup files dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The import setup files dialog closes with no download performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 94, text: "btnCancelClick (Cancel)" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-019
+    title: Selecting a team-member bucket loads its setup files
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open
+    steps:
+      - Choose a team member from the team-member bucket dropdown
+    expected:
+      - The setup files for the selected team member's bucket are loaded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles cboTeamMemberBucket dropdown
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 101, text: "cboTeamMemberBucketSelectedIndexChanged" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-020
+    title: Selecting an invalid team member prompts for a valid one
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open
+    steps:
+      - Choose an invalid entry from the team-member bucket dropdown
+    expected:
+      - 'A warning is shown: "Please select a valid team member from the list."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles cboTeamMemberBucket dropdown
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 112, text: "Please select a valid team member from the list." }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-021
+    title: An empty bucket reports no folders found
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open
+      - The selected bucket prefix contains no folders
+    steps:
+      - Select a team-member bucket whose prefix has no folders
+    expected:
+      - 'A warning is shown: "No folders found in Bucket: {pBucketPrefix}"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles cboTeamMemberBucket dropdown
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 383, text: "No folders found in Bucket: {pBucketPrefix}" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmMenu.cs - Utility main menu: permission gating + tool buttons
+  # (entity: Utility)
+  # ============================================================================
+  - id: UTIL-022
+    title: Test Backup button is gated by the Utilities.Backup permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as a user WITHOUT the Utilities.Backup right
+      - The Utility menu is open
+    steps:
+      - Observe the Test Backup button
+    expected:
+      - The Test Backup button is unavailable without the Utilities.Backup right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTestBackup button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 43, text: "perm:Utilities.Backup" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-023
+    title: Clear Print Queue button is gated by the Utilities.PrintJobs permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as a user WITHOUT the Utilities.PrintJobs right
+      - The Utility menu is open
+    steps:
+      - Observe the Clear Print Queue button
+    expected:
+      - The Clear Print Queue button is unavailable without the Utilities.PrintJobs right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnClearQueue button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 46, text: "perm:Utilities.PrintJobs" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-024
+    title: Import button is gated by the Utilities.ImportExport permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as a user WITHOUT the Utilities.ImportExport right
+      - The Utility menu is open
+    steps:
+      - Observe the Import button
+    expected:
+      - The Import button is unavailable without the Utilities.ImportExport right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnImport button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 49, text: "perm:Utilities.ImportExport" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-025
+    title: Switch to Training button is gated by the Utilities.Training permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as a user WITHOUT the Utilities.Training right
+      - The Utility menu is open
+    steps:
+      - Observe the Switch to Training button
+    expected:
+      - The Switch to Training button is unavailable without the Utilities.Training right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTrainingData button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 51, text: "perm:Utilities.Training" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-026
+    title: Scan Data button is gated by the Utilities.Integrated permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as a user WITHOUT the Utilities.Integrated right
+      - The Utility menu is open
+    steps:
+      - Observe the Scan Data button
+    expected:
+      - The Scan Data button is unavailable without the Utilities.Integrated right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnScanData button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 55, text: "perm:Utilities.Integrated" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-027
+    title: Backup button opens the backup flow
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin
+      - The Utility menu is open
+    steps:
+      - Click Backup
+    expected:
+      - The backup flow is started
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnBackup button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 144, text: "btnBackupClick (Backup)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-028
+    title: Clear Print Queue button clears the print queue
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.PrintJobs right
+      - The Utility menu is open
+    steps:
+      - Click Clear Print Queue
+    expected:
+      - The print queue is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnClearQueue button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 153, text: "btnClearQueueClick (Clear Print\\r\\nQueue)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-029
+    title: Export button opens the export dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin
+      - The Utility menu is open
+    steps:
+      - Click Export
+    expected:
+      - The export dialog opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnExport button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 160, text: "btnExportClick (Export)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-030
+    title: Import button opens the import dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.ImportExport right
+      - The Utility menu is open
+    steps:
+      - Click Import
+    expected:
+      - The import dialog opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnImport button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 167, text: "btnImportClick (Import)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-031
+    title: Test Internet button reports a successful internet connection
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin
+      - The Utility menu is open
+      - The device has internet connectivity
+    steps:
+      - Click Test Internet
+    expected:
+      - 'A success message is shown: "Internet OK."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnInternetRefresh button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 174, text: "btnInternetRefreshClick (Test\\r\\nInternet)" }
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 179, text: "Internet OK." }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-032
+    title: LMP button opens the local management portal
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin
+      - The Utility menu is open
+    steps:
+      - Click LMP
+    expected:
+      - The LMP (local management portal) is opened
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnLMP button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 182, text: "btnLMPClick (LMP)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-033
+    title: Cash Drawer button opens the cash drawer
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin
+      - The Utility menu is open
+    steps:
+      - Click Cash Drawer
+    expected:
+      - The cash drawer is opened
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnOpenDrawer button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 198, text: "btnOpenDrawerClick (Cash\\r\\nDrawer)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-034
+    title: Restore button opens the restore flow
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin
+      - The Utility menu is open
+    steps:
+      - Click Restore
+    expected:
+      - The restore flow is started
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnRestore button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 203, text: "btnRestoreClick (Restore)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-035
+    title: Scan Data button starts the integrated data scan
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.Integrated right
+      - The Utility menu is open
+    steps:
+      - Click Scan Data
+    expected:
+      - The integrated data scan is started
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnScanData button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 210, text: "btnScanDataClick (Scan\\r\\nData)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-036
+    title: Set Time button opens the system time dialog
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin
+      - The Utility menu is open
+    steps:
+      - Click Set Time
+    expected:
+      - The system time dialog opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnSystemTime button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 348, text: "btnSystemTimeClick (Set Time)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-037
+    title: Test Backup verifies the backup drive when a USB drive is present
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.Backup right
+      - The Utility menu is open
+      - A USB backup drive is connected
+    steps:
+      - Click Test Backup
+    expected:
+      - 'A success message is shown: "Backup drive has been verified."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTestBackup button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 356, text: "btnTestBackupClick (Test\\r\\nBackup)" }
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 435, text: "Backup drive has been verified." }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-038
+    title: Test Backup with no USB drive reports the drive not found
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.Backup right
+      - The Utility menu is open
+      - No USB backup drive is connected
+    steps:
+      - Click Test Backup
+    expected:
+      - 'A warning is shown: "USB drive not found."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTestBackup button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 394, text: "USB drive not found." }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-039
+    title: Verifying the backup drive without a USB drive reports drive not found
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.Backup right
+      - The Utility menu is open
+      - No USB backup drive is connected
+    steps:
+      - Trigger backup drive verification
+    expected:
+      - 'A warning is shown: "USB drive not found."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTestBackup button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 440, text: "USB drive not found." }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-040
+    title: Switch to Training button switches the POS into training mode
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.Training right
+      - The Utility menu is open
+    steps:
+      - Click Switch to Training
+    expected:
+      - The POS switches into training mode
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTrainingData button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 448, text: "btnTrainingDataClick (Switch to\\r\\nTraining)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmReactivate.cs - license reactivation dialog (entity: License)
+  # ============================================================================
+  - id: UTIL-041
+    title: Reactivating an unknown license reports not found
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReactivate
+      entity: License
+    preconditions:
+      - Logged in as admin
+      - The reactivate dialog is open
+    steps:
+      - Enter a code that does not match any license
+      - Click Activate
+    expected:
+      - 'A warning is shown: "Not found."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReactivate btnOK button
+    source_files:
+      - 2.0.x/Utility/frmReactivate.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmReactivate.cs, line: 72, text: "Not found." }
+    flow_hash: "98BE81887DF8C875"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-042
+    title: Activate reactivates a valid license successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReactivate
+      entity: License
+    preconditions:
+      - Logged in as admin
+      - The reactivate dialog is open
+      - A valid reactivation code is available
+    steps:
+      - Enter a valid reactivation code
+      - Click Activate
+    expected:
+      - 'A success message is shown: "Activated successfully."'
+      - The license is reactivated
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReactivate btnOK button
+    source_files:
+      - 2.0.x/Utility/frmReactivate.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmReactivate.cs, line: 101, text: "btnOKClick (Activate)" }
+      - { file: 2.0.x/Utility/frmReactivate.cs, line: 198, text: "Activated successfully." }
+    flow_hash: "98BE81887DF8C875"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-043
+    title: Close dismisses the reactivate dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReactivate
+      entity: License
+    preconditions:
+      - Logged in as admin
+      - The reactivate dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The reactivate dialog closes with no change
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReactivate btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmReactivate.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmReactivate.cs, line: 206, text: "btnCancelClick (Close)" }
+    flow_hash: "98BE81887DF8C875"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmRecover.cs - database recover dialog (entity: Backup)
+  # ============================================================================
+  - id: UTIL-044
+    title: Close dismisses the recover dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRecover
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The recover dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The recover dialog closes with no recovery performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRecover btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmRecover.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmRecover.cs, line: 103, text: "btnCancelClick (Close)" }
+    flow_hash: "C8E0C681B2C60A0A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-045
+    title: Recover restores the selected backup
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRecover
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The recover dialog is open with a backup row selected
+    steps:
+      - Select a backup in the grid
+      - Click Recover
+    expected:
+      - The selected backup is recovered
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRecover btnOK button
+    source_files:
+      - 2.0.x/Utility/frmRecover.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmRecover.cs, line: 108, text: "btnOKClick (Recover)" }
+    flow_hash: "C8E0C681B2C60A0A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-046
+    title: Selecting a backup row in the recover grid chooses that backup
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmRecover
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The recover dialog is open with at least one backup row
+    steps:
+      - Click a backup row in the grid
+    expected:
+      - That backup row is selected for recovery
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmRecover dgvData grid row
+    source_files:
+      - 2.0.x/Utility/frmRecover.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmRecover.cs, line: 132, text: "dgvDataCellClick" }
+    flow_hash: "C8E0C681B2C60A0A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmSelectDrive.cs - USB drive selection dialog (entity: Backup)
+  # ============================================================================
+  - id: UTIL-047
+    title: Close dismisses the select drive dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSelectDrive
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The select drive dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The select drive dialog closes with no drive selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSelectDrive btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmSelectDrive.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmSelectDrive.cs, line: 23, text: "btnCancelClick (Close)" }
+    flow_hash: "49DC3E4A40E254DD"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-048
+    title: Selecting a drive row in the grid chooses that drive
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmSelectDrive
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The select drive dialog is open with at least one drive row
+    steps:
+      - Click a drive row in the grid
+    expected:
+      - That drive is selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSelectDrive dgvData grid row
+    source_files:
+      - 2.0.x/Utility/frmSelectDrive.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmSelectDrive.cs, line: 28, text: "dgvDataCellClick" }
+    flow_hash: "49DC3E4A40E254DD"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmWireless.cs - wireless network connection dialog (entity: Network)
+  # ============================================================================
+  - id: UTIL-049
+    title: Connect joins the selected wireless network
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWireless
+      entity: Network
+    preconditions:
+      - Logged in as admin
+      - The wireless dialog is open with an SSID selected
+    steps:
+      - Select an SSID
+      - Click Connect
+    expected:
+      - The device connects to the selected wireless network
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWireless btnOK button
+    source_files:
+      - 2.0.x/Utility/frmWireless.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmWireless.cs, line: 35, text: "btnOKClick (Connect)" }
+    flow_hash: "E6816B19EBD68B05"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-050
+    title: Connecting to a corrupted network profile reports the corruption
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmWireless
+      entity: Network
+    preconditions:
+      - Logged in as admin
+      - The wireless dialog is open
+      - The selected network connection profile is corrupted
+    steps:
+      - Select the SSID with the corrupted profile
+      - Click Connect
+    expected:
+      - 'A warning is shown: "The network connection profile is corrupted."'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWireless btnOK button
+    source_files:
+      - 2.0.x/Utility/frmWireless.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmWireless.cs, line: 76, text: "The network connection profile is corrupted." }
+    flow_hash: "E6816B19EBD68B05"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-051
+    title: Close dismisses the wireless dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWireless
+      entity: Network
+    preconditions:
+      - Logged in as admin
+      - The wireless dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The wireless dialog closes with no connection change
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWireless btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmWireless.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmWireless.cs, line: 81, text: "btnCancelClick (Close)" }
+    flow_hash: "E6816B19EBD68B05"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-052
+    title: Refresh rescans for available wireless networks
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWireless
+      entity: Network
+    preconditions:
+      - Logged in as admin
+      - The wireless dialog is open
+    steps:
+      - Click Refresh
+    expected:
+      - The list of available wireless networks is rescanned and refreshed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWireless btnRefresh button
+    source_files:
+      - 2.0.x/Utility/frmWireless.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmWireless.cs, line: 86, text: "btnRefreshClick (Refresh)" }
+    flow_hash: "E6816B19EBD68B05"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-053
+    title: Selecting an SSID row in the grid chooses that network
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWireless
+      entity: Network
+    preconditions:
+      - Logged in as admin
+      - The wireless dialog is open with at least one SSID row
+    steps:
+      - Click an SSID row in the grid
+    expected:
+      - That wireless network is selected
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWireless dgvSSID grid row
+    source_files:
+      - 2.0.x/Utility/frmWireless.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmWireless.cs, line: 173, text: "dgvSSIDCellClick" }
+    flow_hash: "E6816B19EBD68B05"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # Composite end-to-end flows (chain atomic ids; add no new anchors)
+  # ============================================================================
+  - id: UTIL-054
+    title: Backup the database, then recover it from the saved backup
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Backup
+    chains: [UTIL-027, UTIL-045]
+    preconditions:
+      - Logged in as admin with the Utilities.Backup right
+      - A USB backup drive is connected
+    steps:
+      - From the Utility menu, run a Backup
+      - Open the Recover dialog and select the saved backup
+      - Click Recover
+    expected:
+      - The backup completes and the database is recovered from it
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnBackup button
+      - frmRecover btnOK button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+      - 2.0.x/Utility/frmRecover.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 144, text: "btnBackupClick (Backup)" }
+      - { file: 2.0.x/Utility/frmRecover.cs, line: 108, text: "btnOKClick (Recover)" }
+    flow_hash: "BF2D637977B2E461"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-055
+    title: Verify the backup drive, then export data to it
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Export
+    chains: [UTIL-037, UTIL-029, UTIL-006]
+    preconditions:
+      - Logged in as admin with the Utilities.Backup and Utilities.ImportExport rights
+      - A USB backup drive is connected
+    steps:
+      - From the Utility menu, click Test Backup to verify the drive
+      - Click Export to open the export dialog
+      - Select data and click Export
+    expected:
+      - The backup drive is verified and the data export completes successfully
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTestBackup button
+      - frmMenu btnExport button
+      - frmExport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+      - 2.0.x/Utility/frmExport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 356, text: "btnTestBackupClick (Test\\r\\nBackup)" }
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 160, text: "btnExportClick (Export)" }
+      - { file: 2.0.x/Utility/frmExport.cs, line: 310, text: "Export Successful." }
+    flow_hash: "6149B69C727868A5"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: UTIL-056
+    title: Open Import from the menu and accept a valid import
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Import
+    chains: [UTIL-030, UTIL-011]
+    preconditions:
+      - Logged in as admin with the Utilities.ImportExport right
+      - Import data is prepared
+    steps:
+      - From the Utility menu, click Import to open the import dialog
+      - Prepare the data and click Accept
+    expected:
+      - The import dialog opens and the prepared data is imported
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnImport button
+      - frmImport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 167, text: "btnImportClick (Import)" }
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2087, text: "btnOKClick (Accept)" }
+    flow_hash: "859AB3EA37B6D0F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

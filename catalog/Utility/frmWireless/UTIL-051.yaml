@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-051
+    title: Close dismisses the wireless dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmWireless
+      entity: Network
+    preconditions:
+      - Logged in as admin
+      - The wireless dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The wireless dialog closes with no connection change
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWireless btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmWireless.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmWireless.cs, line: 81, text: "btnCancelClick (Close)" }
+    flow_hash: "E6816B19EBD68B05"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

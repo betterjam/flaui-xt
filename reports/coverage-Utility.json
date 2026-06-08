@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Utility",
+    "anchorsTotal":  56,
+    "covered":  56,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  56,
+    "atomic":  53,
+    "composite":  3,
+    "uncoveredAnchors":  [
+
+                         ]
+}

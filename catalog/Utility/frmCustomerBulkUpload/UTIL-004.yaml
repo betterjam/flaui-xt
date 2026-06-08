@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-004
+    title: Cancel closes the customer bulk upload dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomerBulkUpload
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - The customer bulk upload dialog is open
+    steps:
+      - Click Cancel
+    expected:
+      - The customer bulk upload dialog closes with no upload performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCustomerBulkUpload btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmCustomerBulkUpload.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmCustomerBulkUpload.cs, line: 42, text: "btnCancelClick (Cancel)" }
+    flow_hash: "C512B8E83FE2079E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ============================================================================
+  # frmExport.cs - data export dialog (entity: Export)
+  # ============================================================================

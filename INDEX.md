@@ -4,7 +4,7 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**98% complete** - 2549 / 2600 testable code anchors covered. Complete: **NO**.
+**100.6% complete** - 2616 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
@@ -13,13 +13,13 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 | Main | e2e | 105 | 104 | 101% | yes |
 | Items | e2e | 346 | 346 | 100% | yes |
 | Transactions | e2e | 738 | 738 | 100% | yes |
+| Purchasing | e2e | 111 | 111 | 100% | yes |
 | Settings | e2e | 343 | 343 | 100% | yes |
 | Managers | unit | 93 | 93 | 100% | yes |
-| Calendar | e2e | 51 | 51 | 100% | yes |
 | Customers | e2e | 95 | 95 | 100% | yes |
 | SysForms | e2e | 91 | 91 | 100% | yes |
 | Staff | e2e | 88 | 88 | 100% | yes |
-| Purchasing | e2e | 44 | 111 | 39.6% | yes |
+| Calendar | e2e | 51 | 51 | 100% | yes |
 | Utility | e2e | 0 | 56 | 0% | - |
 
 ## Tests by area
@@ -2755,5 +2755,66 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `TXN-0246` frmRegister: btnMiscSale action (btnMiscSaleClick)  _( P3 / frmRegister / Order / needs-recording )_
 - `TXN-0248` frmRegister: btnMiscScale action (btnMiscScaleClick)  _( P3 / frmRegister / Order / needs-recording )_
 - `TXN-0247` frmRegister: Warning - Warning! You have exceeded th (14512)  _( P2 / frmRegister / Order / needs-recording )_
+
+### Utility  (56 tests: 53 atomic, 3 composite)
+
+**(uncategorized)** (56)
+
+- `UTIL-038` Test Backup with no USB drive reports the drive not found  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-037` Test Backup verifies the backup drive when a USB drive is present  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-036` Set Time button opens the system time dialog  _( P3 / frmMenu / Utility / needs-recording )_
+- `UTIL-039` Verifying the backup drive without a USB drive reports drive not found  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-042` Activate reactivates a valid license successfully  _( P1 / frmReactivate / License / needs-recording )_
+- `UTIL-041` Reactivating an unknown license reports not found  _( P2 / frmReactivate / License / needs-recording )_
+- `UTIL-040` Switch to Training button switches the POS into training mode  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-031` Test Internet button reports a successful internet connection  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-030` Import button opens the import dialog  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-029` Export button opens the export dialog  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-032` LMP button opens the local management portal  _( P3 / frmMenu / Utility / needs-recording )_
+- `UTIL-035` Scan Data button starts the integrated data scan  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-034` Restore button opens the restore flow  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-033` Cash Drawer button opens the cash drawer  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-052` Refresh rescans for available wireless networks  _( P2 / frmWireless / Network / needs-recording )_
+- `UTIL-051` Close dismisses the wireless dialog  _( P2 / frmWireless / Network / needs-recording )_
+- `UTIL-050` Connecting to a corrupted network profile reports the corruption  _( P2 / frmWireless / Network / needs-recording )_
+- `UTIL-053` Selecting an SSID row in the grid chooses that network  _( P2 / frmWireless / Network / needs-recording )_
+- `UTIL-056` Open Import from the menu and accept a valid import  _( P1 / frmMenu / Import / needs-recording )_
+- `UTIL-055` Verify the backup drive, then export data to it  _( P2 / frmMenu / Export / needs-recording )_
+- `UTIL-054` Backup the database, then recover it from the saved backup  _( P1 / frmMenu / Backup / needs-recording )_
+- `UTIL-045` Recover restores the selected backup  _( P1 / frmRecover / Backup / needs-recording )_
+- `UTIL-044` Close dismisses the recover dialog  _( P2 / frmRecover / Backup / needs-recording )_
+- `UTIL-043` Close dismisses the reactivate dialog  _( P2 / frmReactivate / License / needs-recording )_
+- `UTIL-046` Selecting a backup row in the recover grid chooses that backup  _( P2 / frmRecover / Backup / needs-recording )_
+- `UTIL-049` Connect joins the selected wireless network  _( P1 / frmWireless / Network / needs-recording )_
+- `UTIL-048` Selecting a drive row in the grid chooses that drive  _( P2 / frmSelectDrive / Backup / needs-recording )_
+- `UTIL-047` Close dismisses the select drive dialog  _( P2 / frmSelectDrive / Backup / needs-recording )_
+- `UTIL-010` Close dismisses the import dialog  _( P2 / frmImport / Import / needs-recording )_
+- `UTIL-009` Back returns to the previous import step  _( P3 / frmImport / Import / needs-recording )_
+- `UTIL-008` Export button triggers the export action  _( P2 / frmExport / Export / needs-recording )_
+- `UTIL-011` Accept runs the import of the selected data  _( P1 / frmImport / Import / needs-recording )_
+- `UTIL-014` Cancelling an in-progress import reports cancelled by user  _( P3 / frmImport / Import / needs-recording )_
+- `UTIL-013` Import reports failure when the import does not complete  _( P2 / frmImport / Import / needs-recording )_
+- `UTIL-012` Import surfaces an XML file creation error  _( P2 / frmImport / Import / needs-recording )_
+- `UTIL-003` Upload runs the customer bulk upload  _( P2 / frmCustomerBulkUpload / Customer / needs-recording )_
+- `UTIL-002` Cancel closes the backup dialog without backing up  _( P2 / frmBackUp / Backup / needs-recording )_
+- `UTIL-001` Declining the backup confirmation aborts the backup  _( P2 / frmBackUp / Backup / needs-recording )_
+- `UTIL-004` Cancel closes the customer bulk upload dialog  _( P2 / frmCustomerBulkUpload / Customer / needs-recording )_
+- `UTIL-007` Close dismisses the export dialog  _( P2 / frmExport / Export / needs-recording )_
+- `UTIL-006` Export of selected data completes successfully  _( P1 / frmExport / Export / needs-recording )_
+- `UTIL-005` Export with nothing to export reports nothing for export  _( P2 / frmExport / Export / needs-recording )_
+- `UTIL-024` Import button is gated by the Utilities.ImportExport permission  _( P1 / frmMenu / Utility / needs-recording )_
+- `UTIL-023` Clear Print Queue button is gated by the Utilities.PrintJobs permission  _( P1 / frmMenu / Utility / needs-recording )_
+- `UTIL-022` Test Backup button is gated by the Utilities.Backup permission  _( P1 / frmMenu / Utility / needs-recording )_
+- `UTIL-025` Switch to Training button is gated by the Utilities.Training permission  _( P1 / frmMenu / Utility / needs-recording )_
+- `UTIL-028` Clear Print Queue button clears the print queue  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-027` Backup button opens the backup flow  _( P2 / frmMenu / Utility / needs-recording )_
+- `UTIL-026` Scan Data button is gated by the Utilities.Integrated permission  _( P1 / frmMenu / Utility / needs-recording )_
+- `UTIL-017` A failed setup-file download surfaces the error message  _( P3 / frmImportSetupFiles / SetupFile / needs-recording )_
+- `UTIL-016` Downloading with no files selected prompts to select files  _( P2 / frmImportSetupFiles / SetupFile / needs-recording )_
+- `UTIL-015` Download File(s) downloads the selected setup files  _( P2 / frmImportSetupFiles / SetupFile / needs-recording )_
+- `UTIL-018` Cancel closes the import setup files dialog  _( P2 / frmImportSetupFiles / SetupFile / needs-recording )_
+- `UTIL-021` An empty bucket reports no folders found  _( P3 / frmImportSetupFiles / SetupFile / needs-recording )_
+- `UTIL-020` Selecting an invalid team member prompts for a valid one  _( P3 / frmImportSetupFiles / SetupFile / needs-recording )_
+- `UTIL-019` Selecting a team-member bucket loads its setup files  _( P3 / frmImportSetupFiles / SetupFile / needs-recording )_
 
 

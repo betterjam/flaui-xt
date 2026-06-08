@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-017
+    title: A failed setup-file download surfaces the error message
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open with files selected
+      - The download fails (e.g. network/bucket error)
+    steps:
+      - Click Download File(s)
+    expected:
+      - 'A warning is shown: "Error downloading file: {ex.Message}"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 86, text: "Error downloading file: {ex.Message}" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-001
+    title: Declining the backup confirmation aborts the backup
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmBackUp
+      entity: Backup
+    preconditions:
+      - Logged in as admin
+      - The backup dialog is open
+    steps:
+      - Start a backup
+      - Decline the backup confirmation prompt
+    expected:
+      - 'A warning is shown: "Backup declined."'
+      - The backup does not proceed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmBackUp backup confirmation prompt
+    source_files:
+      - 2.0.x/Utility/frmBackUp.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmBackUp.cs, line: 237, text: "Backup declined." }
+    flow_hash: "25AD0F0B2083C503"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

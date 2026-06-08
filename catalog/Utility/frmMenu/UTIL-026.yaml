@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-026
+    title: Scan Data button is gated by the Utilities.Integrated permission
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as a user WITHOUT the Utilities.Integrated right
+      - The Utility menu is open
+    steps:
+      - Observe the Scan Data button
+    expected:
+      - The Scan Data button is unavailable without the Utilities.Integrated right
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnScanData button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 55, text: "perm:Utilities.Integrated" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

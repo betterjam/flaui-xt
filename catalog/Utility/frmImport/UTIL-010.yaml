@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-010
+    title: Close dismisses the import dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The import dialog closes with no import performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2082, text: "btnCancelClick (Close)" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

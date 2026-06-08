@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-003
+    title: Upload runs the customer bulk upload
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCustomerBulkUpload
+      entity: Customer
+    preconditions:
+      - Logged in as admin
+      - The customer bulk upload dialog is open with a file selected
+    steps:
+      - Click Upload
+    expected:
+      - The customer bulk upload runs against the selected file
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCustomerBulkUpload btnRun button
+    source_files:
+      - 2.0.x/Utility/frmCustomerBulkUpload.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmCustomerBulkUpload.cs, line: 35, text: "btnRunClick (Upload)" }
+    flow_hash: "C512B8E83FE2079E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

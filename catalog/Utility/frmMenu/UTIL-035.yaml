@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-035
+    title: Scan Data button starts the integrated data scan
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Utility
+    preconditions:
+      - Logged in as admin with the Utilities.Integrated right
+      - The Utility menu is open
+    steps:
+      - Click Scan Data
+    expected:
+      - The integrated data scan is started
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnScanData button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 210, text: "btnScanDataClick (Scan\\r\\nData)" }
+    flow_hash: "4C0FD289ABC5864F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

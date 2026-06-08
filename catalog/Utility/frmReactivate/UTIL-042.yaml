@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-042
+    title: Activate reactivates a valid license successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReactivate
+      entity: License
+    preconditions:
+      - Logged in as admin
+      - The reactivate dialog is open
+      - A valid reactivation code is available
+    steps:
+      - Enter a valid reactivation code
+      - Click Activate
+    expected:
+      - 'A success message is shown: "Activated successfully."'
+      - The license is reactivated
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReactivate btnOK button
+    source_files:
+      - 2.0.x/Utility/frmReactivate.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmReactivate.cs, line: 101, text: "btnOKClick (Activate)" }
+      - { file: 2.0.x/Utility/frmReactivate.cs, line: 198, text: "Activated successfully." }
+    flow_hash: "98BE81887DF8C875"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

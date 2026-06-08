@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-012
+    title: Import surfaces an XML file creation error
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open
+      - The XML file cannot be created
+    steps:
+      - Click Accept to run the import
+    expected:
+      - 'A warning is shown: "Error creating XML File"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2110, text: "Error creating XML File" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

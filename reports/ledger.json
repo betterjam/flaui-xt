@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  2549,
-    "grandUncovered":  51,
-    "grandPct":  98,
+    "grandCovered":  2616,
+    "grandUncovered":  -16,
+    "grandPct":  100.6,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Purchasing",
-                      "layer":  "e2e",
-                      "total":  111,
-                      "covered":  44,
-                      "uncovered":  67,
-                      "pct":  39.6,
-                      "catalog":  true
-                  },
                   {
                       "area":  "Utility",
                       "layer":  "e2e",
@@ -28,6 +19,24 @@
                       "layer":  "e2e",
                       "total":  95,
                       "covered":  95,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Managers",
+                      "layer":  "unit",
+                      "total":  93,
+                      "covered":  93,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "SysForms",
+                      "layer":  "e2e",
+                      "total":  91,
+                      "covered":  91,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true
@@ -51,19 +60,10 @@
                       "catalog":  true
                   },
                   {
-                      "area":  "SysForms",
+                      "area":  "Settings",
                       "layer":  "e2e",
-                      "total":  91,
-                      "covered":  91,
-                      "uncovered":  0,
-                      "pct":  100,
-                      "catalog":  true
-                  },
-                  {
-                      "area":  "Managers",
-                      "layer":  "unit",
-                      "total":  93,
-                      "covered":  93,
+                      "total":  343,
+                      "covered":  343,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true
@@ -87,10 +87,10 @@
                       "catalog":  true
                   },
                   {
-                      "area":  "Settings",
+                      "area":  "Purchasing",
                       "layer":  "e2e",
-                      "total":  343,
-                      "covered":  343,
+                      "total":  111,
+                      "covered":  111,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true

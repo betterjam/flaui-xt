@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-016
+    title: Downloading with no files selected prompts to select files
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmImportSetupFiles
+      entity: SetupFile
+    preconditions:
+      - Logged in as admin
+      - The import setup files dialog is open with no files selected
+    steps:
+      - Click Download File(s) without selecting any file
+    expected:
+      - 'A warning is shown: "Please select the files that need to be imported"'
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImportSetupFiles btnOK button
+    source_files:
+      - 2.0.x/Utility/frmImportSetupFiles.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImportSetupFiles.cs, line: 78, text: "Please select the files that need to be imported" }
+    flow_hash: "CC62B2FC798C6B83"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

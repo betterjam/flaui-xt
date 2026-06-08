@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-009
+    title: Back returns to the previous import step
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmImport
+      entity: Import
+    preconditions:
+      - Logged in as admin
+      - The import dialog is open past the first step
+    steps:
+      - Click Back
+    expected:
+      - The import dialog returns to the previous step
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmImport btnBack button
+    source_files:
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2070, text: "btnBackClick" }
+    flow_hash: "1DB6A6AAE16BA0A7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,43 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-055
+    title: Verify the backup drive, then export data to it
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Export
+    chains: [UTIL-037, UTIL-029, UTIL-006]
+    preconditions:
+      - Logged in as admin with the Utilities.Backup and Utilities.ImportExport rights
+      - A USB backup drive is connected
+    steps:
+      - From the Utility menu, click Test Backup to verify the drive
+      - Click Export to open the export dialog
+      - Select data and click Export
+    expected:
+      - The backup drive is verified and the data export completes successfully
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTestBackup button
+      - frmMenu btnExport button
+      - frmExport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+      - 2.0.x/Utility/frmExport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 356, text: "btnTestBackupClick (Test\\r\\nBackup)" }
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 160, text: "btnExportClick (Export)" }
+      - { file: 2.0.x/Utility/frmExport.cs, line: 310, text: "Export Successful." }
+    flow_hash: "6149B69C727868A5"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

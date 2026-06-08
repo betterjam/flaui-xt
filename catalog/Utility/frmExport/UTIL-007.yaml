@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-007
+    title: Close dismisses the export dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmExport
+      entity: Export
+    preconditions:
+      - Logged in as admin
+      - The export dialog is open
+    steps:
+      - Click Close
+    expected:
+      - The export dialog closes with no export performed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmExport btnCancel button
+    source_files:
+      - 2.0.x/Utility/frmExport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmExport.cs, line: 332, text: "btnCancelClick (Close)" }
+    flow_hash: "845439F22555C92D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

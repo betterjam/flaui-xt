@@ -1,0 +1,462 @@
+﻿{
+    "feature":  "Utility",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Utility"
+                    ],
+    "formCount":  10,
+    "anchorTotal":  56,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  5,
+                   "action":  33,
+                   "message":  17,
+                   "toggle":  1
+               },
+    "forms":  [
+                  {
+                      "form":  "frmBackUp",
+                      "file":  "2.0.x\\Utility\\frmBackUp.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  237,
+                                          "kind":  "Warning",
+                                          "text":  "Backup declined."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  265,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCustomerBulkUpload",
+                      "file":  "2.0.x\\Utility\\frmCustomerBulkUpload.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnRunClick",
+                                          "control":  "btnRun",
+                                          "label":  "Upload"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  42,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmExport",
+                      "file":  "2.0.x\\Utility\\frmExport.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  289,
+                                          "kind":  "Success",
+                                          "text":  "Nothing for Export."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  310,
+                                          "kind":  "Success",
+                                          "text":  "Export Successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  332,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  337,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Export"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmImport",
+                      "file":  "2.0.x\\Utility\\frmImport.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  2070,
+                                          "handler":  "btnBackClick",
+                                          "control":  "btnBack",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2082,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  2087,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Accept"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2110,
+                                          "kind":  "Warning",
+                                          "text":  "Error creating XML File"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2114,
+                                          "kind":  "Warning",
+                                          "text":  "Import Failed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2118,
+                                          "kind":  "Warning",
+                                          "text":  "Canceled by user"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmImportSetupFiles",
+                      "file":  "2.0.x\\Utility\\frmImportSetupFiles.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  69,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Download File(s)"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  78,
+                                          "kind":  "Warning",
+                                          "text":  "Please select the files that need to be imported"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  86,
+                                          "kind":  "Warning",
+                                          "text":  "Error downloading file: {ex.Message}"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  94,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  101,
+                                          "handler":  "cboTeamMemberBucketSelectedIndexChanged",
+                                          "control":  "cboTeamMemberBucket",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  112,
+                                          "kind":  "Warning",
+                                          "text":  "Please select a valid team member from the list."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  383,
+                                          "kind":  "Warning",
+                                          "text":  "No folders found in Bucket: {pBucketPrefix}"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Utility\\frmMenu.cs",
+                      "anchorCount":  21,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  43,
+                                          "control":  "btnTestBackup",
+                                          "right":  "Utilities.Backup",
+                                          "label":  "Test\\r\\nBackup"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  46,
+                                          "control":  "btnClearQueue",
+                                          "right":  "Utilities.PrintJobs",
+                                          "label":  "Clear Print\\r\\nQueue"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  49,
+                                          "control":  "btnImport",
+                                          "right":  "Utilities.ImportExport",
+                                          "label":  "Import"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  51,
+                                          "control":  "btnTrainingData",
+                                          "right":  "Utilities.Training",
+                                          "label":  "Switch to\\r\\nTraining"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  55,
+                                          "control":  "btnScanData",
+                                          "right":  "Utilities.Integrated",
+                                          "label":  "Scan\\r\\nData"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  144,
+                                          "handler":  "btnBackupClick",
+                                          "control":  "btnBackup",
+                                          "label":  "Backup"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  153,
+                                          "handler":  "btnClearQueueClick",
+                                          "control":  "btnClearQueue",
+                                          "label":  "Clear Print\\r\\nQueue"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  160,
+                                          "handler":  "btnExportClick",
+                                          "control":  "btnExport",
+                                          "label":  "Export"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  167,
+                                          "handler":  "btnImportClick",
+                                          "control":  "btnImport",
+                                          "label":  "Import"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  174,
+                                          "handler":  "btnInternetRefreshClick",
+                                          "control":  "btnInternetRefresh",
+                                          "label":  "Test\\r\\nInternet"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  179,
+                                          "kind":  "Success",
+                                          "text":  "Internet OK."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  182,
+                                          "handler":  "btnLMPClick",
+                                          "control":  "btnLMP",
+                                          "label":  "LMP"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  198,
+                                          "handler":  "btnOpenDrawerClick",
+                                          "control":  "btnOpenDrawer",
+                                          "label":  "Cash\\r\\nDrawer"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  203,
+                                          "handler":  "btnRestoreClick",
+                                          "control":  "btnRestore",
+                                          "label":  "Restore"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  210,
+                                          "handler":  "btnScanDataClick",
+                                          "control":  "btnScanData",
+                                          "label":  "Scan\\r\\nData"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  348,
+                                          "handler":  "btnSystemTimeClick",
+                                          "control":  "btnSystemTime",
+                                          "label":  "Set Time"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  356,
+                                          "handler":  "btnTestBackupClick",
+                                          "control":  "btnTestBackup",
+                                          "label":  "Test\\r\\nBackup"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  394,
+                                          "kind":  "Warning",
+                                          "text":  "USB drive not found."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  435,
+                                          "kind":  "Success",
+                                          "text":  "Backup drive has been verified."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  440,
+                                          "kind":  "Warning",
+                                          "text":  "USB drive not found."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  448,
+                                          "handler":  "btnTrainingDataClick",
+                                          "control":  "btnTrainingData",
+                                          "label":  "Switch to\\r\\nTraining"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmReactivate",
+                      "file":  "2.0.x\\Utility\\frmReactivate.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  72,
+                                          "kind":  "Warning",
+                                          "text":  "Not found."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  101,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Activate"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  198,
+                                          "kind":  "Success",
+                                          "text":  "Activated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  206,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmRecover",
+                      "file":  "2.0.x\\Utility\\frmRecover.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  103,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  108,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Recover"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  132,
+                                          "handler":  "dgvDataCellClick",
+                                          "control":  "dgvData",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSelectDrive",
+                      "file":  "2.0.x\\Utility\\frmSelectDrive.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  23,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  28,
+                                          "handler":  "dgvDataCellClick",
+                                          "control":  "dgvData",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmWireless",
+                      "file":  "2.0.x\\Utility\\frmWireless.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Connect"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  76,
+                                          "kind":  "Warning",
+                                          "text":  "The network connection profile is corrupted."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  81,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  86,
+                                          "handler":  "btnRefreshClick",
+                                          "control":  "btnRefresh",
+                                          "label":  "Refresh"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  173,
+                                          "handler":  "dgvSSIDCellClick",
+                                          "control":  "dgvSSID",
+                                          "label":  null
+                                      }
+                                  ]
+                  }
+              ]
+}

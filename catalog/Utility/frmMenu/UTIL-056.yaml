@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Utility.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Utility
+test_case:
+  - id: UTIL-056
+    title: Open Import from the menu and accept a valid import
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Import
+    chains: [UTIL-030, UTIL-011]
+    preconditions:
+      - Logged in as admin with the Utilities.ImportExport right
+      - Import data is prepared
+    steps:
+      - From the Utility menu, click Import to open the import dialog
+      - Prepare the data and click Accept
+    expected:
+      - The import dialog opens and the prepared data is imported
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnImport button
+      - frmImport btnOK button
+    source_files:
+      - 2.0.x/Utility/frmMenu.cs
+      - 2.0.x/Utility/frmImport.cs
+    evidence:
+      - { file: 2.0.x/Utility/frmMenu.cs, line: 167, text: "btnImportClick (Import)" }
+      - { file: 2.0.x/Utility/frmImport.cs, line: 2087, text: "btnOKClick (Accept)" }
+    flow_hash: "859AB3EA37B6D0F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
