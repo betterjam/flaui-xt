@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-057
+    title: Open button on vendor history opens the selected PO
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmHistory
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The vendor PO history dialog lists at least one PO
+    steps:
+      - Select a PO row in the history grid
+      - Click Open (btnOK)
+    expected:
+      - The selected purchase order opens on the Purchase Order form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmHistory btnOK, dgvHistory selection
+    source_files:
+      - 2.0.x/Purchasing/frmHistory.cs
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmHistory.cs, line: 25, text: "btnOKClick" }
+    flow_hash: "905B38A3A10769D0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

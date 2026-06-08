@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-054
+    title: Vendor List tile opens the vendor list
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - On the Purchasing module menu
+    steps:
+      - Click the Vendor List tile (btnVendorList)
+    expected:
+      - The vendor list form (frmVendorsList) opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnVendorList
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 47, text: "btnVendorListClick" }
+    flow_hash: "9B535746EFE7D70A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

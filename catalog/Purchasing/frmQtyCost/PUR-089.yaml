@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-089
+    title: OK on the qty/cost dialog accepts a valid quantity and cost
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open with a valid qty and cost entered
+    steps:
+      - Click OK (btnOK)
+    expected:
+      - The dialog closes and the item line is added with the entered qty/cost
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 88, text: "btnOKClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

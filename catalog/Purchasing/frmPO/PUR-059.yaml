@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-059
+    title: Void button on a PO is gated by the Purchasing.PO access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - A purchase order is loaded on the Purchase Order form
+    steps:
+      - Load the PO as a user WITHOUT the Purchasing.PO right
+      - Load the PO as admin WITH the Purchasing.PO right
+    expected:
+      - Without Purchasing.PO the Void button (btnVoid) is disabled/hidden
+      - With Purchasing.PO the Void button is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnVoid enabled-state under Purchasing.PO right
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 487, text: "perm:Purchasing.PO" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

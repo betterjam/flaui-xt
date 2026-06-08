@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-062
+    title: Find Items button opens the item search to add a line to the PO
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+    steps:
+      - Click Find Items (btnFindItems)
+    expected:
+      - The item search dialog opens so an item can be added to the PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 606, text: "btnFindItemsClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

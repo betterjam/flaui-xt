@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-077
+    title: PO list Report button is gated by the Report.Purchasing access right
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - On the PO list form
+    steps:
+      - Open the PO list as a user WITHOUT Report.Purchasing
+      - Open the PO list as admin WITH Report.Purchasing
+    expected:
+      - Without Report.Purchasing the Report button is disabled/hidden
+      - With Report.Purchasing the Report button is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnReport enabled-state under Report.Purchasing right
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 44, text: "perm:Report.Purchasing" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-105
+    title: Vendor list form is gated by the Purchasing.Vendors access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - On the Purchasing module menu
+    steps:
+      - Attempt to open the vendor list as a user WITHOUT Purchasing.Vendors
+      - Open the vendor list as admin WITH Purchasing.Vendors
+    expected:
+      - Without Purchasing.Vendors the vendor list is access-blocked (_AccessObj gate)
+      - With Purchasing.Vendors the vendor list opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList _AccessObj access gate
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 43, text: "perm:Purchasing.Vendors" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

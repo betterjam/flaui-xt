@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-115
+    title: End-to-end - navigate Purchasing menu into each list and the PO form
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: PurchaseOrder
+    chains: [PUR-050, PUR-051, PUR-054, PUR-053]
+    preconditions:
+      - Logged in as admin with full Purchasing access
+      - On the Purchasing module menu
+    steps:
+      - Open PO Details (PUR-050)
+      - Open the PO List (PUR-051)
+      - Open the Vendor List (PUR-054)
+      - Open the Receiving form (PUR-053)
+    expected:
+      - Each tile opens its target form without error
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence: []
+    flow_hash: "2457DDE43465515F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

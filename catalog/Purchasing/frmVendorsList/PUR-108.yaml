@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-108
+    title: Print List button prints the vendor list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The vendor list is populated
+    steps:
+      - Click Print List (btnPrint)
+    expected:
+      - The current vendor list is sent to the printer / print preview
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList btnPrint
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 127, text: "btnPrintClick" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

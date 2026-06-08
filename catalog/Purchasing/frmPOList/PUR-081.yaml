@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-081
+    title: Advanced PO Search button opens the PO search dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - On the PO list form
+    steps:
+      - Click Advanced PO Search (btnSearch)
+    expected:
+      - The advanced PO search dialog (frmPOListSearch) opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnSearch
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+      - 2.0.x/Purchasing/frmPOListSearch.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 146, text: "btnSearchClick" }
+    flow_hash: "3F0873FB3FECDA75"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

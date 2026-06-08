@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-076
+    title: PO list form is gated by the Purchasing.PO access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - On the Purchasing module menu
+    steps:
+      - Attempt to open the PO list as a user WITHOUT Purchasing.PO
+      - Open the PO list as admin WITH Purchasing.PO
+    expected:
+      - Without Purchasing.PO the PO list is access-blocked (_AccessObj gate)
+      - With Purchasing.PO the PO list opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList _AccessObj access gate
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 43, text: "perm:Purchasing.PO" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

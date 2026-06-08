@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-085
+    title: Search button on the advanced PO search applies the filter
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOListSearch
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The advanced PO search dialog is open with criteria entered
+    steps:
+      - Click Search (btnOK)
+    expected:
+      - The dialog closes and the PO list shows results matching the criteria
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOListSearch btnOK, search criteria fields
+    source_files:
+      - 2.0.x/Purchasing/frmPOListSearch.cs
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOListSearch.cs, line: 30, text: "btnOKClick" }
+    flow_hash: "3F0873FB3FECDA75"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmQtyCost.cs - qty/cost numeric entry dialog (entity: Item)
+  # ----------------------------------------------------------------------------

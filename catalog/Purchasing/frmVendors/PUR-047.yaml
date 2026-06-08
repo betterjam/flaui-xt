@@ -36,3 +36,13 @@ test_case:
     flow_hash: "0D0EB5B31FFC5AE1"
     source_refs: { tickets: [], prs: [] }
     origin: discovery
+
+  # ============================================================================
+  # ACTION / PERMISSION / TOGGLE anchors (navigation + open/close handlers and
+  # security gates that the message-anchor cases above did not yet cite).
+  # One atomic case per remaining code anchor so coverage is exhaustive.
+  # ============================================================================
+
+  # ----------------------------------------------------------------------------
+  # frmMenu.cs - Purchasing module landing menu (entity: PurchaseOrder/Vendor)
+  # ----------------------------------------------------------------------------

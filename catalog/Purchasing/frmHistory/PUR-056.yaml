@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-056
+    title: Closing the vendor history dialog returns without opening a PO
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmHistory
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The vendor PO history dialog is open
+    steps:
+      - Click Close (btnCancel)
+    expected:
+      - The history dialog closes and no PO is opened
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmHistory btnCancel
+    source_files:
+      - 2.0.x/Purchasing/frmHistory.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmHistory.cs, line: 20, text: "btnCancelClick" }
+    flow_hash: "B1BFACAEFA13E91B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

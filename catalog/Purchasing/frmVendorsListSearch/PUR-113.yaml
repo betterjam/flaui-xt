@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-113
+    title: Closing the advanced vendor search dialog cancels the search
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsListSearch
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The advanced vendor search dialog is open
+    steps:
+      - Click Close (btnCancel)
+    expected:
+      - The search dialog closes without applying a filter
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsListSearch btnCancel
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsListSearch.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsListSearch.cs, line: 23, text: "btnCancelClick" }
+    flow_hash: "60A75371EB8A58F2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

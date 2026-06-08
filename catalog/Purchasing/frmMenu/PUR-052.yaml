@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-052
+    title: Reactivate vendor tile reactivates a deactivated vendor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - At least one deactivated vendor exists
+      - On the Purchasing module menu
+    steps:
+      - Click the Reactivate tile (btnReactivateVendor)
+      - Select a deactivated vendor to reactivate
+    expected:
+      - The selected vendor is reactivated and reappears in the active vendor list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnReactivateVendor, reactivate selection list
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 33, text: "btnReactivateVendorClick" }
+    flow_hash: "2457DDE43465515F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

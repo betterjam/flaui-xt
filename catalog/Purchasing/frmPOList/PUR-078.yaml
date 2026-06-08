@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-078
+    title: Clear Search Results button resets the PO list filter
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The PO list shows filtered search results
+    steps:
+      - Click Clear Search Results (btnClear)
+    expected:
+      - The search filter is cleared and the full PO list is shown
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnClear
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 108, text: "btnClearClick" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

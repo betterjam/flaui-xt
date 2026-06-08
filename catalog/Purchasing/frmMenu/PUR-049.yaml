@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-049
+    title: Vendor List tile is gated by the Purchasing.Vendors access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - On the Purchasing module menu
+    steps:
+      - Log in as a user WITHOUT the Purchasing.Vendors right and open the Purchasing menu
+      - Log in as admin WITH the Purchasing.Vendors right and open the Purchasing menu
+    expected:
+      - Without Purchasing.Vendors the Vendor List tile (btnVendorsList) is disabled/hidden
+      - With Purchasing.Vendors the Vendor List tile is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnVendorsList enabled-state under Purchasing.Vendors right
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 20, text: "perm:Purchasing.Vendors" }
+    flow_hash: "2457DDE43465515F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

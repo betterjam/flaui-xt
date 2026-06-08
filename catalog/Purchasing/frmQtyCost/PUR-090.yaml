@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-090
+    title: Qty Update control commits the edited quantity
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open in quantity-update mode
+    steps:
+      - Trigger the Qty Update control (btnQtyUpdate)
+    expected:
+      - The quantity is updated for the line
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnQtyUpdate
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 116, text: "btnQtyUpdateClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmReceiving.cs - standalone receiving session actions (entity: Receiving)
+  # ----------------------------------------------------------------------------

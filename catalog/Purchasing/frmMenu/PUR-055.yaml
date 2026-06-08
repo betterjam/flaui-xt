@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-055
+    title: Vendor Details tile opens a new vendor record
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - On the Purchasing module menu
+    steps:
+      - Click the Vendor Details tile (btnVendorNew)
+    expected:
+      - The vendor detail form (frmVendors) opens ready for a new vendor
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnVendorNew
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 52, text: "btnVendorNewClick" }
+    flow_hash: "E37AE3B281FE2160"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmHistory.cs - vendor PO history picker (entity: PurchaseOrder)
+  # ----------------------------------------------------------------------------

@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-099
+    title: Delete button on a vendor is gated by the Purchasing.Vendors access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - A vendor record is loaded on the vendor detail form
+    steps:
+      - Load the vendor as a user WITHOUT Purchasing.Vendors
+      - Load the vendor as admin WITH Purchasing.Vendors
+    expected:
+      - Without Purchasing.Vendors the Delete button (btnDelete) is disabled/hidden
+      - With Purchasing.Vendors the Delete button is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnDelete enabled-state under Purchasing.Vendors right
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 151, text: "perm:Purchasing.Vendors" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

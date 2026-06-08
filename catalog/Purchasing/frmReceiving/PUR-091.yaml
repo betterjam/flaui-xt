@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-091
+    title: Clear button resets the receiving session entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - On the Receiving form with an in-progress entry
+    steps:
+      - Click Clear (btnClear)
+    expected:
+      - The current receiving entry is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnClear
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 134, text: "btnClearClick" }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

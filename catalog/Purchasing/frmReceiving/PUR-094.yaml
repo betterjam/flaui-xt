@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-094
+    title: Finish button starts receiving completion (posts stock)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session has at least one item with a non-zero qty
+    steps:
+      - Click Finish (btnFinish)
+    expected:
+      - The receiving-proc dialog (frmReceivingProc) opens to confirm the received date
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnFinish
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 170, text: "btnFinishClick" }
+    flow_hash: "4F4D96C57168DF6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

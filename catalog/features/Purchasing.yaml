@@ -1617,3 +1617,2322 @@ test_cases:
     flow_hash: "0D0EB5B31FFC5AE1"
     source_refs: { tickets: [], prs: [] }
     origin: discovery
+
+  # ============================================================================
+  # ACTION / PERMISSION / TOGGLE anchors (navigation + open/close handlers and
+  # security gates that the message-anchor cases above did not yet cite).
+  # One atomic case per remaining code anchor so coverage is exhaustive.
+  # ============================================================================
+
+  # ----------------------------------------------------------------------------
+  # frmMenu.cs - Purchasing module landing menu (entity: PurchaseOrder/Vendor)
+  # ----------------------------------------------------------------------------
+  - id: PUR-048
+    title: PO List tile is gated by the Purchasing.PO access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: PurchaseOrder
+    preconditions:
+      - On the Purchasing module menu
+    steps:
+      - Log in as a user WITHOUT the Purchasing.PO right and open the Purchasing menu
+      - Log in as admin WITH the Purchasing.PO right and open the Purchasing menu
+    expected:
+      - Without Purchasing.PO the PO List tile (btnPOList) is disabled/hidden
+      - With Purchasing.PO the PO List tile is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnPOList enabled-state under Purchasing.PO right
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 16, text: "perm:Purchasing.PO" }
+    flow_hash: "2457DDE43465515F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-049
+    title: Vendor List tile is gated by the Purchasing.Vendors access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - On the Purchasing module menu
+    steps:
+      - Log in as a user WITHOUT the Purchasing.Vendors right and open the Purchasing menu
+      - Log in as admin WITH the Purchasing.Vendors right and open the Purchasing menu
+    expected:
+      - Without Purchasing.Vendors the Vendor List tile (btnVendorsList) is disabled/hidden
+      - With Purchasing.Vendors the Vendor List tile is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnVendorsList enabled-state under Purchasing.Vendors right
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 20, text: "perm:Purchasing.Vendors" }
+    flow_hash: "2457DDE43465515F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-050
+    title: PO Details tile opens the Purchase Order form
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchasing module menu
+    steps:
+      - Click the PO Details tile (btnCreatePO)
+    expected:
+      - The Purchase Order form (frmPO) opens ready to build a new PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnCreatePO
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 23, text: "btnCreatePOClick" }
+    flow_hash: "4B88663A7ADB41CD"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-051
+    title: PO List tile opens the purchase-order list
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - On the Purchasing module menu
+    steps:
+      - Click the PO List tile (btnPOList)
+    expected:
+      - The purchase-order list form (frmPOList) opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnPOList
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 28, text: "btnPOListClick" }
+    flow_hash: "5A42F7070F83DFDC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-052
+    title: Reactivate vendor tile reactivates a deactivated vendor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - At least one deactivated vendor exists
+      - On the Purchasing module menu
+    steps:
+      - Click the Reactivate tile (btnReactivateVendor)
+      - Select a deactivated vendor to reactivate
+    expected:
+      - The selected vendor is reactivated and reappears in the active vendor list
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnReactivateVendor, reactivate selection list
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 33, text: "btnReactivateVendorClick" }
+    flow_hash: "2457DDE43465515F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-053
+    title: Receive tile opens the standalone receiving form
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchasing module menu
+    steps:
+      - Click the Receive tile (btnReceiving)
+    expected:
+      - The receiving form (frmReceiving) opens for a new receiving session
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnReceiving
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 40, text: "btnReceivingClick" }
+    flow_hash: "DF5BE6F92545FFDB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-054
+    title: Vendor List tile opens the vendor list
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - On the Purchasing module menu
+    steps:
+      - Click the Vendor List tile (btnVendorList)
+    expected:
+      - The vendor list form (frmVendorsList) opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnVendorList
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 47, text: "btnVendorListClick" }
+    flow_hash: "9B535746EFE7D70A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-055
+    title: Vendor Details tile opens a new vendor record
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - On the Purchasing module menu
+    steps:
+      - Click the Vendor Details tile (btnVendorNew)
+    expected:
+      - The vendor detail form (frmVendors) opens ready for a new vendor
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnVendorNew
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 52, text: "btnVendorNewClick" }
+    flow_hash: "E37AE3B281FE2160"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmHistory.cs - vendor PO history picker (entity: PurchaseOrder)
+  # ----------------------------------------------------------------------------
+  - id: PUR-056
+    title: Closing the vendor history dialog returns without opening a PO
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmHistory
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The vendor PO history dialog is open
+    steps:
+      - Click Close (btnCancel)
+    expected:
+      - The history dialog closes and no PO is opened
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmHistory btnCancel
+    source_files:
+      - 2.0.x/Purchasing/frmHistory.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmHistory.cs, line: 20, text: "btnCancelClick" }
+    flow_hash: "B1BFACAEFA13E91B"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-057
+    title: Open button on vendor history opens the selected PO
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmHistory
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The vendor PO history dialog lists at least one PO
+    steps:
+      - Select a PO row in the history grid
+      - Click Open (btnOK)
+    expected:
+      - The selected purchase order opens on the Purchase Order form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmHistory btnOK, dgvHistory selection
+    source_files:
+      - 2.0.x/Purchasing/frmHistory.cs
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmHistory.cs, line: 25, text: "btnOKClick" }
+    flow_hash: "905B38A3A10769D0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-058
+    title: Double-clicking a vendor history row opens that PO
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmHistory
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The vendor PO history dialog lists at least one PO
+    steps:
+      - Double-click a PO row in the history grid (dgvHistory)
+    expected:
+      - The double-clicked purchase order opens on the Purchase Order form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmHistory dgvHistory cell double-click
+    source_files:
+      - 2.0.x/Purchasing/frmHistory.cs
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmHistory.cs, line: 31, text: "dgvHistoryCellDoubleClick" }
+    flow_hash: "905B38A3A10769D0"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmPO.cs - remaining action / permission handlers (entity: PurchaseOrder/Item)
+  # ----------------------------------------------------------------------------
+  - id: PUR-059
+    title: Void button on a PO is gated by the Purchasing.PO access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - A purchase order is loaded on the Purchase Order form
+    steps:
+      - Load the PO as a user WITHOUT the Purchasing.PO right
+      - Load the PO as admin WITH the Purchasing.PO right
+    expected:
+      - Without Purchasing.PO the Void button (btnVoid) is disabled/hidden
+      - With Purchasing.PO the Void button is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnVoid enabled-state under Purchasing.PO right
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 487, text: "perm:Purchasing.PO" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-060
+    title: Reorder Low Level button auto-fills PO lines for the selected vendor
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A vendor is selected whose items have stock below reorder level
+    steps:
+      - Click the Reorder Low Level button (btnAuto)
+    expected:
+      - PO lines are auto-generated for items below their reorder level
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnAuto
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 532, text: "btnAutoClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-061
+    title: Receive Complete button triggers PO completion confirmation
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO with at least one line is loaded
+    steps:
+      - Click Receive Complete (btnComplete)
+    expected:
+      - The mark-as-received confirmation prompt is shown for the PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnComplete
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 589, text: "btnCompleteClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-062
+    title: Find Items button opens the item search to add a line to the PO
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+    steps:
+      - Click Find Items (btnFindItems)
+    expected:
+      - The item search dialog opens so an item can be added to the PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 606, text: "btnFindItemsClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-063
+    title: Alternate Find Vendor control opens the vendor search for the PO
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Trigger the alternate Find Vendor control (btnFindVendorAlt)
+    expected:
+      - The vendor search opens to assign a vendor to the PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindVendorAlt
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 614, text: "btnFindVendorAltClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-064
+    title: Find Vendor button opens the vendor search for the PO
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Click Find Vendor (btnFindVendor)
+    expected:
+      - The vendor search opens and the chosen vendor is assigned to the PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindVendor
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 620, text: "btnFindVendorClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-065
+    title: Item button on the PO opens the item picker
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+    steps:
+      - Click the Item button (btnItem)
+    expected:
+      - The item picker opens to add an item line to the PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnItem
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 639, text: "btnItemClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-066
+    title: Save button on the PO commits the order via the save path
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with valid lines is loaded and modified
+    steps:
+      - Click Save (btnOK)
+    expected:
+      - The PO save routine runs (validations then persist) - see Updated successfully. path
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK (Save)
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 715, text: "btnOKClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-067
+    title: Paid button marks the PO as paid
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A received/completed PO is loaded
+    steps:
+      - Click Paid (btnPaid)
+    expected:
+      - The PO is flagged as paid
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnPaid
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 998, text: "btnPaidClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-068
+    title: PO lookup button loads a PO by its number
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form with a valid PO number entered
+    steps:
+      - Click the PO lookup button (btnPO)
+    expected:
+      - The matching purchase order is loaded into the form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnPO, txtPONum
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1013, text: "btnPOClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-069
+    title: PO List button on the PO form opens the purchase-order list
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - On the Purchase Order form
+    steps:
+      - Click PO List (btnPOList)
+    expected:
+      - The purchase-order list form (frmPOList) opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnPOList
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1035, text: "btnPOListClick" }
+    flow_hash: "08A38C9735A51113"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-070
+    title: Print button on the PO prints the purchase order
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO is loaded
+    steps:
+      - Click Print (btnPrint)
+    expected:
+      - The purchase order is sent to the printer / print preview
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnPrint
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1040, text: "btnPrintClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-071
+    title: Remove button deletes the selected PO line
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with at least one selected line is loaded
+    steps:
+      - Click Remove (btnRemove)
+    expected:
+      - The selected line is removed from the PO grid
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnRemove, dgvPO row selection
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1200, text: "btnRemoveClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-072
+    title: Save button in the item-details panel commits item changes
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected and an item-detail field was edited
+    steps:
+      - Click Save in the item-details panel (btnSave)
+    expected:
+      - The item-detail save routine runs - see Updated Item successfully. path
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnSave (item details panel)
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1229, text: "btnSaveClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-073
+    title: Vendor Details button from the PO opens the vendor record
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with an assigned vendor is loaded
+    steps:
+      - Click Vendor Details (btnVendorDetails)
+    expected:
+      - The vendor detail form (frmVendors) opens for the PO's vendor
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnVendorDetails
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1276, text: "btnVendorDetailsClick" }
+    flow_hash: "0BA1FC96A3E6E858"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-074
+    title: Void button on the PO triggers the void confirmation
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - An open or pending PO is loaded
+    steps:
+      - Click Void (btnVoid)
+    expected:
+      - The Confirm PO void? prompt is shown - see Voided successfully. path
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnVoid
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1283, text: "btnVoidClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-075
+    title: Double-clicking a PO grid line opens its item details
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with at least one line is loaded
+    steps:
+      - Double-click a line in the PO grid (dgvPO)
+    expected:
+      - The item-details panel opens for the double-clicked line
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO dgvPO cell double-click
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1312, text: "dgvPOCellDoubleClick" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmPOList.cs - purchase-order list (entity: PurchaseOrder)
+  # ----------------------------------------------------------------------------
+  - id: PUR-076
+    title: PO list form is gated by the Purchasing.PO access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - On the Purchasing module menu
+    steps:
+      - Attempt to open the PO list as a user WITHOUT Purchasing.PO
+      - Open the PO list as admin WITH Purchasing.PO
+    expected:
+      - Without Purchasing.PO the PO list is access-blocked (_AccessObj gate)
+      - With Purchasing.PO the PO list opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList _AccessObj access gate
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 43, text: "perm:Purchasing.PO" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-077
+    title: PO list Report button is gated by the Report.Purchasing access right
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - On the PO list form
+    steps:
+      - Open the PO list as a user WITHOUT Report.Purchasing
+      - Open the PO list as admin WITH Report.Purchasing
+    expected:
+      - Without Report.Purchasing the Report button is disabled/hidden
+      - With Report.Purchasing the Report button is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnReport enabled-state under Report.Purchasing right
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 44, text: "perm:Report.Purchasing" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-078
+    title: Clear Search Results button resets the PO list filter
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The PO list shows filtered search results
+    steps:
+      - Click Clear Search Results (btnClear)
+    expected:
+      - The search filter is cleared and the full PO list is shown
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnClear
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 108, text: "btnClearClick" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-079
+    title: Print List button prints the PO list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The PO list is populated
+    steps:
+      - Click Print List (btnPrint)
+    expected:
+      - The current PO list is sent to the printer / print preview
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnPrint
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 127, text: "btnPrintClick" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-080
+    title: Report button opens the purchasing report from the PO list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Report.Purchasing access
+      - On the PO list form
+    steps:
+      - Click Report (btnReport)
+    expected:
+      - The purchasing report opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnReport
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 141, text: "btnReportClick" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-081
+    title: Advanced PO Search button opens the PO search dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - On the PO list form
+    steps:
+      - Click Advanced PO Search (btnSearch)
+    expected:
+      - The advanced PO search dialog (frmPOListSearch) opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList btnSearch
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+      - 2.0.x/Purchasing/frmPOListSearch.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 146, text: "btnSearchClick" }
+    flow_hash: "3F0873FB3FECDA75"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-082
+    title: Clicking a PO list row opens that purchase order
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The PO list shows at least one PO
+    steps:
+      - Click a PO row in the list (dgvList)
+    expected:
+      - The selected purchase order opens on the Purchase Order form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList dgvList cell click
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 160, text: "dgvListCellClick" }
+    flow_hash: "08A38C9735A51113"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-083
+    title: Clicking a PO list column header sorts the list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOList
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The PO list shows multiple POs
+    steps:
+      - Click a column header in the PO list grid (dgvList)
+    expected:
+      - The PO list is re-sorted by the clicked column
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOList dgvList column header click
+    source_files:
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOList.cs, line: 175, text: "dgvListColumnHeaderMouseClick" }
+    flow_hash: "225FA2700768DAED"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmPOListSearch.cs - advanced PO search dialog (entity: PurchaseOrder)
+  # ----------------------------------------------------------------------------
+  - id: PUR-084
+    title: Closing the advanced PO search dialog cancels the search
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOListSearch
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The advanced PO search dialog is open
+    steps:
+      - Click Close (btnCancel)
+    expected:
+      - The search dialog closes without applying a filter
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOListSearch btnCancel
+    source_files:
+      - 2.0.x/Purchasing/frmPOListSearch.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOListSearch.cs, line: 25, text: "btnCancelClick" }
+    flow_hash: "F670A54ED2E15ED4"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-085
+    title: Search button on the advanced PO search applies the filter
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPOListSearch
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing.PO access
+      - The advanced PO search dialog is open with criteria entered
+    steps:
+      - Click Search (btnOK)
+    expected:
+      - The dialog closes and the PO list shows results matching the criteria
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPOListSearch btnOK, search criteria fields
+    source_files:
+      - 2.0.x/Purchasing/frmPOListSearch.cs
+      - 2.0.x/Purchasing/frmPOList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPOListSearch.cs, line: 30, text: "btnOKClick" }
+    flow_hash: "3F0873FB3FECDA75"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmQtyCost.cs - qty/cost numeric entry dialog (entity: Item)
+  # ----------------------------------------------------------------------------
+  - id: PUR-086
+    title: Clear button resets the qty/cost entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open with a value entered
+    steps:
+      - Click Clear (btnClear)
+    expected:
+      - The entered qty/cost value is cleared back to empty/zero
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnClear
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 55, text: "btnClearClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-087
+    title: Cancel button closes the qty/cost dialog without adding the line
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open
+    steps:
+      - Click Cancel (btnClose)
+    expected:
+      - The dialog closes and no line is added to the PO/receiving session
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnClose
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 74, text: "btnCloseClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-088
+    title: Decimal key appends a decimal point in the qty/cost entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open for a sold-by-fraction item
+    steps:
+      - Press the decimal key (btnDecimal)
+    expected:
+      - A decimal point is appended to the active numeric entry
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnDecimal
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 79, text: "btnDecimalClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-089
+    title: OK on the qty/cost dialog accepts a valid quantity and cost
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open with a valid qty and cost entered
+    steps:
+      - Click OK (btnOK)
+    expected:
+      - The dialog closes and the item line is added with the entered qty/cost
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 88, text: "btnOKClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-090
+    title: Qty Update control commits the edited quantity
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open in quantity-update mode
+    steps:
+      - Trigger the Qty Update control (btnQtyUpdate)
+    expected:
+      - The quantity is updated for the line
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnQtyUpdate
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 116, text: "btnQtyUpdateClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmReceiving.cs - standalone receiving session actions (entity: Receiving)
+  # ----------------------------------------------------------------------------
+  - id: PUR-091
+    title: Clear button resets the receiving session entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - On the Receiving form with an in-progress entry
+    steps:
+      - Click Clear (btnClear)
+    expected:
+      - The current receiving entry is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnClear
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 134, text: "btnClearClick" }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-092
+    title: Close button exits the receiving form
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - On the Receiving form
+    steps:
+      - Click Close (btnCancel)
+    expected:
+      - The receiving form closes (returning to the Purchasing menu)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnCancel
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 144, text: "btnCancelClick" }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-093
+    title: Delete Line button removes the selected receiving line
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session has at least one selected line
+    steps:
+      - Click Delete Line (btnDelLine)
+    expected:
+      - The selected line is removed from the receiving grid
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnDelLine, dgvRC row selection
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 153, text: "btnDelLineClick" }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-094
+    title: Finish button starts receiving completion (posts stock)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session has at least one item with a non-zero qty
+    steps:
+      - Click Finish (btnFinish)
+    expected:
+      - The receiving-proc dialog (frmReceivingProc) opens to confirm the received date
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnFinish
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 170, text: "btnFinishClick" }
+    flow_hash: "4F4D96C57168DF6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-095
+    title: Add Item button opens the item search in receiving
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - On the Receiving form
+    steps:
+      - Click Add Item (btnItem)
+    expected:
+      - The item search opens so an item can be added to the receiving session
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnItem
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 270, text: "btnItemClick" }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-096
+    title: Save button persists the receiving session
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session has at least one item row
+    steps:
+      - Click Save (btnOK)
+    expected:
+      - The receiving session save routine runs - see Saved successfully. path
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnOK (Save)
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 279, text: "btnOKClick" }
+    flow_hash: "1BB9558F672E95F8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmReceivingProc.cs - receiving processing dialog actions (entity: Receiving)
+  # ----------------------------------------------------------------------------
+  - id: PUR-097
+    title: Cancel on the receiving-proc dialog aborts completion
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceivingProc
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - The receiving-proc dialog is open (from Finish)
+    steps:
+      - Click Cancel (btnCancel)
+    expected:
+      - The dialog closes and the receiving is not posted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceivingProc btnCancel
+    source_files:
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceivingProc.cs, line: 19, text: "btnCancelClick" }
+    flow_hash: "E0F4D171B15D4772"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-098
+    title: OK on the receiving-proc dialog with a valid date posts the receiving
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceivingProc
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - The receiving-proc dialog is open with a valid received date
+    steps:
+      - Click OK (btnOk)
+    expected:
+      - The dialog accepts and the receiving session is posted to inventory
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceivingProc btnOk, dtpRecDate
+    source_files:
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceivingProc.cs, line: 24, text: "btnOkClick" }
+    flow_hash: "E0F4D171B15D4772"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmVendors.cs - remaining vendor actions / permission / toggle (entity: Vendor)
+  # ----------------------------------------------------------------------------
+  - id: PUR-099
+    title: Delete button on a vendor is gated by the Purchasing.Vendors access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - A vendor record is loaded on the vendor detail form
+    steps:
+      - Load the vendor as a user WITHOUT Purchasing.Vendors
+      - Load the vendor as admin WITH Purchasing.Vendors
+    expected:
+      - Without Purchasing.Vendors the Delete button (btnDelete) is disabled/hidden
+      - With Purchasing.Vendors the Delete button is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnDelete enabled-state under Purchasing.Vendors right
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 151, text: "perm:Purchasing.Vendors" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-100
+    title: Delete button on a vendor triggers the delete confirmation
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - An existing vendor is loaded
+    steps:
+      - Click Delete (btnDelete)
+    expected:
+      - The delete-confirmation dialog is shown - see Deleted successfully. path
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnDelete
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 183, text: "btnDeleteClick" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-101
+    title: History button opens the vendor PO history dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - A vendor with at least one purchase order is loaded
+    steps:
+      - Click History (btnHistory)
+    expected:
+      - The vendor PO history dialog (frmHistory) opens listing the vendor's POs
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnHistory
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+      - 2.0.x/Purchasing/frmHistory.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 230, text: "btnHistoryClick" }
+    flow_hash: "073DD361F79C8F5D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-102
+    title: Vendor Search button opens the vendor search
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - On the vendor detail form
+    steps:
+      - Click Vendor Search (btnVendorSearch)
+    expected:
+      - The vendor search opens to locate and load another vendor
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnVendorSearch
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 258, text: "btnVendorSearchClick" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-103
+    title: Auto Dynamic Reordering toggle enables/disables dynamic reorder for the vendor
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - A vendor record is loaded
+    steps:
+      - Toggle the Auto Dynamic Reordering checkbox (chkDynamic) on, then off
+    expected:
+      - Toggling on enables dynamic reordering for the vendor; toggling off disables it
+      - The setting is persisted with the vendor record on save
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors chkDynamic checkbox
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 263, text: "chkDynamicCheckedChanged" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-104
+    title: Saving the vendor via the nav Save runs the vendor save routine
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - A vendor record with valid required fields is loaded/edited
+    steps:
+      - Click Save on the nav control (ucNav)
+    expected:
+      - The vendor save routine runs (validations then persist) - see Saved successfully. path
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors ucNav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 281, text: "ucNavOnSave" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmVendorsList.cs - vendor list (entity: Vendor)
+  # ----------------------------------------------------------------------------
+  - id: PUR-105
+    title: Vendor list form is gated by the Purchasing.Vendors access right
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - On the Purchasing module menu
+    steps:
+      - Attempt to open the vendor list as a user WITHOUT Purchasing.Vendors
+      - Open the vendor list as admin WITH Purchasing.Vendors
+    expected:
+      - Without Purchasing.Vendors the vendor list is access-blocked (_AccessObj gate)
+      - With Purchasing.Vendors the vendor list opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList _AccessObj access gate
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 43, text: "perm:Purchasing.Vendors" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-106
+    title: Vendor list Report button is gated by the Report.Purchasing access right
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: permission
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - On the vendor list form
+    steps:
+      - Open the vendor list as a user WITHOUT Report.Purchasing
+      - Open the vendor list as admin WITH Report.Purchasing
+    expected:
+      - Without Report.Purchasing the Report button is disabled/hidden
+      - With Report.Purchasing the Report button is enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList btnReport enabled-state under Report.Purchasing right
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 44, text: "perm:Report.Purchasing" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-107
+    title: Clear Search Results button resets the vendor list filter
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The vendor list shows filtered search results
+    steps:
+      - Click Clear Search Results (btnClear)
+    expected:
+      - The search filter is cleared and the full vendor list is shown
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList btnClear
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 108, text: "btnClearClick" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-108
+    title: Print List button prints the vendor list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The vendor list is populated
+    steps:
+      - Click Print List (btnPrint)
+    expected:
+      - The current vendor list is sent to the printer / print preview
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList btnPrint
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 127, text: "btnPrintClick" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-109
+    title: Report button opens the purchasing report from the vendor list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Report.Purchasing access
+      - On the vendor list form
+    steps:
+      - Click Report (btnReport)
+    expected:
+      - The purchasing report opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList btnReport
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 141, text: "btnReportClick" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-110
+    title: Advanced Vendor Search button opens the vendor search dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - On the vendor list form
+    steps:
+      - Click Advanced Vendor Search (btnSearch)
+    expected:
+      - The advanced vendor search dialog (frmVendorsListSearch) opens
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList btnSearch
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+      - 2.0.x/Purchasing/frmVendorsListSearch.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 146, text: "btnSearchClick" }
+    flow_hash: "63DBBC771B270ADB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-111
+    title: Clicking a vendor list row opens that vendor
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The vendor list shows at least one vendor
+    steps:
+      - Click a vendor row in the list (dgvList)
+    expected:
+      - The selected vendor opens on the vendor detail form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList dgvList cell click
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 160, text: "dgvListCellClick" }
+    flow_hash: "CE1336818F3249F3"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-112
+    title: Clicking a vendor list column header sorts the list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The vendor list shows multiple vendors
+    steps:
+      - Click a column header in the vendor list grid (dgvList)
+    expected:
+      - The vendor list is re-sorted by the clicked column
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList dgvList column header click
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 175, text: "dgvListColumnHeaderMouseClick" }
+    flow_hash: "B7CF15B752A67B3D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmVendorsListSearch.cs - advanced vendor search dialog (entity: Vendor)
+  # ----------------------------------------------------------------------------
+  - id: PUR-113
+    title: Closing the advanced vendor search dialog cancels the search
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsListSearch
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The advanced vendor search dialog is open
+    steps:
+      - Click Close (btnCancel)
+    expected:
+      - The search dialog closes without applying a filter
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsListSearch btnCancel
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsListSearch.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsListSearch.cs, line: 23, text: "btnCancelClick" }
+    flow_hash: "60A75371EB8A58F2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-114
+    title: Search button on the advanced vendor search applies the filter
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsListSearch
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The advanced vendor search dialog is open with criteria entered
+    steps:
+      - Click Search (btnOK)
+    expected:
+      - The dialog closes and the vendor list shows results matching the criteria
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsListSearch btnOK, search criteria fields
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsListSearch.cs
+      - 2.0.x/Purchasing/frmVendorsList.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsListSearch.cs, line: 28, text: "btnOKClick" }
+    flow_hash: "63DBBC771B270ADB"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # Additional composite end-to-end flows (chain atomic ids; no new anchors)
+  # ----------------------------------------------------------------------------
+  - id: PUR-115
+    title: End-to-end - navigate Purchasing menu into each list and the PO form
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: PurchaseOrder
+    chains: [PUR-050, PUR-051, PUR-054, PUR-053]
+    preconditions:
+      - Logged in as admin with full Purchasing access
+      - On the Purchasing module menu
+    steps:
+      - Open PO Details (PUR-050)
+      - Open the PO List (PUR-051)
+      - Open the Vendor List (PUR-054)
+      - Open the Receiving form (PUR-053)
+    expected:
+      - Each tile opens its target form without error
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence: []
+    flow_hash: "2457DDE43465515F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-116
+    title: End-to-end - build a PO by finding a vendor then adding an item line
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    chains: [PUR-050, PUR-064, PUR-062, PUR-089, PUR-066]
+    preconditions:
+      - Logged in as admin with full Purchasing access
+      - At least one orderable item and a vendor exist
+    steps:
+      - Open PO Details (PUR-050)
+      - Find and assign a vendor (PUR-064)
+      - Find an item to add (PUR-062)
+      - Confirm qty/cost (PUR-089)
+      - Save the PO (PUR-066)
+    expected:
+      - A purchase order is created for the vendor with the added item line and saved
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence: []
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: PUR-117
+    title: End-to-end - standalone receiving session add, finish and post
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmReceiving
+      entity: Receiving
+    chains: [PUR-053, PUR-095, PUR-094, PUR-098]
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - At least one receivable item exists
+    steps:
+      - Open the Receiving form (PUR-053)
+      - Add an item to the session (PUR-095)
+      - Click Finish (PUR-094)
+      - Confirm a valid received date and OK the receiving-proc dialog (PUR-098)
+    expected:
+      - The receiving session is posted and item stock is updated
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence: []
+    flow_hash: "4F4D96C57168DF6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

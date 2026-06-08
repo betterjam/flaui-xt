@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-086
+    title: Clear button resets the qty/cost entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmQtyCost
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - The Qty/Cost dialog is open with a value entered
+    steps:
+      - Click Clear (btnClear)
+    expected:
+      - The entered qty/cost value is cleared back to empty/zero
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmQtyCost btnClear
+    source_files:
+      - 2.0.x/Purchasing/frmQtyCost.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmQtyCost.cs, line: 55, text: "btnClearClick" }
+    flow_hash: "61A1699CFE35BA44"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-050
+    title: PO Details tile opens the Purchase Order form
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchasing module menu
+    steps:
+      - Click the PO Details tile (btnCreatePO)
+    expected:
+      - The Purchase Order form (frmPO) opens ready to build a new PO
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnCreatePO
+    source_files:
+      - 2.0.x/Purchasing/frmMenu.cs
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmMenu.cs, line: 23, text: "btnCreatePOClick" }
+    flow_hash: "4B88663A7ADB41CD"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

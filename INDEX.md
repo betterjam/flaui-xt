@@ -4,7 +4,7 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**94.7% complete** - 2461 / 2600 testable code anchors covered. Complete: **NO**.
+**98% complete** - 2549 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
@@ -18,8 +18,8 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 | Calendar | e2e | 51 | 51 | 100% | yes |
 | Customers | e2e | 95 | 95 | 100% | yes |
 | SysForms | e2e | 91 | 91 | 100% | yes |
+| Staff | e2e | 88 | 88 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
-| Staff | e2e | 0 | 88 | 0% | - |
 | Utility | e2e | 0 | 56 | 0% | - |
 
 ## Tests by area
@@ -1027,57 +1027,127 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `MGAR-004` AccountReceivableManager.GetAllTransactionsByDate: integration behavior  _( P2 / needs-recording )_
 - `MGAR-005` AccountReceivableManager.UpdateAccountReceivableSettings: integration behavior  _( P2 / needs-recording )_
 
-### Purchasing  (47 tests: 44 atomic, 3 composite)
+### Purchasing  (117 tests: 111 atomic, 6 composite)
 
-**(uncategorized)** (47)
+**(uncategorized)** (117)
 
-- `PUR-032` Clearing the item-detail description on a PO line warns and undoes  _( P3 / frmPO / Item / needs-recording )_
-- `PUR-031` Editing a PO line qty below order minimum warns and resets to minimum  _( P2 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-033` Setting order-min above reorder qty on a PO line warns and undoes  _( P3 / frmPO / Item / needs-recording )_
-- `PUR-035` Setting a PO-line retail price below the defined minimum/SRP warns  _( P2 / frmPO / Item / needs-recording )_
-- `PUR-034` Typing a PO number that parses to zero warns "Invalid PO ID  _( P3 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-030` Voiding a PO reverses stock and reports "Voided successfully  _( P1 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-026` Sending PO via POSCloud blocked when no valid sender email is configured  _( P3 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-025` Clicking OK on a modified PO saves and reports "Updated successfully  _( P1 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-027` Emailing a PO via POSCloud reports "Emailed successfully  _( P2 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-029` Editing item details from a PO line saves and reports "Updated Item successfully  _( P2 / frmPO / Item / needs-recording )_
-- `PUR-028` Emailing a PO via SMTP (non-POSCloud) reports "Emailed successfully  _( P3 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-036` Setting reorder qty below order-min on a PO line warns and undoes  _( P3 / frmPO / Item / needs-recording )_
-- `PUR-044` Receiving-proc dialog warns on invalid/future received date  _( P2 / frmReceivingProc / Receiving / needs-recording )_
-- `PUR-043` Receiving grid warns when qty x cost exceeds the maximum allowed amount  _( P3 / frmReceiving / Receiving / needs-recording )_
-- `PUR-045` End-to-end - create vendor, build PO, receive stock  _( P1 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-047` Vendor validation walk (name / contact / email / LCB guards)  _( P2 / frmVendors / Vendor / needs-recording )_
-- `PUR-046` Purchase-order validation walk (empty / blank desc / received-date guards)  _( P2 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-042` Saving a receiving session via OK persists session and reports "Saved successfully  _( P2 / frmReceiving / Receiving / needs-recording )_
-- `PUR-038` Qty/Cost dialog warns when qty x cost exceeds the maximum allowed amount  _( P3 / frmQtyCost / Item / needs-recording )_
-- `PUR-037` Qty/Cost dialog warns when entered qty is below order minimum  _( P2 / frmQtyCost / Item / needs-recording )_
-- `PUR-039` Adding a discontinued item to a receiving session warns  _( P2 / frmReceiving / Receiving / needs-recording )_
-- `PUR-041` Finishing a receiving session with invalid UPCs warns no labels printed  _( P3 / frmReceiving / Receiving / needs-recording )_
-- `PUR-040` Finishing a receiving session posts stock and reports "Saved successfully  _( P1 / frmReceiving / Receiving / needs-recording )_
-- `PUR-024` Saving received PO items with invalid UPCs warns no labels printed  _( P3 / frmPO / Receiving / needs-recording )_
-- `PUR-008` Vendor history shows warning when vendor has no POs  _( P3 / frmVendors / Vendor / needs-recording )_
-- `PUR-007` Delete vendor confirms and reports success  _( P2 / frmVendors / Vendor / needs-recording )_
-- `PUR-009` Loading a non-existent PO id warns "Purchase order not found  _( P2 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-011` Adding an item whose master record was removed warns (initial lookup)  _( P3 / frmPO / Item / needs-recording )_
-- `PUR-010` Adding an item to a voided PO is blocked  _( P1 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-006` Vendor save blocked when FEIN missing for Non-PA manufacturer LCB type  _( P3 / frmVendors / Vendor / needs-recording )_
-- `PUR-002` Vendor save blocked when name is blank  _( P2 / frmVendors / Vendor / needs-recording )_
-- `PUR-001` Save a new vendor with required contact info succeeds  _( P1 / frmVendors / Vendor / needs-recording )_
-- `PUR-003` Vendor save blocked when no phone, fax or email provided  _( P2 / frmVendors / Vendor / needs-recording )_
-- `PUR-005` Vendor save blocked when no LCB vendor type selected (LCB enabled)  _( P3 / frmVendors / Vendor / needs-recording )_
-- `PUR-004` Vendor save blocked on invalid email address  _( P2 / frmVendors / Vendor / needs-recording )_
-- `PUR-012` Adding an item whose detail row resolves to nothing warns (detail lookup)  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-079` Print List button prints the PO list  _( P3 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-080` Report button opens the purchasing report from the PO list  _( P3 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-081` Advanced PO Search button opens the PO search dialog  _( P2 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-078` Clear Search Results button resets the PO list filter  _( P3 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-075` Double-clicking a PO grid line opens its item details  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-076` PO list form is gated by the Purchasing.PO access right  _( P2 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-077` PO list Report button is gated by the Report.Purchasing access right  _( P3 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-086` Clear button resets the qty/cost entry  _( P3 / frmQtyCost / Item / needs-recording )_
+- `PUR-087` Cancel button closes the qty/cost dialog without adding the line  _( P3 / frmQtyCost / Item / needs-recording )_
+- `PUR-088` Decimal key appends a decimal point in the qty/cost entry  _( P3 / frmQtyCost / Item / needs-recording )_
+- `PUR-085` Search button on the advanced PO search applies the filter  _( P2 / frmPOListSearch / PurchaseOrder / needs-recording )_
+- `PUR-082` Clicking a PO list row opens that purchase order  _( P1 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-083` Clicking a PO list column header sorts the list  _( P3 / frmPOList / PurchaseOrder / needs-recording )_
+- `PUR-084` Closing the advanced PO search dialog cancels the search  _( P3 / frmPOListSearch / PurchaseOrder / needs-recording )_
+- `PUR-074` Void button on the PO triggers the void confirmation  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-064` Find Vendor button opens the vendor search for the PO  _( P2 / frmPO / Vendor / needs-recording )_
+- `PUR-065` Item button on the PO opens the item picker  _( P2 / frmPO / Item / needs-recording )_
+- `PUR-066` Save button on the PO commits the order via the save path  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-063` Alternate Find Vendor control opens the vendor search for the PO  _( P3 / frmPO / Vendor / needs-recording )_
+- `PUR-060` Reorder Low Level button auto-fills PO lines for the selected vendor  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-061` Receive Complete button triggers PO completion confirmation  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-062` Find Items button opens the item search to add a line to the PO  _( P1 / frmPO / Item / needs-recording )_
+- `PUR-071` Remove button deletes the selected PO line  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-072` Save button in the item-details panel commits item changes  _( P2 / frmPO / Item / needs-recording )_
+- `PUR-073` Vendor Details button from the PO opens the vendor record  _( P3 / frmPO / Vendor / needs-recording )_
+- `PUR-070` Print button on the PO prints the purchase order  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-067` Paid button marks the PO as paid  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-068` PO lookup button loads a PO by its number  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-069` PO List button on the PO form opens the purchase-order list  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-108` Print List button prints the vendor list  _( P3 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-109` Report button opens the purchasing report from the vendor list  _( P3 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-110` Advanced Vendor Search button opens the vendor search dialog  _( P2 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-107` Clear Search Results button resets the vendor list filter  _( P3 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-104` Saving the vendor via the nav Save runs the vendor save routine  _( P1 / frmVendors / Vendor / needs-recording )_
+- `PUR-105` Vendor list form is gated by the Purchasing.Vendors access right  _( P2 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-106` Vendor list Report button is gated by the Report.Purchasing access right  _( P3 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-115` End-to-end - navigate Purchasing menu into each list and the PO form  _( P2 / frmMenu / PurchaseOrder / needs-recording )_
+- `PUR-116` End-to-end - build a PO by finding a vendor then adding an item line  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-117` End-to-end - standalone receiving session add, finish and post  _( P1 / frmReceiving / Receiving / needs-recording )_
+- `PUR-114` Search button on the advanced vendor search applies the filter  _( P2 / frmVendorsListSearch / Vendor / needs-recording )_
+- `PUR-111` Clicking a vendor list row opens that vendor  _( P1 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-112` Clicking a vendor list column header sorts the list  _( P3 / frmVendorsList / Vendor / needs-recording )_
+- `PUR-113` Closing the advanced vendor search dialog cancels the search  _( P3 / frmVendorsListSearch / Vendor / needs-recording )_
+- `PUR-103` Auto Dynamic Reordering toggle enables/disables dynamic reorder for the vendor  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-093` Delete Line button removes the selected receiving line  _( P2 / frmReceiving / Receiving / needs-recording )_
+- `PUR-094` Finish button starts receiving completion (posts stock)  _( P1 / frmReceiving / Receiving / needs-recording )_
+- `PUR-095` Add Item button opens the item search in receiving  _( P1 / frmReceiving / Receiving / needs-recording )_
+- `PUR-092` Close button exits the receiving form  _( P3 / frmReceiving / Receiving / needs-recording )_
+- `PUR-089` OK on the qty/cost dialog accepts a valid quantity and cost  _( P2 / frmQtyCost / Item / needs-recording )_
+- `PUR-090` Qty Update control commits the edited quantity  _( P3 / frmQtyCost / Item / needs-recording )_
+- `PUR-091` Clear button resets the receiving session entry  _( P3 / frmReceiving / Receiving / needs-recording )_
+- `PUR-100` Delete button on a vendor triggers the delete confirmation  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-101` History button opens the vendor PO history dialog  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-102` Vendor Search button opens the vendor search  _( P3 / frmVendors / Vendor / needs-recording )_
+- `PUR-099` Delete button on a vendor is gated by the Purchasing.Vendors access right  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-096` Save button persists the receiving session  _( P2 / frmReceiving / Receiving / needs-recording )_
+- `PUR-097` Cancel on the receiving-proc dialog aborts completion  _( P3 / frmReceivingProc / Receiving / needs-recording )_
+- `PUR-098` OK on the receiving-proc dialog with a valid date posts the receiving  _( P1 / frmReceivingProc / Receiving / needs-recording )_
+- `PUR-059` Void button on a PO is gated by the Purchasing.PO access right  _( P2 / frmPO / PurchaseOrder / needs-recording )_
 - `PUR-020` Saving a PO with a line missing description warns  _( P2 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-019` Saving a PO with an empty detail grid warns "Nothing to save  _( P2 / frmPO / PurchaseOrder / needs-recording )_
 - `PUR-021` Saving a PO with non-whole qty for a non-SBF item warns invalid number format  _( P2 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-023` Saving a PO with received qty but invalid/future received date warns  _( P2 / frmPO / Receiving / needs-recording )_
 - `PUR-022` Saving a PO with received qty but blank reference warns  _( P2 / frmPO / Receiving / needs-recording )_
-- `PUR-018` Clicking OK on a PO with no changes warns "Nothing changed  _( P3 / frmPO / PurchaseOrder / needs-recording )_
-- `PUR-014` Adding an item in an inactive subcategory is blocked  _( P3 / frmPO / Item / needs-recording )_
-- `PUR-013` Adding an item in an inactive category is blocked  _( P3 / frmPO / Item / needs-recording )_
-- `PUR-015` Adding a discontinued item to a PO warns but still allows add  _( P2 / frmPO / Item / needs-recording )_
-- `PUR-017` Completing a PO marks it received successfully  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-019` Saving a PO with an empty detail grid warns "Nothing to save  _( P2 / frmPO / PurchaseOrder / needs-recording )_
 - `PUR-016` Auto-generate PO warns when nothing is below reorder level  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-017` Completing a PO marks it received successfully  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-018` Clicking OK on a PO with no changes warns "Nothing changed  _( P3 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-027` Emailing a PO via POSCloud reports "Emailed successfully  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-028` Emailing a PO via SMTP (non-POSCloud) reports "Emailed successfully  _( P3 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-029` Editing item details from a PO line saves and reports "Updated Item successfully  _( P2 / frmPO / Item / needs-recording )_
+- `PUR-026` Sending PO via POSCloud blocked when no valid sender email is configured  _( P3 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-023` Saving a PO with received qty but invalid/future received date warns  _( P2 / frmPO / Receiving / needs-recording )_
+- `PUR-024` Saving received PO items with invalid UPCs warns no labels printed  _( P3 / frmPO / Receiving / needs-recording )_
+- `PUR-025` Clicking OK on a modified PO saves and reports "Updated successfully  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-015` Adding a discontinued item to a PO warns but still allows add  _( P2 / frmPO / Item / needs-recording )_
+- `PUR-005` Vendor save blocked when no LCB vendor type selected (LCB enabled)  _( P3 / frmVendors / Vendor / needs-recording )_
+- `PUR-006` Vendor save blocked when FEIN missing for Non-PA manufacturer LCB type  _( P3 / frmVendors / Vendor / needs-recording )_
+- `PUR-007` Delete vendor confirms and reports success  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-004` Vendor save blocked on invalid email address  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-001` Save a new vendor with required contact info succeeds  _( P1 / frmVendors / Vendor / needs-recording )_
+- `PUR-002` Vendor save blocked when name is blank  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-003` Vendor save blocked when no phone, fax or email provided  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-012` Adding an item whose detail row resolves to nothing warns (detail lookup)  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-013` Adding an item in an inactive category is blocked  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-014` Adding an item in an inactive subcategory is blocked  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-011` Adding an item whose master record was removed warns (initial lookup)  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-008` Vendor history shows warning when vendor has no POs  _( P3 / frmVendors / Vendor / needs-recording )_
+- `PUR-009` Loading a non-existent PO id warns "Purchase order not found  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-010` Adding an item to a voided PO is blocked  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-049` Vendor List tile is gated by the Purchasing.Vendors access right  _( P2 / frmMenu / Vendor / needs-recording )_
+- `PUR-050` PO Details tile opens the Purchase Order form  _( P1 / frmMenu / PurchaseOrder / needs-recording )_
+- `PUR-051` PO List tile opens the purchase-order list  _( P1 / frmMenu / PurchaseOrder / needs-recording )_
+- `PUR-048` PO List tile is gated by the Purchasing.PO access right  _( P2 / frmMenu / PurchaseOrder / needs-recording )_
+- `PUR-045` End-to-end - create vendor, build PO, receive stock  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-046` Purchase-order validation walk (empty / blank desc / received-date guards)  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-047` Vendor validation walk (name / contact / email / LCB guards)  _( P2 / frmVendors / Vendor / needs-recording )_
+- `PUR-056` Closing the vendor history dialog returns without opening a PO  _( P3 / frmHistory / PurchaseOrder / needs-recording )_
+- `PUR-057` Open button on vendor history opens the selected PO  _( P2 / frmHistory / PurchaseOrder / needs-recording )_
+- `PUR-058` Double-clicking a vendor history row opens that PO  _( P3 / frmHistory / PurchaseOrder / needs-recording )_
+- `PUR-055` Vendor Details tile opens a new vendor record  _( P1 / frmMenu / Vendor / needs-recording )_
+- `PUR-052` Reactivate vendor tile reactivates a deactivated vendor  _( P2 / frmMenu / Vendor / needs-recording )_
+- `PUR-053` Receive tile opens the standalone receiving form  _( P1 / frmMenu / Receiving / needs-recording )_
+- `PUR-054` Vendor List tile opens the vendor list  _( P1 / frmMenu / Vendor / needs-recording )_
+- `PUR-044` Receiving-proc dialog warns on invalid/future received date  _( P2 / frmReceivingProc / Receiving / needs-recording )_
+- `PUR-034` Typing a PO number that parses to zero warns "Invalid PO ID  _( P3 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-035` Setting a PO-line retail price below the defined minimum/SRP warns  _( P2 / frmPO / Item / needs-recording )_
+- `PUR-036` Setting reorder qty below order-min on a PO line warns and undoes  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-033` Setting order-min above reorder qty on a PO line warns and undoes  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-030` Voiding a PO reverses stock and reports "Voided successfully  _( P1 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-031` Editing a PO line qty below order minimum warns and resets to minimum  _( P2 / frmPO / PurchaseOrder / needs-recording )_
+- `PUR-032` Clearing the item-detail description on a PO line warns and undoes  _( P3 / frmPO / Item / needs-recording )_
+- `PUR-041` Finishing a receiving session with invalid UPCs warns no labels printed  _( P3 / frmReceiving / Receiving / needs-recording )_
+- `PUR-042` Saving a receiving session via OK persists session and reports "Saved successfully  _( P2 / frmReceiving / Receiving / needs-recording )_
+- `PUR-043` Receiving grid warns when qty x cost exceeds the maximum allowed amount  _( P3 / frmReceiving / Receiving / needs-recording )_
+- `PUR-040` Finishing a receiving session posts stock and reports "Saved successfully  _( P1 / frmReceiving / Receiving / needs-recording )_
+- `PUR-037` Qty/Cost dialog warns when entered qty is below order minimum  _( P2 / frmQtyCost / Item / needs-recording )_
+- `PUR-038` Qty/Cost dialog warns when qty x cost exceeds the maximum allowed amount  _( P3 / frmQtyCost / Item / needs-recording )_
+- `PUR-039` Adding a discontinued item to a receiving session warns  _( P2 / frmReceiving / Receiving / needs-recording )_
 
 ### Reports  (303 tests: 295 atomic, 8 composite)
 

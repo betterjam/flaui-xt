@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-111
+    title: Clicking a vendor list row opens that vendor
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendorsList
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing.Vendors access
+      - The vendor list shows at least one vendor
+    steps:
+      - Click a vendor row in the list (dgvList)
+    expected:
+      - The selected vendor opens on the vendor detail form
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendorsList dgvList cell click
+    source_files:
+      - 2.0.x/Purchasing/frmVendorsList.cs
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendorsList.cs, line: 160, text: "dgvListCellClick" }
+    flow_hash: "CE1336818F3249F3"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
