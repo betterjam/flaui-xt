@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0141
+    title: "frmMIUpload: Success - Data is up-to-date."
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMIUpload, entity: LMP }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmMIUpload under Integrations"
+      - "Perform the action that succeeds"
+      - "Observe the confirmation message"
+    expected:
+      - "Message shown: Data is up-to-date."
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmMIUpload message at line 589"]
+    source_files: [2.0.x/Integrations/LMP/frmMIUpload.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LMP/frmMIUpload.cs, line: 589, text: "Data is up-to-date." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

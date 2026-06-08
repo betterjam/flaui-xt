@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0064
+    title: "frmCheckIn: Warning - Check in only allowed once a day"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmCheckIn, entity: Kiosk }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmCheckIn under Integrations"
+      - "Perform the action that triggers the guard"
+      - "Observe the warning message"
+    expected:
+      - "Message shown: Check in only allowed once a day"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmCheckIn message at line 186"]
+    source_files: [2.0.x/Integrations/Kiosk/frmCheckIn.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Kiosk/frmCheckIn.cs, line: 186, text: "Check in only allowed once a day" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

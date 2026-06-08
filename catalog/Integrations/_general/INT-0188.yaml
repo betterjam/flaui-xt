@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0188
+    title: "frmInbox: action btnNew (New Email)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmInbox, entity: Messages }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmInbox under Integrations"
+      - "Activate btnNew (New Email)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnNewClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmInbox action at line 92"]
+    source_files: [2.0.x/Integrations/Messages/frmInbox.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Messages/frmInbox.cs, line: 92, text: "btnNewClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

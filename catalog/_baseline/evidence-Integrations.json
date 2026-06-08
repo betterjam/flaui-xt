@@ -1,0 +1,2020 @@
+﻿{
+    "feature":  "Integrations",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Integrations"
+                    ],
+    "formCount":  36,
+    "anchorTotal":  260,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  16,
+                   "action":  165,
+                   "message":  69,
+                   "toggle":  10
+               },
+    "forms":  [
+                  {
+                      "form":  "frmNewObject",
+                      "file":  "2.0.x\\Integrations\\FloorPlan\\frmNewObject.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  48,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  53,
+                                          "handler":  "btnOnClick",
+                                          "control":  "btnOn",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSetFloorMap",
+                      "file":  "2.0.x\\Integrations\\FloorPlan\\frmSetFloorMap.cs",
+                      "anchorCount":  13,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  427,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  "Add"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  484,
+                                          "handler":  "btnAlignClick",
+                                          "control":  "btnAlign",
+                                          "label":  "Align"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  498,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  506,
+                                          "handler":  "btnCursorClick",
+                                          "control":  "btnCursor",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  511,
+                                          "handler":  "btnDefSectionClick",
+                                          "control":  "btnDefSection",
+                                          "label":  "Define\\r\\nSection"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  550,
+                                          "handler":  "btnManageClick",
+                                          "control":  "btnManage",
+                                          "label":  "Manage\\r\\nSection"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  589,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  661,
+                                          "kind":  "Success",
+                                          "text":  "Update successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  665,
+                                          "handler":  "btnSeatsClick",
+                                          "control":  "btnSeats",
+                                          "label":  "View\\r\\nSeats"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  675,
+                                          "handler":  "btnSectionClick",
+                                          "control":  "btnSection",
+                                          "label":  "View\\r\\nSection"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  695,
+                                          "handler":  "btnZoneClick",
+                                          "control":  "btnZone",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  725,
+                                          "handler":  "btnZonesClick",
+                                          "control":  "btnZones",
+                                          "label":  "Manage\\r\\nZone"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  749,
+                                          "handler":  "btnBackClick",
+                                          "control":  "btnBack",
+                                          "label":  "Change\\r\\nBg"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSetProp",
+                      "file":  "2.0.x\\Integrations\\FloorPlan\\frmSetProp.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  73,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  78,
+                                          "handler":  "btnCopyClick",
+                                          "control":  "btnCopy",
+                                          "label":  "Copy"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  83,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  88,
+                                          "handler":  "btnRotateClick",
+                                          "control":  "btnRotate",
+                                          "label":  "Rotate"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  95,
+                                          "handler":  "chkActiveCheckedChanged",
+                                          "control":  "chkActive",
+                                          "label":  "Active"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSetSection",
+                      "file":  "2.0.x\\Integrations\\FloorPlan\\frmSetSection.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  26,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  31,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSetStatus",
+                      "file":  "2.0.x\\Integrations\\FloorPlan\\frmSetStatus.cs",
+                      "anchorCount":  29,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  99,
+                                          "control":  "btnAvailable",
+                                          "right":  "Register.FloorPlan.ChangeTabletStatus",
+                                          "label":  "Available"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  100,
+                                          "control":  "btnComplete",
+                                          "right":  "Register.CompleteAuth",
+                                          "label":  "Complete\\r\\nCC Auth"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  101,
+                                          "control":  "btnFire",
+                                          "right":  "Register.Fire",
+                                          "label":  "Fire\\r\\nNext"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  102,
+                                          "control":  "btnFullCash",
+                                          "right":  "Register.Tender.Cash",
+                                          "label":  "Cash"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  103,
+                                          "control":  "btnFullCredit",
+                                          "right":  "Register.Tender.Credit",
+                                          "label":  "Credit"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  104,
+                                          "control":  "btnFullDebit",
+                                          "right":  "Register.Tender.Debit",
+                                          "label":  "PIN\\r\\nDebit"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  105,
+                                          "control":  "btnJoin",
+                                          "right":  "Register.FloorPlan.Join",
+                                          "label":  "Join To"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  106,
+                                          "control":  "btnMove",
+                                          "right":  "Register.FloorPlan.MoveTo",
+                                          "label":  "Move To"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  107,
+                                          "control":  "btnOccupied",
+                                          "right":  "Register.FloorPlan.ChangeTabletStatus",
+                                          "label":  "Occupied"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  108,
+                                          "control":  "btnOrder",
+                                          "right":  "Register.FloorPlan.Order",
+                                          "label":  "Order"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  109,
+                                          "control":  "btnPrint",
+                                          "right":  "Register.PrintOrder",
+                                          "label":  "Print\\r\\nCheck"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  110,
+                                          "control":  "btnReassign",
+                                          "right":  "Register.Reassign",
+                                          "label":  "Reassign"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  111,
+                                          "control":  "btnTake",
+                                          "right":  "Register.Take",
+                                          "label":  "Take"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  112,
+                                          "control":  "btnTip",
+                                          "right":  "Register.ApplyGroupTip",
+                                          "label":  "Apply\\r\\nGroup Tip"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  211,
+                                          "handler":  "btnAvailableClick",
+                                          "control":  "btnAvailable",
+                                          "label":  "Available"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  220,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  225,
+                                          "handler":  "btnCompleteClick",
+                                          "control":  "btnComplete",
+                                          "label":  "Complete\\r\\nCC Auth"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  231,
+                                          "handler":  "btnFireClick",
+                                          "control":  "btnFire",
+                                          "label":  "Fire\\r\\nNext"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  237,
+                                          "handler":  "btnFullCashClick",
+                                          "control":  "btnFullCash",
+                                          "label":  "Cash"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  243,
+                                          "handler":  "btnFullCreditClick",
+                                          "control":  "btnFullCredit",
+                                          "label":  "Credit"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  249,
+                                          "handler":  "btnFullDebitClick",
+                                          "control":  "btnFullDebit",
+                                          "label":  "PIN\\r\\nDebit"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  255,
+                                          "handler":  "btnJoinToClick",
+                                          "control":  "btnJoinTo",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  261,
+                                          "handler":  "btnMoveToClick",
+                                          "control":  "btnMoveTo",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  267,
+                                          "handler":  "btnOccupiedClick",
+                                          "control":  "btnOccupied",
+                                          "label":  "Occupied"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  276,
+                                          "handler":  "btnOrderClick",
+                                          "control":  "btnOrder",
+                                          "label":  "Order"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  285,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print\\r\\nCheck"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  291,
+                                          "handler":  "btnReassignClick",
+                                          "control":  "btnReassign",
+                                          "label":  "Reassign"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  297,
+                                          "handler":  "btnTakeClick",
+                                          "control":  "btnTake",
+                                          "label":  "Take"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  303,
+                                          "handler":  "btnTipClick",
+                                          "control":  "btnTip",
+                                          "label":  "Apply\\r\\nGroup Tip"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmStaffFloorMap",
+                      "file":  "2.0.x\\Integrations\\FloorPlan\\frmStaffFloorMap.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  167,
+                                          "handler":  "btnNextClick",
+                                          "control":  "btnNext",
+                                          "label":  "Next Day"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  172,
+                                          "handler":  "btnPrevClick",
+                                          "control":  "btnPrev",
+                                          "label":  "Prev Day"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  177,
+                                          "handler":  "btnSectionClick",
+                                          "control":  "btnSection",
+                                          "label":  "View\\r\\nSection"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  187,
+                                          "handler":  "btnStaffClick",
+                                          "control":  "btnStaff",
+                                          "label":  "View\\r\\nStaff"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  197,
+                                          "handler":  "btnZoneClick",
+                                          "control":  "btnZone",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmStaffProp",
+                      "file":  "2.0.x\\Integrations\\FloorPlan\\frmStaffProp.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  47,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  52,
+                                          "handler":  "dgvStaffCellClick",
+                                          "control":  "dgvStaff",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCheckIn",
+                      "file":  "2.0.x\\Integrations\\Kiosk\\frmCheckIn.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  83,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  89,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Check In"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  112,
+                                          "kind":  "Warning",
+                                          "text":  "Email address invalid."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  125,
+                                          "kind":  "Warning",
+                                          "text":  "Membership number must be less than 15 characters long"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  147,
+                                          "kind":  "Warning",
+                                          "text":  "Customer not found, try again."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  186,
+                                          "kind":  "Warning",
+                                          "text":  "Check in only allowed once a day"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  205,
+                                          "kind":  "Success",
+                                          "text":  "Successful."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmJoin",
+                      "file":  "2.0.x\\Integrations\\Kiosk\\frmJoin.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  85,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  91,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Join"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  109,
+                                          "kind":  "Warning",
+                                          "text":  "Must provide phone or email."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  116,
+                                          "kind":  "Warning",
+                                          "text":  "Email address invalid."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  132,
+                                          "kind":  "Warning",
+                                          "text":  "Member number already in use. \\nPlease enter a different number."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  178,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmKiosk",
+                      "file":  "2.0.x\\Integrations\\Kiosk\\frmKiosk.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  90,
+                                          "kind":  "Warning",
+                                          "text":  "Insufficient access level."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  99,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  104,
+                                          "handler":  "btnCheckInClick",
+                                          "control":  "btnCheckIn",
+                                          "label":  "Check In"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  111,
+                                          "handler":  "btnJoinClick",
+                                          "control":  "btnJoin",
+                                          "label":  "Join The Program"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPA1014",
+                      "file":  "2.0.x\\Integrations\\LCB\\frmPA1014.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  585,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  593,
+                                          "handler":  "btnFinishClick",
+                                          "control":  "btnFinish",
+                                          "label":  "Finish"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  736,
+                                          "handler":  "btnRegenarateClick",
+                                          "control":  "btnRegenarate",
+                                          "label":  "Regenerate"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  764,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  875,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  879,
+                                          "handler":  "dgvLCBCellClick",
+                                          "control":  "dgvLCB",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPA1014ab",
+                      "file":  "2.0.x\\Integrations\\LCB\\frmPA1014ab.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  65,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  "Add\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  130,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  138,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Remove\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  145,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Accept\\r\\nChanges"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  147,
+                                          "kind":  "Success",
+                                          "text":  "Changes accepted."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPA1055c",
+                      "file":  "2.0.x\\Integrations\\LCB\\frmPA1055c.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  82,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  "Add\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  105,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  113,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Remove\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  120,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Accept\\r\\nChanges"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  122,
+                                          "kind":  "Success",
+                                          "text":  "Changes accepted."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSelect",
+                      "file":  "2.0.x\\Integrations\\LCB\\frmSelect.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  40,
+                                          "handler":  "dgvLCBCellClick",
+                                          "control":  "dgvLCB",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSelectPA1055",
+                      "file":  "2.0.x\\Integrations\\LCB\\frmSelectPA1055.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  66,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  "Add\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  125,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  134,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Remove\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  148,
+                                          "handler":  "btnEditClick",
+                                          "control":  "btnEdit",
+                                          "label":  "Edit\\r\\nLine"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  160,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "Accept\\r\\nChanges"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  166,
+                                          "handler":  "dgvLCBCellClick",
+                                          "control":  "dgvLCB",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  172,
+                                          "handler":  "dgvLCBCellDoubleClick",
+                                          "control":  "dgvLCBCell",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "csClassLMP",
+                      "file":  "2.0.x\\Integrations\\LMP\\csClassLMP.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  1081,
+                                          "kind":  "Warning",
+                                          "text":  "Back office not available.\\nPlease contact Exatouch support at (800) 966-5520 opt 3\\nand provide this information:\\nError Code 300"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1105,
+                                          "kind":  "Warning",
+                                          "text":  "Master Service Sales Failed.\\nPlease contact Exatouch support at (800) 966-5520 opt 3\\n"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1152,
+                                          "kind":  "Warning",
+                                          "text":  "Master EOD failed.\\nPlease contact Exatouch support at (800) 966-5520 opt 3\\n"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1371,
+                                          "kind":  "Warning",
+                                          "text":  "Get all prices failed.\\nURL incorrect or server timeout."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1393,
+                                          "kind":  "Warning",
+                                          "text":  "Get all prices failed.\\nBack office is not available.\\nPlease contact your administrator."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1906,
+                                          "kind":  "Warning",
+                                          "text":  "Get all prices canceled."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1913,
+                                          "kind":  "Success",
+                                          "text":  "Get all prices successful."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2837,
+                                          "kind":  "Warning",
+                                          "text":  "Back office not available.\\nPlease contact Exatouch support at (800) 966-5520 opt 3\\nand provide this information:\\nEODID: {row["
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmAdjust",
+                      "file":  "2.0.x\\Integrations\\LMP\\frmAdjust.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  129,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  "Add\\r\\nItem"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  142,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  147,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  155,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Send"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  183,
+                                          "handler":  "dgvLMPCellClick",
+                                          "control":  "dgvLMP",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmCalendar",
+                      "file":  "2.0.x\\Integrations\\LMP\\frmCalendar.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  26,
+                                          "control":  "btnOverride",
+                                          "right":  "Utilities.LMPOverride",
+                                          "label":  "Override\\r\\nEOD"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  222,
+                                          "handler":  "btnAdjustClick",
+                                          "control":  "btnAdjust",
+                                          "label":  "Admin\\r\\nAdjust"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  229,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  234,
+                                          "handler":  "btnDownClick",
+                                          "control":  "btnDown",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  239,
+                                          "handler":  "btnGetPriceClick",
+                                          "control":  "btnGetPrice",
+                                          "label":  "Get All\\r\\nPrices"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  248,
+                                          "handler":  "btnNextClick",
+                                          "control":  "btnNext",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  253,
+                                          "handler":  "btnOverrideClick",
+                                          "control":  "btnOverride",
+                                          "label":  "Override\\r\\nEOD"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  267,
+                                          "handler":  "btnPrevClick",
+                                          "control":  "btnPrev",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  272,
+                                          "handler":  "btnTodayClick",
+                                          "control":  "btnToday",
+                                          "label":  "Today"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  277,
+                                          "handler":  "btnUpClick",
+                                          "control":  "btnUp",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLMP",
+                      "file":  "2.0.x\\Integrations\\LMP\\frmLMP.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  23,
+                                          "control":  "btnReset",
+                                          "right":  "Utilities.LMPReset",
+                                          "label":  "Reset\\r\\nMS Sales"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  33,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  38,
+                                          "handler":  "btnEODClick",
+                                          "control":  "btnEOD",
+                                          "label":  "Master\\r\\nEOD"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  45,
+                                          "handler":  "btnLogClick",
+                                          "control":  "btnLog",
+                                          "label":  "Send\\r\\nLog File"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  49,
+                                          "kind":  "Success",
+                                          "text":  "Sent Log successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  53,
+                                          "handler":  "btnManualClick",
+                                          "control":  "btnManual",
+                                          "label":  "Manual\\r\\nVerification"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  69,
+                                          "handler":  "btnMSSClick",
+                                          "control":  "btnMSS",
+                                          "label":  "Master\\r\\nService\\r\\nSales"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  76,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  83,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Item\\r\\nCode\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  89,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset\\r\\nMS Sales"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMIUpload",
+                      "file":  "2.0.x\\Integrations\\LMP\\frmMIUpload.cs",
+                      "anchorCount":  13,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  136,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing to process."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  478,
+                                          "handler":  "_OnSave",
+                                          "control":  "_",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  510,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  515,
+                                          "handler":  "btnFinishClick",
+                                          "control":  "btnFinish",
+                                          "label":  "Finish"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  525,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing to process."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  538,
+                                          "kind":  "Warning",
+                                          "text":  "Price is less than defined state minimum."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  574,
+                                          "handler":  "btnMasterClick",
+                                          "control":  "btnMaster",
+                                          "label":  "Update\\r\\nMaster"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  589,
+                                          "kind":  "Success",
+                                          "text":  "Data is up-to-date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  623,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  632,
+                                          "handler":  "btnResetClick",
+                                          "control":  "btnReset",
+                                          "label":  "Reset"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  654,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  660,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  664,
+                                          "handler":  "dgvLMPCellClick",
+                                          "control":  "dgvLMP",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "Editor",
+                      "file":  "2.0.x\\Integrations\\Messages\\Editor.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  423,
+                                          "handler":  "btnBackColorClick",
+                                          "control":  "btnBackColor",
+                                          "label":  "toolStripButton3"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  437,
+                                          "handler":  "btnClick",
+                                          "control":  "btn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  447,
+                                          "handler":  "btnColorClick",
+                                          "control":  "btnColor",
+                                          "label":  "toolStripButton3"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  459,
+                                          "handler":  "btnFillBackColorClick",
+                                          "control":  "btnFillBackColor",
+                                          "label":  "toolStripButton3"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  470,
+                                          "handler":  "btnHtmlClick",
+                                          "control":  "btnHtml",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  480,
+                                          "handler":  "btnImageClick",
+                                          "control":  "btnImage",
+                                          "label":  "toolStripButton3"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  502,
+                                          "handler":  "btnLinkClick",
+                                          "control":  "btnLink",
+                                          "label":  "toolStripButton3"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  555,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid URL."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmBirthday",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmBirthday.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  30,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  43,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  47,
+                                          "kind":  "Warning",
+                                          "text":  "Subject cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  54,
+                                          "kind":  "Warning",
+                                          "text":  "Document cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  69,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  75,
+                                          "handler":  "chkEnabledCheckedChanged",
+                                          "control":  "chkEnabled",
+                                          "label":  "Send Birthday Message"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmBirthdayAdv",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmBirthdayAdv.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  48,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  52,
+                                          "kind":  "Warning",
+                                          "text":  "Subject cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  59,
+                                          "kind":  "Warning",
+                                          "text":  "Document cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  66,
+                                          "kind":  "Warning",
+                                          "text":  "Selection error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  81,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  87,
+                                          "handler":  "chkEnabledCheckedChanged",
+                                          "control":  "chkEnabled",
+                                          "label":  "Send Advanced Birthday Message"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDistList",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmDistList.cs",
+                      "anchorCount":  17,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  125,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  133,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  143,
+                                          "handler":  "btnFindItemAltClick",
+                                          "control":  "btnFindItemAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  150,
+                                          "handler":  "btnFindItemClick",
+                                          "control":  "btnFindItem",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  169,
+                                          "handler":  "btnFindServiceAltClick",
+                                          "control":  "btnFindServiceAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  176,
+                                          "handler":  "btnFindServiceClick",
+                                          "control":  "btnFindService",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  195,
+                                          "handler":  "btnFindStaffAltClick",
+                                          "control":  "btnFindStaffAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  202,
+                                          "handler":  "btnFindStaffClick",
+                                          "control":  "btnFindStaff",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  221,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  229,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid template title."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  242,
+                                          "kind":  "Warning",
+                                          "text":  "Duplicate list name."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  258,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  293,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing to save."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  319,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  323,
+                                          "handler":  "chkFemaleCheckedChanged",
+                                          "control":  "chkFemale",
+                                          "label":  "Female"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  329,
+                                          "handler":  "chkLastDayCheckedChanged",
+                                          "control":  "chkLastDay",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  334,
+                                          "handler":  "chkMaleCheckedChanged",
+                                          "control":  "chkMale",
+                                          "label":  "Male"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmEditEmail",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmEditEmail.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  38,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  44,
+                                          "handler":  "btnOkClick",
+                                          "control":  "btnOk",
+                                          "label":  "Ok"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmInbox",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmInbox.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  60,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  92,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "New\\r\\nEmail"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  127,
+                                          "handler":  "btnReceiveClick",
+                                          "control":  "btnReceive",
+                                          "label":  "Check\\r\\nEmail"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  165,
+                                          "kind":  "Warning",
+                                          "text":  "Server did not accept user credentials."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  276,
+                                          "handler":  "btnReplyClick",
+                                          "control":  "btnReply",
+                                          "label":  "Reply"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmMenu.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  17,
+                                          "handler":  "btnBirthdayAdvClick",
+                                          "control":  "btnBirthdayAdv",
+                                          "label":  "Birthday\\r\\nAdvanced"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  24,
+                                          "handler":  "btnBirthdayClick",
+                                          "control":  "btnBirthday",
+                                          "label":  "Birthday"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  31,
+                                          "handler":  "btnInboxClick",
+                                          "control":  "btnInbox",
+                                          "label":  "Inbox"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  36,
+                                          "handler":  "btnNewMessageClick",
+                                          "control":  "btnNewMessage",
+                                          "label":  "New"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  43,
+                                          "handler":  "btnRemindersAdvClick",
+                                          "control":  "btnRemindersAdv",
+                                          "label":  "Reminders\\r\\nAdvanced"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  50,
+                                          "handler":  "btnRemindersClick",
+                                          "control":  "btnReminders",
+                                          "label":  "Reminders"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  57,
+                                          "handler":  "btnScheduledClick",
+                                          "control":  "btnScheduled",
+                                          "label":  "Schedule"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  64,
+                                          "handler":  "btnSentClick",
+                                          "control":  "btnSent",
+                                          "label":  "Sent"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmNewMessage",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmNewMessage.cs",
+                      "anchorCount":  22,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  62,
+                                          "kind":  "Warning",
+                                          "text":  "Customer already exist in the list."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  82,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  96,
+                                          "handler":  "btnBrowserClick",
+                                          "control":  "btnBrowser",
+                                          "label":  "Customer\\r\\nBrowser"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  112,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  133,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  154,
+                                          "handler":  "btnDelClick",
+                                          "control":  "btnDel",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  169,
+                                          "handler":  "btnDistAllClick",
+                                          "control":  "btnDistAll",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  175,
+                                          "handler":  "btnDistClearClick",
+                                          "control":  "btnDistClear",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  180,
+                                          "handler":  "btnEditClick",
+                                          "control":  "btnEdit",
+                                          "label":  "Edit\\r\\nList"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  202,
+                                          "handler":  "btnEditMsgClick",
+                                          "control":  "btnEditMsg",
+                                          "label":  "Edit\\r\\nMessage"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  238,
+                                          "handler":  "btnFindCouponAltClick",
+                                          "control":  "btnFindCouponAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  246,
+                                          "handler":  "btnFindCouponClick",
+                                          "control":  "btnFindCoupon",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  270,
+                                          "handler":  "btnNewClick",
+                                          "control":  "btnNew",
+                                          "label":  "New\\r\\nList"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  283,
+                                          "handler":  "btnOpenClick",
+                                          "control":  "btnOpen",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  306,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Send\\r\\nMessage"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  309,
+                                          "kind":  "Warning",
+                                          "text":  "Free version has Send/Receive disabled."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  315,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  322,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid email address."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  330,
+                                          "kind":  "Warning",
+                                          "text":  "Subject cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  337,
+                                          "kind":  "Warning",
+                                          "text":  "Message body cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  438,
+                                          "kind":  "Warning",
+                                          "text":  "No results found with current criteria."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  458,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmReminders",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmReminders.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  31,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  44,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  48,
+                                          "kind":  "Warning",
+                                          "text":  "Subject cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  55,
+                                          "kind":  "Warning",
+                                          "text":  "Document cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  71,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  77,
+                                          "handler":  "chkSendDayofReminderCheckedChanged",
+                                          "control":  "chkSendDayofReminder",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmRemindersAdv",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmRemindersAdv.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  48,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  52,
+                                          "kind":  "Warning",
+                                          "text":  "Subject cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  59,
+                                          "kind":  "Warning",
+                                          "text":  "Document cannot be blank."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  66,
+                                          "kind":  "Warning",
+                                          "text":  "Selection error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  81,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  87,
+                                          "handler":  "chkEnabledCheckedChanged",
+                                          "control":  "chkEnabled",
+                                          "label":  "Send Advanced Reminder Message"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmScheduled",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmScheduled.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  30,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnDeleteListClick",
+                                          "control":  "btnDeleteList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  59,
+                                          "handler":  "btnDelRecipientClick",
+                                          "control":  "btnDelRecipient",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  89,
+                                          "handler":  "btnSendNowClick",
+                                          "control":  "btnSendNow",
+                                          "label":  "Send\\r\\nNow"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSendEmail",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmSendEmail.cs",
+                      "anchorCount":  7,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  71,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  84,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Send Email"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  88,
+                                          "kind":  "Warning",
+                                          "text":  "Check internet connection."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  97,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid email address."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  104,
+                                          "kind":  "Warning",
+                                          "text":  "Message cannot be empty."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  112,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid email address\\n"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  119,
+                                          "handler":  "btnFindRefClick",
+                                          "control":  "btnFindRef",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSent",
+                      "file":  "2.0.x\\Integrations\\Messages\\frmSent.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  29,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  34,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Reset"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "LinkDialog",
+                      "file":  "2.0.x\\Integrations\\Messages\\LinkDialog.cs",
+                      "anchorCount":  3,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  60,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  65,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  81,
+                                          "handler":  "cboSelectedIndexChanged",
+                                          "control":  "cbo",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "csClassScan",
+                      "file":  "2.0.x\\Integrations\\ScanData\\csClassScan.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  323,
+                                          "kind":  "Warning",
+                                          "text":  "Nothing to process."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1072,
+                                          "kind":  "Warning",
+                                          "text":  "{(_IsAltria ? "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1111,
+                                          "kind":  "Success",
+                                          "text":  "{(_IsAltria ? "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1121,
+                                          "kind":  "Warning",
+                                          "text":  "{(_IsAltria ? "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1132,
+                                          "kind":  "Warning",
+                                          "text":  "{(_IsAltria ? "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1143,
+                                          "kind":  "Warning",
+                                          "text":  "{(_IsAltria ? "
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmDateRange",
+                      "file":  "2.0.x\\Integrations\\ScanData\\frmDateRange.cs",
+                      "anchorCount":  4,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  27,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Cancel"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  32,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  39,
+                                          "kind":  "Warning",
+                                          "text":  "Start date is greater than end date."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  111,
+                                          "handler":  "chkTestCheckedChanged",
+                                          "control":  "chkTest",
+                                          "label":  "RJR Test File"
+                                      }
+                                  ]
+                  }
+              ]
+}

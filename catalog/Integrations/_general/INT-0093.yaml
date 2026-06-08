@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0093
+    title: "frmSelect: action dgvLCB cell click"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: LCB }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSelect under Integrations"
+      - "Activate dgvLCB"
+      - "Observe the resulting action"
+    expected:
+      - "Handler dgvLCBCellClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmSelect action at line 40"]
+    source_files: [2.0.x/Integrations/LCB/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LCB/frmSelect.cs, line: 40, text: "dgvLCBCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/LCB/frmSelectPA1055.cs  (7 anchors)
+  # ----------------------------------------------------------------------

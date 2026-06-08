@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0074
+    title: "frmKiosk: action btnCheckIn (Check In)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmKiosk, entity: Kiosk }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmKiosk under Integrations"
+      - "Activate btnCheckIn (Check In)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnCheckInClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmKiosk action at line 104"]
+    source_files: [2.0.x/Integrations/Kiosk/frmKiosk.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Kiosk/frmKiosk.cs, line: 104, text: "btnCheckInClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -4,23 +4,23 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**58.5% complete** - 1522 / 2600 testable code anchors covered. Complete: **NO**.
+**69.9% complete** - 1817 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
-| Transactions | e2e | 738 | 738 | 100% | yes |
-| Calendar | e2e | 51 | 51 | 100% | yes |
+| Reports | e2e | 295 | 249 | 118.5% | yes |
 | Settings | e2e | 343 | 343 | 100% | yes |
+| Calendar | e2e | 51 | 51 | 100% | yes |
+| Transactions | e2e | 738 | 738 | 100% | yes |
 | Items | e2e | 346 | 346 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
-| Reports | e2e | 0 | 249 | 0% | - |
-| Utility | e2e | 0 | 56 | 0% | - |
 | Customers | e2e | 0 | 95 | 0% | - |
 | Main | e2e | 0 | 104 | 0% | - |
 | Integrations | e2e | 0 | 235 | 0% | - |
-| Staff | e2e | 0 | 88 | 0% | - |
-| SysForms | e2e | 0 | 91 | 0% | - |
 | Managers | unit | 0 | 93 | 0% | - |
+| Staff | e2e | 0 | 88 | 0% | - |
+| Utility | e2e | 0 | 56 | 0% | - |
+| SysForms | e2e | 0 | 91 | 0% | - |
 
 ## Tests by area
 
@@ -79,6 +79,276 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `CAL-019` Move Appt. saves and switches the panel into appointment-move mode  _( P2 / frmCreate / Appointment / needs-recording )_
 - `CAL-018` Double-click look-up reassigns the appointment to a different customer  _( P3 / frmCreate / Appointment / needs-recording )_
 - `CAL-017` Delete Line removes the selected service from the appointment  _( P2 / frmCreate / Appointment / needs-recording )_
+
+### Integrations  (265 tests: 260 atomic, 5 composite)
+
+**(uncategorized)** (265)
+
+- `INT-0177` frmDistList: Warning - Invalid template title.  _( P2 / needs-recording )_
+- `INT-0178` frmDistList: Warning - Duplicate list name.  _( P2 / needs-recording )_
+- `INT-0175` frmDistList: action btnFindStaff  _( P3 / needs-recording )_
+- `INT-0176` frmDistList: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0181` frmDistList: Success - Saved successfully.  _( P1 / needs-recording )_
+- `INT-0182` frmDistList: toggle chkFemale (Female)  _( P2 / needs-recording )_
+- `INT-0179` frmDistList: Warning - Invalid date.  _( P2 / needs-recording )_
+- `INT-0180` frmDistList: Warning - Nothing to save.  _( P2 / needs-recording )_
+- `INT-0169` frmDistList: action btnDelete (Delete)  _( P3 / needs-recording )_
+- `INT-0170` frmDistList: action btnFindItemAlt  _( P3 / needs-recording )_
+- `INT-0167` frmBirthdayAdv: toggle chkEnabled (Send Advanced Birthday Message)  _( P2 / needs-recording )_
+- `INT-0168` frmDistList: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0173` frmDistList: action btnFindService  _( P3 / needs-recording )_
+- `INT-0174` frmDistList: action btnFindStaffAlt  _( P3 / needs-recording )_
+- `INT-0171` frmDistList: action btnFindItem  _( P3 / needs-recording )_
+- `INT-0172` frmDistList: action btnFindServiceAlt  _( P3 / needs-recording )_
+- `INT-0183` frmDistList: toggle chkLastDay  _( P2 / needs-recording )_
+- `INT-0194` frmMenu: action btnInbox (Inbox)  _( P3 / needs-recording )_
+- `INT-0195` frmMenu: action btnNewMessage (New)  _( P3 / needs-recording )_
+- `INT-0192` frmMenu: action btnBirthdayAdv (Birthday Advanced)  _( P3 / needs-recording )_
+- `INT-0193` frmMenu: action btnBirthday (Birthday)  _( P3 / needs-recording )_
+- `INT-0198` frmMenu: action btnScheduled (Schedule)  _( P3 / needs-recording )_
+- `INT-0199` frmMenu: action btnSent (Sent)  _( P3 / needs-recording )_
+- `INT-0196` frmMenu: action btnRemindersAdv (Reminders Advanced)  _( P3 / needs-recording )_
+- `INT-0197` frmMenu: action btnReminders (Reminders)  _( P3 / needs-recording )_
+- `INT-0186` frmEditEmail: action btnOk (Ok)  _( P1 / needs-recording )_
+- `INT-0187` frmInbox: action btnDelete (Delete)  _( P3 / needs-recording )_
+- `INT-0184` frmDistList: toggle chkMale (Male)  _( P2 / needs-recording )_
+- `INT-0185` frmEditEmail: action btnCancel (Cancel)  _( P3 / needs-recording )_
+- `INT-0190` frmInbox: Warning - Server did not accept user credentials.  _( P2 / needs-recording )_
+- `INT-0191` frmInbox: action btnReply (Reply)  _( P3 / needs-recording )_
+- `INT-0188` frmInbox: action btnNew (New Email)  _( P3 / needs-recording )_
+- `INT-0189` frmInbox: action btnReceive (Check Email)  _( P1 / needs-recording )_
+- `INT-0144` frmMIUpload: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0145` frmMIUpload: Success - Saved successfully.  _( P1 / needs-recording )_
+- `INT-0142` frmMIUpload: Success - Updated successfully.  _( P1 / needs-recording )_
+- `INT-0143` frmMIUpload: action btnReset (Reset)  _( P3 / needs-recording )_
+- `INT-0148` Editor: action btn  _( P3 / needs-recording )_
+- `INT-0149` Editor: action btnColor  _( P3 / needs-recording )_
+- `INT-0146` frmMIUpload: action dgvLMP cell click  _( P3 / needs-recording )_
+- `INT-0147` Editor: action btnBackColor  _( P3 / needs-recording )_
+- `INT-0136` frmMIUpload: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0137` frmMIUpload: action btnFinish (Finish)  _( P3 / needs-recording )_
+- `INT-0134` frmMIUpload: Warning - Nothing to process. (line 136)  _( P2 / needs-recording )_
+- `INT-0135` frmMIUpload: action _OnSave  _( P1 / needs-recording )_
+- `INT-0140` frmMIUpload: action btnMaster (Update Master)  _( P1 / needs-recording )_
+- `INT-0141` frmMIUpload: Success - Data is up-to-date.  _( P1 / needs-recording )_
+- `INT-0138` frmMIUpload: Warning - Nothing to process. (line 525)  _( P2 / needs-recording )_
+- `INT-0139` frmMIUpload: Warning - Price is less than defined state minimum.  _( P2 / needs-recording )_
+- `INT-0150` Editor: action btnFillBackColor  _( P3 / needs-recording )_
+- `INT-0161` frmBirthdayAdv: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0162` frmBirthdayAdv: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0159` frmBirthday: Success - Updated successfully.  _( P1 / needs-recording )_
+- `INT-0160` frmBirthday: toggle chkEnabled (Send Birthday Message)  _( P2 / needs-recording )_
+- `INT-0165` frmBirthdayAdv: Warning - Selection error.  _( P2 / needs-recording )_
+- `INT-0166` frmBirthdayAdv: Success - Updated successfully.  _( P1 / needs-recording )_
+- `INT-0163` frmBirthdayAdv: Warning - Subject cannot be blank.  _( P2 / needs-recording )_
+- `INT-0164` frmBirthdayAdv: Warning - Document cannot be blank.  _( P2 / needs-recording )_
+- `INT-0153` Editor: action btnLink  _( P3 / needs-recording )_
+- `INT-0154` Editor: Warning - Invalid URL.  _( P2 / needs-recording )_
+- `INT-0151` Editor: action btnHtml  _( P3 / needs-recording )_
+- `INT-0152` Editor: action btnImage  _( P3 / needs-recording )_
+- `INT-0157` frmBirthday: Warning - Subject cannot be blank.  _( P2 / needs-recording )_
+- `INT-0158` frmBirthday: Warning - Document cannot be blank.  _( P2 / needs-recording )_
+- `INT-0155` frmBirthday: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0156` frmBirthday: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0243` frmSendEmail: Warning - Message cannot be empty.  _( P2 / needs-recording )_
+- `INT-0244` frmSendEmail: Warning - Invalid email address (line 112)  _( P2 / needs-recording )_
+- `INT-0241` frmSendEmail: Warning - Check internet connection.  _( P2 / needs-recording )_
+- `INT-0242` frmSendEmail: Warning - Invalid email address. (line 97)  _( P2 / needs-recording )_
+- `INT-0247` frmSent: action btnOK (Reset)  _( P3 / needs-recording )_
+- `INT-0248` LinkDialog: action btnCancel (Cancel)  _( P3 / needs-recording )_
+- `INT-0245` frmSendEmail: action btnFindRef  _( P3 / needs-recording )_
+- `INT-0246` frmSent: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0235` frmScheduled: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0236` frmScheduled: action btnDeleteList  _( P3 / needs-recording )_
+- `INT-0233` frmRemindersAdv: Success - Updated successfully.  _( P1 / needs-recording )_
+- `INT-0234` frmRemindersAdv: toggle chkEnabled (Send Advanced Reminder Message)  _( P2 / needs-recording )_
+- `INT-0239` frmSendEmail: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0240` frmSendEmail: action btnOK (Send Email)  _( P1 / needs-recording )_
+- `INT-0237` frmScheduled: action btnDelRecipient (Delete)  _( P3 / needs-recording )_
+- `INT-0238` frmScheduled: action btnSendNow (Send Now)  _( P1 / needs-recording )_
+- `INT-0249` LinkDialog: action btnOK (OK)  _( P1 / needs-recording )_
+- `INT-0260` frmDateRange: toggle chkTest (RJR Test File)  _( P2 / needs-recording )_
+- `INT-0261` Kiosk: customer joins the loyalty program (open menu -> join -> saved)  _( P1 / needs-recording )_
+- `INT-0258` frmDateRange: action btnOK  _( P1 / needs-recording )_
+- `INT-0259` frmDateRange: Warning - Start date is greater than end date.  _( P2 / needs-recording )_
+- `INT-0264` LMP: sync all prices then update master (Get All Prices -> Update Master)  _( P1 / needs-recording )_
+- `INT-0265` Messages: compose and send a campaign (new list -> new message -> send)  _( P1 / needs-recording )_
+- `INT-0262` Kiosk: existing member checks in (open menu -> check in -> successful)  _( P1 / needs-recording )_
+- `INT-0263` LCB: build a PA1014 report (add lines -> accept -> save)  _( P1 / needs-recording )_
+- `INT-0252` csClassScan: Warning - Altria/RJR scan message (line 1072)  _( P2 / needs-recording )_
+- `INT-0253` csClassScan: Success - Altria/RJR scan message (line 1111)  _( P1 / needs-recording )_
+- `INT-0250` LinkDialog: toggle cbo selected index changed  _( P2 / needs-recording )_
+- `INT-0251` csClassScan: Warning - Nothing to process.  _( P2 / needs-recording )_
+- `INT-0256` csClassScan: Warning - Altria/RJR scan message (line 1143)  _( P2 / needs-recording )_
+- `INT-0257` frmDateRange: action btnCancel (Cancel)  _( P3 / needs-recording )_
+- `INT-0254` csClassScan: Warning - Altria/RJR scan message (line 1121)  _( P2 / needs-recording )_
+- `INT-0255` csClassScan: Warning - Altria/RJR scan message (line 1132)  _( P2 / needs-recording )_
+- `INT-0210` frmNewMessage: action btnFindCouponAlt  _( P3 / needs-recording )_
+- `INT-0211` frmNewMessage: action btnFindCoupon  _( P3 / needs-recording )_
+- `INT-0208` frmNewMessage: action btnEdit (Edit List)  _( P3 / needs-recording )_
+- `INT-0209` frmNewMessage: action btnEditMsg (Edit Message)  _( P3 / needs-recording )_
+- `INT-0214` frmNewMessage: action btnOK (Send Message)  _( P1 / needs-recording )_
+- `INT-0215` frmNewMessage: Warning - Free version has Send/Receive disabled.  _( P2 / needs-recording )_
+- `INT-0212` frmNewMessage: action btnNew (New List)  _( P3 / needs-recording )_
+- `INT-0213` frmNewMessage: action btnOpen  _( P3 / needs-recording )_
+- `INT-0202` frmNewMessage: action btnBrowser (Customer Browser)  _( P3 / needs-recording )_
+- `INT-0203` frmNewMessage: action btnClear  _( P3 / needs-recording )_
+- `INT-0200` frmNewMessage: Warning - Customer already exist in the list.  _( P2 / needs-recording )_
+- `INT-0201` frmNewMessage: action btnAdd  _( P3 / needs-recording )_
+- `INT-0206` frmNewMessage: action btnDistAll  _( P3 / needs-recording )_
+- `INT-0207` frmNewMessage: action btnDistClear  _( P3 / needs-recording )_
+- `INT-0204` frmNewMessage: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0205` frmNewMessage: action btnDel  _( P3 / needs-recording )_
+- `INT-0216` frmNewMessage: Warning - Invalid date.  _( P2 / needs-recording )_
+- `INT-0227` frmReminders: toggle chkSendDayofReminder  _( P2 / needs-recording )_
+- `INT-0228` frmRemindersAdv: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0225` frmReminders: Warning - Document cannot be blank.  _( P2 / needs-recording )_
+- `INT-0226` frmReminders: Success - Updated successfully.  _( P1 / needs-recording )_
+- `INT-0231` frmRemindersAdv: Warning - Document cannot be blank.  _( P2 / needs-recording )_
+- `INT-0232` frmRemindersAdv: Warning - Selection error.  _( P2 / needs-recording )_
+- `INT-0229` frmRemindersAdv: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0230` frmRemindersAdv: Warning - Subject cannot be blank.  _( P2 / needs-recording )_
+- `INT-0219` frmNewMessage: Warning - Message body cannot be blank.  _( P2 / needs-recording )_
+- `INT-0220` frmNewMessage: Warning - No results found with current criteria.  _( P2 / needs-recording )_
+- `INT-0217` frmNewMessage: Warning - Invalid email address.  _( P2 / needs-recording )_
+- `INT-0218` frmNewMessage: Warning - Subject cannot be blank.  _( P2 / needs-recording )_
+- `INT-0223` frmReminders: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0224` frmReminders: Warning - Subject cannot be blank.  _( P2 / needs-recording )_
+- `INT-0221` frmNewMessage: Success - Saved successfully.  _( P1 / needs-recording )_
+- `INT-0222` frmReminders: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0133` frmLMP: action btnReset (Reset MS Sales)  _( P1 / needs-recording )_
+- `INT-0044` frmSetStatus: action btnJoinTo  _( P3 / needs-recording )_
+- `INT-0045` frmSetStatus: action btnMoveTo  _( P3 / needs-recording )_
+- `INT-0042` frmSetStatus: action btnFullCredit (Credit)  _( P3 / needs-recording )_
+- `INT-0043` frmSetStatus: action btnFullDebit (PIN Debit)  _( P3 / needs-recording )_
+- `INT-0048` frmSetStatus: action btnPrint (Print Check)  _( P3 / needs-recording )_
+- `INT-0049` frmSetStatus: action btnReassign (Reassign)  _( P3 / needs-recording )_
+- `INT-0046` frmSetStatus: action btnOccupied (Occupied)  _( P3 / needs-recording )_
+- `INT-0047` frmSetStatus: action btnOrder (Order)  _( P3 / needs-recording )_
+- `INT-0036` frmSetStatus: permission btnTip (Register.ApplyGroupTip)  _( P1 / needs-recording )_
+- `INT-0037` frmSetStatus: action btnAvailable (Available)  _( P3 / needs-recording )_
+- `INT-0034` frmSetStatus: permission btnReassign (Register.Reassign)  _( P1 / needs-recording )_
+- `INT-0035` frmSetStatus: permission btnTake (Register.Take)  _( P1 / needs-recording )_
+- `INT-0040` frmSetStatus: action btnFire (Fire Next)  _( P3 / needs-recording )_
+- `INT-0041` frmSetStatus: action btnFullCash (Cash)  _( P3 / needs-recording )_
+- `INT-0038` frmSetStatus: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0039` frmSetStatus: action btnComplete (Complete CC Auth)  _( P3 / needs-recording )_
+- `INT-0050` frmSetStatus: action btnTake (Take)  _( P3 / needs-recording )_
+- `INT-0061` frmCheckIn: Warning - Email address invalid.  _( P2 / needs-recording )_
+- `INT-0062` frmCheckIn: Warning - Membership number must be less than 15 characters long  _( P2 / needs-recording )_
+- `INT-0059` frmCheckIn: action btnCancel (Cancel)  _( P3 / needs-recording )_
+- `INT-0060` frmCheckIn: action btnOK (Check In)  _( P1 / needs-recording )_
+- `INT-0065` frmCheckIn: Success - Successful.  _( P1 / needs-recording )_
+- `INT-0066` frmJoin: action btnCancel (Cancel)  _( P3 / needs-recording )_
+- `INT-0063` frmCheckIn: Warning - Customer not found, try again.  _( P2 / needs-recording )_
+- `INT-0064` frmCheckIn: Warning - Check in only allowed once a day  _( P2 / needs-recording )_
+- `INT-0053` frmStaffFloorMap: action btnPrev (Prev Day)  _( P3 / needs-recording )_
+- `INT-0054` frmStaffFloorMap: action btnSection (View Section)  _( P3 / needs-recording )_
+- `INT-0051` frmSetStatus: action btnTip (Apply Group Tip)  _( P3 / needs-recording )_
+- `INT-0052` frmStaffFloorMap: action btnNext (Next Day)  _( P3 / needs-recording )_
+- `INT-0057` frmStaffProp: action btnOK (Close)  _( P3 / needs-recording )_
+- `INT-0058` frmStaffProp: action dgvStaff cell click  _( P3 / needs-recording )_
+- `INT-0055` frmStaffFloorMap: action btnStaff (View Staff)  _( P3 / needs-recording )_
+- `INT-0056` frmStaffFloorMap: action btnZone  _( P3 / needs-recording )_
+- `INT-0011` frmSetFloorMap: action btnSeats (View Seats)  _( P3 / needs-recording )_
+- `INT-0012` frmSetFloorMap: action btnSection (View Section)  _( P3 / needs-recording )_
+- `INT-0009` frmSetFloorMap: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0010` frmSetFloorMap: Success - Update successfully.  _( P1 / needs-recording )_
+- `INT-0015` frmSetFloorMap: action btnBack (Change Bg)  _( P3 / needs-recording )_
+- `INT-0016` frmSetProp: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0013` frmSetFloorMap: action btnZone  _( P3 / needs-recording )_
+- `INT-0014` frmSetFloorMap: action btnZones (Manage Zone)  _( P3 / needs-recording )_
+- `INT-0003` frmSetFloorMap: action btnAdd (Add)  _( P3 / needs-recording )_
+- `INT-0004` frmSetFloorMap: action btnAlign (Align)  _( P3 / needs-recording )_
+- `INT-0001` frmNewObject: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0002` frmNewObject: action btnOn  _( P3 / needs-recording )_
+- `INT-0007` frmSetFloorMap: action btnDefSection (Define Section)  _( P3 / needs-recording )_
+- `INT-0008` frmSetFloorMap: action btnManage (Manage Section)  _( P3 / needs-recording )_
+- `INT-0005` frmSetFloorMap: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0006` frmSetFloorMap: action btnCursor  _( P3 / needs-recording )_
+- `INT-0017` frmSetProp: action btnCopy (Copy)  _( P3 / needs-recording )_
+- `INT-0028` frmSetStatus: permission btnFullDebit (Register.Tender.Debit)  _( P1 / needs-recording )_
+- `INT-0029` frmSetStatus: permission btnJoin (Register.FloorPlan.Join)  _( P1 / needs-recording )_
+- `INT-0026` frmSetStatus: permission btnFullCash (Register.Tender.Cash)  _( P1 / needs-recording )_
+- `INT-0027` frmSetStatus: permission btnFullCredit (Register.Tender.Credit)  _( P1 / needs-recording )_
+- `INT-0032` frmSetStatus: permission btnOrder (Register.FloorPlan.Order)  _( P1 / needs-recording )_
+- `INT-0033` frmSetStatus: permission btnPrint (Register.PrintOrder)  _( P1 / needs-recording )_
+- `INT-0030` frmSetStatus: permission btnMove (Register.FloorPlan.MoveTo)  _( P1 / needs-recording )_
+- `INT-0031` frmSetStatus: permission btnOccupied (Register.FloorPlan.ChangeTabletStatus)  _( P1 / needs-recording )_
+- `INT-0020` frmSetProp: toggle chkActive (Active)  _( P2 / needs-recording )_
+- `INT-0021` frmSetSection: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0018` frmSetProp: action btnDelete (Delete)  _( P3 / needs-recording )_
+- `INT-0019` frmSetProp: action btnRotate (Rotate)  _( P3 / needs-recording )_
+- `INT-0024` frmSetStatus: permission btnComplete (Register.CompleteAuth)  _( P1 / needs-recording )_
+- `INT-0025` frmSetStatus: permission btnFire (Register.Fire)  _( P1 / needs-recording )_
+- `INT-0022` frmSetSection: action btnOK (OK)  _( P1 / needs-recording )_
+- `INT-0023` frmSetStatus: permission btnAvailable (Register.FloorPlan.ChangeTabletStatus)  _( P1 / needs-recording )_
+- `INT-0110` frmAdjust: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0111` frmAdjust: action btnReset (Reset)  _( P3 / needs-recording )_
+- `INT-0108` csClassLMP: Warning - Back office not available (EODID)  _( P2 / needs-recording )_
+- `INT-0109` frmAdjust: action btnAdd (Add Item)  _( P3 / needs-recording )_
+- `INT-0114` frmCalendar: permission btnOverride (Utilities.LMPOverride)  _( P1 / needs-recording )_
+- `INT-0115` frmCalendar: action btnAdjust (Admin Adjust)  _( P3 / needs-recording )_
+- `INT-0112` frmAdjust: action btnOK (Send)  _( P1 / needs-recording )_
+- `INT-0113` frmAdjust: action dgvLMP cell click  _( P3 / needs-recording )_
+- `INT-0102` csClassLMP: Warning - Master Service Sales Failed.  _( P2 / needs-recording )_
+- `INT-0103` csClassLMP: Warning - Master EOD failed.  _( P2 / needs-recording )_
+- `INT-0100` frmSelectPA1055: action dgvLCBCell double click  _( P3 / needs-recording )_
+- `INT-0101` csClassLMP: Warning - Back office not available (Error Code 300)  _( P2 / needs-recording )_
+- `INT-0106` csClassLMP: Warning - Get all prices canceled.  _( P2 / needs-recording )_
+- `INT-0107` csClassLMP: Success - Get all prices successful.  _( P1 / needs-recording )_
+- `INT-0104` csClassLMP: Warning - Get all prices failed (URL incorrect or server timeout)  _( P2 / needs-recording )_
+- `INT-0105` csClassLMP: Warning - Get all prices failed (Back office not available)  _( P2 / needs-recording )_
+- `INT-0116` frmCalendar: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0127` frmLMP: action btnLog (Send Log File)  _( P3 / needs-recording )_
+- `INT-0128` frmLMP: Success - Sent Log successfully.  _( P1 / needs-recording )_
+- `INT-0125` frmLMP: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0126` frmLMP: action btnEOD (Master EOD)  _( P1 / needs-recording )_
+- `INT-0131` frmLMP: action btnPrint (Print)  _( P3 / needs-recording )_
+- `INT-0132` frmLMP: action btnReport (Item Code Report)  _( P3 / needs-recording )_
+- `INT-0129` frmLMP: action btnManual (Manual Verification)  _( P3 / needs-recording )_
+- `INT-0130` frmLMP: action btnMSS (Master Service Sales)  _( P1 / needs-recording )_
+- `INT-0119` frmCalendar: action btnNext  _( P3 / needs-recording )_
+- `INT-0120` frmCalendar: action btnOverride (Override EOD)  _( P1 / needs-recording )_
+- `INT-0117` frmCalendar: action btnDown  _( P3 / needs-recording )_
+- `INT-0118` frmCalendar: action btnGetPrice (Get All Prices)  _( P1 / needs-recording )_
+- `INT-0123` frmCalendar: action btnUp  _( P3 / needs-recording )_
+- `INT-0124` frmLMP: permission btnReset (Utilities.LMPReset)  _( P1 / needs-recording )_
+- `INT-0121` frmCalendar: action btnPrev  _( P3 / needs-recording )_
+- `INT-0122` frmCalendar: action btnToday (Today)  _( P3 / needs-recording )_
+- `INT-0077` frmPA1014: action btnFinish (Finish)  _( P3 / needs-recording )_
+- `INT-0078` frmPA1014: action btnRegenarate (Regenerate)  _( P3 / needs-recording )_
+- `INT-0075` frmKiosk: action btnJoin (Join The Program)  _( P1 / needs-recording )_
+- `INT-0076` frmPA1014: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0081` frmPA1014: action dgvLCB cell click  _( P3 / needs-recording )_
+- `INT-0082` frmPA1014ab: action btnAdd (Add Line)  _( P3 / needs-recording )_
+- `INT-0079` frmPA1014: action btnOK (Save)  _( P1 / needs-recording )_
+- `INT-0080` frmPA1014: Success - Saved successfully.  _( P1 / needs-recording )_
+- `INT-0069` frmJoin: Warning - Email address invalid.  _( P2 / needs-recording )_
+- `INT-0070` frmJoin: Warning - Member number already in use.  _( P2 / needs-recording )_
+- `INT-0067` frmJoin: action btnOK (Join)  _( P1 / needs-recording )_
+- `INT-0068` frmJoin: Warning - Must provide phone or email.  _( P2 / needs-recording )_
+- `INT-0073` frmKiosk: action btnCancel  _( P3 / needs-recording )_
+- `INT-0074` frmKiosk: action btnCheckIn (Check In)  _( P1 / needs-recording )_
+- `INT-0071` frmJoin: Success - Saved successfully.  _( P1 / needs-recording )_
+- `INT-0072` frmKiosk: Warning - Insufficient access level.  _( P2 / needs-recording )_
+- `INT-0083` frmPA1014ab: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0094` frmSelectPA1055: action btnAdd (Add Line)  _( P3 / needs-recording )_
+- `INT-0095` frmSelectPA1055: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0092` frmSelect: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0093` frmSelect: action dgvLCB cell click  _( P3 / needs-recording )_
+- `INT-0098` frmSelectPA1055: action btnOk (Accept Changes)  _( P1 / needs-recording )_
+- `INT-0099` frmSelectPA1055: action dgvLCB cell click  _( P3 / needs-recording )_
+- `INT-0096` frmSelectPA1055: action btnDelete (Remove Line)  _( P3 / needs-recording )_
+- `INT-0097` frmSelectPA1055: action btnEdit (Edit Line)  _( P3 / needs-recording )_
+- `INT-0086` frmPA1014ab: Success - Changes accepted.  _( P1 / needs-recording )_
+- `INT-0087` frmPA1055c: action btnAdd (Add Line)  _( P3 / needs-recording )_
+- `INT-0084` frmPA1014ab: action btnDelete (Remove Line)  _( P3 / needs-recording )_
+- `INT-0085` frmPA1014ab: action btnOK (Accept Changes)  _( P1 / needs-recording )_
+- `INT-0090` frmPA1055c: action btnOK (Accept Changes)  _( P1 / needs-recording )_
+- `INT-0091` frmPA1055c: Success - Changes accepted.  _( P1 / needs-recording )_
+- `INT-0088` frmPA1055c: action btnCancel (Close)  _( P3 / needs-recording )_
+- `INT-0089` frmPA1055c: action btnDelete (Remove Line)  _( P3 / needs-recording )_
 
 ### Items  (350 tests: 346 atomic, 4 composite)
 

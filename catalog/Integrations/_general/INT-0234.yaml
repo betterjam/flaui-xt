@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0234
+    title: "frmRemindersAdv: toggle chkEnabled (Send Advanced Reminder Message)"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmRemindersAdv, entity: Messages }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmRemindersAdv under Integrations"
+      - "Toggle chkEnabled (Send Advanced Reminder Message)"
+      - "Observe the setting-driven behavior"
+    expected:
+      - "Handler chkEnabledCheckedChanged runs and the toggle state is persisted/applied"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmRemindersAdv toggle at line 87"]
+    source_files: [2.0.x/Integrations/Messages/frmRemindersAdv.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Messages/frmRemindersAdv.cs, line: 87, text: "chkEnabledCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/Messages/frmScheduled.cs  (4 anchors)
+  # ----------------------------------------------------------------------

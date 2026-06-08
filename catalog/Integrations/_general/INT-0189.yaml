@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0189
+    title: "frmInbox: action btnReceive (Check Email)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmInbox, entity: Messages }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmInbox under Integrations"
+      - "Activate btnReceive (Check Email)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnReceiveClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmInbox action at line 127"]
+    source_files: [2.0.x/Integrations/Messages/frmInbox.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Messages/frmInbox.cs, line: 127, text: "btnReceiveClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

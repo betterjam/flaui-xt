@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0056
+    title: "frmStaffFloorMap: action btnZone"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmStaffFloorMap, entity: FloorPlan }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmStaffFloorMap under Integrations"
+      - "Activate btnZone"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnZoneClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmStaffFloorMap action at line 197"]
+    source_files: [2.0.x/Integrations/FloorPlan/frmStaffFloorMap.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/FloorPlan/frmStaffFloorMap.cs, line: 197, text: "btnZoneClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/FloorPlan/frmStaffProp.cs  (2 anchors)
+  # ----------------------------------------------------------------------

@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0079
+    title: "frmPA1014: action btnOK (Save)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmPA1014, entity: LCB }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmPA1014 under Integrations"
+      - "Activate btnOK (Save)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnOKClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmPA1014 action at line 764"]
+    source_files: [2.0.x/Integrations/LCB/frmPA1014.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LCB/frmPA1014.cs, line: 764, text: "btnOKClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

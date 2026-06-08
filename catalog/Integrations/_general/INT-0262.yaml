@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0262
+    title: "Kiosk: existing member checks in (open menu -> check in -> successful)"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmKiosk, entity: Kiosk }
+    chains: [INT-0074, INT-0060, INT-0065]
+    preconditions: [Logged in as admin]
+    steps:
+      - "From the kiosk menu choose Check In"
+      - "Identify the member and confirm Check In"
+      - "Confirm the check-in succeeded"
+    expected:
+      - "Check In is accepted and the message 'Successful.' is shown"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Integrations/Kiosk/frmKiosk.cs
+      - 2.0.x/Integrations/Kiosk/frmCheckIn.cs
+    evidence: []
+    flow_hash: "E651C84B56A50194"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

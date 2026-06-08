@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0118
+    title: "frmCalendar: action btnGetPrice (Get All Prices)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmCalendar, entity: LMP }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmCalendar under Integrations"
+      - "Activate btnGetPrice (Get All Prices)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnGetPriceClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmCalendar action at line 239"]
+    source_files: [2.0.x/Integrations/LMP/frmCalendar.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LMP/frmCalendar.cs, line: 239, text: "btnGetPriceClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

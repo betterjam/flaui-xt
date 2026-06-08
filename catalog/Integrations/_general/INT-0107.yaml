@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0107
+    title: "csClassLMP: Success - Get all prices successful."
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: csClassLMP, entity: LMP }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Exercise csClassLMP under Integrations"
+      - "Perform the action that succeeds"
+      - "Observe the confirmation message"
+    expected:
+      - "Message shown: Get all prices successful."
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["csClassLMP message at line 1913"]
+    source_files: [2.0.x/Integrations/LMP/csClassLMP.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LMP/csClassLMP.cs, line: 1913, text: "Get all prices successful." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

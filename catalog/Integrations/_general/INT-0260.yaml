@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0260
+    title: "frmDateRange: toggle chkTest (RJR Test File)"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmDateRange, entity: ScanData }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmDateRange under Integrations"
+      - "Toggle chkTest (RJR Test File)"
+      - "Observe the setting-driven behavior"
+    expected:
+      - "Handler chkTestCheckedChanged runs and the toggle state is persisted/applied"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmDateRange toggle at line 111"]
+    source_files: [2.0.x/Integrations/ScanData/frmDateRange.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/ScanData/frmDateRange.cs, line: 111, text: "chkTestCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ======================================================================
+  # Composite end-to-end flows (chain atomic ids; add no new anchors)
+  # ======================================================================

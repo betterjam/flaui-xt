@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Integrations",
+    "anchorsTotal":  260,
+    "covered":  260,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  265,
+    "atomic":  260,
+    "composite":  5,
+    "uncoveredAnchors":  [
+
+                         ]
+}

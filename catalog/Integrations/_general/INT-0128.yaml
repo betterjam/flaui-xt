@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0128
+    title: "frmLMP: Success - Sent Log successfully."
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLMP, entity: LMP }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmLMP under Integrations"
+      - "Perform the action that succeeds"
+      - "Observe the confirmation message"
+    expected:
+      - "Message shown: Sent Log successfully."
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmLMP message at line 49"]
+    source_files: [2.0.x/Integrations/LMP/frmLMP.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LMP/frmLMP.cs, line: 49, text: "Sent Log successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

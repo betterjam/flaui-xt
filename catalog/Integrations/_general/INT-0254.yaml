@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0254
+    title: "csClassScan: Warning - Altria/RJR scan message (line 1121)"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: csClassScan, entity: ScanData }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Exercise csClassScan under Integrations"
+      - "Perform the action that triggers the guard"
+      - "Observe the warning message"
+    expected:
+      - "Message shown (interpolated Altria/RJR text): {(_IsAltria ? "
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["csClassScan message at line 1121"]
+    source_files: [2.0.x/Integrations/ScanData/csClassScan.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/ScanData/csClassScan.cs, line: 1121, text: "{(_IsAltria ? " }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

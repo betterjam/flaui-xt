@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0091
+    title: "frmPA1055c: Success - Changes accepted."
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmPA1055c, entity: LCB }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmPA1055c under Integrations"
+      - "Perform the action that succeeds"
+      - "Observe the confirmation message"
+    expected:
+      - "Message shown: Changes accepted."
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmPA1055c message at line 122"]
+    source_files: [2.0.x/Integrations/LCB/frmPA1055c.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LCB/frmPA1055c.cs, line: 122, text: "Changes accepted." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/LCB/frmSelect.cs  (2 anchors)
+  # ----------------------------------------------------------------------

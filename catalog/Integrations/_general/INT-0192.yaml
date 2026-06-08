@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0192
+    title: "frmMenu: action btnBirthdayAdv (Birthday Advanced)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Messages }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmMenu under Integrations"
+      - "Activate btnBirthdayAdv (Birthday Advanced)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnBirthdayAdvClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmMenu action at line 17"]
+    source_files: [2.0.x/Integrations/Messages/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Messages/frmMenu.cs, line: 17, text: "btnBirthdayAdvClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

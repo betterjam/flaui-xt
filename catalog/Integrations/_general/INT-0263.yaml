@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0263
+    title: "LCB: build a PA1014 report (add lines -> accept -> save)"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmPA1014, entity: LCB }
+    chains: [INT-0082, INT-0085, INT-0079, INT-0080]
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the PA1014ab line editor and add a line"
+      - "Accept the line changes"
+      - "Save the PA1014 report"
+      - "Confirm the report saved successfully"
+    expected:
+      - "Lines are accepted and the PA1014 report shows 'Saved successfully.'"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Integrations/LCB/frmPA1014.cs
+      - 2.0.x/Integrations/LCB/frmPA1014ab.cs
+    evidence: []
+    flow_hash: "8CD8032943646E4C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

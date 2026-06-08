@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0071
+    title: "frmJoin: Success - Saved successfully."
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmJoin, entity: Kiosk }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmJoin under Integrations"
+      - "Perform the action that succeeds"
+      - "Observe the confirmation message"
+    expected:
+      - "Message shown: Saved successfully."
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmJoin message at line 178"]
+    source_files: [2.0.x/Integrations/Kiosk/frmJoin.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Kiosk/frmJoin.cs, line: 178, text: "Saved successfully." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/Kiosk/frmKiosk.cs  (4 anchors)
+  # ----------------------------------------------------------------------

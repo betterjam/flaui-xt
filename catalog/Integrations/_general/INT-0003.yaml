@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0003
+    title: "frmSetFloorMap: action btnAdd (Add)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSetFloorMap, entity: FloorPlan }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSetFloorMap under Integrations"
+      - "Activate btnAdd (Add)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnAddClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSetFloorMap action at line 427]
+    source_files: [2.0.x/Integrations/FloorPlan/frmSetFloorMap.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/FloorPlan/frmSetFloorMap.cs, line: 427, text: "btnAddClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

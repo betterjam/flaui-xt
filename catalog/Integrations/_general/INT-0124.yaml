@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0124
+    title: "frmLMP: permission btnReset (Utilities.LMPReset)"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmLMP, entity: LMP }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmLMP under Integrations"
+      - "Attempt to use btnReset (Reset MS Sales) without right Utilities.LMPReset"
+      - "Observe access is gated by the permission"
+    expected:
+      - "Access to btnReset is controlled by right Utilities.LMPReset"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmLMP permission at line 23"]
+    source_files: [2.0.x/Integrations/LMP/frmLMP.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LMP/frmLMP.cs, line: 23, text: "perm:Utilities.LMPReset" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

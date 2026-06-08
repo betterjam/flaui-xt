@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0029
+    title: "frmSetStatus: permission btnJoin (Register.FloorPlan.Join)"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmSetStatus, entity: FloorPlan }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSetStatus under Integrations"
+      - "Attempt to use btnJoin (Join To) without right Register.FloorPlan.Join"
+      - "Observe access is gated by the permission"
+    expected:
+      - "Access to btnJoin is controlled by right Register.FloorPlan.Join"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmSetStatus permission at line 105"]
+    source_files: [2.0.x/Integrations/FloorPlan/frmSetStatus.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/FloorPlan/frmSetStatus.cs, line: 105, text: "perm:Register.FloorPlan.Join" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

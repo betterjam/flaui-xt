@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0244
+    title: "frmSendEmail: Warning - Invalid email address (line 112)"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmSendEmail, entity: Messages }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSendEmail under Integrations"
+      - "Perform the action that triggers the guard"
+      - "Observe the warning message"
+    expected:
+      - "Message shown: Invalid email address\n"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmSendEmail message at line 112"]
+    source_files: [2.0.x/Integrations/Messages/frmSendEmail.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Messages/frmSendEmail.cs, line: 112, text: "Invalid email address\n" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

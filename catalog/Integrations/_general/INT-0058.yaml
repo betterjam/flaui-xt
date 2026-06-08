@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0058
+    title: "frmStaffProp: action dgvStaff cell click"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmStaffProp, entity: FloorPlan }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmStaffProp under Integrations"
+      - "Activate dgvStaff"
+      - "Observe the resulting action"
+    expected:
+      - "Handler dgvStaffCellClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmStaffProp action at line 52"]
+    source_files: [2.0.x/Integrations/FloorPlan/frmStaffProp.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/FloorPlan/frmStaffProp.cs, line: 52, text: "dgvStaffCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ======================================================================
+  # Kiosk
+  # ======================================================================
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/Kiosk/frmCheckIn.cs  (7 anchors)
+  # ----------------------------------------------------------------------

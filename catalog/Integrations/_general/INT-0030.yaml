@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0030
+    title: "frmSetStatus: permission btnMove (Register.FloorPlan.MoveTo)"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmSetStatus, entity: FloorPlan }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSetStatus under Integrations"
+      - "Attempt to use btnMove (Move To) without right Register.FloorPlan.MoveTo"
+      - "Observe access is gated by the permission"
+    expected:
+      - "Access to btnMove is controlled by right Register.FloorPlan.MoveTo"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmSetStatus permission at line 106"]
+    source_files: [2.0.x/Integrations/FloorPlan/frmSetStatus.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/FloorPlan/frmSetStatus.cs, line: 106, text: "perm:Register.FloorPlan.MoveTo" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

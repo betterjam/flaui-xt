@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0033
+    title: "frmSetStatus: permission btnPrint (Register.PrintOrder)"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmSetStatus, entity: FloorPlan }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSetStatus under Integrations"
+      - "Attempt to use btnPrint (Print Check) without right Register.PrintOrder"
+      - "Observe access is gated by the permission"
+    expected:
+      - "Access to btnPrint is controlled by right Register.PrintOrder"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmSetStatus permission at line 109"]
+    source_files: [2.0.x/Integrations/FloorPlan/frmSetStatus.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/FloorPlan/frmSetStatus.cs, line: 109, text: "perm:Register.PrintOrder" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

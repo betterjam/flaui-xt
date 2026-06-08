@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0190
+    title: "frmInbox: Warning - Server did not accept user credentials."
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmInbox, entity: Messages }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmInbox under Integrations"
+      - "Perform the action that triggers the guard"
+      - "Observe the warning message"
+    expected:
+      - "Message shown: Server did not accept user credentials."
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmInbox message at line 165"]
+    source_files: [2.0.x/Integrations/Messages/frmInbox.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Messages/frmInbox.cs, line: 165, text: "Server did not accept user credentials." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

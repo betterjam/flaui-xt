@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0020
+    title: "frmSetProp: toggle chkActive (Active)"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmSetProp, entity: FloorPlan }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSetProp under Integrations"
+      - "Toggle chkActive (Active)"
+      - "Observe the setting-driven behavior"
+    expected:
+      - "Handler chkActiveCheckedChanged runs and the toggle state is persisted/applied"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmSetProp toggle at line 95"]
+    source_files: [2.0.x/Integrations/FloorPlan/frmSetProp.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/FloorPlan/frmSetProp.cs, line: 95, text: "chkActiveCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/FloorPlan/frmSetSection.cs  (2 anchors)
+  # ----------------------------------------------------------------------

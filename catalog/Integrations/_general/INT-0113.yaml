@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0113
+    title: "frmAdjust: action dgvLMP cell click"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmAdjust, entity: LMP }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmAdjust under Integrations"
+      - "Activate dgvLMP"
+      - "Observe the resulting action"
+    expected:
+      - "Handler dgvLMPCellClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmAdjust action at line 183"]
+    source_files: [2.0.x/Integrations/LMP/frmAdjust.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LMP/frmAdjust.cs, line: 183, text: "dgvLMPCellClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------
+  # 2.0.x/Integrations/LMP/frmCalendar.cs  (10 anchors)
+  # ----------------------------------------------------------------------

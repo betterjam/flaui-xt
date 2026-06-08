@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0096
+    title: "frmSelectPA1055: action btnDelete (Remove Line)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelectPA1055, entity: LCB }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmSelectPA1055 under Integrations"
+      - "Activate btnDelete (Remove Line)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnDeleteClick runs and the expected screen/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmSelectPA1055 action at line 134"]
+    source_files: [2.0.x/Integrations/LCB/frmSelectPA1055.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/LCB/frmSelectPA1055.cs, line: 134, text: "btnDeleteClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Integrations.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Integrations
+test_case:
+  - id: INT-0063
+    title: "frmCheckIn: Warning - Customer not found, try again."
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmCheckIn, entity: Kiosk }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open frmCheckIn under Integrations"
+      - "Perform the action that triggers the guard"
+      - "Observe the warning message"
+    expected:
+      - "Message shown: Customer not found, try again."
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: ["frmCheckIn message at line 147"]
+    source_files: [2.0.x/Integrations/Kiosk/frmCheckIn.cs]
+    evidence:
+      - { file: 2.0.x/Integrations/Kiosk/frmCheckIn.cs, line: 147, text: "Customer not found, try again." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

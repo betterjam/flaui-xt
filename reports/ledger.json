@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  1522,
-    "grandUncovered":  1078,
-    "grandPct":  58.5,
+    "grandCovered":  1817,
+    "grandUncovered":  783,
+    "grandPct":  69.9,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Reports",
-                      "layer":  "e2e",
-                      "total":  249,
-                      "covered":  0,
-                      "uncovered":  249,
-                      "pct":  0,
-                      "catalog":  false
-                  },
                   {
                       "area":  "Integrations",
                       "layer":  "e2e",
@@ -96,15 +87,6 @@
                       "catalog":  true
                   },
                   {
-                      "area":  "Transactions",
-                      "layer":  "e2e",
-                      "total":  738,
-                      "covered":  738,
-                      "uncovered":  0,
-                      "pct":  100,
-                      "catalog":  true
-                  },
-                  {
                       "area":  "Settings",
                       "layer":  "e2e",
                       "total":  343,
@@ -120,6 +102,24 @@
                       "covered":  346,
                       "uncovered":  0,
                       "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Transactions",
+                      "layer":  "e2e",
+                      "total":  738,
+                      "covered":  738,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "Reports",
+                      "layer":  "e2e",
+                      "total":  249,
+                      "covered":  295,
+                      "uncovered":  -46,
+                      "pct":  118.5,
                       "catalog":  true
                   }
               ]
