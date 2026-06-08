@@ -1,0 +1,2989 @@
+﻿feature: Main
+description: >
+  Main module forms under 2.0.x/Main: the app shell (frmMain), main menu (frmMenu),
+  lock screen (frmLock), dashboard charting (frmDashBoard), POS-type selector
+  (frmSelect), remote support (frmSupport), recovery console (frmRecover), and startup
+  (Start). One atomic case per code anchor (message/action/toggle/permission);
+  composites chain a form's atomics into a realistic open->act flow. Locators are
+  referenced from existing recordings, never fabricated.
+source_paths:
+  - 2.0.x/Main
+flavors: []
+
+test_cases:
+  # ========================================================================
+  # 2.0.x/Main/frmDashBoard.cs  (11 anchors: 6 action, 5 toggle)
+  # ========================================================================
+  - id: MAIN-0001
+    title: "frmDashBoard: action btnSettings"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnSettings"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnSettingsClick runs and the chart settings panel/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnSettings at line 636]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 636, text: "btnSettingsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0002
+    title: "frmDashBoard: action btnZoomOut"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnZoomOut"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnZoomOutClick runs and the chart zooms out"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnZoomOut at line 641]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 641, text: "btnZoomOutClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0003
+    title: "frmDashBoard: toggle chkGridMajor (Major Grid)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Toggle chkGridMajor (Major Grid) on, then off"
+      - "Observe the chart redraw for each state"
+    expected:
+      - "chkGridMajorCheckedChanged runs; the major grid lines show when on and hide when off"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard toggle chkGridMajor at line 721]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 721, text: "chkGridMajorCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0004
+    title: "frmDashBoard: toggle chkGridMinor (Minor Grid)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Toggle chkGridMinor (Minor Grid) on, then off"
+      - "Observe the chart redraw for each state"
+    expected:
+      - "chkGridMinorCheckedChanged runs; the minor grid lines show when on and hide when off"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard toggle chkGridMinor at line 726]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 726, text: "chkGridMinorCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0005
+    title: "frmDashBoard: toggle chkMovingAvg (Moving Avg.)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Toggle chkMovingAvg (Moving Avg.) on, then off"
+      - "Observe the chart redraw for each state"
+    expected:
+      - "chkMovingAvgCheckedChanged runs; the moving-average series shows when on and hides when off"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard toggle chkMovingAvg at line 731]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 731, text: "chkMovingAvgCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0006
+    title: "frmDashBoard: toggle chkShowLabels (Point Labels)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Toggle chkShowLabels (Point Labels) on, then off"
+      - "Observe the chart redraw for each state"
+    expected:
+      - "chkShowLabelsCheckedChanged runs; point labels show when on and hide when off"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard toggle chkShowLabels at line 736]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 736, text: "chkShowLabelsCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0007
+    title: "frmDashBoard: toggle chkTrendLine (Trend Line)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Toggle chkTrendLine (Trend Line) on, then off"
+      - "Observe the chart redraw for each state"
+    expected:
+      - "chkTrendLineCheckedChanged runs; the trend line shows when on and hides when off"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard toggle chkTrendLine at line 742]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 742, text: "chkTrendLineCheckedChanged" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0008
+    title: "frmDashBoard: action btnPlotColumn (column chart)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnPlotColumn"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPlotColumnClick runs and the chart re-renders as a column plot"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnPlotColumn at line 1000]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 1000, text: "btnPlotColumnClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0009
+    title: "frmDashBoard: action btnPlotLine (line chart)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnPlotLine"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPlotLineClick runs and the chart re-renders as a line plot"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnPlotLine at line 1006]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 1006, text: "btnPlotLineClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0010
+    title: "frmDashBoard: action btnPlotPie (pie chart)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnPlotPie"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPlotPieClick runs and the chart re-renders as a pie plot"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnPlotPie at line 1012]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 1012, text: "btnPlotPieClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0011
+    title: "frmDashBoard: action btnPlotScatter (scatter chart)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnPlotScatter"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPlotScatterClick runs and the chart re-renders as a scatter plot"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnPlotScatter at line 1018]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 1018, text: "btnPlotScatterClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/frmLock.cs  (6 anchors: 5 action, 1 message)
+  # ========================================================================
+  - id: MAIN-0012
+    title: "frmLock: action btnBackSpace"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLock, entity: Login }
+    preconditions: [At the lock screen]
+    steps:
+      - "Go to the lock screen (frmLock)"
+      - "Enter digits in the PIN field, then activate btnBackSpace"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnBackSpaceClick runs and the last entered PIN digit is removed"
+    runner: ranorex
+    composes: [StartAUT, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmLock action btnBackSpace at line 364]
+    source_files: [2.0.x/Main/frmLock.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmLock.cs, line: 364, text: "btnBackSpaceClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0013
+    title: "frmLock: action btnBalance (Check Gift Card Balance)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLock, entity: Login }
+    preconditions: [At the lock screen]
+    steps:
+      - "Go to the lock screen (frmLock)"
+      - "Activate btnBalance (Check Gift Card Balance)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnBalanceClick runs and the gift-card balance check flow opens"
+    runner: ranorex
+    composes: [StartAUT, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmLock action btnBalance at line 373]
+    source_files: [2.0.x/Main/frmLock.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmLock.cs, line: 373, text: "btnBalanceClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0014
+    title: "frmLock: action btnFreshSheet (Fresh Sheet)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLock, entity: Login }
+    preconditions: [At the lock screen]
+    steps:
+      - "Go to the lock screen (frmLock)"
+      - "Activate btnFreshSheet (Fresh Sheet)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnFreshSheetClick runs and the Fresh Sheet view opens"
+    runner: ranorex
+    composes: [StartAUT, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmLock action btnFreshSheet at line 379]
+    source_files: [2.0.x/Main/frmLock.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmLock.cs, line: 379, text: "btnFreshSheetClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0015
+    title: "frmLock: action btnHours"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLock, entity: Login }
+    preconditions: [At the lock screen]
+    steps:
+      - "Go to the lock screen (frmLock)"
+      - "Activate btnHours"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnHoursClick runs and the staff hours/time-clock flow opens"
+    runner: ranorex
+    composes: [StartAUT, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmLock action btnHours at line 385]
+    source_files: [2.0.x/Main/frmLock.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmLock.cs, line: 385, text: "btnHoursClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0016
+    title: "frmLock: Warning - No remote software installed."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmLock, entity: Login }
+    preconditions: [At the lock screen, No remote-support software installed on the system]
+    steps:
+      - "Go to the lock screen (frmLock)"
+      - "Activate btnRemote (Remote Support) with no remote software installed"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: No remote software installed."
+    runner: ranorex
+    composes: [StartAUT, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmLock message at line 395]
+    source_files: [2.0.x/Main/frmLock.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmLock.cs, line: 395, text: "No remote software installed." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0017
+    title: "frmLock: action btnRemote (Remote Support)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLock, entity: Login }
+    preconditions: [At the lock screen]
+    steps:
+      - "Go to the lock screen (frmLock)"
+      - "Activate btnRemote (Remote Support)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRemoteClick runs and the remote-support launch flow is attempted"
+    runner: ranorex
+    composes: [StartAUT, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmLock action btnRemote at line 399]
+    source_files: [2.0.x/Main/frmLock.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmLock.cs, line: 399, text: "btnRemoteClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/frmMain.cs  (45 anchors: 2 permission, 22 message, 21 action)
+  # ========================================================================
+  - id: MAIN-0018
+    title: "frmMain: permission Register.CompleteAuth gates btnOffline"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMain, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Register.CompleteAuth]
+    steps:
+      - "Log in as a user lacking the Register.CompleteAuth right"
+      - "Observe the app shell (frmMain)"
+      - "Attempt to use btnOffline (complete offline auth)"
+    expected:
+      - "Control btnOffline is disabled/blocked without the Register.CompleteAuth right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain permission at line 776]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 776, text: "perm:Register.CompleteAuth" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0019
+    title: "frmMain: permission Register.Access gates btnRegister"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMain, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Register.Access]
+    steps:
+      - "Log in as a user lacking the Register.Access right"
+      - "Observe the app shell (frmMain)"
+      - "Attempt to use btnRegister"
+    expected:
+      - "Control btnRegister is disabled/blocked without the Register.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain permission at line 777]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 777, text: "perm:Register.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0020
+    title: "frmMain: Warning - Network adapter not found, cannot continue."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [No network adapter present]
+    steps:
+      - "Start the app on a system with no network adapter"
+      - "Reach the frmMain startup checks"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Network adapter not found, cannot continue."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 873]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 873, text: "Network adapter not found, cannot continue." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0021
+    title: "frmMain: Warning - SQL Server service is not running (restart, path A)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [SQL Server service is stopped]
+    steps:
+      - "Start the app with the SQL Server service stopped"
+      - "Reach the frmMain database-availability check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: SQL Server service is not running.\\nSoftware will restart."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1009]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1009, text: "SQL Server service is not running.\\nSoftware will restart." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0022
+    title: "frmMain: Warning - SQL Server service is not running (restart, path B)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [SQL Server service is stopped]
+    steps:
+      - "Start the app with the SQL Server service stopped"
+      - "Reach the second frmMain database-availability check branch"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: SQL Server service is not running.\\nSoftware will restart."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1017]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1017, text: "SQL Server service is not running.\\nSoftware will restart." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0023
+    title: "frmMain: Warning - Fail database restore from backup"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [A database restore from backup is attempted and fails]
+    steps:
+      - "Trigger a database restore from backup in frmMain"
+      - "Cause the restore to fail"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Fail database restore from backup"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1206]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1206, text: "Fail database restore from backup" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0024
+    title: "frmMain: Success - Database restored from backup."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: System }
+    preconditions: [A valid backup is available to restore]
+    steps:
+      - "Trigger a database restore from backup in frmMain"
+      - "Let the restore complete successfully"
+      - "Observe the dialog text"
+    expected:
+      - "Success dialog text is: Database restored from backup."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1211]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1211, text: "Database restored from backup." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0025
+    title: "frmMain: Warning - Fail database restore from backup. (post-restore)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [A database restore from backup is attempted and fails]
+    steps:
+      - "Trigger a database restore from backup in frmMain"
+      - "Cause the post-restore validation to fail"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Fail database restore from backup."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1214]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1214, text: "Fail database restore from backup." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0026
+    title: "frmMain: Warning - SQL Server Database does not exist or access denied (path A)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [The Exatouch database is missing or inaccessible]
+    steps:
+      - "Start the app pointed at a missing/denied database"
+      - "Reach the frmMain database-existence check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: SQL Server Database does not exist or access denied."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1221]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1221, text: "SQL Server Database does not exist or access denied." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0027
+    title: "frmMain: Warning - SQL Server Database does not exist or access denied (path B)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [The Exatouch database is missing or inaccessible]
+    steps:
+      - "Start the app pointed at a missing/denied database"
+      - "Reach the second frmMain database-existence check branch"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: SQL Server Database does not exist or access denied."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1245]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1245, text: "SQL Server Database does not exist or access denied." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0028
+    title: "frmMain: Warning - Current database version is greater than software version"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Database schema version is newer than the running software]
+    steps:
+      - "Start the app against a database newer than the software build"
+      - "Reach the frmMain version-compatibility check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Current database version is greater than software version.\\nSystem may not function properly."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1265]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1265, text: "Current database version is greater than software version.\\nSystem may not function properly." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0029
+    title: "frmMain: Warning - Error updating database, software need restart."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [A database schema update is attempted and fails]
+    steps:
+      - "Start the app so it runs a database update"
+      - "Cause the update to fail"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Error updating database, software need restart."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1307]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1307, text: "Error updating database, software need restart." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0030
+    title: "frmMain: Warning - Server not found. Bring server online"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Running as a client terminal with the server offline]
+    steps:
+      - "Start a client terminal while the server is offline"
+      - "Reach the frmMain server-connectivity check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text begins: Server not found. Bring server online and click"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1576]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1576, text: "Server not found. Bring server online and click \\" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0031
+    title: "frmMain: Warning - OATH Key not set in account settings for LMP (path A)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [LMP account settings have no OATH key configured]
+    steps:
+      - "Reach the frmMain LMP initialization path with no OATH key set"
+      - "Trigger the account/LMP check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: OATH Key not set in account settings for LMP!"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1735]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1735, text: "OATH Key not set in account settings for LMP!" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0032
+    title: "frmMain: Warning - Error Wrong Merchant ID For Terminal"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Terminal merchant ID does not match account configuration]
+    steps:
+      - "Reach the frmMain merchant/terminal validation"
+      - "Use a terminal whose merchant ID is wrong"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Error Wrong Merchant ID For Terminal!!"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2039]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2039, text: "Error Wrong Merchant ID For Terminal!!" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0033
+    title: "frmMain: Warning - Account init error."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Account initialization fails]
+    steps:
+      - "Reach the frmMain account-initialization path"
+      - "Cause account init to fail"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Account init error."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2051]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2051, text: "Account init error." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0034
+    title: "frmMain: Warning - OATH Key not set in account settings for LMP (path B)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [LMP account settings have no OATH key configured]
+    steps:
+      - "Reach the second frmMain LMP initialization branch with no OATH key set"
+      - "Trigger the account/LMP check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: OATH Key not set in account settings for LMP!"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2111]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2111, text: "OATH Key not set in account settings for LMP!" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0035
+    title: "frmMain: Warning - Store ID is currently set to 40800"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Store ID is at the default/placeholder value 40800]
+    steps:
+      - "Reach the frmMain store-ID validation"
+      - "Run with the store ID left at 40800"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text begins: Store ID is currently set to 40800"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2124]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2124, text: "Store ID is currently set to 40800" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0036
+    title: "frmMain: Warning - Barcode has incorrect format (scan path A)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmMain, entity: Barcode }
+    preconditions: [Logged in at the app shell]
+    steps:
+      - "From frmMain, scan/enter a malformed barcode"
+      - "Trigger the barcode-format validation (path A)"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Barcode has incorrect format."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2576]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2576, text: "Barcode has incorrect format." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0037
+    title: "frmMain: Warning - Coupon not found or used."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmMain, entity: Barcode }
+    preconditions: [Logged in at the app shell]
+    steps:
+      - "From frmMain, scan a coupon barcode that is unknown or already redeemed"
+      - "Trigger the coupon lookup"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Coupon not found or used."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2588]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2588, text: "Coupon not found or used." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0038
+    title: "frmMain: Warning - Barcode has incorrect format (scan path B)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmMain, entity: Barcode }
+    preconditions: [Logged in at the app shell]
+    steps:
+      - "From frmMain, scan/enter a malformed barcode"
+      - "Trigger the barcode-format validation (path B)"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Barcode has incorrect format."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2602]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2602, text: "Barcode has incorrect format." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0039
+    title: "frmMain: Warning - Barcode has incorrect format (scan path C)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmMain, entity: Barcode }
+    preconditions: [Logged in at the app shell]
+    steps:
+      - "From frmMain, scan/enter a malformed barcode"
+      - "Trigger the barcode-format validation (path C)"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Barcode has incorrect format."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2614]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2614, text: "Barcode has incorrect format." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0040
+    title: "frmMain: Warning - Barcode has incorrect format (scan path D)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmMain, entity: Barcode }
+    preconditions: [Logged in at the app shell]
+    steps:
+      - "From frmMain, scan/enter a malformed barcode"
+      - "Trigger the barcode-format validation (path D)"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Barcode has incorrect format."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2633]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2633, text: "Barcode has incorrect format." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0041
+    title: "frmMain: Warning - Barcode has incorrect format (scan path E)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: validation, ui_area: frmMain, entity: Barcode }
+    preconditions: [Logged in at the app shell]
+    steps:
+      - "From frmMain, scan/enter a malformed barcode"
+      - "Trigger the barcode-format validation (path E)"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Barcode has incorrect format."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2647]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2647, text: "Barcode has incorrect format." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0042
+    title: "frmMain: Warning - Battery Low"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Running on a battery-powered terminal with a low charge]
+    steps:
+      - "Run frmMain on a device whose battery level is low"
+      - "Trigger the battery-level check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text begins: Battery Low, <level>% Left (interpolated from mBatteryLevel)"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 3106]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3106, text: "Battery Low, {mBatteryLevel}% Left" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0043
+    title: "frmMain: action btnAbout"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnAbout"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnAboutClick runs and the About dialog/screen opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnAbout at line 3878]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3878, text: "btnAboutClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0044
+    title: "frmMain: action btnAlert"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnAlert"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnAlertClick runs and the alerts panel opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnAlert at line 3886]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3886, text: "btnAlertClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0045
+    title: "frmMain: action btnBack"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin, In a module reachable from the shell]
+    steps:
+      - "Navigate into a module from frmMain"
+      - "Activate btnBack"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnBackClick runs and the app navigates back to the previous screen"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, MainMenuBackIcon, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, MainMenuBackIcon]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnBack at line 3893]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3893, text: "btnBackClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0046
+    title: "frmMain: action btnNotification"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnNotification"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnNotificationClick runs and the notifications panel opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnNotification at line 3898]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3898, text: "btnNotificationClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0047
+    title: "frmMain: action btnDisconnected"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnDisconnected"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnDisconnectedClick runs and the disconnected/connectivity status flow opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnDisconnected at line 3906]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3906, text: "btnDisconnectedClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0048
+    title: "frmMain: action btnHelp"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnHelp"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnHelpClick runs and the help screen opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnHelp at line 3911]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3911, text: "btnHelpClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0049
+    title: "frmMain: action btnHome"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin, In a module reachable from the shell]
+    steps:
+      - "Navigate into a module from frmMain"
+      - "Activate btnHome"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnHomeClick runs and the app returns to the home/main menu"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, MainMenuHomeIcon, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, MainMenuHomeIcon]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnHome at line 3919]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3919, text: "btnHomeClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0050
+    title: "frmMain: Warning - Insufficient access level."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMain, entity: AccessRight }
+    preconditions: [Logged in as a user without the required access level]
+    steps:
+      - "Log in as a low-privilege user"
+      - "Attempt a shell action that requires a higher access level"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Insufficient access level."
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 3930]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3930, text: "Insufficient access level." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0051
+    title: "frmMain: action btnInfo"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnInfo"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnInfoClick runs and the system info screen opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnInfo at line 3939]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3939, text: "btnInfoClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0052
+    title: "frmMain: action btnLock (lock the terminal)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnLock"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnLockClick runs and the lock screen (frmLock) is shown"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnLock at line 3947]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3947, text: "btnLockClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0053
+    title: "frmMain: action btnMenuUp"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnMenuUp"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnMenuUpClick runs and the main menu is raised/expanded"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnMenuUp at line 3958]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3958, text: "btnMenuUpClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0054
+    title: "frmMain: action btnOffline (single click)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnOffline with a single click"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnOfflineClick runs and the offline-mode/complete-auth flow is invoked"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnOffline at line 3971]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3971, text: "btnOfflineClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0055
+    title: "frmMain: action btnOffline (double click)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Double-click btnOffline"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnOfflineDoubleClick runs and the double-click offline flow is invoked"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnOffline doubleclick at line 3978]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3978, text: "btnOfflineDoubleClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0056
+    title: "frmMain: action btnPower"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnPower"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPowerClick runs and the power/shutdown options flow opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnPower at line 3983]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3983, text: "btnPowerClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0057
+    title: "frmMain: action btnQCustomers (quick customers)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnQCustomers"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnQCustomersClick runs and the quick-customers view opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnQCustomers at line 3991]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3991, text: "btnQCustomersClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0058
+    title: "frmMain: action btnRegister (open register)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin with Register.Access]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnRegister"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRegisterClick runs and the Register module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnRegister at line 3996]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3996, text: "btnRegisterClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0059
+    title: "frmMain: action btnSupport"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnSupport"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnSupportClick runs and the support form (frmSupport) opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnSupport at line 4002]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 4002, text: "btnSupportClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0060
+    title: "frmMain: action lnkCallID (Calls Waiting)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin, Caller-ID integration active with calls waiting]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate lnkCallID (Calls Waiting)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler lnkCallIDClick runs and the calls-waiting / caller-ID view opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action lnkCallID at line 4017]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 4017, text: "lnkCallIDClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0061
+    title: "frmMain: action lnkDay (business day link)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate lnkDay"
+      - "Observe the resulting action"
+    expected:
+      - "Handler lnkDayClick runs and the business-day / date view opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action lnkDay at line 4048]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 4048, text: "lnkDayClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0062
+    title: "frmMain: Warning - OATH Key not set in account settings for LMP (path C)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [LMP account settings have no OATH key configured]
+    steps:
+      - "Reach the third frmMain LMP path with no OATH key set"
+      - "Trigger the account/LMP check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: OATH Key not set in account settings for LMP!"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 4300]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 4300, text: "OATH Key not set in account settings for LMP!" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/frmMenu.cs  (21 anchors: 10 permission, 11 action)
+  # ========================================================================
+  - id: MAIN-0063
+    title: "frmMenu: permission Customers.Access gates btnCustomers"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Customers.Access]
+    steps:
+      - "Log in as a user lacking the Customers.Access right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnCustomers (Customers)"
+    expected:
+      - "Control btnCustomers is disabled/blocked without the Customers.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 64]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 64, text: "perm:Customers.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0064
+    title: "frmMenu: permission Items.Access gates btnItems"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Items.Access]
+    steps:
+      - "Log in as a user lacking the Items.Access right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnItems (Items)"
+    expected:
+      - "Control btnItems is disabled/blocked without the Items.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 65]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 65, text: "perm:Items.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0065
+    title: "frmMenu: permission Messages gates btnMessages"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking the Messages right]
+    steps:
+      - "Log in as a user lacking the Messages right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnMessages (Messages)"
+    expected:
+      - "Control btnMessages is disabled/blocked without the Messages right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 66]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 66, text: "perm:Messages" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0066
+    title: "frmMenu: permission Purchasing.Access gates btnPurchasing"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Purchasing.Access]
+    steps:
+      - "Log in as a user lacking the Purchasing.Access right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnPurchasing (Purchasing)"
+    expected:
+      - "Control btnPurchasing is disabled/blocked without the Purchasing.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 67]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 67, text: "perm:Purchasing.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0067
+    title: "frmMenu: permission Register.Access gates btnRegister"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Register.Access]
+    steps:
+      - "Log in as a user lacking the Register.Access right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnRegister (Register)"
+    expected:
+      - "Control btnRegister is disabled/blocked without the Register.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 68]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 68, text: "perm:Register.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0068
+    title: "frmMenu: permission Report.Access gates btnReports"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Report.Access]
+    steps:
+      - "Log in as a user lacking the Report.Access right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnReports (Reports)"
+    expected:
+      - "Control btnReports is disabled/blocked without the Report.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 69]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 69, text: "perm:Report.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0069
+    title: "frmMenu: permission Schedule gates btnSchedule"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking the Schedule right]
+    steps:
+      - "Log in as a user lacking the Schedule right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnSchedule (Services Schedule)"
+    expected:
+      - "Control btnSchedule is disabled/blocked without the Schedule right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 70]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 70, text: "perm:Schedule" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0070
+    title: "frmMenu: permission Settings.Access gates btnSettings"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Settings.Access]
+    steps:
+      - "Log in as a user lacking the Settings.Access right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnSettings (Settings)"
+    expected:
+      - "Control btnSettings is disabled/blocked without the Settings.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 71]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 71, text: "perm:Settings.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0071
+    title: "frmMenu: permission Staff gates btnStaff"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking the Staff right]
+    steps:
+      - "Log in as a user lacking the Staff right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnStaff (Staff)"
+    expected:
+      - "Control btnStaff is disabled/blocked without the Staff right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 72]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 72, text: "perm:Staff" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0072
+    title: "frmMenu: permission Utilities.Access gates btnUtil"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Utilities.Access]
+    steps:
+      - "Log in as a user lacking the Utilities.Access right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnUtil (Utilities)"
+    expected:
+      - "Control btnUtil is disabled/blocked without the Utilities.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 73]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 73, text: "perm:Utilities.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0073
+    title: "frmMenu: action btnCustomers (open Customers)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnCustomers (Customers)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnCustomersClick runs and the Customers module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnCustomers at line 77]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 77, text: "btnCustomersClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0074
+    title: "frmMenu: action btnDashboard (open Dashboard)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnDashboard (Dashboard)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnDashboardClick runs and the Dashboard (frmDashBoard) opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnDashboard at line 82]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 82, text: "btnDashboardClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0075
+    title: "frmMenu: action btnItems (open Items)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnItems (Items)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnItemsClick runs and the Items module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToItems, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToItems]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnItems at line 87]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 87, text: "btnItemsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0076
+    title: "frmMenu: action btnMessages (open Messages)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnMessages (Messages)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnMessagesClick runs and the Messages module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnMessages at line 92]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 92, text: "btnMessagesClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0077
+    title: "frmMenu: action btnPurchasing (open Purchasing)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnPurchasing (Purchasing)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPurchasingClick runs and the Purchasing module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnPurchasing at line 97]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 97, text: "btnPurchasingClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0078
+    title: "frmMenu: action btnRegister (open Register)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin with Register.Access]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnRegister (Register)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRegisterClick runs and the Register module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnRegister at line 102]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 102, text: "btnRegisterClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0079
+    title: "frmMenu: action btnReports (open Reports)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnReports (Reports)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnReportsClick runs and the Reports module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnReports at line 107]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 107, text: "btnReportsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0080
+    title: "frmMenu: action btnSchedule (open Services Schedule)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnSchedule (Services Schedule)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnScheduleClick runs and the Services Schedule module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnSchedule at line 112]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 112, text: "btnScheduleClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0081
+    title: "frmMenu: action btnSettings (open Settings)"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin with Settings.Access]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnSettings (Settings)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnSettingsClick runs and the Settings module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToSettings, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToSettings]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnSettings at line 117]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 117, text: "btnSettingsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0082
+    title: "frmMenu: action btnStaff (open Staff)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnStaff (Staff)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnStaffClick runs and the Staff module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnStaff at line 122]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 122, text: "btnStaffClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0083
+    title: "frmMenu: action btnUtil (open Utilities)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMenu, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the main menu (frmMenu)"
+      - "Activate btnUtil (Utilities)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnUtilClick runs and the Utilities module opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu action btnUtil at line 127]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 127, text: "btnUtilClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/frmRecover.cs  (10 anchors: 9 action, 1 message)
+  # ========================================================================
+  - id: MAIN-0084
+    title: "frmRecover: action btnCmd (Command Prompt)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnCmd (Command Prompt)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnCmdClick runs and a command prompt is launched"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnCmd at line 27]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 27, text: "btnCmdClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0085
+    title: "frmRecover: action btnContinue (Continue Exatouch)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnContinue (Continue Exatouch)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnContinueClick runs and the normal Exatouch startup resumes"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnContinue at line 37]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 37, text: "btnContinueClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0086
+    title: "frmRecover: action btnInfo (System Info)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnInfo (System Info)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnInfoClick runs and the system info screen opens"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnInfo at line 42]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 42, text: "btnInfoClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0087
+    title: "frmRecover: action btnRecover (Recover From Backup)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnRecover (Recover From Backup)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRecoverClick runs and the restore-from-backup flow starts"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnRecover at line 49]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 49, text: "btnRecoverClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0088
+    title: "frmRecover: action btnReCreateDB (Recreate Database)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnReCreateDB (Recreate Database)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnReCreateDBClick runs and the database recreate flow starts"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnReCreateDB at line 55]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 55, text: "btnReCreateDBClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0089
+    title: "frmRecover: Warning - SQL Server Database does not exist or access denied."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console with a missing/inaccessible database]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Trigger a recovery action against a missing/denied database"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: SQL Server Database does not exist or access denied."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover message at line 75]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 75, text: "SQL Server Database does not exist or access denied." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0090
+    title: "frmRecover: action btnRepair (Repair Database)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnRepair (Repair Database)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRepairClick runs and the database repair flow starts"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnRepair at line 91]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 91, text: "btnRepairClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0091
+    title: "frmRecover: action btnUpdate (Download Update)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnUpdate (Download Update)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnUpdateClick runs and the software update download starts"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnUpdate at line 137]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 137, text: "btnUpdateClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0092
+    title: "frmRecover: action btnUpload (Upload Log)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnUpload (Upload Log)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnUploadClick runs and the diagnostic log upload starts"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnUpload at line 150]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 150, text: "btnUploadClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0093
+    title: "frmRecover: action btnWindows (Start Windows)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnWindows (Start Windows)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnWindowsClick runs and the app exits to the Windows desktop"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnWindows at line 158]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 158, text: "btnWindowsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/frmSelect.cs  (6 anchors: 6 action - POS business-type picker)
+  # ========================================================================
+  - id: MAIN-0094
+    title: "frmSelect: action btnLiquor (Liquor Store)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnLiquor (Liquor Store)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnLiquorClick runs and the Liquor Store profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnLiquor at line 35]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 35, text: "btnLiquorClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0095
+    title: "frmSelect: action btnPizza (Pizza)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnPizza (Pizza)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPizzaClick runs and the Pizza profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnPizza at line 42]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 42, text: "btnPizzaClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0096
+    title: "frmSelect: action btnRest (Restaurant)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnRest"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRestClick runs and the Restaurant profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnRest at line 49]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 49, text: "btnRestClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0097
+    title: "frmSelect: action btnRetail (Convenience Store)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnRetail (Convenience Store)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRetailClick runs and the Convenience Store profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnRetail at line 56]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 56, text: "btnRetailClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0098
+    title: "frmSelect: action btnSalon (Salon)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnSalon (Salon)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnSalonClick runs and the Salon profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnSalon at line 63]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 63, text: "btnSalonClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0099
+    title: "frmSelect: action btnTable (Table Service)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnTable (Table Service)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnTableClick runs and the Table Service profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnTable at line 70]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 70, text: "btnTableClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/frmSupport.cs  (5 anchors: 3 message, 2 action)
+  # ========================================================================
+  - id: MAIN-0100
+    title: "frmSupport: Warning - No remote support software installed on this system (path A)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmSupport, entity: System }
+    preconditions: [No remote-support software installed on the system]
+    steps:
+      - "Open the support form (frmSupport)"
+      - "Trigger the remote-support launch (path A) with no software installed"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: No remote support software installed on this system."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSupport message at line 29]
+    source_files: [2.0.x/Main/frmSupport.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSupport.cs, line: 29, text: "No remote support software installed on this system." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0101
+    title: "frmSupport: Warning - No remote support software installed on this system (path B)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmSupport, entity: System }
+    preconditions: [No remote-support software installed on the system]
+    steps:
+      - "Open the support form (frmSupport)"
+      - "Trigger the remote-support launch (path B) with no software installed"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: No remote support software installed on this system."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSupport message at line 45]
+    source_files: [2.0.x/Main/frmSupport.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSupport.cs, line: 45, text: "No remote support software installed on this system." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0102
+    title: "frmSupport: action btnCancel (Close)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSupport, entity: System }
+    preconditions: [The support form (frmSupport) is open]
+    steps:
+      - "Open the support form (frmSupport)"
+      - "Activate btnCancel (Close)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnCancelClick runs and the support form closes"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSupport action btnCancel at line 110]
+    source_files: [2.0.x/Main/frmSupport.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSupport.cs, line: 110, text: "btnCancelClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0103
+    title: "frmSupport: action btnOK (OK)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSupport, entity: System }
+    preconditions: [The support form (frmSupport) is open]
+    steps:
+      - "Open the support form (frmSupport)"
+      - "Activate btnOK (OK)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnOKClick runs and the support request is confirmed/submitted"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSupport action btnOK at line 115]
+    source_files: [2.0.x/Main/frmSupport.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSupport.cs, line: 115, text: "btnOKClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0104
+    title: "frmSupport: Warning - No remote software installed."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmSupport, entity: System }
+    preconditions: [No remote-support software installed on the system]
+    steps:
+      - "Open the support form (frmSupport)"
+      - "Trigger the remote-support launch fallback with no software installed"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: No remote software installed."
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSupport message at line 125]
+    source_files: [2.0.x/Main/frmSupport.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSupport.cs, line: 125, text: "No remote software installed." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/Start.cs  (1 anchor: 1 message - startup)
+  # ========================================================================
+  - id: MAIN-0105
+    title: "Start: Warning - Error loading msftedit.dll, cannot continue loading Exatouch"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: Start, entity: System }
+    preconditions: [msftedit.dll cannot be loaded on the host]
+    steps:
+      - "Start the application (Start.cs entry point)"
+      - "Cause msftedit.dll to be unavailable/unloadable"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Error loading msftedit.dll.\\nCannot continue loading Exatouch."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [Start message at line 85]
+    source_files: [2.0.x/Main/Start.cs]
+    evidence:
+      - { file: 2.0.x/Main/Start.cs, line: 85, text: "Error loading msftedit.dll.\\nCannot continue loading Exatouch." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # Composite end-to-end flows (chain atomic ids; add no new anchors)
+  # ========================================================================
+  - id: MAIN-0106
+    title: "End-to-end: open Dashboard, switch chart types and toggle overlays"
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    chains: [MAIN-0074, MAIN-0008, MAIN-0009, MAIN-0003, MAIN-0007, MAIN-0002]
+    preconditions: [Logged in as admin]
+    steps: ["Run the chained atomic cases in order"]
+    expected: ["Each chained case passes; the dashboard re-renders for each chart type and overlay"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmMenu.cs, 2.0.x/Main/frmDashBoard.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0107
+    title: "End-to-end: from main menu open Register, then return Home and Lock"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    chains: [MAIN-0078, MAIN-0049, MAIN-0052]
+    preconditions: [Logged in as admin with Register.Access]
+    steps: ["Run the chained atomic cases in order"]
+    expected: ["Each chained case passes; navigation reaches Register, returns Home, then locks the terminal"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, MainMenuHomeIcon, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, MainMenuHomeIcon]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmMenu.cs, 2.0.x/Main/frmMain.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0108
+    title: "End-to-end: lock screen utilities (fresh sheet, hours, gift balance)"
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLock, entity: Login }
+    chains: [MAIN-0052, MAIN-0014, MAIN-0015, MAIN-0013]
+    preconditions: [Logged in as admin]
+    steps: ["Run the chained atomic cases in order"]
+    expected: ["Each chained case passes; locking the terminal exposes the lock-screen utility buttons"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmMain.cs, 2.0.x/Main/frmLock.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0109
+    title: "End-to-end: regular user is gated out of privileged main-menu modules"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    chains: [MAIN-0070, MAIN-0068, MAIN-0066, MAIN-0072]
+    preconditions: [Logged in as a regular user lacking Settings/Report/Purchasing/Utilities access]
+    steps: ["Run the chained atomic permission cases in order"]
+    expected: ["Each chained case passes; every gated module button is disabled/blocked for the regular user"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: MAIN-0110
+    title: "End-to-end: recovery console continue path back into Exatouch"
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    chains: [MAIN-0086, MAIN-0090, MAIN-0085]
+    preconditions: [At the recovery console (frmRecover)]
+    steps: ["Run the chained atomic cases in order"]
+    expected: ["Each chained case passes; system info and repair are reachable, then Continue resumes Exatouch"]
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

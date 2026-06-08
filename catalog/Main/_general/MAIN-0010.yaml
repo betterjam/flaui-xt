@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0010
+    title: "frmDashBoard: action btnPlotPie (pie chart)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnPlotPie"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPlotPieClick runs and the chart re-renders as a pie plot"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnPlotPie at line 1012]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 1012, text: "btnPlotPieClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0096
+    title: "frmSelect: action btnRest (Restaurant)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnRest"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnRestClick runs and the Restaurant profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnRest at line 49]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 49, text: "btnRestClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

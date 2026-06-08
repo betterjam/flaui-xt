@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0084
+    title: "frmRecover: action btnCmd (Command Prompt)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnCmd (Command Prompt)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnCmdClick runs and a command prompt is launched"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnCmd at line 27]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 27, text: "btnCmdClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

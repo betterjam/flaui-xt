@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0069
+    title: "frmMenu: permission Schedule gates btnSchedule"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    preconditions: [Logged in as a user lacking the Schedule right]
+    steps:
+      - "Log in as a user lacking the Schedule right"
+      - "Open the main menu (frmMenu)"
+      - "Attempt to use btnSchedule (Services Schedule)"
+    expected:
+      - "Control btnSchedule is disabled/blocked without the Schedule right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMenu permission at line 70]
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMenu.cs, line: 70, text: "perm:Schedule" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

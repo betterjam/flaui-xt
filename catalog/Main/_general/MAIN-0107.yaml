@@ -1,0 +1,26 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0107
+    title: "End-to-end: from main menu open Register, then return Home and Lock"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    chains: [MAIN-0078, MAIN-0049, MAIN-0052]
+    preconditions: [Logged in as admin with Register.Access]
+    steps: ["Run the chained atomic cases in order"]
+    expected: ["Each chained case passes; navigation reaches Register, returns Home, then locks the terminal"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToRegister, MainMenuHomeIcon, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToRegister, MainMenuHomeIcon]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmMenu.cs, 2.0.x/Main/frmMain.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

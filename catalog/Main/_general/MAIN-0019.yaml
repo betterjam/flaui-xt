@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0019
+    title: "frmMain: permission Register.Access gates btnRegister"
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMain, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Register.Access]
+    steps:
+      - "Log in as a user lacking the Register.Access right"
+      - "Observe the app shell (frmMain)"
+      - "Attempt to use btnRegister"
+    expected:
+      - "Control btnRegister is disabled/blocked without the Register.Access right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain permission at line 777]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 777, text: "perm:Register.Access" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0028
+    title: "frmMain: Warning - Current database version is greater than software version"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Database schema version is newer than the running software]
+    steps:
+      - "Start the app against a database newer than the software build"
+      - "Reach the frmMain version-compatibility check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Current database version is greater than software version.\\nSystem may not function properly."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1265]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1265, text: "Current database version is greater than software version.\\nSystem may not function properly." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

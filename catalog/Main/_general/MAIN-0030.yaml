@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0030
+    title: "frmMain: Warning - Server not found. Bring server online"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Running as a client terminal with the server offline]
+    steps:
+      - "Start a client terminal while the server is offline"
+      - "Reach the frmMain server-connectivity check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text begins: Server not found. Bring server online and click"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1576]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1576, text: "Server not found. Bring server online and click \\" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

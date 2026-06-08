@@ -1,0 +1,26 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0109
+    title: "End-to-end: regular user is gated out of privileged main-menu modules"
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMenu, entity: AccessRight }
+    chains: [MAIN-0070, MAIN-0068, MAIN-0066, MAIN-0072]
+    preconditions: [Logged in as a regular user lacking Settings/Report/Purchasing/Utilities access]
+    steps: ["Run the chained atomic permission cases in order"]
+    expected: ["Each chained case passes; every gated module button is disabled/blocked for the regular user"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmMenu.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

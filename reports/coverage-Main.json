@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Main",
+    "anchorsTotal":  105,
+    "covered":  105,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  110,
+    "atomic":  105,
+    "composite":  5,
+    "uncoveredAnchors":  [
+
+                         ]
+}

@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0053
+    title: "frmMain: action btnMenuUp"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate btnMenuUp"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnMenuUpClick runs and the main menu is raised/expanded"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action btnMenuUp at line 3958]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 3958, text: "btnMenuUpClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

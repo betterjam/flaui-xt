@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0014
+    title: "frmLock: action btnFreshSheet (Fresh Sheet)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmLock, entity: Login }
+    preconditions: [At the lock screen]
+    steps:
+      - "Go to the lock screen (frmLock)"
+      - "Activate btnFreshSheet (Fresh Sheet)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnFreshSheetClick runs and the Fresh Sheet view opens"
+    runner: ranorex
+    composes: [StartAUT, GoToLockScreen, CloseAUT]
+    reference_recordings: [StartAUT, GoToLockScreen]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmLock action btnFreshSheet at line 379]
+    source_files: [2.0.x/Main/frmLock.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmLock.cs, line: 379, text: "btnFreshSheetClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

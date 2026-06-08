@@ -1,0 +1,777 @@
+﻿{
+    "feature":  "Main",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Main"
+                    ],
+    "formCount":  8,
+    "anchorTotal":  105,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  12,
+                   "action":  57,
+                   "message":  31,
+                   "toggle":  5
+               },
+    "forms":  [
+                  {
+                      "form":  "frmDashBoard",
+                      "file":  "2.0.x\\Main\\frmDashBoard.cs",
+                      "anchorCount":  11,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  636,
+                                          "handler":  "btnSettingsClick",
+                                          "control":  "btnSettings",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  641,
+                                          "handler":  "btnZoomOutClick",
+                                          "control":  "btnZoomOut",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  721,
+                                          "handler":  "chkGridMajorCheckedChanged",
+                                          "control":  "chkGridMajor",
+                                          "label":  "Major Grid"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  726,
+                                          "handler":  "chkGridMinorCheckedChanged",
+                                          "control":  "chkGridMinor",
+                                          "label":  "Minor Grid"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  731,
+                                          "handler":  "chkMovingAvgCheckedChanged",
+                                          "control":  "chkMovingAvg",
+                                          "label":  "Moving Avg."
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  736,
+                                          "handler":  "chkShowLabelsCheckedChanged",
+                                          "control":  "chkShowLabels",
+                                          "label":  "Point Labels"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  742,
+                                          "handler":  "chkTrendLineCheckedChanged",
+                                          "control":  "chkTrendLine",
+                                          "label":  "Trend Line"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1000,
+                                          "handler":  "btnPlotColumnClick",
+                                          "control":  "btnPlotColumn",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1006,
+                                          "handler":  "btnPlotLineClick",
+                                          "control":  "btnPlotLine",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1012,
+                                          "handler":  "btnPlotPieClick",
+                                          "control":  "btnPlotPie",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  1018,
+                                          "handler":  "btnPlotScatterClick",
+                                          "control":  "btnPlotScatter",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmLock",
+                      "file":  "2.0.x\\Main\\frmLock.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  364,
+                                          "handler":  "btnBackSpaceClick",
+                                          "control":  "btnBackSpace",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  373,
+                                          "handler":  "btnBalanceClick",
+                                          "control":  "btnBalance",
+                                          "label":  "Check Gift\\r\\nCard Balance"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  379,
+                                          "handler":  "btnFreshSheetClick",
+                                          "control":  "btnFreshSheet",
+                                          "label":  "Fresh Sheet"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  385,
+                                          "handler":  "btnHoursClick",
+                                          "control":  "btnHours",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  395,
+                                          "kind":  "Warning",
+                                          "text":  "No remote software installed."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  399,
+                                          "handler":  "btnRemoteClick",
+                                          "control":  "btnRemote",
+                                          "label":  "Remote\\r\\nSupport"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMain",
+                      "file":  "2.0.x\\Main\\frmMain.cs",
+                      "anchorCount":  45,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  776,
+                                          "control":  "btnOffline",
+                                          "right":  "Register.CompleteAuth",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  777,
+                                          "control":  "btnRegister",
+                                          "right":  "Register.Access",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  873,
+                                          "kind":  "Warning",
+                                          "text":  "Network adapter not found, cannot continue."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1009,
+                                          "kind":  "Warning",
+                                          "text":  "SQL Server service is not running.\\nSoftware will restart."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1017,
+                                          "kind":  "Warning",
+                                          "text":  "SQL Server service is not running.\\nSoftware will restart."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1206,
+                                          "kind":  "Warning",
+                                          "text":  "Fail database restore from backup"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1211,
+                                          "kind":  "Success",
+                                          "text":  "Database restored from backup."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1214,
+                                          "kind":  "Warning",
+                                          "text":  "Fail database restore from backup."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1221,
+                                          "kind":  "Warning",
+                                          "text":  "SQL Server Database does not exist or access denied."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1245,
+                                          "kind":  "Warning",
+                                          "text":  "SQL Server Database does not exist or access denied."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1265,
+                                          "kind":  "Warning",
+                                          "text":  "Current database version is greater than software version.\\nSystem may not function properly."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1307,
+                                          "kind":  "Warning",
+                                          "text":  "Error updating database, software need restart."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1576,
+                                          "kind":  "Warning",
+                                          "text":  "Server not found. Bring server online and click \\"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  1735,
+                                          "kind":  "Warning",
+                                          "text":  "OATH Key not set in account settings for LMP!"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2039,
+                                          "kind":  "Warning",
+                                          "text":  "Error Wrong Merchant ID For Terminal!!"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2051,
+                                          "kind":  "Warning",
+                                          "text":  "Account init error."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2111,
+                                          "kind":  "Warning",
+                                          "text":  "OATH Key not set in account settings for LMP!"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2124,
+                                          "kind":  "Warning",
+                                          "text":  "Store ID is currently set to 40800"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2576,
+                                          "kind":  "Warning",
+                                          "text":  "Barcode has incorrect format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2588,
+                                          "kind":  "Warning",
+                                          "text":  "Coupon not found or used."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2602,
+                                          "kind":  "Warning",
+                                          "text":  "Barcode has incorrect format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2614,
+                                          "kind":  "Warning",
+                                          "text":  "Barcode has incorrect format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2633,
+                                          "kind":  "Warning",
+                                          "text":  "Barcode has incorrect format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  2647,
+                                          "kind":  "Warning",
+                                          "text":  "Barcode has incorrect format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3106,
+                                          "kind":  "Warning",
+                                          "text":  "Battery Low, {mBatteryLevel}% Left"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3878,
+                                          "handler":  "btnAboutClick",
+                                          "control":  "btnAbout",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3886,
+                                          "handler":  "btnAlertClick",
+                                          "control":  "btnAlert",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3893,
+                                          "handler":  "btnBackClick",
+                                          "control":  "btnBack",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3898,
+                                          "handler":  "btnNotificationClick",
+                                          "control":  "btnNotification",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3906,
+                                          "handler":  "btnDisconnectedClick",
+                                          "control":  "btnDisconnected",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3911,
+                                          "handler":  "btnHelpClick",
+                                          "control":  "btnHelp",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3919,
+                                          "handler":  "btnHomeClick",
+                                          "control":  "btnHome",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  3930,
+                                          "kind":  "Warning",
+                                          "text":  "Insufficient access level."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3939,
+                                          "handler":  "btnInfoClick",
+                                          "control":  "btnInfo",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3947,
+                                          "handler":  "btnLockClick",
+                                          "control":  "btnLock",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3958,
+                                          "handler":  "btnMenuUpClick",
+                                          "control":  "btnMenuUp",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3971,
+                                          "handler":  "btnOfflineClick",
+                                          "control":  "btnOffline",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3978,
+                                          "handler":  "btnOfflineDoubleClick",
+                                          "control":  "btnOffline",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3983,
+                                          "handler":  "btnPowerClick",
+                                          "control":  "btnPower",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3991,
+                                          "handler":  "btnQCustomersClick",
+                                          "control":  "btnQCustomers",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  3996,
+                                          "handler":  "btnRegisterClick",
+                                          "control":  "btnRegister",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  4002,
+                                          "handler":  "btnSupportClick",
+                                          "control":  "btnSupport",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  4017,
+                                          "handler":  "lnkCallIDClick",
+                                          "control":  "lnkCallID",
+                                          "label":  "Calls Waiting"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  4048,
+                                          "handler":  "lnkDayClick",
+                                          "control":  "lnkDay",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  4300,
+                                          "kind":  "Warning",
+                                          "text":  "OATH Key not set in account settings for LMP!"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Main\\frmMenu.cs",
+                      "anchorCount":  21,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  64,
+                                          "control":  "btnCustomers",
+                                          "right":  "Customers.Access",
+                                          "label":  "Customers"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  65,
+                                          "control":  "btnItems",
+                                          "right":  "Items.Access",
+                                          "label":  "Items"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  66,
+                                          "control":  "btnMessages",
+                                          "right":  "Messages",
+                                          "label":  "Messages"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  67,
+                                          "control":  "btnPurchasing",
+                                          "right":  "Purchasing.Access",
+                                          "label":  "Purchasing"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  68,
+                                          "control":  "btnRegister",
+                                          "right":  "Register.Access",
+                                          "label":  "Register"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  69,
+                                          "control":  "btnReports",
+                                          "right":  "Report.Access",
+                                          "label":  "Reports"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  70,
+                                          "control":  "btnSchedule",
+                                          "right":  "Schedule",
+                                          "label":  "Services\\r\\nSchedule"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  71,
+                                          "control":  "btnSettings",
+                                          "right":  "Settings.Access",
+                                          "label":  "Settings"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  72,
+                                          "control":  "btnStaff",
+                                          "right":  "Staff",
+                                          "label":  "Staff"
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  73,
+                                          "control":  "btnUtil",
+                                          "right":  "Utilities.Access",
+                                          "label":  "Utilities"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  77,
+                                          "handler":  "btnCustomersClick",
+                                          "control":  "btnCustomers",
+                                          "label":  "Customers"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  82,
+                                          "handler":  "btnDashboardClick",
+                                          "control":  "btnDashboard",
+                                          "label":  "Dashboard"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  87,
+                                          "handler":  "btnItemsClick",
+                                          "control":  "btnItems",
+                                          "label":  "Items"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  92,
+                                          "handler":  "btnMessagesClick",
+                                          "control":  "btnMessages",
+                                          "label":  "Messages"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  97,
+                                          "handler":  "btnPurchasingClick",
+                                          "control":  "btnPurchasing",
+                                          "label":  "Purchasing"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  102,
+                                          "handler":  "btnRegisterClick",
+                                          "control":  "btnRegister",
+                                          "label":  "Register"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  107,
+                                          "handler":  "btnReportsClick",
+                                          "control":  "btnReports",
+                                          "label":  "Reports"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  112,
+                                          "handler":  "btnScheduleClick",
+                                          "control":  "btnSchedule",
+                                          "label":  "Services\\r\\nSchedule"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  117,
+                                          "handler":  "btnSettingsClick",
+                                          "control":  "btnSettings",
+                                          "label":  "Settings"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  122,
+                                          "handler":  "btnStaffClick",
+                                          "control":  "btnStaff",
+                                          "label":  "Staff"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  127,
+                                          "handler":  "btnUtilClick",
+                                          "control":  "btnUtil",
+                                          "label":  "Utilities"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmRecover",
+                      "file":  "2.0.x\\Main\\frmRecover.cs",
+                      "anchorCount":  10,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  27,
+                                          "handler":  "btnCmdClick",
+                                          "control":  "btnCmd",
+                                          "label":  "Command\\r\\nPrompt"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  37,
+                                          "handler":  "btnContinueClick",
+                                          "control":  "btnContinue",
+                                          "label":  "Continue\\r\\nExatouch"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  42,
+                                          "handler":  "btnInfoClick",
+                                          "control":  "btnInfo",
+                                          "label":  "System\\r\\nInfo"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  49,
+                                          "handler":  "btnRecoverClick",
+                                          "control":  "btnRecover",
+                                          "label":  "Recover\\r\\nFrom\\r\\nBackup"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  55,
+                                          "handler":  "btnReCreateDBClick",
+                                          "control":  "btnReCreateDB",
+                                          "label":  "Recreate\\r\\nDatabase"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  75,
+                                          "kind":  "Warning",
+                                          "text":  "SQL Server Database does not exist or access denied."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  91,
+                                          "handler":  "btnRepairClick",
+                                          "control":  "btnRepair",
+                                          "label":  "Repair\\r\\nDatabase"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  137,
+                                          "handler":  "btnUpdateClick",
+                                          "control":  "btnUpdate",
+                                          "label":  "Download\\r\\nUpdate"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  150,
+                                          "handler":  "btnUploadClick",
+                                          "control":  "btnUpload",
+                                          "label":  "Upload\\r\\nLog"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  158,
+                                          "handler":  "btnWindowsClick",
+                                          "control":  "btnWindows",
+                                          "label":  "Start\\r\\nWindows"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSelect",
+                      "file":  "2.0.x\\Main\\frmSelect.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  35,
+                                          "handler":  "btnLiquorClick",
+                                          "control":  "btnLiquor",
+                                          "label":  "Liquor\\r\\nStore"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  42,
+                                          "handler":  "btnPizzaClick",
+                                          "control":  "btnPizza",
+                                          "label":  "Pizza"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  49,
+                                          "handler":  "btnRestClick",
+                                          "control":  "btnRest",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  56,
+                                          "handler":  "btnRetailClick",
+                                          "control":  "btnRetail",
+                                          "label":  "Convenience\\r\\nStore"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  63,
+                                          "handler":  "btnSalonClick",
+                                          "control":  "btnSalon",
+                                          "label":  "Salon"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  70,
+                                          "handler":  "btnTableClick",
+                                          "control":  "btnTable",
+                                          "label":  "Table\\r\\nService"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmSupport",
+                      "file":  "2.0.x\\Main\\frmSupport.cs",
+                      "anchorCount":  5,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  29,
+                                          "kind":  "Warning",
+                                          "text":  "No remote support software installed on this system."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  45,
+                                          "kind":  "Warning",
+                                          "text":  "No remote support software installed on this system."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  110,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  115,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "OK"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  125,
+                                          "kind":  "Warning",
+                                          "text":  "No remote software installed."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "Start",
+                      "file":  "2.0.x\\Main\\Start.cs",
+                      "anchorCount":  1,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  85,
+                                          "kind":  "Warning",
+                                          "text":  "Error loading msftedit.dll.\\nCannot continue loading Exatouch."
+                                      }
+                                  ]
+                  }
+              ]
+}

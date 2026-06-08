@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0102
+    title: "frmSupport: action btnCancel (Close)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSupport, entity: System }
+    preconditions: [The support form (frmSupport) is open]
+    steps:
+      - "Open the support form (frmSupport)"
+      - "Activate btnCancel (Close)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnCancelClick runs and the support form closes"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSupport action btnCancel at line 110]
+    source_files: [2.0.x/Main/frmSupport.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSupport.cs, line: 110, text: "btnCancelClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

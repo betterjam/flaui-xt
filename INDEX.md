@@ -4,23 +4,23 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**69.9% complete** - 1817 / 2600 testable code anchors covered. Complete: **NO**.
+**79.9% complete** - 2077 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
 | Reports | e2e | 295 | 249 | 118.5% | yes |
-| Settings | e2e | 343 | 343 | 100% | yes |
-| Calendar | e2e | 51 | 51 | 100% | yes |
-| Transactions | e2e | 738 | 738 | 100% | yes |
+| Integrations | e2e | 260 | 235 | 110.6% | yes |
 | Items | e2e | 346 | 346 | 100% | yes |
+| Calendar | e2e | 51 | 51 | 100% | yes |
+| Settings | e2e | 343 | 343 | 100% | yes |
+| Transactions | e2e | 738 | 738 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
-| Customers | e2e | 0 | 95 | 0% | - |
 | Main | e2e | 0 | 104 | 0% | - |
-| Integrations | e2e | 0 | 235 | 0% | - |
 | Managers | unit | 0 | 93 | 0% | - |
-| Staff | e2e | 0 | 88 | 0% | - |
-| Utility | e2e | 0 | 56 | 0% | - |
+| Customers | e2e | 0 | 95 | 0% | - |
 | SysForms | e2e | 0 | 91 | 0% | - |
+| Utility | e2e | 0 | 56 | 0% | - |
+| Staff | e2e | 0 | 88 | 0% | - |
 
 ## Tests by area
 
@@ -704,6 +704,121 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `ITEM-158` Cannot define the same item multiple times in parent grid  _( P2 / frmItems / Item / needs-recording )_
 - `ITEM-156` Clicking a modifier cell selects the modifier row  _( P3 / frmItems / Item / needs-recording )_
 - `ITEM-157` Clicking a parent (required item) cell selects the row  _( P3 / frmItems / Item / needs-recording )_
+
+### Main  (110 tests: 105 atomic, 5 composite)
+
+**(uncategorized)** (110)
+
+- `MAIN-0073` frmMenu: action btnCustomers (open Customers)  _( P2 / needs-recording )_
+- `MAIN-0074` frmMenu: action btnDashboard (open Dashboard)  _( P2 / needs-recording )_
+- `MAIN-0075` frmMenu: action btnItems (open Items)  _( P2 / needs-recording )_
+- `MAIN-0070` frmMenu: permission Settings.Access gates btnSettings  _( P1 / needs-recording )_
+- `MAIN-0071` frmMenu: permission Staff gates btnStaff  _( P2 / needs-recording )_
+- `MAIN-0072` frmMenu: permission Utilities.Access gates btnUtil  _( P2 / needs-recording )_
+- `MAIN-0076` frmMenu: action btnMessages (open Messages)  _( P3 / needs-recording )_
+- `MAIN-0080` frmMenu: action btnSchedule (open Services Schedule)  _( P3 / needs-recording )_
+- `MAIN-0081` frmMenu: action btnSettings (open Settings)  _( P1 / needs-recording )_
+- `MAIN-0082` frmMenu: action btnStaff (open Staff)  _( P2 / needs-recording )_
+- `MAIN-0077` frmMenu: action btnPurchasing (open Purchasing)  _( P2 / needs-recording )_
+- `MAIN-0078` frmMenu: action btnRegister (open Register)  _( P1 / needs-recording )_
+- `MAIN-0079` frmMenu: action btnReports (open Reports)  _( P2 / needs-recording )_
+- `MAIN-0069` frmMenu: permission Schedule gates btnSchedule  _( P2 / needs-recording )_
+- `MAIN-0059` frmMain: action btnSupport  _( P3 / needs-recording )_
+- `MAIN-0060` frmMain: action lnkCallID (Calls Waiting)  _( P3 / needs-recording )_
+- `MAIN-0061` frmMain: action lnkDay (business day link)  _( P3 / needs-recording )_
+- `MAIN-0056` frmMain: action btnPower  _( P2 / needs-recording )_
+- `MAIN-0057` frmMain: action btnQCustomers (quick customers)  _( P3 / needs-recording )_
+- `MAIN-0058` frmMain: action btnRegister (open register)  _( P1 / needs-recording )_
+- `MAIN-0062` frmMain: Warning - OATH Key not set in account settings for LMP (path C)  _( P2 / needs-recording )_
+- `MAIN-0066` frmMenu: permission Purchasing.Access gates btnPurchasing  _( P2 / needs-recording )_
+- `MAIN-0067` frmMenu: permission Register.Access gates btnRegister  _( P1 / needs-recording )_
+- `MAIN-0068` frmMenu: permission Report.Access gates btnReports  _( P2 / needs-recording )_
+- `MAIN-0063` frmMenu: permission Customers.Access gates btnCustomers  _( P2 / needs-recording )_
+- `MAIN-0064` frmMenu: permission Items.Access gates btnItems  _( P2 / needs-recording )_
+- `MAIN-0065` frmMenu: permission Messages gates btnMessages  _( P2 / needs-recording )_
+- `MAIN-0083` frmMenu: action btnUtil (open Utilities)  _( P2 / needs-recording )_
+- `MAIN-0101` frmSupport: Warning - No remote support software installed on this system (path B)  _( P2 / needs-recording )_
+- `MAIN-0102` frmSupport: action btnCancel (Close)  _( P3 / needs-recording )_
+- `MAIN-0103` frmSupport: action btnOK (OK)  _( P3 / needs-recording )_
+- `MAIN-0098` frmSelect: action btnSalon (Salon)  _( P3 / needs-recording )_
+- `MAIN-0099` frmSelect: action btnTable (Table Service)  _( P3 / needs-recording )_
+- `MAIN-0100` frmSupport: Warning - No remote support software installed on this system (path A)  _( P2 / needs-recording )_
+- `MAIN-0104` frmSupport: Warning - No remote software installed.  _( P2 / needs-recording )_
+- `MAIN-0108` End-to-end: lock screen utilities (fresh sheet, hours, gift balance)  _( P2 / needs-recording )_
+- `MAIN-0109` End-to-end: regular user is gated out of privileged main-menu modules  _( P1 / needs-recording )_
+- `MAIN-0110` End-to-end: recovery console continue path back into Exatouch  _( P2 / needs-recording )_
+- `MAIN-0105` Start: Warning - Error loading msftedit.dll, cannot continue loading Exatouch  _( P2 / needs-recording )_
+- `MAIN-0106` End-to-end: open Dashboard, switch chart types and toggle overlays  _( P2 / needs-recording )_
+- `MAIN-0107` End-to-end: from main menu open Register, then return Home and Lock  _( P1 / needs-recording )_
+- `MAIN-0097` frmSelect: action btnRetail (Convenience Store)  _( P3 / needs-recording )_
+- `MAIN-0087` frmRecover: action btnRecover (Recover From Backup)  _( P2 / needs-recording )_
+- `MAIN-0088` frmRecover: action btnReCreateDB (Recreate Database)  _( P2 / needs-recording )_
+- `MAIN-0089` frmRecover: Warning - SQL Server Database does not exist or access denied.  _( P2 / needs-recording )_
+- `MAIN-0084` frmRecover: action btnCmd (Command Prompt)  _( P3 / needs-recording )_
+- `MAIN-0085` frmRecover: action btnContinue (Continue Exatouch)  _( P2 / needs-recording )_
+- `MAIN-0086` frmRecover: action btnInfo (System Info)  _( P3 / needs-recording )_
+- `MAIN-0090` frmRecover: action btnRepair (Repair Database)  _( P2 / needs-recording )_
+- `MAIN-0094` frmSelect: action btnLiquor (Liquor Store)  _( P3 / needs-recording )_
+- `MAIN-0095` frmSelect: action btnPizza (Pizza)  _( P3 / needs-recording )_
+- `MAIN-0096` frmSelect: action btnRest (Restaurant)  _( P3 / needs-recording )_
+- `MAIN-0091` frmRecover: action btnUpdate (Download Update)  _( P2 / needs-recording )_
+- `MAIN-0092` frmRecover: action btnUpload (Upload Log)  _( P3 / needs-recording )_
+- `MAIN-0093` frmRecover: action btnWindows (Start Windows)  _( P3 / needs-recording )_
+- `MAIN-0018` frmMain: permission Register.CompleteAuth gates btnOffline  _( P2 / needs-recording )_
+- `MAIN-0019` frmMain: permission Register.Access gates btnRegister  _( P1 / needs-recording )_
+- `MAIN-0020` frmMain: Warning - Network adapter not found, cannot continue.  _( P2 / needs-recording )_
+- `MAIN-0015` frmLock: action btnHours  _( P3 / needs-recording )_
+- `MAIN-0016` frmLock: Warning - No remote software installed.  _( P2 / needs-recording )_
+- `MAIN-0017` frmLock: action btnRemote (Remote Support)  _( P3 / needs-recording )_
+- `MAIN-0021` frmMain: Warning - SQL Server service is not running (restart, path A)  _( P2 / needs-recording )_
+- `MAIN-0025` frmMain: Warning - Fail database restore from backup. (post-restore)  _( P2 / needs-recording )_
+- `MAIN-0026` frmMain: Warning - SQL Server Database does not exist or access denied (path A)  _( P2 / needs-recording )_
+- `MAIN-0027` frmMain: Warning - SQL Server Database does not exist or access denied (path B)  _( P2 / needs-recording )_
+- `MAIN-0022` frmMain: Warning - SQL Server service is not running (restart, path B)  _( P2 / needs-recording )_
+- `MAIN-0023` frmMain: Warning - Fail database restore from backup  _( P2 / needs-recording )_
+- `MAIN-0024` frmMain: Success - Database restored from backup.  _( P2 / needs-recording )_
+- `MAIN-0014` frmLock: action btnFreshSheet (Fresh Sheet)  _( P3 / needs-recording )_
+- `MAIN-0004` frmDashBoard: toggle chkGridMinor (Minor Grid)  _( P3 / needs-recording )_
+- `MAIN-0005` frmDashBoard: toggle chkMovingAvg (Moving Avg.)  _( P3 / needs-recording )_
+- `MAIN-0006` frmDashBoard: toggle chkShowLabels (Point Labels)  _( P3 / needs-recording )_
+- `MAIN-0001` frmDashBoard: action btnSettings  _( P3 / needs-recording )_
+- `MAIN-0002` frmDashBoard: action btnZoomOut  _( P3 / needs-recording )_
+- `MAIN-0003` frmDashBoard: toggle chkGridMajor (Major Grid)  _( P3 / needs-recording )_
+- `MAIN-0007` frmDashBoard: toggle chkTrendLine (Trend Line)  _( P3 / needs-recording )_
+- `MAIN-0011` frmDashBoard: action btnPlotScatter (scatter chart)  _( P3 / needs-recording )_
+- `MAIN-0012` frmLock: action btnBackSpace  _( P3 / needs-recording )_
+- `MAIN-0013` frmLock: action btnBalance (Check Gift Card Balance)  _( P3 / needs-recording )_
+- `MAIN-0008` frmDashBoard: action btnPlotColumn (column chart)  _( P3 / needs-recording )_
+- `MAIN-0009` frmDashBoard: action btnPlotLine (line chart)  _( P3 / needs-recording )_
+- `MAIN-0010` frmDashBoard: action btnPlotPie (pie chart)  _( P3 / needs-recording )_
+- `MAIN-0028` frmMain: Warning - Current database version is greater than software version  _( P2 / needs-recording )_
+- `MAIN-0046` frmMain: action btnNotification  _( P3 / needs-recording )_
+- `MAIN-0047` frmMain: action btnDisconnected  _( P3 / needs-recording )_
+- `MAIN-0048` frmMain: action btnHelp  _( P3 / needs-recording )_
+- `MAIN-0043` frmMain: action btnAbout  _( P3 / needs-recording )_
+- `MAIN-0044` frmMain: action btnAlert  _( P3 / needs-recording )_
+- `MAIN-0045` frmMain: action btnBack  _( P2 / needs-recording )_
+- `MAIN-0049` frmMain: action btnHome  _( P2 / needs-recording )_
+- `MAIN-0053` frmMain: action btnMenuUp  _( P3 / needs-recording )_
+- `MAIN-0054` frmMain: action btnOffline (single click)  _( P2 / needs-recording )_
+- `MAIN-0055` frmMain: action btnOffline (double click)  _( P3 / needs-recording )_
+- `MAIN-0050` frmMain: Warning - Insufficient access level.  _( P2 / needs-recording )_
+- `MAIN-0051` frmMain: action btnInfo  _( P3 / needs-recording )_
+- `MAIN-0052` frmMain: action btnLock (lock the terminal)  _( P1 / needs-recording )_
+- `MAIN-0042` frmMain: Warning - Battery Low  _( P3 / needs-recording )_
+- `MAIN-0032` frmMain: Warning - Error Wrong Merchant ID For Terminal  _( P2 / needs-recording )_
+- `MAIN-0033` frmMain: Warning - Account init error.  _( P2 / needs-recording )_
+- `MAIN-0034` frmMain: Warning - OATH Key not set in account settings for LMP (path B)  _( P2 / needs-recording )_
+- `MAIN-0029` frmMain: Warning - Error updating database, software need restart.  _( P2 / needs-recording )_
+- `MAIN-0030` frmMain: Warning - Server not found. Bring server online  _( P2 / needs-recording )_
+- `MAIN-0031` frmMain: Warning - OATH Key not set in account settings for LMP (path A)  _( P2 / needs-recording )_
+- `MAIN-0035` frmMain: Warning - Store ID is currently set to 40800  _( P3 / needs-recording )_
+- `MAIN-0039` frmMain: Warning - Barcode has incorrect format (scan path C)  _( P2 / needs-recording )_
+- `MAIN-0040` frmMain: Warning - Barcode has incorrect format (scan path D)  _( P2 / needs-recording )_
+- `MAIN-0041` frmMain: Warning - Barcode has incorrect format (scan path E)  _( P2 / needs-recording )_
+- `MAIN-0036` frmMain: Warning - Barcode has incorrect format (scan path A)  _( P2 / needs-recording )_
+- `MAIN-0037` frmMain: Warning - Coupon not found or used.  _( P2 / needs-recording )_
+- `MAIN-0038` frmMain: Warning - Barcode has incorrect format (scan path B)  _( P2 / needs-recording )_
 
 ### Purchasing  (47 tests: 44 atomic, 3 composite)
 

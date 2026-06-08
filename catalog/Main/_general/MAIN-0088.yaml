@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0088
+    title: "frmRecover: action btnReCreateDB (Recreate Database)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    preconditions: [At the recovery console (frmRecover)]
+    steps:
+      - "Reach the recovery console (frmRecover)"
+      - "Activate btnReCreateDB (Recreate Database)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnReCreateDBClick runs and the database recreate flow starts"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmRecover action btnReCreateDB at line 55]
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmRecover.cs, line: 55, text: "btnReCreateDBClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

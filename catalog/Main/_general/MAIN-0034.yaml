@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0034
+    title: "frmMain: Warning - OATH Key not set in account settings for LMP (path B)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [LMP account settings have no OATH key configured]
+    steps:
+      - "Reach the second frmMain LMP initialization branch with no OATH key set"
+      - "Trigger the account/LMP check"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: OATH Key not set in account settings for LMP!"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2111]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2111, text: "OATH Key not set in account settings for LMP!" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

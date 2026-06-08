@@ -1,0 +1,26 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0106
+    title: "End-to-end: open Dashboard, switch chart types and toggle overlays"
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    chains: [MAIN-0074, MAIN-0008, MAIN-0009, MAIN-0003, MAIN-0007, MAIN-0002]
+    preconditions: [Logged in as admin]
+    steps: ["Run the chained atomic cases in order"]
+    expected: ["Each chained case passes; the dashboard re-renders for each chart type and overlay"]
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmMenu.cs, 2.0.x/Main/frmDashBoard.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

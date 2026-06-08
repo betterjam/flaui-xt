@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0001
+    title: "frmDashBoard: action btnSettings"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnSettings"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnSettingsClick runs and the chart settings panel/state change occurs"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnSettings at line 636]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 636, text: "btnSettingsClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

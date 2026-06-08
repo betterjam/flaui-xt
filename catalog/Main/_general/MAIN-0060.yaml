@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0060
+    title: "frmMain: action lnkCallID (Calls Waiting)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmMain, entity: Navigation }
+    preconditions: [Logged in as admin, Caller-ID integration active with calls waiting]
+    steps:
+      - "Observe the app shell (frmMain)"
+      - "Activate lnkCallID (Calls Waiting)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler lnkCallIDClick runs and the calls-waiting / caller-ID view opens"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain action lnkCallID at line 4017]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 4017, text: "lnkCallIDClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

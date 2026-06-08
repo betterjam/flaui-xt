@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0022
+    title: "frmMain: Warning - SQL Server service is not running (restart, path B)"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [SQL Server service is stopped]
+    steps:
+      - "Start the app with the SQL Server service stopped"
+      - "Reach the second frmMain database-availability check branch"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: SQL Server service is not running.\\nSoftware will restart."
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 1017]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 1017, text: "SQL Server service is not running.\\nSoftware will restart." }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

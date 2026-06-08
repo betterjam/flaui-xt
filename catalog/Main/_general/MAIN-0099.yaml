@@ -1,0 +1,33 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0099
+    title: "frmSelect: action btnTable (Table Service)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSelect, entity: Setting }
+    preconditions: [At the business-type selection screen (frmSelect)]
+    steps:
+      - "Reach the business-type selection screen (frmSelect)"
+      - "Activate btnTable (Table Service)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnTableClick runs and the Table Service profile is selected"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSelect action btnTable at line 70]
+    source_files: [2.0.x/Main/frmSelect.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSelect.cs, line: 70, text: "btnTableClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ========================================================================
+  # 2.0.x/Main/frmSupport.cs  (5 anchors: 3 message, 2 action)
+  # ========================================================================

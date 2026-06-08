@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0018
+    title: "frmMain: permission Register.CompleteAuth gates btnOffline"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: permission, ui_area: frmMain, entity: AccessRight }
+    preconditions: [Logged in as a user lacking Register.CompleteAuth]
+    steps:
+      - "Log in as a user lacking the Register.CompleteAuth right"
+      - "Observe the app shell (frmMain)"
+      - "Attempt to use btnOffline (complete offline auth)"
+    expected:
+      - "Control btnOffline is disabled/blocked without the Register.CompleteAuth right"
+    runner: ranorex
+    composes: [StartAUT, LoginAsRegularUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsRegularUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain permission at line 776]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 776, text: "perm:Register.CompleteAuth" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

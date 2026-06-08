@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0103
+    title: "frmSupport: action btnOK (OK)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmSupport, entity: System }
+    preconditions: [The support form (frmSupport) is open]
+    steps:
+      - "Open the support form (frmSupport)"
+      - "Activate btnOK (OK)"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnOKClick runs and the support request is confirmed/submitted"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmSupport action btnOK at line 115]
+    source_files: [2.0.x/Main/frmSupport.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmSupport.cs, line: 115, text: "btnOKClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

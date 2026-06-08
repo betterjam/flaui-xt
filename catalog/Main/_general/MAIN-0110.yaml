@@ -1,0 +1,25 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0110
+    title: "End-to-end: recovery console continue path back into Exatouch"
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmRecover, entity: System }
+    chains: [MAIN-0086, MAIN-0090, MAIN-0085]
+    preconditions: [At the recovery console (frmRecover)]
+    steps: ["Run the chained atomic cases in order"]
+    expected: ["Each chained case passes; system info and repair are reachable, then Continue resumes Exatouch"]
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Main/frmRecover.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

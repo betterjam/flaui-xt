@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0032
+    title: "frmMain: Warning - Error Wrong Merchant ID For Terminal"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: frmMain, entity: System }
+    preconditions: [Terminal merchant ID does not match account configuration]
+    steps:
+      - "Reach the frmMain merchant/terminal validation"
+      - "Use a terminal whose merchant ID is wrong"
+      - "Observe the dialog text"
+    expected:
+      - "Warning dialog text is: Error Wrong Merchant ID For Terminal!!"
+    runner: ranorex
+    composes: [StartAUT, CloseAUT]
+    reference_recordings: [StartAUT]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmMain message at line 2039]
+    source_files: [2.0.x/Main/frmMain.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmMain.cs, line: 2039, text: "Error Wrong Merchant ID For Terminal!!" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

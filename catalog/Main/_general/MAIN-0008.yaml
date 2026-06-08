@@ -1,0 +1,30 @@
+﻿# Generated from catalog/features/Main.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Main
+test_case:
+  - id: MAIN-0008
+    title: "frmDashBoard: action btnPlotColumn (column chart)"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: frmDashBoard, entity: Dashboard }
+    preconditions: [Logged in as admin]
+    steps:
+      - "Open the Dashboard (frmDashBoard) from the main menu"
+      - "Activate btnPlotColumn"
+      - "Observe the resulting action"
+    expected:
+      - "Handler btnPlotColumnClick runs and the chart re-renders as a column plot"
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [frmDashBoard action btnPlotColumn at line 1000]
+    source_files: [2.0.x/Main/frmDashBoard.cs]
+    evidence:
+      - { file: 2.0.x/Main/frmDashBoard.cs, line: 1000, text: "btnPlotColumnClick" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
