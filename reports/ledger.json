@@ -1,17 +1,17 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  126,
-    "grandUncovered":  2474,
-    "grandPct":  4.8,
+    "grandCovered":  150,
+    "grandUncovered":  2450,
+    "grandPct":  5.8,
     "complete":  false,
     "areas":  [
                   {
                       "area":  "Transactions",
                       "layer":  "e2e",
                       "total":  738,
-                      "covered":  31,
-                      "uncovered":  707,
-                      "pct":  4.2,
+                      "covered":  55,
+                      "uncovered":  683,
+                      "pct":  7.5,
                       "catalog":  true
                   },
                   {
