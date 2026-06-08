@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-011
+    title: Adding a service onto an already double-booked slot is blocked (create panel)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open
+      - Both staff columns at the chosen time already hold appointments
+    steps:
+      - Choose a start time where both columns are occupied
+      - Attempt to add a service there
+    expected:
+      - "Warning message is shown: Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time."
+      - The service is not added (CheckTime returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvTime, dgvServices
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 472, text: "Appointment time error already double booked!\\n\\nPlease remove services or choose a new start time." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-010
+    title: Selecting a time outside the staff member's scheduled hours is blocked (create panel)
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open for a staff member with defined work hours
+    steps:
+      - Select a time slot that falls in the staff member's disabled (off-hours) range
+      - Attempt to add a service at that time
+    expected:
+      - "Warning message is shown: You selected a time outside the staff member's scheduled hours. Cannot Proceed"
+      - The service is not added (CheckTime returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvTime, dgvServices
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 461, text: "You selected a time outside the staff member's scheduled hours. Cannot Proceed" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

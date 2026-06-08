@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-014
+    title: Adding an item in an inactive subcategory is blocked
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+      - The item's subcategory is marked inactive (SubActive=false)
+    steps:
+      - Attempt to add the item whose subcategory is inactive
+    expected:
+      - "Warning message is shown: Subcategory: {subcat} of category: {category} is marked as inactive."
+      - The item is not added (AddItem returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 371, text: "Subcategory: {mSqlReader[" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

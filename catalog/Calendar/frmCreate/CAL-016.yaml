@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-016
+    title: Customer History opens the customer's service-only info form from the create panel
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment with a customer is open in the create panel
+    steps:
+      - Click the Customer History button (btnCustomerHistory)
+    expected:
+      - The customer info form opens in service-only mode for that customer/staff
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCustomerHistory
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 698, text: "btnCustomerHistoryClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

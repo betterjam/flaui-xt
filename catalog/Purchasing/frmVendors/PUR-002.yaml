@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-002
+    title: Vendor save blocked when name is blank
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - On the New Vendor form
+    steps:
+      - Leave txtName empty
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Vendor name cannot be blank."
+      - Save does not proceed and focus returns to the name field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors txtName, nav Save (ucNav)
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 285, text: "Vendor name cannot be blank." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

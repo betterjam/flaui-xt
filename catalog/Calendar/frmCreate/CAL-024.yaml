@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-024
+    title: Clicking a service before choosing a start time warns "Choose start time."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel is open with no start time selected (dgvTime.CurrentRow is null)
+    steps:
+      - Click an available service in dgvServices before picking a time slot
+    expected:
+      - "Warning message is shown: Choose start time."
+      - The service is not added
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvServices, dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 937, text: "dgvServicesCellClick" }
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 941, text: "Choose start time." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmDay.cs - day grid of staff time slots, navigation, move (entity: Appointment)
+  # ----------------------------------------------------------------------------

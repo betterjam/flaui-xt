@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-013
+    title: Cancel an existing appointment from the create panel reports "Cancelled."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An existing appointment is open in the create-appointment panel
+    steps:
+      - Click "Cancel Appt." (btnCancelAppt)
+      - Confirm "Cancel appointment?"
+    expected:
+      - The appointment is flagged Cancelled and the customer Appts count is decremented
+      - "Warning message is shown: Cancelled."
+      - The panel closes with DialogResult.OK
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCancelAppt ("Cancel Appt."), confirm dialog
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 641, text: "btnCancelApptClick" }
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 658, text: "Cancelled." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

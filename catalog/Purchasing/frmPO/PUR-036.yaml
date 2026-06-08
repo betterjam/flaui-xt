@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-036
+    title: Setting reorder qty below order-min on a PO line warns and undoes
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected in the item-details panel
+    steps:
+      - Enter a Reorder quantity less than the Minimum Order quantity in txtQtyReorder
+    expected:
+      - "Warning message is shown: Reorder quantity should be equal to or greater than the minimum order quantity."
+      - The reorder-qty edit is undone
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtQtyReorder, txtOrderMin
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1538, text: "Reorder quantity should be equal to or\\ngreater than the minimum order quantity." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmQtyCost.cs - Qty/Cost dialog when adding an item to a PO (entity: Item)
+  # ----------------------------------------------------------------------------

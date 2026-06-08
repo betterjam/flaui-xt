@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-035
+    title: Setting a PO-line retail price below the defined minimum/SRP warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected whose item has a non-zero suggested price (PriceSuggest)
+    steps:
+      - Enter a retail price in txtPrice below the suggested/state-minimum price
+    expected:
+      - "Warning message is shown: Price is less than defined state minimum/SRP."
+      - The price is undone when LMI is enabled and the item has a tax code
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtPrice (item details panel)
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1470, text: "Price is less than defined " }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-004
+    title: Vendor save blocked on invalid email address
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - On the New Vendor form with name and a phone entered
+    steps:
+      - Enter a malformed email address in txtEmail
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Invalid email address."
+      - Save does not proceed and focus returns to the email field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors txtEmail, nav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 311, text: "Invalid email address." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

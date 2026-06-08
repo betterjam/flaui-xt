@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-034
+    title: Day view Previous button steps the day back by one
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click the previous-day button (btnPrev)
+    expected:
+      - The day view steps to the previous calendar day (AddDays(-1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnPrev (previous day)
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 533, text: "btnPrevClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

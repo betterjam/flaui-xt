@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-036
+    title: Clicking an empty in-hours slot in the day view opens the create-appointment panel
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view shows a staff member with open in-hours slots
+      - No appointment move is in progress
+    steps:
+      - Click an empty time slot inside the staff member's scheduled hours (dgvTime)
+    expected:
+      - The create-appointment panel opens for that staff member and start time
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime, frmCreate panel
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 551, text: "dgvTimeCellClick" }
+    flow_hash: "9CC8994775DB8383"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

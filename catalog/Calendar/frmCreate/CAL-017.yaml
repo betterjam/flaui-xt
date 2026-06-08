@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-017
+    title: Delete Line removes the selected service from the appointment
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel has at least one selected service row
+    steps:
+      - Select a service row in the selected-services grid
+      - Click "Delete Line" (btnDelete)
+    expected:
+      - The selected service row is marked deleted and the time block is freed/recomputed
+      - The Delete Line button is disabled after removal
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnDelete ("Delete Line"), dgvSeleted
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 707, text: "btnDeleteClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-015
+    title: Adding a discontinued item to a PO warns but still allows add
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - An open PO is loaded
+      - The item is flagged Discontinued
+    steps:
+      - Add the discontinued item to the PO
+    expected:
+      - "Warning message is shown: Item marked as discontinued."
+      - The add flow continues (quantity/cost dialog still opens)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnFindItems, Items.frmSearch select flow
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 378, text: "Item marked as discontinued." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

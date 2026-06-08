@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-031
+    title: Legend button opens the day-view colour legend dialog
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click "Legend" (btnLegend)
+    expected:
+      - The legend dialog (frmLegend) opens explaining the slot colours
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnLegend ("Legend"), frmLegend dialog
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmLegend.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 508, text: "btnLegendClick" }
+    flow_hash: "3C8B45EC55051029"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

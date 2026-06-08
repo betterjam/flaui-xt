@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-041
+    title: Finishing a receiving session with invalid UPCs warns no labels printed
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReceiving
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - A receiving session contains items flagged for labels with invalid UPC/SKU values
+    steps:
+      - Click Finish and complete the receiving-proc dialog with label printing
+    expected:
+      - "Warning message is shown: One or more items have invalid UPC's and no labels could be printed for them."
+      - The receiving still saves for valid items
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceiving btnFinish, frmReceivingProc chkLabel
+    source_files:
+      - 2.0.x/Purchasing/frmReceiving.cs
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceiving.cs, line: 262, text: "One or more items have invalid UPC's and no labels could be printed for them." }
+    flow_hash: "4F4D96C57168DF6F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

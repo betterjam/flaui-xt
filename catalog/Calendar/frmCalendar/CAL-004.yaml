@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-004
+    title: Month calendar previous button steps back one month
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown
+    steps:
+      - Click the previous button (btnPrev) on the month calendar
+    expected:
+      - The displayed date steps back one month (Date = _Date.AddMonths(-1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnPrev (previous month)
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 147, text: "btnPrevClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

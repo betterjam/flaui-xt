@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-026
+    title: Close button on the day view returns to the month calendar
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view (frmDay) is shown
+    steps:
+      - Click "Close" (btnCancel) on the day view
+    expected:
+      - The month calendar (frmCalendar) is shown for the same date with move/clone reset
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnCancel ("Close")
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 452, text: "btnCancelClick" }
+    flow_hash: "6CE4CAA5F87FA933"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

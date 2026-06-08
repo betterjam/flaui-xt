@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-026
+    title: Sending PO via POSCloud blocked when no valid sender email is configured
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - Email.UsePOSCloudPO is enabled
+      - The user profile and Business Details have no valid email
+    steps:
+      - Click Send on the PO
+    expected:
+      - "Warning message is shown: A valid email address is required for your profile or a valid contact name and email address be defined in Settings, Business Details in order to send POs using POSCloud."
+      - The send is aborted
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnSend
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1067, text: "A valid email address is required for your profile or a valid contact name and email address be defined in Settings, Business Details in order to send POs using POSCloud." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

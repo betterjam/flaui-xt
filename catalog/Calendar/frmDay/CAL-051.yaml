@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-051
+    title: Day-view move validation walk (end-of-day / off-hours / double-book guards)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmDay
+      entity: Appointment
+    chains: [CAL-038, CAL-039, CAL-040]
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move/clone is in progress in the day view
+    steps:
+      - Drop the moving appointment past the end of the day (CAL-038)
+      - Drop it onto an off-hours slot (CAL-039)
+      - Drop it onto a fully double-booked slot (CAL-040)
+    expected:
+      - Each guard fires its respective warning and blocks the move
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence: []
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

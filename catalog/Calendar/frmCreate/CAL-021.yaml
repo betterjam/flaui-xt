@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-021
+    title: Saving a valid appointment reports "Saved successfully."
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel has a customer, a staff member and at least one service selected
+    steps:
+      - Click "Save" (btnOK) with a complete appointment and no conflicts
+    expected:
+      - The appointment and its detail services are written to the database
+      - The customer visit counters are updated
+      - "Success message is shown: Saved successfully."
+      - The panel closes with DialogResult.OK
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnOK ("Save"), dgvServices, dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 890, text: "Saved successfully." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

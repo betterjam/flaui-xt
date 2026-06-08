@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-009
+    title: Adding a service that overruns the day's last slot warns "Time unavailable."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open with a start time near end of day
+      - The selected service's duration extends past the last time slot
+    steps:
+      - Select a start time late in the day
+      - Add a service whose duration runs past the final slot
+    expected:
+      - "Warning message is shown: Time unavailable."
+      - The service is not added (CheckTime returns false)
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate dgvTime, dgvServices
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 444, text: "Time unavailable." }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

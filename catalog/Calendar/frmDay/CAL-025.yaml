@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-025
+    title: Day view warns when no staff/services match the current filter and reverts
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - A staff or service filter is active that matches nothing for the selected day
+    steps:
+      - Open the day view for a date with no matching staff/services under the filter
+    expected:
+      - "Warning message is shown: Staff or services not available based on current filter criteria."
+      - The staff and service filters are cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime, btnFilter
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmFilter.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 152, text: "Staff or services not available based on current filter criteria." }
+    flow_hash: "869D442F5FD4A219"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

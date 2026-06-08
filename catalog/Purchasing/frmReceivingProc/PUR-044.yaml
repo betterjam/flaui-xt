@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-044
+    title: Receiving-proc dialog warns on invalid/future received date
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmReceivingProc
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing > Receiving access
+      - The receiving-proc dialog is open (from Finish)
+    steps:
+      - Set the received date to blank or a future date in dtpRecDate
+      - Click OK
+    expected:
+      - "Warning message is shown: Invalid received date."
+      - The dialog does not accept and focus returns to the date field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmReceivingProc dtpRecDate, btnOK
+    source_files:
+      - 2.0.x/Purchasing/frmReceivingProc.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmReceivingProc.cs, line: 28, text: "Invalid received date." }
+    flow_hash: "E0F4D171B15D4772"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # Composite end-to-end flows (chain atomic ids; no new evidence anchors)
+  # ----------------------------------------------------------------------------

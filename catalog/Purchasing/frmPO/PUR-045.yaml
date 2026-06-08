@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-045
+    title: End-to-end - create vendor, build PO, receive stock
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmPO
+      entity: PurchaseOrder
+    chains: [PUR-001, PUR-017, PUR-040]
+    preconditions:
+      - Logged in as admin with full Purchasing access
+      - At least one orderable item exists
+    steps:
+      - Create a new vendor (PUR-001)
+      - Create a PO for that vendor and complete/receive it (PUR-017)
+      - Post received stock into inventory via a receiving session (PUR-040)
+    expected:
+      - "Vendor saved (Saved successfully.), PO received (Receive completed successfully.), stock posted (Saved successfully.)"
+      - Inventory QtyOnHand reflects the received quantities
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, SearchForItem, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, SearchForItem]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+      - 2.0.x/Purchasing/frmPO.cs
+      - 2.0.x/Purchasing/frmReceiving.cs
+    evidence: []
+    flow_hash: "73EF5411710F8926"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

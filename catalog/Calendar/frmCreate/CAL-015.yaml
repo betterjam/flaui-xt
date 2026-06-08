@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-015
+    title: Check Out adds the appointment's services to an open order on the register
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment with at least one service is open in the create panel
+    steps:
+      - Click "Check Out" (btnCheckOut)
+      - Confirm "Service will be added to open order on the register, would you like to continue?"
+    expected:
+      - The appointment is saved, then its ApptIDs are collected (directly or via frmSelect)
+      - The panel closes with DialogResult.No so the register picks up the services
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btnCheckOut ("Check Out"), confirm dialog
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 671, text: "btnCheckOutClick" }
+    flow_hash: "218AB29B745214B7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-050
+    title: Appointment-time validation walk (no service / start time / off-hours / double-book)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmCreate
+      entity: Appointment
+    chains: [CAL-020, CAL-024, CAL-010, CAL-011]
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create-appointment panel is open
+    steps:
+      - Attempt to save with no services (CAL-020)
+      - Click a service before choosing a start time (CAL-024)
+      - Add a service outside the staff member's scheduled hours (CAL-010)
+      - Add a service onto an already double-booked slot (CAL-011)
+    expected:
+      - Each guard fires its respective warning and blocks the action
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence: []
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

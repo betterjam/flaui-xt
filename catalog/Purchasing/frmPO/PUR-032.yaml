@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-032
+    title: Clearing the item-detail description on a PO line warns and undoes
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Item
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line is selected in the item-details panel
+    steps:
+      - Clear the txtDesc (description) field
+    expected:
+      - "Warning message is shown: Description cannot be blank"
+      - The description edit is undone
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtDesc (item details panel)
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1413, text: "Description cannot be blank" }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

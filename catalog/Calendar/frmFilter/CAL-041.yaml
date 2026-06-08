@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-041
+    title: Filter dialog Cancel discards filter changes
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmFilter
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day-view filter dialog (frmFilter) is open
+    steps:
+      - Click Cancel on the filter dialog
+    expected:
+      - The dialog closes with DialogResult.Cancel and the existing filter is unchanged
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmFilter btnCancel
+    source_files:
+      - 2.0.x/Calendar/frmFilter.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmFilter.cs, line: 103, text: "btnCancelClick" }
+    flow_hash: "89B95768562127FF"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

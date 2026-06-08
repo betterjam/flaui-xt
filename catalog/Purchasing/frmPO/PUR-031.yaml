@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-031
+    title: Editing a PO line qty below order minimum warns and resets to minimum
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line whose item has an OrderMin greater than zero is in the grid
+    steps:
+      - Edit the line Qty cell to a value below OrderMin
+    expected:
+      - "Warning message is shown: Minimum order quantity required is: <min>"
+      - The Qty is reset up to the order minimum
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO dgvPO colQty
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1335, text: "Minimum order quantity required is: " }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

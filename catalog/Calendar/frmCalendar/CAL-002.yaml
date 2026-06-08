@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-002
+    title: Month calendar back-year button steps the calendar back one year
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown
+    steps:
+      - Click the year-down button (btnDown) on the month calendar
+    expected:
+      - The displayed date moves back one year (Date = _Date.AddYears(-1))
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnDown (year back)
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 137, text: "btnDownClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

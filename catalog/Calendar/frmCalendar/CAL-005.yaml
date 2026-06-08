@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-005
+    title: Month calendar Today button jumps to the current date
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCalendar
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The month calendar (frmCalendar) is shown on a non-current month
+    steps:
+      - Click the "Today" button (btnToday) on the month calendar
+    expected:
+      - The displayed date resets to DateTime.Today
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCalendar btnToday
+    source_files:
+      - 2.0.x/Calendar/frmCalendar.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCalendar.cs, line: 152, text: "btnTodayClick" }
+    flow_hash: "46545951D59C959D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

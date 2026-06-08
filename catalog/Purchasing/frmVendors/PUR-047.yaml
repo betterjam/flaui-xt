@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-047
+    title: Vendor validation walk (name / contact / email / LCB guards)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    chains: [PUR-002, PUR-003, PUR-004, PUR-005, PUR-006]
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - License.LCBEnabled is true (for the LCB guards)
+      - On the New Vendor form
+    steps:
+      - Attempt to save with blank name (PUR-002)
+      - Attempt to save with no phone/email (PUR-003)
+      - Attempt to save with invalid email (PUR-004)
+      - Attempt to save with no LCB type selected (PUR-005)
+      - Attempt to save Non-PA manufacturer without FEIN (PUR-006)
+    expected:
+      - Each guard fires its respective warning and blocks the save
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence: []
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

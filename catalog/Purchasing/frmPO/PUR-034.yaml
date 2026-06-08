@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-034
+    title: Typing a PO number that parses to zero warns "Invalid PO ID"
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Type a non-numeric / zero PO number into txtPONum so it parses to 0
+    expected:
+      - "Warning message is shown: Invalid PO ID."
+      - No PO is loaded
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtPONum
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 1452, text: "Invalid PO ID." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-007
+    title: Delete vendor confirms and reports success
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - An existing vendor (not tied to an open/pending PO) is loaded
+    steps:
+      - Click Delete on the vendor record
+      - Confirm the delete dialog
+    expected:
+      - "Confirm delete dialog appears, then Success message: Deleted successfully."
+      - Vendor is deactivated (Active=0) and its items reassigned to vendor 1
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnDelete, Confirm delete dialog OK/Cancel
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 226, text: "Deleted successfully." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

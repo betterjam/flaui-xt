@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-008
+    title: Vendor history shows warning when vendor has no POs
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - A vendor with zero purchase orders is loaded
+    steps:
+      - Click the History button on the vendor record
+    expected:
+      - "Warning message is shown: No purchase order history to display."
+      - The history form is not opened
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors btnHistory
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+      - 2.0.x/Purchasing/frmHistory.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 255, text: "No purchase order history to display." }
+    flow_hash: "073DD361F79C8F5D"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmPO.cs - Purchase order load / item add / guards (entity: PurchaseOrder/Item)
+  # ----------------------------------------------------------------------------

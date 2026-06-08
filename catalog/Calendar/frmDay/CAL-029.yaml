@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-029
+    title: Day view left scroll button shifts the staff columns left
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The day view has more staff columns than fit on screen
+    steps:
+      - Click the left-scroll button (btnLeft)
+    expected:
+      - The visible staff columns shift two columns to the left
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay btnLeft
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 483, text: "btnLeftClick" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

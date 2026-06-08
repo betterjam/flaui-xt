@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-046
+    title: Purchase-order validation walk (empty / blank desc / received-date guards)
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    chains: [PUR-019, PUR-020, PUR-021, PUR-022, PUR-023]
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Attempt to save an empty PO (PUR-019)
+      - Attempt to save a line with blank description (PUR-020)
+      - Attempt to save a fractional qty for a non-SBF item (PUR-021)
+      - Attempt to save received qty with blank reference (PUR-022)
+      - Attempt to save received qty with invalid received date (PUR-023)
+    expected:
+      - Each guard fires its respective warning and blocks the save
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence: []
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

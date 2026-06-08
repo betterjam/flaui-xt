@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-009
+    title: Loading a non-existent PO id warns "Purchase order not found"
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - On the Purchase Order form
+    steps:
+      - Enter a PO number that does not exist in txtPONum
+      - Trigger the lookup
+    expected:
+      - "Warning message is shown: Purchase order not found."
+      - The PO number field is cleared
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO txtPONum, btnPO lookup
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 103, text: "Purchase order not found." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

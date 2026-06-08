@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-048
+    title: Check Out with no appointment row selected warns "Selection error."
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmSelect
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The check-out select dialog (frmSelect) is open with no row selected
+    steps:
+      - Click "Check Out" (btnOK) without selecting an appointment
+    expected:
+      - "Warning message is shown: Selection error."
+      - The dialog stays open and no appointment is checked out
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmSelect btnOK ("Check Out"), dgvApp
+    source_files:
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmSelect.cs, line: 60, text: "Selection error." }
+    flow_hash: "1CDE5C71CDD56C38"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # Composite end-to-end flows (chain atomic ids; no new evidence anchors)
+  # ----------------------------------------------------------------------------

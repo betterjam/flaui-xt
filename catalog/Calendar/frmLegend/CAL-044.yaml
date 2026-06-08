@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-044
+    title: Legend dialog Close button dismisses the legend
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmLegend
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The legend dialog (frmLegend) is open
+    steps:
+      - Click "Close" (btnOK) on the legend dialog
+    expected:
+      - The legend dialog closes
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmLegend btnOK ("Close")
+    source_files:
+      - 2.0.x/Calendar/frmLegend.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmLegend.cs, line: 13, text: "btnOKClick" }
+    flow_hash: "83DADBC4214A3538"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmSelect.cs - multi-appointment check-out selection dialog (entity: Appointment)
+  # ----------------------------------------------------------------------------

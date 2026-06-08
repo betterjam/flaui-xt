@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-021
+    title: Saving a PO with non-whole qty for a non-SBF item warns invalid number format
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: PurchaseOrder
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO with a non-sold-by-fraction (SBF=false) line having a fractional Qty or QtyRec
+    steps:
+      - Click OK to save the PO
+    expected:
+      - "Warning message is shown: Invalid number format."
+      - Qty/QtyRec are truncated and no save occurs
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, dgvPO colQty
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 771, text: "Invalid number format." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

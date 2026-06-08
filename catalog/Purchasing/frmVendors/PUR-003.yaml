@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-003
+    title: Vendor save blocked when no phone, fax or email provided
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - On the New Vendor form with a company name entered
+    steps:
+      - Enter a company name but leave phone, fax and email empty
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Phone number or email is required."
+      - Save does not proceed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors txtName, ucPhone1, ucPhone2, txtEmail, nav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 305, text: "Phone number or email is required." }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

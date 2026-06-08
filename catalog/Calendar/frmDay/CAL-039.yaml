@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-039
+    title: Moving an appointment onto off-hours slots is blocked (day view move)
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: error-guard
+      ui_area: frmDay
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - An appointment move/clone is in progress in the day view
+    steps:
+      - Drop the moving appointment so it overlaps a disabled off-hours slot
+    expected:
+      - "Warning message is shown: You selected a time outside the staff member's scheduled hours. Cannot Proceed"
+      - The move is not committed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmDay dgvTime
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmDay.cs, line: 601, text: "You selected a time outside the staff member's scheduled hours. Cannot Proceed" }
+    flow_hash: "21DCAA742F5B024F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

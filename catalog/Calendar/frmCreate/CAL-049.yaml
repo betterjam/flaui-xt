@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-049
+    title: End-to-end - book an appointment then check it out to the register
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    chains: [CAL-036, CAL-021, CAL-015]
+    preconditions:
+      - Logged in as admin with full Calendar access
+      - At least one bookable service and a scheduled staff member exist
+    steps:
+      - Open an empty in-hours slot in the day view (CAL-036)
+      - Add a service and save the appointment (CAL-021)
+      - Check the appointment out to an open register order (CAL-015)
+    expected:
+      - The appointment is saved (Saved successfully.) and its services flow to the register
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Calendar/frmDay.cs
+      - 2.0.x/Calendar/frmCreate.cs
+      - 2.0.x/Calendar/frmSelect.cs
+    evidence: []
+    flow_hash: "FBBC416CD430E1C8"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

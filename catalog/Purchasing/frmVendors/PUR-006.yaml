@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-006
+    title: Vendor save blocked when FEIN missing for Non-PA manufacturer LCB type
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+      - License.LCBEnabled is true
+      - On the New Vendor form with name and contact entered
+    steps:
+      - Select the Non-PA manufacturer LCB type (rbnNonPA)
+      - Leave txtTaxID (FEIN) empty
+      - Attempt to Save
+    expected:
+      - "Warning message is shown: Must provide FEIN when LCB type of Non PA manufacturer is selected"
+      - Save does not proceed and focus returns to the FEIN field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmVendors rbnNonPA, txtTaxID, nav Save
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 325, text: "Must provide FEIN when LCB type\\nof Non PA manufacturer is selected" }
+    flow_hash: "0D0EB5B31FFC5AE1"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

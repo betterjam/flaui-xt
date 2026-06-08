@@ -1,0 +1,36 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-022
+    title: Saving a PO with received qty but blank reference warns
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: validation
+      ui_area: frmPO
+      entity: Receiving
+    preconditions:
+      - Logged in as admin with Purchasing access
+      - A PO line has a non-zero QtyRec (receiving) but txtReference is blank
+    steps:
+      - Click OK to save
+    expected:
+      - "Warning message is shown: Reference cannot be blank."
+      - Save does not proceed and focus moves to the reference field
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPO btnOK, txtReference
+    source_files:
+      - 2.0.x/Purchasing/frmPO.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmPO.cs, line: 780, text: "Reference cannot be blank." }
+    flow_hash: "C4356EE743BAE259"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

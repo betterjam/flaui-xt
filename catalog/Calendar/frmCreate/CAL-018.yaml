@@ -1,0 +1,37 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-018
+    title: Double-click look-up reassigns the appointment to a different customer
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmCreate
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The create panel is open
+    steps:
+      - Trigger the customer look-up (btn double-click handler)
+      - Search and select an active customer
+    expected:
+      - The appointment is reset to a new appointment for the chosen customer
+      - The selected date is reapplied and double-book prompting is suppressed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SearchForCustomerByName, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SearchForCustomerByName]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmCreate btn (customer look-up), SysForms.frmSearch select flow
+    source_files:
+      - 2.0.x/Calendar/frmCreate.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmCreate.cs, line: 721, text: "btnDoubleClick" }
+    flow_hash: "F0E18434CFAB876E"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Purchasing.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Purchasing
+test_case:
+  - id: PUR-001
+    title: Save a new vendor with required contact info succeeds
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmVendors
+      entity: Vendor
+    preconditions:
+      - Logged in as admin with Purchasing > Vendors access
+    steps:
+      - Go to the Purchasing module and open New Vendor
+      - Enter a company name in txtName
+      - Enter a phone number in ucPhone1
+      - Save the record via the nav Save
+    expected:
+      - "Success message is shown: Saved successfully."
+      - Vendor is persisted and Delete/History buttons become enabled
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule, SaveRecord]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - Purchasing module tile on the main menu (frmMenu)
+      - frmMenu btnVendorNew button
+      - frmVendors txtName, ucPhone1, txtEmail, nav Save (ucNav)
+    source_files:
+      - 2.0.x/Purchasing/frmVendors.cs
+      - 2.0.x/Purchasing/frmMenu.cs
+    evidence:
+      - { file: 2.0.x/Purchasing/frmVendors.cs, line: 384, text: "Saved successfully." }
+    flow_hash: "E37AE3B281FE2160"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

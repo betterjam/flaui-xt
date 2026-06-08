@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-008
+    title: Conflict dialog Print confirms and prints the conflict slip
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmConflict
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The appointment-conflict dialog (frmConflict) is open with a conflict list
+    steps:
+      - Click "Print" (btnOK) on the conflict dialog
+    expected:
+      - The dialog closes with DialogResult.OK and the conflict slip is printed by the caller
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmConflict btnOK ("Print")
+    source_files:
+      - 2.0.x/Calendar/frmConflict.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmConflict.cs, line: 21, text: "btnOKClick" }
+    flow_hash: "78AA18F5C728733F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # ----------------------------------------------------------------------------
+  # frmCreate.cs - create / edit appointment, services, move/clone, checkout
+  # (entity: Appointment)
+  # ----------------------------------------------------------------------------

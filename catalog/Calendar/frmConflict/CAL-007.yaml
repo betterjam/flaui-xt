@@ -1,0 +1,35 @@
+﻿# Generated from catalog/features/Calendar.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Calendar
+test_case:
+  - id: CAL-007
+    title: Conflict dialog Cancel dismisses without printing
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: []
+    categories:
+      test_kind: happy-path
+      ui_area: frmConflict
+      entity: Appointment
+    preconditions:
+      - Logged in as admin with Calendar access
+      - The appointment-conflict dialog (frmConflict) is open with a conflict list
+    steps:
+      - Click Cancel on the conflict dialog
+    expected:
+      - The dialog closes with DialogResult.Cancel and nothing is printed
+    runner: ranorex
+    composes: [StartAUT, LoginAsAdminUser, GoToModule, CloseAUT]
+    reference_recordings: [StartAUT, LoginAsAdminUser, GoToModule]
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmConflict btnCancel
+    source_files:
+      - 2.0.x/Calendar/frmConflict.cs
+    evidence:
+      - { file: 2.0.x/Calendar/frmConflict.cs, line: 16, text: "btnCancelClick" }
+    flow_hash: "78AA18F5C728733F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
