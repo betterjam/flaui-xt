@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-003
+    title: "GiftCardManager.HasAnyBeenUsed: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange gift cards (some used, some not) for the filter"
+      - "Call HasAnyBeenUsed(pParameters)"
+      - "Assert the returned bool"
+    expected:
+      - "HasAnyBeenUsed returns true/false reflecting whether any matching card was used"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.HasAnyBeenUsed (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 86, text: "bool HasAnyBeenUsed(FilterGiftCardParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

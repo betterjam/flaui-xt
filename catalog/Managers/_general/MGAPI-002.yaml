@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAPI-002
+    title: "APIConfigurationManager.UpdateConfigurationFile: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: APIConfigurationManager, entity: Configuration }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange configuration values to persist"
+      - "Call UpdateConfigurationFile()"
+      - "Assert the configuration file is written"
+    expected:
+      - "UpdateConfigurationFile writes the configuration file without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [APIConfigurationManager.UpdateConfigurationFile (NUnit harness)]
+    source_files: [2.0.x/Managers/APIConfigurationManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/APIConfigurationManager.cs, line: 60, text: "void UpdateConfigurationFile()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

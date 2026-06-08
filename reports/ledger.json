@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  2182,
-    "grandUncovered":  418,
-    "grandPct":  83.9,
+    "grandCovered":  2277,
+    "grandUncovered":  323,
+    "grandPct":  87.6,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "Customers",
-                      "layer":  "e2e",
-                      "total":  95,
-                      "covered":  0,
-                      "uncovered":  95,
-                      "pct":  0,
-                      "catalog":  false
-                  },
                   {
                       "area":  "Managers",
                       "layer":  "unit",
@@ -58,6 +49,15 @@
                       "uncovered":  56,
                       "pct":  0,
                       "catalog":  false
+                  },
+                  {
+                      "area":  "Customers",
+                      "layer":  "e2e",
+                      "total":  95,
+                      "covered":  95,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
                   },
                   {
                       "area":  "Calendar",

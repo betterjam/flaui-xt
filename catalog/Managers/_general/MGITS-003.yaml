@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGITS-003
+    title: "InternalTaskSchedulerManager.ProcessGetKeySalesSummaryInternalTask: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalTaskSchedulerManager, entity: ScheduledTask }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed sales data for a date"
+      - "Call ProcessGetKeySalesSummaryInternalTask(mDate, out outErrorMsg)"
+      - "Assert the returned bool and error message"
+    expected:
+      - "ProcessGetKeySalesSummaryInternalTask returns true on success and an error message on failure"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalTaskSchedulerManager.ProcessGetKeySalesSummaryInternalTask (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalTaskSchedulerManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalTaskSchedulerManager.cs, line: 298, text: "bool ProcessGetKeySalesSummaryInternalTask(DateTime? mDate, out string outErrorMsg)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # AdminFeeManager  (2.0.x/Managers/AdminFeeManager.cs)
+  # ------------------------------------------------------------------

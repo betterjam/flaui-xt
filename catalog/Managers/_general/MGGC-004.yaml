@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-004
+    title: "GiftCardManager.ApplyPayment: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a gift card with a balance"
+      - "Call ApplyPayment(pGiftCard, pAmountToApply)"
+      - "Assert the balance side-effect"
+    expected:
+      - "ApplyPayment applies the amount against the gift card without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.ApplyPayment (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 105, text: "void ApplyPayment(GiftCard pGiftCard, decimal pAmountToApply)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

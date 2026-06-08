@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGEC-001
+    title: "ExternalCredentialsManager.GetAmazonS3Client: integration permission"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: ExternalCredentialsManager, entity: Credential }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an AmazonS3BucketAccount with credentials"
+      - "Call GetAmazonS3Client(pAccount)"
+      - "Assert the returned AmazonS3Client"
+    expected:
+      - "GetAmazonS3Client returns an S3 client built from the account credentials"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ExternalCredentialsManager.GetAmazonS3Client (NUnit harness)]
+    source_files: [2.0.x/Managers/ExternalCredentialsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ExternalCredentialsManager.cs, line: 19, text: "AmazonS3Client GetAmazonS3Client(AmazonS3BucketAccount pAccount)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ==================================================================
+  # composite lifecycle flows (chain atomic ids; add no new anchors)
+  # ==================================================================

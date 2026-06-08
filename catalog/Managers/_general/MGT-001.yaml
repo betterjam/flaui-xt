@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGT-001
+    title: "TipManager.GetSuggestedTips: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: TipManager, entity: Tip }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a subtotal and item total"
+      - "Invoke GetSuggestedTips(pSubTotal, pItemTotal)"
+      - "Inspect the returned List<SuggestedTip>"
+    expected:
+      - "GetSuggestedTips returns the suggested tip amounts computed from the totals (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [TipManager.GetSuggestedTips (NUnit harness)]
+    source_files: [2.0.x/Managers/TipManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/TipManager.cs, line: 8, text: "List<SuggestedTip> GetSuggestedTips(decimal pSubTotal, decimal pItemTotal)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # DepartmentsManager  (2.0.x/Managers/DepartmentsManager.cs)
+  # ------------------------------------------------------------------

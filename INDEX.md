@@ -4,7 +4,7 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**83.9% complete** - 2182 / 2600 testable code anchors covered. Complete: **NO**.
+**87.6% complete** - 2277 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
@@ -15,10 +15,10 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 | Items | e2e | 346 | 346 | 100% | yes |
 | Transactions | e2e | 738 | 738 | 100% | yes |
 | Calendar | e2e | 51 | 51 | 100% | yes |
+| Customers | e2e | 95 | 95 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
-| Managers | unit | 0 | 93 | 0% | - |
-| Customers | e2e | 0 | 95 | 0% | - |
 | SysForms | e2e | 0 | 91 | 0% | - |
+| Managers | unit | 0 | 93 | 0% | - |
 | Utility | e2e | 0 | 56 | 0% | - |
 | Staff | e2e | 0 | 88 | 0% | - |
 
@@ -923,6 +923,109 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `MAIN-0036` frmMain: Warning - Barcode has incorrect format (scan path A)  _( P2 / needs-recording )_
 - `MAIN-0037` frmMain: Warning - Coupon not found or used.  _( P2 / needs-recording )_
 - `MAIN-0038` frmMain: Warning - Barcode has incorrect format (scan path B)  _( P2 / needs-recording )_
+
+### Managers  (98 tests: 93 atomic, 5 composite)
+
+**(uncategorized)** (98)
+
+- `MGITS-002` InternalTaskSchedulerManager.RunInternalSchedulerTasks: integration behavior  _( P2 / needs-recording )_
+- `MGITS-003` InternalTaskSchedulerManager.ProcessGetKeySalesSummaryInternalTask: integration behavior  _( P2 / needs-recording )_
+- `MGAF-001` AdminFeeManager.Clear: unit calc  _( P1 / needs-recording )_
+- `MGP-002` PaymentManager.GetPaymentsToVoid: integration behavior  _( P2 / needs-recording )_
+- `MGP-003` PaymentManager.VoidCardPayment: integration behavior  _( P1 / needs-recording )_
+- `MGITS-001` InternalTaskSchedulerManager.GetInternalTaskSchedulerByTaskCode: integration behavior  _( P2 / needs-recording )_
+- `MGCAT-002` CategoryManager.IsDepartmentAssignedToCategory: integration behavior  _( P2 / needs-recording )_
+- `MGCAT-003` CategoryManager.IsAnyCategoryAssignedToADepartment: integration behavior  _( P2 / needs-recording )_
+- `MGNET-001` NetworkManager.ConfigureMAC: integration behavior  _( P2 / needs-recording )_
+- `MGAF-002` AdminFeeManager.CreatePaymentFormMessage: unit calc  _( P1 / needs-recording )_
+- `MGAF-003` AdminFeeManager.DigitsLeftOfDecimal: unit calc  _( P2 / needs-recording )_
+- `MGCAT-001` CategoryManager.GetByCatID: integration behavior  _( P2 / needs-recording )_
+- `MGO-003` OrderManager.VoidOrder: integration behavior  _( P1 / needs-recording )_
+- `MGO-004` OrderManager.UpdateOrderDetailAfterEmitGiftCert: integration behavior  _( P2 / needs-recording )_
+- `MGAP-001` AccountPaymentManager.TakeAccountPayment: integration behavior  _( P1 / needs-recording )_
+- `MGAPI-004` APIConfigurationManager.HasValidCredentials: integration permission  _( P1 / needs-recording )_
+- `MGO-001` OrderManager.RequestRemoteReprint: integration behavior  _( P2 / needs-recording )_
+- `MGO-002` OrderManager.HasRequestRemoteReprint: integration behavior  _( P2 / needs-recording )_
+- `MGSC-002` ScaleManager.StopWatchdog: integration behavior  _( P2 / needs-recording )_
+- `MGSC-003` ScaleManager.IsReadingSuccess: integration behavior  _( P2 / needs-recording )_
+- `MGP-001` PaymentManager.UpdateTip: unit calc  _( P1 / needs-recording )_
+- `MGAP-002` AccountPaymentManager.GetReceiptsParameters: integration behavior  _( P2 / needs-recording )_
+- `MGAP-003` AccountPaymentManager.UpdateAccountPaymentRate: integration behavior  _( P2 / needs-recording )_
+- `MGSC-001` ScaleManager.StartWatchdog: integration behavior  _( P2 / needs-recording )_
+- `MGNET-002` NetworkManager.ConfigureMACOffline: integration behavior  _( P2 / needs-recording )_
+- `MGI-001` ImageManager.ConfigureLogoCFD: integration behavior  _( P2 / needs-recording )_
+- `MGCC-001` CreditCardManager.IsCardNumberValid: integration behavior  _( P1 / needs-recording )_
+- `MGCT-001` CardTransactionManager.UpdateNumber: integration behavior  _( P2 / needs-recording )_
+- `MGST-001` StaffManager.GetCurrentStaffName: integration behavior  _( P2 / needs-recording )_
+- `MGT-001` TipManager.GetSuggestedTips: unit calc  _( P1 / needs-recording )_
+- `MGDP-001` DepartmentsManager.GetDefaultDepartment: integration behavior  _( P2 / needs-recording )_
+- `MGCMP-003` OrderManager end-to-end: void then reprint flow  _( P2 / needs-recording )_
+- `MGCMP-004` PaymentManager end-to-end: tip, list voidable, void card payment  _( P1 / needs-recording )_
+- `MGCMP-005` CryptoManager round-trip: encrypt then decrypt  _( P1 / needs-recording )_
+- `MGEC-001` ExternalCredentialsManager.GetAmazonS3Client: integration permission  _( P2 / needs-recording )_
+- `MGCMP-001` GiftCardManager end-to-end: create, read, mutate, redeem, revert  _( P1 / needs-recording )_
+- `MGCMP-002` AccountReceivableManager end-to-end: create, link, read, delete  _( P2 / needs-recording )_
+- `MGAU-002` AuditManager.WriteLog(Module,Access,SqlCommand): integration behavior  _( P2 / needs-recording )_
+- `MGOT-001` OrdersTipsManager.PaymentsHasInTransactionCFDTipAdded: unit calc  _( P2 / needs-recording )_
+- `MGOT-002` OrdersTipsManager.GetOrdersTipsByPayID: unit calc  _( P2 / needs-recording )_
+- `MGRC-001` ReceiptManager.PrintReceipts: integration behavior  _( P2 / needs-recording )_
+- `MGRC-002` ReceiptManager.PrintReceipt: integration behavior  _( P2 / needs-recording )_
+- `MGAU-001` AuditManager.WriteLog(object): integration behavior  _( P2 / needs-recording )_
+- `MGCR-002` CryptoManager.DecryptString: integration permission  _( P1 / needs-recording )_
+- `MGS-001` SecurityManager.Login: integration permission  _( P1 / needs-recording )_
+- `MGS-002` SecurityManager.CreateSecurityProfile: integration permission  _( P1 / needs-recording )_
+- `MGD-001` DialogManager.Dialog: integration behavior  _( P2 / needs-recording )_
+- `MGD-002` DialogManager.ClearAllDialog: integration behavior  _( P2 / needs-recording )_
+- `MGCR-001` CryptoManager.EncryptString: integration permission  _( P1 / needs-recording )_
+- `MGGC-016` GiftCardManager.Redeem: integration behavior  _( P1 / needs-recording )_
+- `MGCF-001` CustomFieldsManager.GetByCustomID: integration behavior  _( P2 / needs-recording )_
+- `MGCF-002` CustomFieldsManager.GetByCustomFieldByCustomTypeEnum: integration behavior  _( P2 / needs-recording )_
+- `MGGC-013` GiftCardManager.CompleteAuth: integration behavior  _( P2 / needs-recording )_
+- `MGGC-014` GiftCardManager.Activate: integration behavior  _( P1 / needs-recording )_
+- `MGGC-015` GiftCardManager.AddValue: integration behavior  _( P1 / needs-recording )_
+- `MGCF-006` CustomFieldsManager.ConvertColumnToVarBinary: unit behavior  _( P3 / needs-recording )_
+- `MGCF-007` CustomFieldsManager.AddPaddingToDepartmentValueField: unit behavior  _( P3 / needs-recording )_
+- `MGIC-001` InternalConnectionManager.StartSocket: integration behavior  _( P2 / needs-recording )_
+- `MGCF-003` CustomFieldsManager.HasDuplicateInternalDepartmentID: integration behavior  _( P2 / needs-recording )_
+- `MGCF-004` CustomFieldsManager.Update: integration behavior  _( P2 / needs-recording )_
+- `MGCF-005` CustomFieldsManager.IsDepartmentAssignedToCategoryOrItem: integration behavior  _( P2 / needs-recording )_
+- `MGGC-004` GiftCardManager.ApplyPayment: integration behavior  _( P1 / needs-recording )_
+- `MGGC-005` GiftCardManager.IncreaseBalanceBy: unit calc  _( P1 / needs-recording )_
+- `MGGC-006` GiftCardManager.CancelByGiftCode: integration behavior  _( P2 / needs-recording )_
+- `MGGC-001` GiftCardManager.GetAllByFilter: integration behavior  _( P2 / needs-recording )_
+- `MGGC-002` GiftCardManager.GetByGiftCode: integration behavior  _( P2 / needs-recording )_
+- `MGGC-003` GiftCardManager.HasAnyBeenUsed: integration behavior  _( P2 / needs-recording )_
+- `MGGC-010` GiftCardManager.CreateGiftCertificate: integration behavior  _( P1 / needs-recording )_
+- `MGGC-011` GiftCardManager.RevertAnyGiftCardOrCertificate: integration behavior  _( P2 / needs-recording )_
+- `MGGC-012` GiftCardManager.GetBalance: unit calc  _( P1 / needs-recording )_
+- `MGGC-007` GiftCardManager.CheckOnline: integration behavior  _( P2 / needs-recording )_
+- `MGGC-008` GiftCardManager.EnsureReturnability: integration behavior  _( P2 / needs-recording )_
+- `MGGC-009` GiftCardManager.GiftCertificateDialog: integration behavior  _( P2 / needs-recording )_
+- `MGIC-002` InternalConnectionManager.StartSocketLRS: integration behavior  _( P2 / needs-recording )_
+- `MGCRM-003` CRMServiceManager.CheckTenderEligibility: integration behavior  _( P2 / needs-recording )_
+- `MGCRM-004` CRMServiceManager.GetPrimaryCardOnFile: integration behavior  _( P2 / needs-recording )_
+- `MGN-001` NotificationsManager.GetMinutesBeforeClosingByDayOfTheWeek: integration behavior  _( P2 / needs-recording )_
+- `MGIM-004` ItemManager.IsAnyItemAssignedToADepartment: integration behavior  _( P2 / needs-recording )_
+- `MGCRM-001` CRMServiceManager.IsEnabled: integration behavior  _( P2 / needs-recording )_
+- `MGCRM-002` CRMServiceManager.CreateCardOnFile: integration behavior  _( P2 / needs-recording )_
+- `MGAPI-001` APIConfigurationManager.ConfigureExternal: integration behavior  _( P2 / needs-recording )_
+- `MGAPI-002` APIConfigurationManager.UpdateConfigurationFile: integration behavior  _( P2 / needs-recording )_
+- `MGAPI-003` APIConfigurationManager.GetSettingByApplicationName: integration behavior  _( P2 / needs-recording )_
+- `MGN-002` NotificationsManager.HasActiveNotification: integration behavior  _( P2 / needs-recording )_
+- `MGN-003` NotificationsManager.GetActiveNotificationByNotificationType: integration behavior  _( P2 / needs-recording )_
+- `MGN-004` NotificationsManager.ShowNotification: integration behavior  _( P2 / needs-recording )_
+- `MGIC-006` InternalConnectionManager.ClientUpdate: integration behavior  _( P2 / needs-recording )_
+- `MGAR-001` AccountReceivableManager.CreateTransaction: integration behavior  _( P1 / needs-recording )_
+- `MGAR-002` AccountReceivableManager.DeleteTransaction: integration behavior  _( P2 / needs-recording )_
+- `MGIC-003` InternalConnectionManager.ReconnectSocket: integration behavior  _( P2 / needs-recording )_
+- `MGIC-004` InternalConnectionManager.SocketSend: integration behavior  _( P2 / needs-recording )_
+- `MGIC-005` InternalConnectionManager.ConnectToServer: integration behavior  _( P2 / needs-recording )_
+- `MGIM-001` ItemManager.GetItemByPLUCode: integration behavior  _( P2 / needs-recording )_
+- `MGIM-002` ItemManager.GetItemByItemID: integration behavior  _( P2 / needs-recording )_
+- `MGIM-003` ItemManager.IsDepartmentAssignedToItem: integration behavior  _( P2 / needs-recording )_
+- `MGAR-003` AccountReceivableManager.UpdateTransactionOrderId: integration behavior  _( P2 / needs-recording )_
+- `MGAR-004` AccountReceivableManager.GetAllTransactionsByDate: integration behavior  _( P2 / needs-recording )_
+- `MGAR-005` AccountReceivableManager.UpdateAccountReceivableSettings: integration behavior  _( P2 / needs-recording )_
 
 ### Purchasing  (47 tests: 44 atomic, 3 composite)
 

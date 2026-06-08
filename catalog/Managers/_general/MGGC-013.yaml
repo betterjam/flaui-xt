@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-013
+    title: "GiftCardManager.CompleteAuth: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a csGift with a pending auth"
+      - "Call CompleteAuth(pGift)"
+      - "Assert the GiftCardProcessResult"
+    expected:
+      - "CompleteAuth returns a GiftCardProcessResult finalizing the auth"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.CompleteAuth (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 500, text: "GiftCardProcessResult CompleteAuth(csGift pGift)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGST-001
+    title: "StaffManager.GetCurrentStaffName: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: StaffManager, entity: Staff }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Log in a staff member"
+      - "Call GetCurrentStaffName()"
+      - "Assert the returned string"
+    expected:
+      - "GetCurrentStaffName returns the logged-in staff member's name"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [StaffManager.GetCurrentStaffName (NUnit harness)]
+    source_files: [2.0.x/Managers/StaffManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/StaffManager.cs, line: 8, text: "string GetCurrentStaffName()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # TipManager  (2.0.x/Managers/TipManager.cs)
+  # ------------------------------------------------------------------

@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGN-001
+    title: "NotificationsManager.GetMinutesBeforeClosingByDayOfTheWeek: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: NotificationsManager, entity: Notification }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed closing-time configuration for the current day"
+      - "Call GetMinutesBeforeClosingByDayOfTheWeek()"
+      - "Assert the returned int"
+    expected:
+      - "GetMinutesBeforeClosingByDayOfTheWeek returns the configured minutes before closing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NotificationsManager.GetMinutesBeforeClosingByDayOfTheWeek (NUnit harness)]
+    source_files: [2.0.x/Managers/NotificationsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NotificationsManager.cs, line: 15, text: "int GetMinutesBeforeClosingByDayOfTheWeek()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAF-001
+    title: "AdminFeeManager.Clear: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: AdminFeeManager, entity: AdminFee }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build an AdminFeeModel with values"
+      - "Invoke Clear() on the model"
+      - "Inspect the reset model fields"
+    expected:
+      - "Clear resets the AdminFeeModel fields to their defaults (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AdminFeeManager.Clear (NUnit harness)]
+    source_files: [2.0.x/Managers/AdminFeeManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AdminFeeManager.cs, line: 10, text: "void Clear(this AdminFeeModel pAdminFeeModel)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

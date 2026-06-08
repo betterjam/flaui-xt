@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGDP-001
+    title: "DepartmentsManager.GetDefaultDepartment: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: DepartmentsManager, entity: Department }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed departments with a default"
+      - "Call GetDefaultDepartment()"
+      - "Assert the returned CustomField"
+    expected:
+      - "GetDefaultDepartment returns the default department custom field"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [DepartmentsManager.GetDefaultDepartment (NUnit harness)]
+    source_files: [2.0.x/Managers/DepartmentsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/DepartmentsManager.cs, line: 14, text: "CustomField GetDefaultDepartment()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ImageManager  (2.0.x/Managers/ImageManager.cs)
+  # ------------------------------------------------------------------

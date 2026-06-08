@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGITS-001
+    title: "InternalTaskSchedulerManager.GetInternalTaskSchedulerByTaskCode: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalTaskSchedulerManager, entity: ScheduledTask }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an internal task scheduler with a known task code"
+      - "Call GetInternalTaskSchedulerByTaskCode(pInternalTaskCode)"
+      - "Assert the returned InternalTaskScheduler"
+    expected:
+      - "GetInternalTaskSchedulerByTaskCode returns the scheduler for the task code"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalTaskSchedulerManager.GetInternalTaskSchedulerByTaskCode (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalTaskSchedulerManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalTaskSchedulerManager.cs, line: 75, text: "InternalTaskScheduler GetInternalTaskSchedulerByTaskCode(int pInternalTaskCode)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

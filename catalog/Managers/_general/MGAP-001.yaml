@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAP-001
+    title: "AccountPaymentManager.TakeAccountPayment: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountPaymentManager, entity: AccountPayment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build TakeAccountPaymentParameters"
+      - "Call TakeAccountPayment(pParameters)"
+      - "Assert the TakeAccountPaymentResult"
+    expected:
+      - "TakeAccountPayment records the account payment and returns its result"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountPaymentManager.TakeAccountPayment (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountPaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountPaymentManager.cs, line: 22, text: "TakeAccountPaymentResult TakeAccountPayment(TakeAccountPaymentParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAR-005
+    title: "AccountReceivableManager.UpdateAccountReceivableSettings: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a customer"
+      - "Call UpdateAccountReceivableSettings(pCustomerId, pAllowARCharges, pCreditLimit)"
+      - "Assert the persisted AR settings"
+    expected:
+      - "UpdateAccountReceivableSettings stores the allow-charges flag and credit limit"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountReceivableManager.UpdateAccountReceivableSettings (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountReceivableManager.cs, line: 129, text: "void UpdateAccountReceivableSettings(string pCustomerId, bool pAllowARCharges, decimal pCreditLimit)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ItemManager  (2.0.x/Managers/ItemManager.cs)
+  # ------------------------------------------------------------------

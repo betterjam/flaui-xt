@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGSC-002
+    title: "ScaleManager.StopWatchdog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: ScaleManager, entity: Scale }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Start then stop the scale watchdog"
+      - "Call StopWatchdog()"
+      - "Assert the watchdog is stopped"
+    expected:
+      - "StopWatchdog stops the scale watchdog without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ScaleManager.StopWatchdog (NUnit harness)]
+    source_files: [2.0.x/Managers/ScaleManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ScaleManager.cs, line: 47, text: "void StopWatchdog()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

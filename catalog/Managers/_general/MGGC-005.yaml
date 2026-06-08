@@ -1,0 +1,28 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-005
+    title: "GiftCardManager.IncreaseBalanceBy: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Invoke IncreaseBalanceBy with a known code and amount"
+      - "Inspect the resulting gift card balance"
+    expected:
+      - "IncreaseBalanceBy raises the gift card balance by the amount (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.IncreaseBalanceBy (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 129, text: "void IncreaseBalanceBy(string pGiftCode, decimal pAmountToIncrease)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

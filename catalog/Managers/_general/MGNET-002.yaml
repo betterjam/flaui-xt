@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGNET-002
+    title: "NetworkManager.ConfigureMACOffline: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: NetworkManager, entity: Network }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange offline network configuration"
+      - "Call ConfigureMACOffline()"
+      - "Assert the returned bool"
+    expected:
+      - "ConfigureMACOffline configures the MAC offline and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NetworkManager.ConfigureMACOffline (NUnit harness)]
+    source_files: [2.0.x/Managers/NetworkManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NetworkManager.cs, line: 57, text: "bool ConfigureMACOffline()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ReceiptManager  (2.0.x/Managers/ReceiptManager.cs)
+  # ------------------------------------------------------------------

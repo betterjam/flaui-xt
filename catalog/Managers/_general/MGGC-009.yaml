@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-009
+    title: "GiftCardManager.GiftCertificateDialog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a dialog message and process flag"
+      - "Call GiftCertificateDialog(pDialogMessage, pProcessCertificate)"
+      - "Assert the GiftCertificateDialogResult"
+    expected:
+      - "GiftCertificateDialog returns the expected GiftCertificateDialogResult"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.GiftCertificateDialog (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 274, text: "GiftCertificateDialogResult GiftCertificateDialog(string pDialogMessage, bool pProcessCertificate)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

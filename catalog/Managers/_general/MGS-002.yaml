@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGS-002
+    title: "SecurityManager.CreateSecurityProfile: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: SecurityManager, entity: SecurityProfile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a SecurityProfile"
+      - "Call CreateSecurityProfile(pSecurityProfile)"
+      - "Assert the returned profile id int"
+    expected:
+      - "CreateSecurityProfile persists the profile and returns its new id"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [SecurityManager.CreateSecurityProfile (NUnit harness)]
+    source_files: [2.0.x/Managers/SecurityManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/SecurityManager.cs, line: 68, text: "int CreateSecurityProfile(SecurityProfile pSecurityProfile)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # StaffManager  (2.0.x/Managers/StaffManager.cs)
+  # ------------------------------------------------------------------

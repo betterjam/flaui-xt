@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCF-006
+    title: "CustomFieldsManager.ConvertColumnToVarBinary: unit behavior"
+    kind: atomic
+    priority: P3
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a DataRow with a known column value"
+      - "Call ConvertColumnToVarBinary(row, columnName)"
+      - "Assert the returned byte[]"
+    expected:
+      - "ConvertColumnToVarBinary returns the column value as a byte array"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.ConvertColumnToVarBinary (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 102, text: "byte[] ConvertColumnToVarBinary(DataRow row, string columnName)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAR-003
+    title: "AccountReceivableManager.UpdateTransactionOrderId: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an AR transaction"
+      - "Call UpdateTransactionOrderId(pTransactionId, orderId, pCloudId)"
+      - "Assert the returned bool"
+    expected:
+      - "UpdateTransactionOrderId links the order/cloud id and returns true"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountReceivableManager.UpdateTransactionOrderId (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountReceivableManager.cs, line: 83, text: "bool UpdateTransactionOrderId(string pTransactionId, object orderId, string pCloudId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

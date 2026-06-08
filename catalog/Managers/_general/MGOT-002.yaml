@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGOT-002
+    title: "OrdersTipsManager.GetOrdersTipsByPayID: unit calc"
+    kind: atomic
+    priority: P2
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: OrdersTipsManager, entity: Tip }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed orders-tips for a payment id"
+      - "Invoke GetOrdersTipsByPayID(pPayID)"
+      - "Inspect the returned List<OrdersTips>"
+    expected:
+      - "GetOrdersTipsByPayID returns the orders-tips for the payment id (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrdersTipsManager.GetOrdersTipsByPayID (NUnit harness)]
+    source_files: [2.0.x/Managers/OrdersTipsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrdersTipsManager.cs, line: 34, text: "List<OrdersTips> GetOrdersTipsByPayID(int pPayID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # DialogManager  (2.0.x/Managers/DialogManager.cs)
+  # ------------------------------------------------------------------

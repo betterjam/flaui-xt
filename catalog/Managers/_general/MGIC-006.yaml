@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGIC-006
+    title: "InternalConnectionManager.ClientUpdate: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange a connected client"
+      - "Call ClientUpdate()"
+      - "Assert the void result / side-effect"
+    expected:
+      - "ClientUpdate pushes the client update without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.ClientUpdate (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 385, text: "void ClientUpdate()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # AccountReceivableManager  (2.0.x/Managers/AccountReceivableManager.cs)
+  # ------------------------------------------------------------------

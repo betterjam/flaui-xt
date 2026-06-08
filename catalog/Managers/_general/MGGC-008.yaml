@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-008
+    title: "GiftCardManager.EnsureReturnability: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a gift card and an original tender amount"
+      - "Call EnsureReturnability(pGiftCardNumber, pOriginalAmount, pMoneyBackType)"
+      - "Assert the guard outcome"
+    expected:
+      - "EnsureReturnability permits a valid return and blocks an unreturnable one"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.EnsureReturnability (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 243, text: "void EnsureReturnability(string pGiftCardNumber, decimal pOriginalAmount, TransactionReversalType pMoneyBackType)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

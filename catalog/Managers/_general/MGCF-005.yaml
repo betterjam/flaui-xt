@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCF-005
+    title: "CustomFieldsManager.IsDepartmentAssignedToCategoryOrItem: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a department assigned to a category or item"
+      - "Call IsDepartmentAssignedToCategoryOrItem(pCustomID)"
+      - "Assert the returned bool"
+    expected:
+      - "IsDepartmentAssignedToCategoryOrItem returns true when the department is in use"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.IsDepartmentAssignedToCategoryOrItem (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 89, text: "bool IsDepartmentAssignedToCategoryOrItem(int pCustomID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGIC-003
+    title: "InternalConnectionManager.ReconnectSocket: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange a dropped socket connection"
+      - "Call ReconnectSocket()"
+      - "Assert the void result / side-effect"
+    expected:
+      - "ReconnectSocket re-establishes the connection without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.ReconnectSocket (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 161, text: "void ReconnectSocket()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

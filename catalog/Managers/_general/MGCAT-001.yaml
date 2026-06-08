@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCAT-001
+    title: "CategoryManager.GetByCatID: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CategoryManager, entity: Category }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a category with a known id"
+      - "Call GetByCatID(pCatID)"
+      - "Assert the returned Category"
+    expected:
+      - "GetByCatID returns the category for the id"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CategoryManager.GetByCatID (NUnit harness)]
+    source_files: [2.0.x/Managers/CategoryManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CategoryManager.cs, line: 14, text: "Category GetByCatID(int pCatID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

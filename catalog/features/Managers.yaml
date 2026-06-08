@@ -1,0 +1,2641 @@
+﻿feature: Managers
+description: >
+  Business-logic manager classes under 2.0.x/Managers. These are not forms; each public
+  manager method is an exercisable behavior, so coverage is one NUnit case per method anchor
+  (file:line). calc-methods -> unit calculation tests; other methods -> integration tests
+  asserting the documented return/behavior. Composites chain a manager's atomics into a
+  realistic lifecycle. No Ranorex locators are authored here; these run under the NUnit runner
+  against the manager API, so composes/reference_recordings stay empty and matches_existing is
+  null (net-new coverage the recorded suite lacks). Evidence text is the verbatim method
+  signature copied from catalog/_baseline/evidence-Managers.json.
+source_paths:
+  - 2.0.x/Managers
+flavors: []
+
+test_cases:
+  # ------------------------------------------------------------------
+  # GiftCardManager  (2.0.x/Managers/GiftCardManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGGC-001
+    title: "GiftCardManager.GetAllByFilter: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed gift cards matching a FilterGiftCardParameters"
+      - "Call GetAllByFilter(pParameters)"
+      - "Assert the returned IEnumerable<GiftCard>"
+    expected:
+      - "GetAllByFilter returns the gift cards matching the filter"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.GetAllByFilter (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 41, text: "IEnumerable<GiftCard> GetAllByFilter(FilterGiftCardParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-002
+    title: "GiftCardManager.GetByGiftCode: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a gift card with a known gift code"
+      - "Call GetByGiftCode(pGiftCode)"
+      - "Assert the returned GiftCard"
+    expected:
+      - "GetByGiftCode returns the gift card for the supplied code"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.GetByGiftCode (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 67, text: "GiftCard GetByGiftCode(string pGiftCode)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-003
+    title: "GiftCardManager.HasAnyBeenUsed: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange gift cards (some used, some not) for the filter"
+      - "Call HasAnyBeenUsed(pParameters)"
+      - "Assert the returned bool"
+    expected:
+      - "HasAnyBeenUsed returns true/false reflecting whether any matching card was used"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.HasAnyBeenUsed (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 86, text: "bool HasAnyBeenUsed(FilterGiftCardParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-004
+    title: "GiftCardManager.ApplyPayment: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a gift card with a balance"
+      - "Call ApplyPayment(pGiftCard, pAmountToApply)"
+      - "Assert the balance side-effect"
+    expected:
+      - "ApplyPayment applies the amount against the gift card without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.ApplyPayment (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 105, text: "void ApplyPayment(GiftCard pGiftCard, decimal pAmountToApply)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-005
+    title: "GiftCardManager.IncreaseBalanceBy: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Invoke IncreaseBalanceBy with a known code and amount"
+      - "Inspect the resulting gift card balance"
+    expected:
+      - "IncreaseBalanceBy raises the gift card balance by the amount (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.IncreaseBalanceBy (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 129, text: "void IncreaseBalanceBy(string pGiftCode, decimal pAmountToIncrease)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-006
+    title: "GiftCardManager.CancelByGiftCode: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an active gift card"
+      - "Call CancelByGiftCode(pGiftCode)"
+      - "Assert the card is cancelled"
+    expected:
+      - "CancelByGiftCode cancels the card without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.CancelByGiftCode (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 149, text: "void CancelByGiftCode(string pGiftCode)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-007
+    title: "GiftCardManager.CheckOnline: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange the gift card online-check dependency"
+      - "Call CheckOnline()"
+      - "Assert the returned bool"
+    expected:
+      - "CheckOnline returns true/false reflecting gift card online availability"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.CheckOnline (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 177, text: "bool CheckOnline()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-008
+    title: "GiftCardManager.EnsureReturnability: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a gift card and an original tender amount"
+      - "Call EnsureReturnability(pGiftCardNumber, pOriginalAmount, pMoneyBackType)"
+      - "Assert the guard outcome"
+    expected:
+      - "EnsureReturnability permits a valid return and blocks an unreturnable one"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.EnsureReturnability (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 243, text: "void EnsureReturnability(string pGiftCardNumber, decimal pOriginalAmount, TransactionReversalType pMoneyBackType)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-009
+    title: "GiftCardManager.GiftCertificateDialog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a dialog message and process flag"
+      - "Call GiftCertificateDialog(pDialogMessage, pProcessCertificate)"
+      - "Assert the GiftCertificateDialogResult"
+    expected:
+      - "GiftCertificateDialog returns the expected GiftCertificateDialogResult"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.GiftCertificateDialog (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 274, text: "GiftCertificateDialogResult GiftCertificateDialog(string pDialogMessage, bool pProcessCertificate)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-010
+    title: "GiftCardManager.CreateGiftCertificate: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build CreateGiftCardCertificateParameters"
+      - "Call CreateGiftCertificate(pParameter, pUnitOfWork)"
+      - "Assert the returned GiftCard"
+    expected:
+      - "CreateGiftCertificate returns the persisted GiftCard"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.CreateGiftCertificate (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 370, text: "GiftCard CreateGiftCertificate(CreateGiftCardCertificateParameters pParameter, IUnitOfWork pUnitOfWork = null)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-011
+    title: "GiftCardManager.RevertAnyGiftCardOrCertificate: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a payment that issued a gift card/certificate"
+      - "Call RevertAnyGiftCardOrCertificate(pPaymentID, out pErrorMessages)"
+      - "Assert revert side-effect and error list"
+    expected:
+      - "RevertAnyGiftCardOrCertificate reverses issuance and populates error messages on failure"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.RevertAnyGiftCardOrCertificate (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 421, text: "void RevertAnyGiftCardOrCertificate(int pPaymentID, out List<string> pErrorMessages)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-012
+    title: "GiftCardManager.GetBalance: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Invoke GetBalance with a csGift input"
+      - "Inspect the returned GiftCardProcessResult"
+    expected:
+      - "GetBalance returns a GiftCardProcessResult with the computed balance (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.GetBalance (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 482, text: "GiftCardProcessResult GetBalance(csGift pGift)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-013
+    title: "GiftCardManager.CompleteAuth: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a csGift with a pending auth"
+      - "Call CompleteAuth(pGift)"
+      - "Assert the GiftCardProcessResult"
+    expected:
+      - "CompleteAuth returns a GiftCardProcessResult finalizing the auth"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.CompleteAuth (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 500, text: "GiftCardProcessResult CompleteAuth(csGift pGift)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-014
+    title: "GiftCardManager.Activate: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a csGift to activate"
+      - "Call Activate(pGift, pIssueCertificateOnFailure)"
+      - "Assert the GiftCardProcessResult"
+    expected:
+      - "Activate returns a GiftCardProcessResult; on failure issues a certificate when flagged"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.Activate (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 520, text: "GiftCardProcessResult Activate(csGift pGift, bool pIssueCertificateOnFailure)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-015
+    title: "GiftCardManager.AddValue: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a csGift with an add-value amount"
+      - "Call AddValue(pGift)"
+      - "Assert the GiftCardProcessResult"
+    expected:
+      - "AddValue returns a GiftCardProcessResult reflecting the increased balance"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.AddValue (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 563, text: "GiftCardProcessResult AddValue(csGift pGift)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGGC-016
+    title: "GiftCardManager.Redeem: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a csGift with redeemable balance"
+      - "Call Redeem(pGift)"
+      - "Assert the GiftCardProcessResult"
+    expected:
+      - "Redeem returns a GiftCardProcessResult debiting the gift card"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.Redeem (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 581, text: "GiftCardProcessResult Redeem(csGift pGift)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CustomFieldsManager  (2.0.x/Managers/CustomFieldsManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGCF-001
+    title: "CustomFieldsManager.GetByCustomID: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a custom field with a known id"
+      - "Call GetByCustomID(pCustomFieldID)"
+      - "Assert the returned CustomField"
+    expected:
+      - "GetByCustomID returns the custom field for the id"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.GetByCustomID (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 15, text: "CustomField GetByCustomID(int pCustomFieldID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCF-002
+    title: "CustomFieldsManager.GetByCustomFieldByCustomTypeEnum: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed custom fields of a given CustomType"
+      - "Call GetByCustomFieldByCustomTypeEnum(pCustomType)"
+      - "Assert the returned List<CustomField>"
+    expected:
+      - "GetByCustomFieldByCustomTypeEnum returns the custom fields for that type"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.GetByCustomFieldByCustomTypeEnum (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 21, text: "List<CustomField> GetByCustomFieldByCustomTypeEnum(CustomType pCustomType)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCF-003
+    title: "CustomFieldsManager.HasDuplicateInternalDepartmentID: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed department custom fields including a duplicate"
+      - "Call HasDuplicateInternalDepartmentID(pCustomID, pCustomValue)"
+      - "Assert the returned bool"
+    expected:
+      - "HasDuplicateInternalDepartmentID returns true when a duplicate internal department id exists"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.HasDuplicateInternalDepartmentID (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 33, text: "bool HasDuplicateInternalDepartmentID(object pCustomID, object pCustomValue)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCF-004
+    title: "CustomFieldsManager.Update: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a DataRow for an existing custom field"
+      - "Call Update(pRow)"
+      - "Assert the returned bool"
+    expected:
+      - "Update persists the row and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.Update (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 67, text: "bool Update(DataRow pRow)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCF-005
+    title: "CustomFieldsManager.IsDepartmentAssignedToCategoryOrItem: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a department assigned to a category or item"
+      - "Call IsDepartmentAssignedToCategoryOrItem(pCustomID)"
+      - "Assert the returned bool"
+    expected:
+      - "IsDepartmentAssignedToCategoryOrItem returns true when the department is in use"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.IsDepartmentAssignedToCategoryOrItem (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 89, text: "bool IsDepartmentAssignedToCategoryOrItem(int pCustomID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCF-006
+    title: "CustomFieldsManager.ConvertColumnToVarBinary: unit behavior"
+    kind: atomic
+    priority: P3
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a DataRow with a known column value"
+      - "Call ConvertColumnToVarBinary(row, columnName)"
+      - "Assert the returned byte[]"
+    expected:
+      - "ConvertColumnToVarBinary returns the column value as a byte array"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.ConvertColumnToVarBinary (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 102, text: "byte[] ConvertColumnToVarBinary(DataRow row, string columnName)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCF-007
+    title: "CustomFieldsManager.AddPaddingToDepartmentValueField: unit behavior"
+    kind: atomic
+    priority: P3
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide an accounting id string"
+      - "Call AddPaddingToDepartmentValueField(pAccountingID)"
+      - "Assert the returned padded string"
+    expected:
+      - "AddPaddingToDepartmentValueField returns the accounting id padded to the department field width"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.AddPaddingToDepartmentValueField (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 116, text: "string AddPaddingToDepartmentValueField(string pAccountingID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # InternalConnectionManager  (2.0.x/Managers/InternalConnectionManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGIC-001
+    title: "InternalConnectionManager.StartSocket: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange the manager dependencies for InternalConnectionManager"
+      - "Call StartSocket()"
+      - "Assert the void result / side-effect"
+    expected:
+      - "StartSocket opens the listening socket without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.StartSocket (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 24, text: "void StartSocket()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIC-002
+    title: "InternalConnectionManager.StartSocketLRS: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange the manager dependencies for InternalConnectionManager"
+      - "Call StartSocketLRS()"
+      - "Assert the void result / side-effect"
+    expected:
+      - "StartSocketLRS opens the LRS socket without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.StartSocketLRS (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 115, text: "void StartSocketLRS()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIC-003
+    title: "InternalConnectionManager.ReconnectSocket: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange a dropped socket connection"
+      - "Call ReconnectSocket()"
+      - "Assert the void result / side-effect"
+    expected:
+      - "ReconnectSocket re-establishes the connection without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.ReconnectSocket (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 161, text: "void ReconnectSocket()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIC-004
+    title: "InternalConnectionManager.SocketSend: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a Sidekick and a byte buffer"
+      - "Call SocketSend(pSidekick, pBuffer)"
+      - "Assert the void result / side-effect"
+    expected:
+      - "SocketSend transmits the buffer to the sidekick without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.SocketSend (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 219, text: "void SocketSend(Sidekick pSidekick, byte[] pBuffer)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIC-005
+    title: "InternalConnectionManager.ConnectToServer: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange server endpoint configuration"
+      - "Call ConnectToServer()"
+      - "Assert the void result / side-effect"
+    expected:
+      - "ConnectToServer establishes the server connection without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.ConnectToServer (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 298, text: "void ConnectToServer()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIC-006
+    title: "InternalConnectionManager.ClientUpdate: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange a connected client"
+      - "Call ClientUpdate()"
+      - "Assert the void result / side-effect"
+    expected:
+      - "ClientUpdate pushes the client update without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.ClientUpdate (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 385, text: "void ClientUpdate()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # AccountReceivableManager  (2.0.x/Managers/AccountReceivableManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGAR-001
+    title: "AccountReceivableManager.CreateTransaction: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build CreateTransactionParameters"
+      - "Call CreateTransaction(pParameters)"
+      - "Assert the returned transaction id string"
+    expected:
+      - "CreateTransaction creates the AR transaction and returns its id"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountReceivableManager.CreateTransaction (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountReceivableManager.cs, line: 42, text: "string CreateTransaction(CreateTransactionParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAR-002
+    title: "AccountReceivableManager.DeleteTransaction: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an AR transaction"
+      - "Call DeleteTransaction(pTransactionId)"
+      - "Assert the returned bool"
+    expected:
+      - "DeleteTransaction removes the transaction and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountReceivableManager.DeleteTransaction (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountReceivableManager.cs, line: 60, text: "bool DeleteTransaction(string pTransactionId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAR-003
+    title: "AccountReceivableManager.UpdateTransactionOrderId: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an AR transaction"
+      - "Call UpdateTransactionOrderId(pTransactionId, orderId, pCloudId)"
+      - "Assert the returned bool"
+    expected:
+      - "UpdateTransactionOrderId links the order/cloud id and returns true"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountReceivableManager.UpdateTransactionOrderId (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountReceivableManager.cs, line: 83, text: "bool UpdateTransactionOrderId(string pTransactionId, object orderId, string pCloudId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAR-004
+    title: "AccountReceivableManager.GetAllTransactionsByDate: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed AR transactions across a date range"
+      - "Call GetAllTransactionsByDate(pFrom, pTo)"
+      - "Assert the GetAllTransactionsBalanceResult"
+    expected:
+      - "GetAllTransactionsByDate returns the transactions and balance for the range"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountReceivableManager.GetAllTransactionsByDate (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountReceivableManager.cs, line: 111, text: "GetAllTransactionsBalanceResult GetAllTransactionsByDate(DateTime pFrom, DateTime pTo)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAR-005
+    title: "AccountReceivableManager.UpdateAccountReceivableSettings: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a customer"
+      - "Call UpdateAccountReceivableSettings(pCustomerId, pAllowARCharges, pCreditLimit)"
+      - "Assert the persisted AR settings"
+    expected:
+      - "UpdateAccountReceivableSettings stores the allow-charges flag and credit limit"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountReceivableManager.UpdateAccountReceivableSettings (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountReceivableManager.cs, line: 129, text: "void UpdateAccountReceivableSettings(string pCustomerId, bool pAllowARCharges, decimal pCreditLimit)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ItemManager  (2.0.x/Managers/ItemManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGIM-001
+    title: "ItemManager.GetItemByPLUCode: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: ItemManager, entity: Item }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an item with a known PLU code"
+      - "Call GetItemByPLUCode(pPLUCode)"
+      - "Assert the returned Item"
+    expected:
+      - "GetItemByPLUCode returns the item for the PLU code"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ItemManager.GetItemByPLUCode (NUnit harness)]
+    source_files: [2.0.x/Managers/ItemManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ItemManager.cs, line: 13, text: "Item GetItemByPLUCode(string pPLUCode)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIM-002
+    title: "ItemManager.GetItemByItemID: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: ItemManager, entity: Item }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an item with a known id"
+      - "Call GetItemByItemID(pItemID)"
+      - "Assert the returned Item"
+    expected:
+      - "GetItemByItemID returns the item for the id"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ItemManager.GetItemByItemID (NUnit harness)]
+    source_files: [2.0.x/Managers/ItemManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ItemManager.cs, line: 21, text: "Item GetItemByItemID(int pItemID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIM-003
+    title: "ItemManager.IsDepartmentAssignedToItem: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: ItemManager, entity: Item }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an item with a department assignment"
+      - "Call IsDepartmentAssignedToItem(pItemID)"
+      - "Assert the returned bool"
+    expected:
+      - "IsDepartmentAssignedToItem returns true when the item has a department"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ItemManager.IsDepartmentAssignedToItem (NUnit harness)]
+    source_files: [2.0.x/Managers/ItemManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ItemManager.cs, line: 28, text: "bool IsDepartmentAssignedToItem(int pItemID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGIM-004
+    title: "ItemManager.IsAnyItemAssignedToADepartment: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: ItemManager, entity: Item }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed items, one assigned to the given custom-field department"
+      - "Call IsAnyItemAssignedToADepartment(pCustomFieldId)"
+      - "Assert the returned bool"
+    expected:
+      - "IsAnyItemAssignedToADepartment returns true when any item uses the department"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ItemManager.IsAnyItemAssignedToADepartment (NUnit harness)]
+    source_files: [2.0.x/Managers/ItemManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ItemManager.cs, line: 44, text: "bool IsAnyItemAssignedToADepartment(int pCustomFieldId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CRMServiceManager  (2.0.x/Managers/CRMServiceManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGCRM-001
+    title: "CRMServiceManager.IsEnabled: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CRMServiceManager, entity: CardOnFile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange CRM service configuration"
+      - "Call IsEnabled()"
+      - "Assert the returned bool"
+    expected:
+      - "IsEnabled returns true/false reflecting whether the CRM service is enabled"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CRMServiceManager.IsEnabled (NUnit harness)]
+    source_files: [2.0.x/Managers/CRMServiceManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CRMServiceManager.cs, line: 14, text: "bool IsEnabled()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCRM-002
+    title: "CRMServiceManager.CreateCardOnFile: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CRMServiceManager, entity: CardOnFile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build CreateCardOnFileParameters"
+      - "Call CreateCardOnFile(pParameters)"
+      - "Assert the card-on-file side-effect"
+    expected:
+      - "CreateCardOnFile stores the card on file without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CRMServiceManager.CreateCardOnFile (NUnit harness)]
+    source_files: [2.0.x/Managers/CRMServiceManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CRMServiceManager.cs, line: 22, text: "void CreateCardOnFile(CreateCardOnFileParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCRM-003
+    title: "CRMServiceManager.CheckTenderEligibility: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CRMServiceManager, entity: CardOnFile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build CheckTenderEligibilityParameters"
+      - "Call CheckTenderEligibility(pParameters)"
+      - "Assert the CheckTenderEligibilityResult"
+    expected:
+      - "CheckTenderEligibility returns the eligibility result for the tender"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CRMServiceManager.CheckTenderEligibility (NUnit harness)]
+    source_files: [2.0.x/Managers/CRMServiceManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CRMServiceManager.cs, line: 65, text: "CheckTenderEligibilityResult CheckTenderEligibility(CheckTenderEligibilityParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCRM-004
+    title: "CRMServiceManager.GetPrimaryCardOnFile: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CRMServiceManager, entity: CardOnFile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build GetPrimaryCardOnFileParameters and an onComplete callback"
+      - "Call GetPrimaryCardOnFile(pParameters, pOnComplete)"
+      - "Assert the callback receives GetPrimaryCardOnFileResult"
+    expected:
+      - "GetPrimaryCardOnFile invokes the callback with the primary card-on-file result"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CRMServiceManager.GetPrimaryCardOnFile (NUnit harness)]
+    source_files: [2.0.x/Managers/CRMServiceManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CRMServiceManager.cs, line: 94, text: "void GetPrimaryCardOnFile(GetPrimaryCardOnFileParameters pParameters, Action<GetPrimaryCardOnFileResult> pOnComplete)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # NotificationsManager  (2.0.x/Managers/NotificationsManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGN-001
+    title: "NotificationsManager.GetMinutesBeforeClosingByDayOfTheWeek: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: NotificationsManager, entity: Notification }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed closing-time configuration for the current day"
+      - "Call GetMinutesBeforeClosingByDayOfTheWeek()"
+      - "Assert the returned int"
+    expected:
+      - "GetMinutesBeforeClosingByDayOfTheWeek returns the configured minutes before closing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NotificationsManager.GetMinutesBeforeClosingByDayOfTheWeek (NUnit harness)]
+    source_files: [2.0.x/Managers/NotificationsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NotificationsManager.cs, line: 15, text: "int GetMinutesBeforeClosingByDayOfTheWeek()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGN-002
+    title: "NotificationsManager.HasActiveNotification: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: NotificationsManager, entity: Notification }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an active notification"
+      - "Call HasActiveNotification()"
+      - "Assert the returned bool"
+    expected:
+      - "HasActiveNotification returns true when an active notification exists"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NotificationsManager.HasActiveNotification (NUnit harness)]
+    source_files: [2.0.x/Managers/NotificationsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NotificationsManager.cs, line: 36, text: "bool HasActiveNotification()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGN-003
+    title: "NotificationsManager.GetActiveNotificationByNotificationType: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: NotificationsManager, entity: Notification }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an active notification of a given NotificationType"
+      - "Call GetActiveNotificationByNotificationType(pNotificationType)"
+      - "Assert the returned Notifications"
+    expected:
+      - "GetActiveNotificationByNotificationType returns the active notification of that type"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NotificationsManager.GetActiveNotificationByNotificationType (NUnit harness)]
+    source_files: [2.0.x/Managers/NotificationsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NotificationsManager.cs, line: 42, text: "Notifications GetActiveNotificationByNotificationType(NotificationType pNotificationType)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGN-004
+    title: "NotificationsManager.ShowNotification: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: NotificationsManager, entity: Notification }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a sender window and acknowledged type"
+      - "Call ShowNotification(sender, pNotificationAcknowledgedType, pForceDisplay)"
+      - "Assert the notification is displayed"
+    expected:
+      - "ShowNotification displays the notification (forced when pForceDisplay) without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NotificationsManager.ShowNotification (NUnit harness)]
+    source_files: [2.0.x/Managers/NotificationsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NotificationsManager.cs, line: 62, text: "void ShowNotification(IWin32Window sender, NotificationAcknowledgedType pNotificationAcknowledgedType, bool pForceDisplay = false)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # APIConfigurationManager  (2.0.x/Managers/APIConfigurationManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGAPI-001
+    title: "APIConfigurationManager.ConfigureExternal: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: APIConfigurationManager, entity: Configuration }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange external API settings"
+      - "Call ConfigureExternal()"
+      - "Assert the configuration side-effect"
+    expected:
+      - "ConfigureExternal applies the external API configuration without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [APIConfigurationManager.ConfigureExternal (NUnit harness)]
+    source_files: [2.0.x/Managers/APIConfigurationManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/APIConfigurationManager.cs, line: 27, text: "void ConfigureExternal()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAPI-002
+    title: "APIConfigurationManager.UpdateConfigurationFile: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: APIConfigurationManager, entity: Configuration }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange configuration values to persist"
+      - "Call UpdateConfigurationFile()"
+      - "Assert the configuration file is written"
+    expected:
+      - "UpdateConfigurationFile writes the configuration file without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [APIConfigurationManager.UpdateConfigurationFile (NUnit harness)]
+    source_files: [2.0.x/Managers/APIConfigurationManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/APIConfigurationManager.cs, line: 60, text: "void UpdateConfigurationFile()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAPI-003
+    title: "APIConfigurationManager.GetSettingByApplicationName: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: APIConfigurationManager, entity: Configuration }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an ECMKey for an application name"
+      - "Call GetSettingByApplicationName(appName)"
+      - "Assert the returned ECMKey"
+    expected:
+      - "GetSettingByApplicationName returns the ECMKey for the application"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [APIConfigurationManager.GetSettingByApplicationName (NUnit harness)]
+    source_files: [2.0.x/Managers/APIConfigurationManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/APIConfigurationManager.cs, line: 88, text: "ECMKey GetSettingByApplicationName(string appName)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAPI-004
+    title: "APIConfigurationManager.HasValidCredentials: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: APIConfigurationManager, entity: Configuration }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange API credentials (valid and invalid cases)"
+      - "Call HasValidCredentials()"
+      - "Assert the returned bool"
+    expected:
+      - "HasValidCredentials returns true only when the API credentials are valid"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [APIConfigurationManager.HasValidCredentials (NUnit harness)]
+    source_files: [2.0.x/Managers/APIConfigurationManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/APIConfigurationManager.cs, line: 98, text: "bool HasValidCredentials()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # OrderManager  (2.0.x/Managers/OrderManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGO-001
+    title: "OrderManager.RequestRemoteReprint: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order"
+      - "Call RequestRemoteReprint(pOrderId)"
+      - "Assert the reprint request side-effect"
+    expected:
+      - "RequestRemoteReprint queues a remote reprint for the order without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.RequestRemoteReprint (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 21, text: "void RequestRemoteReprint(int pOrderId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGO-002
+    title: "OrderManager.HasRequestRemoteReprint: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order with a pending reprint request"
+      - "Call HasRequestRemoteReprint(pOrderId)"
+      - "Assert the returned bool"
+    expected:
+      - "HasRequestRemoteReprint returns true when a remote reprint is pending for the order"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.HasRequestRemoteReprint (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 42, text: "bool HasRequestRemoteReprint(int pOrderId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGO-003
+    title: "OrderManager.VoidOrder: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order eligible for void"
+      - "Call VoidOrder(pParameters)"
+      - "Assert the order is voided"
+    expected:
+      - "VoidOrder voids the order per VoidOrderParameters without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.VoidOrder (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 56, text: "void VoidOrder(VoidOrderParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGO-004
+    title: "OrderManager.UpdateOrderDetailAfterEmitGiftCert: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order that emitted a gift certificate"
+      - "Call UpdateOrderDetailAfterEmitGiftCert(pParameters)"
+      - "Assert the returned bool"
+    expected:
+      - "UpdateOrderDetailAfterEmitGiftCert updates the order detail and returns true"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.UpdateOrderDetailAfterEmitGiftCert (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 223, text: "bool UpdateOrderDetailAfterEmitGiftCert(UpdateOrderDetailParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # AccountPaymentManager  (2.0.x/Managers/AccountPaymentManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGAP-001
+    title: "AccountPaymentManager.TakeAccountPayment: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountPaymentManager, entity: AccountPayment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build TakeAccountPaymentParameters"
+      - "Call TakeAccountPayment(pParameters)"
+      - "Assert the TakeAccountPaymentResult"
+    expected:
+      - "TakeAccountPayment records the account payment and returns its result"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountPaymentManager.TakeAccountPayment (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountPaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountPaymentManager.cs, line: 22, text: "TakeAccountPaymentResult TakeAccountPayment(TakeAccountPaymentParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAP-002
+    title: "AccountPaymentManager.GetReceiptsParameters: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountPaymentManager, entity: AccountPayment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an account payment"
+      - "Call GetReceiptsParameters(accountPaymentId)"
+      - "Assert the returned PrintReceiptsParameters"
+    expected:
+      - "GetReceiptsParameters returns the receipt parameters for the account payment"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountPaymentManager.GetReceiptsParameters (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountPaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountPaymentManager.cs, line: 78, text: "PrintReceiptsParameters GetReceiptsParameters(int accountPaymentId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAP-003
+    title: "AccountPaymentManager.UpdateAccountPaymentRate: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountPaymentManager, entity: AccountPayment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an account payment"
+      - "Call UpdateAccountPaymentRate(pAccountPaymentId, pStars)"
+      - "Assert the persisted rating"
+    expected:
+      - "UpdateAccountPaymentRate stores the star rating without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountPaymentManager.UpdateAccountPaymentRate (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountPaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountPaymentManager.cs, line: 101, text: "void UpdateAccountPaymentRate(int pAccountPaymentId, short pStars)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ScaleManager  (2.0.x/Managers/ScaleManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGSC-001
+    title: "ScaleManager.StartWatchdog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: ScaleManager, entity: Scale }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange the scale device dependency"
+      - "Call StartWatchdog()"
+      - "Assert the watchdog is running"
+    expected:
+      - "StartWatchdog starts the scale watchdog without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ScaleManager.StartWatchdog (NUnit harness)]
+    source_files: [2.0.x/Managers/ScaleManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ScaleManager.cs, line: 24, text: "void StartWatchdog()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGSC-002
+    title: "ScaleManager.StopWatchdog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: ScaleManager, entity: Scale }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Start then stop the scale watchdog"
+      - "Call StopWatchdog()"
+      - "Assert the watchdog is stopped"
+    expected:
+      - "StopWatchdog stops the scale watchdog without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ScaleManager.StopWatchdog (NUnit harness)]
+    source_files: [2.0.x/Managers/ScaleManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ScaleManager.cs, line: 47, text: "void StopWatchdog()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGSC-003
+    title: "ScaleManager.IsReadingSuccess: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: ScaleManager, entity: Scale }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a DataRow with a scale reading"
+      - "Call IsReadingSuccess(pRow)"
+      - "Assert the returned bool"
+    expected:
+      - "IsReadingSuccess returns true when the scale reading is valid"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ScaleManager.IsReadingSuccess (NUnit harness)]
+    source_files: [2.0.x/Managers/ScaleManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ScaleManager.cs, line: 145, text: "bool IsReadingSuccess(DataRow pRow)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # PaymentManager  (2.0.x/Managers/PaymentManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGP-001
+    title: "PaymentManager.UpdateTip: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: PaymentManager, entity: Payment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a payment"
+      - "Invoke UpdateTip(pPaymentId, pTip)"
+      - "Inspect the returned bool and stored tip"
+    expected:
+      - "UpdateTip stores the tip on the payment and returns true (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [PaymentManager.UpdateTip (NUnit harness)]
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/PaymentManager.cs, line: 25, text: "bool UpdateTip(int pPaymentId, decimal pTip)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGP-002
+    title: "PaymentManager.GetPaymentsToVoid: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: PaymentManager, entity: Payment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order with voidable payments"
+      - "Call GetPaymentsToVoid(pUnitOfWork, pOrderId)"
+      - "Assert the returned IEnumerable<Payment>"
+    expected:
+      - "GetPaymentsToVoid returns the payments eligible to be voided for the order"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [PaymentManager.GetPaymentsToVoid (NUnit harness)]
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/PaymentManager.cs, line: 39, text: "IEnumerable<Payment> GetPaymentsToVoid(IUnitOfWork pUnitOfWork, int pOrderId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGP-003
+    title: "PaymentManager.VoidCardPayment: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: PaymentManager, entity: Payment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a card payment"
+      - "Call VoidCardPayment(pUnitOfWork, pPayment)"
+      - "Assert the returned bool"
+    expected:
+      - "VoidCardPayment voids the card payment and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [PaymentManager.VoidCardPayment (NUnit harness)]
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/PaymentManager.cs, line: 54, text: "bool VoidCardPayment(IUnitOfWork pUnitOfWork, Payment pPayment)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # InternalTaskSchedulerManager  (2.0.x/Managers/InternalTaskSchedulerManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGITS-001
+    title: "InternalTaskSchedulerManager.GetInternalTaskSchedulerByTaskCode: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalTaskSchedulerManager, entity: ScheduledTask }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an internal task scheduler with a known task code"
+      - "Call GetInternalTaskSchedulerByTaskCode(pInternalTaskCode)"
+      - "Assert the returned InternalTaskScheduler"
+    expected:
+      - "GetInternalTaskSchedulerByTaskCode returns the scheduler for the task code"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalTaskSchedulerManager.GetInternalTaskSchedulerByTaskCode (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalTaskSchedulerManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalTaskSchedulerManager.cs, line: 75, text: "InternalTaskScheduler GetInternalTaskSchedulerByTaskCode(int pInternalTaskCode)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGITS-002
+    title: "InternalTaskSchedulerManager.RunInternalSchedulerTasks: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalTaskSchedulerManager, entity: ScheduledTask }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed due internal scheduler tasks"
+      - "Call RunInternalSchedulerTasks()"
+      - "Await and assert the returned Task completes"
+    expected:
+      - "RunInternalSchedulerTasks executes the due scheduler tasks to completion"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalTaskSchedulerManager.RunInternalSchedulerTasks (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalTaskSchedulerManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalTaskSchedulerManager.cs, line: 86, text: "Task RunInternalSchedulerTasks()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGITS-003
+    title: "InternalTaskSchedulerManager.ProcessGetKeySalesSummaryInternalTask: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalTaskSchedulerManager, entity: ScheduledTask }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed sales data for a date"
+      - "Call ProcessGetKeySalesSummaryInternalTask(mDate, out outErrorMsg)"
+      - "Assert the returned bool and error message"
+    expected:
+      - "ProcessGetKeySalesSummaryInternalTask returns true on success and an error message on failure"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalTaskSchedulerManager.ProcessGetKeySalesSummaryInternalTask (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalTaskSchedulerManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalTaskSchedulerManager.cs, line: 298, text: "bool ProcessGetKeySalesSummaryInternalTask(DateTime? mDate, out string outErrorMsg)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # AdminFeeManager  (2.0.x/Managers/AdminFeeManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGAF-001
+    title: "AdminFeeManager.Clear: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: AdminFeeManager, entity: AdminFee }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build an AdminFeeModel with values"
+      - "Invoke Clear() on the model"
+      - "Inspect the reset model fields"
+    expected:
+      - "Clear resets the AdminFeeModel fields to their defaults (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AdminFeeManager.Clear (NUnit harness)]
+    source_files: [2.0.x/Managers/AdminFeeManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AdminFeeManager.cs, line: 10, text: "void Clear(this AdminFeeModel pAdminFeeModel)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAF-002
+    title: "AdminFeeManager.CreatePaymentFormMessage: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: AdminFeeManager, entity: AdminFee }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build an AdminFeeModel"
+      - "Invoke CreatePaymentFormMessage(pAdminFeeModel)"
+      - "Inspect the returned message string"
+    expected:
+      - "CreatePaymentFormMessage returns the admin-fee payment form message string (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AdminFeeManager.CreatePaymentFormMessage (NUnit harness)]
+    source_files: [2.0.x/Managers/AdminFeeManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AdminFeeManager.cs, line: 23, text: "string CreatePaymentFormMessage(AdminFeeModel pAdminFeeModel)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAF-003
+    title: "AdminFeeManager.DigitsLeftOfDecimal: unit calc"
+    kind: atomic
+    priority: P2
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: AdminFeeManager, entity: AdminFee }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide several decimal values"
+      - "Invoke DigitsLeftOfDecimal(number)"
+      - "Inspect the returned int"
+    expected:
+      - "DigitsLeftOfDecimal returns the count of digits left of the decimal point (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AdminFeeManager.DigitsLeftOfDecimal (NUnit harness)]
+    source_files: [2.0.x/Managers/AdminFeeManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AdminFeeManager.cs, line: 52, text: "int DigitsLeftOfDecimal(decimal number)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CategoryManager  (2.0.x/Managers/CategoryManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGCAT-001
+    title: "CategoryManager.GetByCatID: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CategoryManager, entity: Category }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a category with a known id"
+      - "Call GetByCatID(pCatID)"
+      - "Assert the returned Category"
+    expected:
+      - "GetByCatID returns the category for the id"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CategoryManager.GetByCatID (NUnit harness)]
+    source_files: [2.0.x/Managers/CategoryManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CategoryManager.cs, line: 14, text: "Category GetByCatID(int pCatID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCAT-002
+    title: "CategoryManager.IsDepartmentAssignedToCategory: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CategoryManager, entity: Category }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a category with a department assignment"
+      - "Call IsDepartmentAssignedToCategory(pCategoryID)"
+      - "Assert the returned bool"
+    expected:
+      - "IsDepartmentAssignedToCategory returns true when the category has a department"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CategoryManager.IsDepartmentAssignedToCategory (NUnit harness)]
+    source_files: [2.0.x/Managers/CategoryManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CategoryManager.cs, line: 21, text: "bool IsDepartmentAssignedToCategory(int pCategoryID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCAT-003
+    title: "CategoryManager.IsAnyCategoryAssignedToADepartment: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CategoryManager, entity: Category }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed categories, one using the given custom-field department"
+      - "Call IsAnyCategoryAssignedToADepartment(pCustomFieldId)"
+      - "Assert the returned bool"
+    expected:
+      - "IsAnyCategoryAssignedToADepartment returns true when any category uses the department"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CategoryManager.IsAnyCategoryAssignedToADepartment (NUnit harness)]
+    source_files: [2.0.x/Managers/CategoryManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CategoryManager.cs, line: 37, text: "bool IsAnyCategoryAssignedToADepartment(int pCustomFieldId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # NetworkManager  (2.0.x/Managers/NetworkManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGNET-001
+    title: "NetworkManager.ConfigureMAC: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: NetworkManager, entity: Network }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange online network configuration"
+      - "Call ConfigureMAC()"
+      - "Assert the returned bool"
+    expected:
+      - "ConfigureMAC configures the MAC online and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NetworkManager.ConfigureMAC (NUnit harness)]
+    source_files: [2.0.x/Managers/NetworkManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NetworkManager.cs, line: 15, text: "bool ConfigureMAC()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGNET-002
+    title: "NetworkManager.ConfigureMACOffline: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: NetworkManager, entity: Network }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange offline network configuration"
+      - "Call ConfigureMACOffline()"
+      - "Assert the returned bool"
+    expected:
+      - "ConfigureMACOffline configures the MAC offline and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NetworkManager.ConfigureMACOffline (NUnit harness)]
+    source_files: [2.0.x/Managers/NetworkManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NetworkManager.cs, line: 57, text: "bool ConfigureMACOffline()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ReceiptManager  (2.0.x/Managers/ReceiptManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGRC-001
+    title: "ReceiptManager.PrintReceipts: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: ReceiptManager, entity: Receipt }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build PrintReceiptsParameters"
+      - "Call PrintReceipts(pParameters)"
+      - "Assert the receipts are printed"
+    expected:
+      - "PrintReceipts prints the receipts per the parameters without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ReceiptManager.PrintReceipts (NUnit harness)]
+    source_files: [2.0.x/Managers/ReceiptManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ReceiptManager.cs, line: 14, text: "void PrintReceipts(PrintReceiptsParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGRC-002
+    title: "ReceiptManager.PrintReceipt: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: ReceiptManager, entity: Receipt }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide receipt text and a title"
+      - "Call PrintReceipt(pTextToPrint, pTitle)"
+      - "Assert the receipt is printed"
+    expected:
+      - "PrintReceipt prints the supplied text under the title without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ReceiptManager.PrintReceipt (NUnit harness)]
+    source_files: [2.0.x/Managers/ReceiptManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ReceiptManager.cs, line: 31, text: "void PrintReceipt(string pTextToPrint, string pTitle)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # AuditManager  (2.0.x/Managers/AuditManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGAU-001
+    title: "AuditManager.WriteLog(object): integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AuditManager, entity: AuditLog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide an object to audit"
+      - "Call WriteLog(pObject, pSaveSingleLog)"
+      - "Assert the audit log entry is written"
+    expected:
+      - "WriteLog(object) writes an audit log entry for the object without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AuditManager.WriteLog(object) (NUnit harness)]
+    source_files: [2.0.x/Managers/AuditManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AuditManager.cs, line: 16, text: "void WriteLog(object pObject, bool pSaveSingleLog = false)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGAU-002
+    title: "AuditManager.WriteLog(Module,Access,SqlCommand): integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: AuditManager, entity: AuditLog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a Module, Access level and SqlCommand"
+      - "Call WriteLog(pModule, pAccessLevel, pSqlCmd)"
+      - "Assert the access-scoped audit entry is written"
+    expected:
+      - "WriteLog(Module,Access,SqlCommand) records the access-scoped audit entry without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AuditManager.WriteLog(Module,Access,SqlCommand) (NUnit harness)]
+    source_files: [2.0.x/Managers/AuditManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AuditManager.cs, line: 83, text: "void WriteLog(Module pModule, Access pAccessLevel, SqlCommand pSqlCmd)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # OrdersTipsManager  (2.0.x/Managers/OrdersTipsManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGOT-001
+    title: "OrdersTipsManager.PaymentsHasInTransactionCFDTipAdded: unit calc"
+    kind: atomic
+    priority: P2
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: OrdersTipsManager, entity: Tip }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a payment with an in-transaction CFD tip"
+      - "Invoke PaymentsHasInTransactionCFDTipAdded(pPayID)"
+      - "Inspect the returned bool"
+    expected:
+      - "PaymentsHasInTransactionCFDTipAdded returns true when an in-transaction CFD tip was added (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrdersTipsManager.PaymentsHasInTransactionCFDTipAdded (NUnit harness)]
+    source_files: [2.0.x/Managers/OrdersTipsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrdersTipsManager.cs, line: 19, text: "bool PaymentsHasInTransactionCFDTipAdded(int pPayID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGOT-002
+    title: "OrdersTipsManager.GetOrdersTipsByPayID: unit calc"
+    kind: atomic
+    priority: P2
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: OrdersTipsManager, entity: Tip }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed orders-tips for a payment id"
+      - "Invoke GetOrdersTipsByPayID(pPayID)"
+      - "Inspect the returned List<OrdersTips>"
+    expected:
+      - "GetOrdersTipsByPayID returns the orders-tips for the payment id (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrdersTipsManager.GetOrdersTipsByPayID (NUnit harness)]
+    source_files: [2.0.x/Managers/OrdersTipsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrdersTipsManager.cs, line: 34, text: "List<OrdersTips> GetOrdersTipsByPayID(int pPayID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # DialogManager  (2.0.x/Managers/DialogManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGD-001
+    title: "DialogManager.Dialog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: DialogManager, entity: Dialog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a message and button configuration"
+      - "Call Dialog(pMsg, pButtons, pMessageBoxButtonsOverWrite)"
+      - "Assert the returned DialogResult"
+    expected:
+      - "Dialog shows the message with the requested buttons and returns the DialogResult"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [DialogManager.Dialog (NUnit harness)]
+    source_files: [2.0.x/Managers/DialogManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/DialogManager.cs, line: 9, text: "DialogResult Dialog(string pMsg, MessageBoxButtons pButtons = MessageBoxButtons.YesNo, MessageBoxButtonsOverWrite pMessageBoxButtonsOverWrite = default)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGD-002
+    title: "DialogManager.ClearAllDialog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: DialogManager, entity: Dialog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Open one or more dialogs"
+      - "Call ClearAllDialog()"
+      - "Assert the returned DialogResult"
+    expected:
+      - "ClearAllDialog dismisses open dialogs and returns the resulting DialogResult"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [DialogManager.ClearAllDialog (NUnit harness)]
+    source_files: [2.0.x/Managers/DialogManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/DialogManager.cs, line: 42, text: "DialogResult ClearAllDialog()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CryptoManager  (2.0.x/Managers/CryptoManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGCR-001
+    title: "CryptoManager.EncryptString: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: CryptoManager, entity: Secret }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a plaintext string"
+      - "Call EncryptString(pTextToEncrypt)"
+      - "Assert the returned ciphertext"
+    expected:
+      - "EncryptString returns ciphertext that round-trips back via DecryptString"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CryptoManager.EncryptString (NUnit harness)]
+    source_files: [2.0.x/Managers/CryptoManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CryptoManager.cs, line: 14, text: "string EncryptString(string pTextToEncrypt)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCR-002
+    title: "CryptoManager.DecryptString: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: CryptoManager, entity: Secret }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a ciphertext produced by EncryptString"
+      - "Call DecryptString(pEncryptedText)"
+      - "Assert the returned plaintext"
+    expected:
+      - "DecryptString returns the original plaintext for valid ciphertext"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CryptoManager.DecryptString (NUnit harness)]
+    source_files: [2.0.x/Managers/CryptoManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CryptoManager.cs, line: 51, text: "string DecryptString(string pEncryptedText)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # SecurityManager  (2.0.x/Managers/SecurityManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGS-001
+    title: "SecurityManager.Login: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: SecurityManager, entity: SecurityProfile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a staff credential"
+      - "Call Login(pObject) with valid and invalid credentials"
+      - "Assert the returned bool"
+    expected:
+      - "Login returns true for valid credentials and false otherwise"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [SecurityManager.Login (NUnit harness)]
+    source_files: [2.0.x/Managers/SecurityManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/SecurityManager.cs, line: 13, text: "bool Login(object pObject)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGS-002
+    title: "SecurityManager.CreateSecurityProfile: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: SecurityManager, entity: SecurityProfile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a SecurityProfile"
+      - "Call CreateSecurityProfile(pSecurityProfile)"
+      - "Assert the returned profile id int"
+    expected:
+      - "CreateSecurityProfile persists the profile and returns its new id"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [SecurityManager.CreateSecurityProfile (NUnit harness)]
+    source_files: [2.0.x/Managers/SecurityManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/SecurityManager.cs, line: 68, text: "int CreateSecurityProfile(SecurityProfile pSecurityProfile)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # StaffManager  (2.0.x/Managers/StaffManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGST-001
+    title: "StaffManager.GetCurrentStaffName: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: StaffManager, entity: Staff }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Log in a staff member"
+      - "Call GetCurrentStaffName()"
+      - "Assert the returned string"
+    expected:
+      - "GetCurrentStaffName returns the logged-in staff member's name"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [StaffManager.GetCurrentStaffName (NUnit harness)]
+    source_files: [2.0.x/Managers/StaffManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/StaffManager.cs, line: 8, text: "string GetCurrentStaffName()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # TipManager  (2.0.x/Managers/TipManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGT-001
+    title: "TipManager.GetSuggestedTips: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: TipManager, entity: Tip }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a subtotal and item total"
+      - "Invoke GetSuggestedTips(pSubTotal, pItemTotal)"
+      - "Inspect the returned List<SuggestedTip>"
+    expected:
+      - "GetSuggestedTips returns the suggested tip amounts computed from the totals (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [TipManager.GetSuggestedTips (NUnit harness)]
+    source_files: [2.0.x/Managers/TipManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/TipManager.cs, line: 8, text: "List<SuggestedTip> GetSuggestedTips(decimal pSubTotal, decimal pItemTotal)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # DepartmentsManager  (2.0.x/Managers/DepartmentsManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGDP-001
+    title: "DepartmentsManager.GetDefaultDepartment: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: DepartmentsManager, entity: Department }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed departments with a default"
+      - "Call GetDefaultDepartment()"
+      - "Assert the returned CustomField"
+    expected:
+      - "GetDefaultDepartment returns the default department custom field"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [DepartmentsManager.GetDefaultDepartment (NUnit harness)]
+    source_files: [2.0.x/Managers/DepartmentsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/DepartmentsManager.cs, line: 14, text: "CustomField GetDefaultDepartment()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ImageManager  (2.0.x/Managers/ImageManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGI-001
+    title: "ImageManager.ConfigureLogoCFD: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: [CFD]
+    categories: { test_kind: setting-behavior, ui_area: ImageManager, entity: Image }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a PictureBox for the CFD logo"
+      - "Call ConfigureLogoCFD(mPictureBox)"
+      - "Assert the logo image is applied"
+    expected:
+      - "ConfigureLogoCFD loads the configured CFD logo into the PictureBox without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ImageManager.ConfigureLogoCFD (NUnit harness)]
+    source_files: [2.0.x/Managers/ImageManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ImageManager.cs, line: 8, text: "void ConfigureLogoCFD(PictureBox mPictureBox)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CreditCardManager  (2.0.x/Managers/CreditCardManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGCC-001
+    title: "CreditCardManager.IsCardNumberValid: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CreditCardManager, entity: CreditCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide valid and invalid card numbers"
+      - "Call IsCardNumberValid(pCardNumber)"
+      - "Assert the returned bool"
+    expected:
+      - "IsCardNumberValid returns true for a valid card number and false otherwise"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CreditCardManager.IsCardNumberValid (NUnit harness)]
+    source_files: [2.0.x/Managers/CreditCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CreditCardManager.cs, line: 12, text: "bool IsCardNumberValid(string pCardNumber)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CardTransactionManager  (2.0.x/Managers/CardTransactionManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGCT-001
+    title: "CardTransactionManager.UpdateNumber: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CardTransactionManager, entity: CardTransaction }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a card transaction"
+      - "Call UpdateNumber(pCCTxId, pRawNumber)"
+      - "Assert the stored card number is updated"
+    expected:
+      - "UpdateNumber updates the card transaction number without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CardTransactionManager.UpdateNumber (NUnit harness)]
+    source_files: [2.0.x/Managers/CardTransactionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CardTransactionManager.cs, line: 20, text: "void UpdateNumber(int pCCTxId, string pRawNumber)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ExternalCredentialsManager  (2.0.x/Managers/ExternalCredentialsManager.cs)
+  # ------------------------------------------------------------------
+  - id: MGEC-001
+    title: "ExternalCredentialsManager.GetAmazonS3Client: integration permission"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: ExternalCredentialsManager, entity: Credential }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an AmazonS3BucketAccount with credentials"
+      - "Call GetAmazonS3Client(pAccount)"
+      - "Assert the returned AmazonS3Client"
+    expected:
+      - "GetAmazonS3Client returns an S3 client built from the account credentials"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ExternalCredentialsManager.GetAmazonS3Client (NUnit harness)]
+    source_files: [2.0.x/Managers/ExternalCredentialsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ExternalCredentialsManager.cs, line: 19, text: "AmazonS3Client GetAmazonS3Client(AmazonS3BucketAccount pAccount)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ==================================================================
+  # composite lifecycle flows (chain atomic ids; add no new anchors)
+  # ==================================================================
+  - id: MGCMP-001
+    title: "GiftCardManager end-to-end: create, read, mutate, redeem, revert"
+    kind: composite
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    chains: [MGGC-010, MGGC-014, MGGC-002, MGGC-012, MGGC-016, MGGC-011]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Create a certificate, activate it, read it, check balance, redeem, then revert"
+    expected:
+      - "Each chained GiftCardManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCMP-002
+    title: "AccountReceivableManager end-to-end: create, link, read, delete"
+    kind: composite
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    chains: [MGAR-005, MGAR-001, MGAR-003, MGAR-004, MGAR-002]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Configure AR settings, create a transaction, link an order, read by date, then delete"
+    expected:
+      - "Each chained AccountReceivableManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCMP-003
+    title: "OrderManager end-to-end: void then reprint flow"
+    kind: composite
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: OrderManager, entity: Order }
+    chains: [MGO-003, MGO-001, MGO-002, MGO-004]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Void an order, request a remote reprint, confirm it is pending, update detail after gift cert"
+    expected:
+      - "Each chained OrderManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCMP-004
+    title: "PaymentManager end-to-end: tip, list voidable, void card payment"
+    kind: composite
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: PaymentManager, entity: Payment }
+    chains: [MGP-001, MGP-002, MGP-003]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Update a tip, list payments to void, then void a card payment"
+    expected:
+      - "Each chained PaymentManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  - id: MGCMP-005
+    title: "CryptoManager round-trip: encrypt then decrypt"
+    kind: composite
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: CryptoManager, entity: Secret }
+    chains: [MGCR-001, MGCR-002]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Encrypt a known plaintext, then decrypt the ciphertext"
+    expected:
+      - "DecryptString(EncryptString(x)) == x"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/CryptoManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

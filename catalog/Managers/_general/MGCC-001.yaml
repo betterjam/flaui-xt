@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCC-001
+    title: "CreditCardManager.IsCardNumberValid: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CreditCardManager, entity: CreditCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide valid and invalid card numbers"
+      - "Call IsCardNumberValid(pCardNumber)"
+      - "Assert the returned bool"
+    expected:
+      - "IsCardNumberValid returns true for a valid card number and false otherwise"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CreditCardManager.IsCardNumberValid (NUnit harness)]
+    source_files: [2.0.x/Managers/CreditCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CreditCardManager.cs, line: 12, text: "bool IsCardNumberValid(string pCardNumber)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CardTransactionManager  (2.0.x/Managers/CardTransactionManager.cs)
+  # ------------------------------------------------------------------

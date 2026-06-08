@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGOT-001
+    title: "OrdersTipsManager.PaymentsHasInTransactionCFDTipAdded: unit calc"
+    kind: atomic
+    priority: P2
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: OrdersTipsManager, entity: Tip }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a payment with an in-transaction CFD tip"
+      - "Invoke PaymentsHasInTransactionCFDTipAdded(pPayID)"
+      - "Inspect the returned bool"
+    expected:
+      - "PaymentsHasInTransactionCFDTipAdded returns true when an in-transaction CFD tip was added (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrdersTipsManager.PaymentsHasInTransactionCFDTipAdded (NUnit harness)]
+    source_files: [2.0.x/Managers/OrdersTipsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrdersTipsManager.cs, line: 19, text: "bool PaymentsHasInTransactionCFDTipAdded(int pPayID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

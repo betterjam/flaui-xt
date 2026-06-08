@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGO-004
+    title: "OrderManager.UpdateOrderDetailAfterEmitGiftCert: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order that emitted a gift certificate"
+      - "Call UpdateOrderDetailAfterEmitGiftCert(pParameters)"
+      - "Assert the returned bool"
+    expected:
+      - "UpdateOrderDetailAfterEmitGiftCert updates the order detail and returns true"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.UpdateOrderDetailAfterEmitGiftCert (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 223, text: "bool UpdateOrderDetailAfterEmitGiftCert(UpdateOrderDetailParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # AccountPaymentManager  (2.0.x/Managers/AccountPaymentManager.cs)
+  # ------------------------------------------------------------------

@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGSC-003
+    title: "ScaleManager.IsReadingSuccess: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: ScaleManager, entity: Scale }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a DataRow with a scale reading"
+      - "Call IsReadingSuccess(pRow)"
+      - "Assert the returned bool"
+    expected:
+      - "IsReadingSuccess returns true when the scale reading is valid"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ScaleManager.IsReadingSuccess (NUnit harness)]
+    source_files: [2.0.x/Managers/ScaleManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ScaleManager.cs, line: 145, text: "bool IsReadingSuccess(DataRow pRow)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # PaymentManager  (2.0.x/Managers/PaymentManager.cs)
+  # ------------------------------------------------------------------

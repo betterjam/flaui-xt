@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAP-002
+    title: "AccountPaymentManager.GetReceiptsParameters: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountPaymentManager, entity: AccountPayment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an account payment"
+      - "Call GetReceiptsParameters(accountPaymentId)"
+      - "Assert the returned PrintReceiptsParameters"
+    expected:
+      - "GetReceiptsParameters returns the receipt parameters for the account payment"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountPaymentManager.GetReceiptsParameters (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountPaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountPaymentManager.cs, line: 78, text: "PrintReceiptsParameters GetReceiptsParameters(int accountPaymentId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

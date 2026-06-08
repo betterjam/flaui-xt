@@ -1,0 +1,27 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCMP-005
+    title: "CryptoManager round-trip: encrypt then decrypt"
+    kind: composite
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: CryptoManager, entity: Secret }
+    chains: [MGCR-001, MGCR-002]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Encrypt a known plaintext, then decrypt the ciphertext"
+    expected:
+      - "DecryptString(EncryptString(x)) == x"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/CryptoManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

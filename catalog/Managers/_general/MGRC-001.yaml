@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGRC-001
+    title: "ReceiptManager.PrintReceipts: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: ReceiptManager, entity: Receipt }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build PrintReceiptsParameters"
+      - "Call PrintReceipts(pParameters)"
+      - "Assert the receipts are printed"
+    expected:
+      - "PrintReceipts prints the receipts per the parameters without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ReceiptManager.PrintReceipts (NUnit harness)]
+    source_files: [2.0.x/Managers/ReceiptManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ReceiptManager.cs, line: 14, text: "void PrintReceipts(PrintReceiptsParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

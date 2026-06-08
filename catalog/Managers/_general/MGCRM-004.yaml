@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCRM-004
+    title: "CRMServiceManager.GetPrimaryCardOnFile: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CRMServiceManager, entity: CardOnFile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build GetPrimaryCardOnFileParameters and an onComplete callback"
+      - "Call GetPrimaryCardOnFile(pParameters, pOnComplete)"
+      - "Assert the callback receives GetPrimaryCardOnFileResult"
+    expected:
+      - "GetPrimaryCardOnFile invokes the callback with the primary card-on-file result"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CRMServiceManager.GetPrimaryCardOnFile (NUnit harness)]
+    source_files: [2.0.x/Managers/CRMServiceManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CRMServiceManager.cs, line: 94, text: "void GetPrimaryCardOnFile(GetPrimaryCardOnFileParameters pParameters, Action<GetPrimaryCardOnFileResult> pOnComplete)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # NotificationsManager  (2.0.x/Managers/NotificationsManager.cs)
+  # ------------------------------------------------------------------

@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGSC-001
+    title: "ScaleManager.StartWatchdog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: ScaleManager, entity: Scale }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange the scale device dependency"
+      - "Call StartWatchdog()"
+      - "Assert the watchdog is running"
+    expected:
+      - "StartWatchdog starts the scale watchdog without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ScaleManager.StartWatchdog (NUnit harness)]
+    source_files: [2.0.x/Managers/ScaleManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ScaleManager.cs, line: 24, text: "void StartWatchdog()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

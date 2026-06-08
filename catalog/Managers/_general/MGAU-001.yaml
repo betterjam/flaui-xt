@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAU-001
+    title: "AuditManager.WriteLog(object): integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AuditManager, entity: AuditLog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide an object to audit"
+      - "Call WriteLog(pObject, pSaveSingleLog)"
+      - "Assert the audit log entry is written"
+    expected:
+      - "WriteLog(object) writes an audit log entry for the object without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AuditManager.WriteLog(object) (NUnit harness)]
+    source_files: [2.0.x/Managers/AuditManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AuditManager.cs, line: 16, text: "void WriteLog(object pObject, bool pSaveSingleLog = false)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

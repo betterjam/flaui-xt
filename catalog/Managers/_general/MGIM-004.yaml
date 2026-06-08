@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGIM-004
+    title: "ItemManager.IsAnyItemAssignedToADepartment: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: ItemManager, entity: Item }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed items, one assigned to the given custom-field department"
+      - "Call IsAnyItemAssignedToADepartment(pCustomFieldId)"
+      - "Assert the returned bool"
+    expected:
+      - "IsAnyItemAssignedToADepartment returns true when any item uses the department"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [ItemManager.IsAnyItemAssignedToADepartment (NUnit harness)]
+    source_files: [2.0.x/Managers/ItemManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/ItemManager.cs, line: 44, text: "bool IsAnyItemAssignedToADepartment(int pCustomFieldId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CRMServiceManager  (2.0.x/Managers/CRMServiceManager.cs)
+  # ------------------------------------------------------------------

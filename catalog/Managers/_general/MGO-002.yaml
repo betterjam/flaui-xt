@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGO-002
+    title: "OrderManager.HasRequestRemoteReprint: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order with a pending reprint request"
+      - "Call HasRequestRemoteReprint(pOrderId)"
+      - "Assert the returned bool"
+    expected:
+      - "HasRequestRemoteReprint returns true when a remote reprint is pending for the order"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.HasRequestRemoteReprint (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 42, text: "bool HasRequestRemoteReprint(int pOrderId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

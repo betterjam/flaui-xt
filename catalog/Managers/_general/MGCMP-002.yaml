@@ -1,0 +1,27 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCMP-002
+    title: "AccountReceivableManager end-to-end: create, link, read, delete"
+    kind: composite
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountReceivableManager, entity: AccountReceivable }
+    chains: [MGAR-005, MGAR-001, MGAR-003, MGAR-004, MGAR-002]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Configure AR settings, create a transaction, link an order, read by date, then delete"
+    expected:
+      - "Each chained AccountReceivableManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/AccountReceivableManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

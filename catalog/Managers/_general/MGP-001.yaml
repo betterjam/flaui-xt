@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGP-001
+    title: "PaymentManager.UpdateTip: unit calc"
+    kind: atomic
+    priority: P1
+    type: unit
+    flavors: []
+    categories: { test_kind: calculation, ui_area: PaymentManager, entity: Payment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a payment"
+      - "Invoke UpdateTip(pPaymentId, pTip)"
+      - "Inspect the returned bool and stored tip"
+    expected:
+      - "UpdateTip stores the tip on the payment and returns true (no exception)"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [PaymentManager.UpdateTip (NUnit harness)]
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/PaymentManager.cs, line: 25, text: "bool UpdateTip(int pPaymentId, decimal pTip)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

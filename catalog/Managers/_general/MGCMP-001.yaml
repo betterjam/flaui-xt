@@ -1,0 +1,27 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCMP-001
+    title: "GiftCardManager end-to-end: create, read, mutate, redeem, revert"
+    kind: composite
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    chains: [MGGC-010, MGGC-014, MGGC-002, MGGC-012, MGGC-016, MGGC-011]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Create a certificate, activate it, read it, check balance, redeem, then revert"
+    expected:
+      - "Each chained GiftCardManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

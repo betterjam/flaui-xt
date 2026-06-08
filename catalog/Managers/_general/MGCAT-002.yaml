@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCAT-002
+    title: "CategoryManager.IsDepartmentAssignedToCategory: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CategoryManager, entity: Category }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a category with a department assignment"
+      - "Call IsDepartmentAssignedToCategory(pCategoryID)"
+      - "Assert the returned bool"
+    expected:
+      - "IsDepartmentAssignedToCategory returns true when the category has a department"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CategoryManager.IsDepartmentAssignedToCategory (NUnit harness)]
+    source_files: [2.0.x/Managers/CategoryManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CategoryManager.cs, line: 21, text: "bool IsDepartmentAssignedToCategory(int pCategoryID)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

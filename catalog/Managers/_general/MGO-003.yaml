@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGO-003
+    title: "OrderManager.VoidOrder: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order eligible for void"
+      - "Call VoidOrder(pParameters)"
+      - "Assert the order is voided"
+    expected:
+      - "VoidOrder voids the order per VoidOrderParameters without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.VoidOrder (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 56, text: "void VoidOrder(VoidOrderParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

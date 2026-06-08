@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGS-001
+    title: "SecurityManager.Login: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: SecurityManager, entity: SecurityProfile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a staff credential"
+      - "Call Login(pObject) with valid and invalid credentials"
+      - "Assert the returned bool"
+    expected:
+      - "Login returns true for valid credentials and false otherwise"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [SecurityManager.Login (NUnit harness)]
+    source_files: [2.0.x/Managers/SecurityManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/SecurityManager.cs, line: 13, text: "bool Login(object pObject)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

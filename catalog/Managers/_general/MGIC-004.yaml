@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGIC-004
+    title: "InternalConnectionManager.SocketSend: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: InternalConnectionManager, entity: Connection }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a Sidekick and a byte buffer"
+      - "Call SocketSend(pSidekick, pBuffer)"
+      - "Assert the void result / side-effect"
+    expected:
+      - "SocketSend transmits the buffer to the sidekick without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [InternalConnectionManager.SocketSend (NUnit harness)]
+    source_files: [2.0.x/Managers/InternalConnectionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/InternalConnectionManager.cs, line: 219, text: "void SocketSend(Sidekick pSidekick, byte[] pBuffer)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

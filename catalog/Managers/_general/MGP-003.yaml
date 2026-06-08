@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGP-003
+    title: "PaymentManager.VoidCardPayment: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: PaymentManager, entity: Payment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a card payment"
+      - "Call VoidCardPayment(pUnitOfWork, pPayment)"
+      - "Assert the returned bool"
+    expected:
+      - "VoidCardPayment voids the card payment and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [PaymentManager.VoidCardPayment (NUnit harness)]
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/PaymentManager.cs, line: 54, text: "bool VoidCardPayment(IUnitOfWork pUnitOfWork, Payment pPayment)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # InternalTaskSchedulerManager  (2.0.x/Managers/InternalTaskSchedulerManager.cs)
+  # ------------------------------------------------------------------

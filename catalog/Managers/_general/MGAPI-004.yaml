@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAPI-004
+    title: "APIConfigurationManager.HasValidCredentials: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: APIConfigurationManager, entity: Configuration }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange API credentials (valid and invalid cases)"
+      - "Call HasValidCredentials()"
+      - "Assert the returned bool"
+    expected:
+      - "HasValidCredentials returns true only when the API credentials are valid"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [APIConfigurationManager.HasValidCredentials (NUnit harness)]
+    source_files: [2.0.x/Managers/APIConfigurationManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/APIConfigurationManager.cs, line: 98, text: "bool HasValidCredentials()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # OrderManager  (2.0.x/Managers/OrderManager.cs)
+  # ------------------------------------------------------------------

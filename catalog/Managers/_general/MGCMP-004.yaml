@@ -1,0 +1,27 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCMP-004
+    title: "PaymentManager end-to-end: tip, list voidable, void card payment"
+    kind: composite
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: PaymentManager, entity: Payment }
+    chains: [MGP-001, MGP-002, MGP-003]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Update a tip, list payments to void, then void a card payment"
+    expected:
+      - "Each chained PaymentManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

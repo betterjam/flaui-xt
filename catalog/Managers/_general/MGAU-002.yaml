@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAU-002
+    title: "AuditManager.WriteLog(Module,Access,SqlCommand): integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: AuditManager, entity: AuditLog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a Module, Access level and SqlCommand"
+      - "Call WriteLog(pModule, pAccessLevel, pSqlCmd)"
+      - "Assert the access-scoped audit entry is written"
+    expected:
+      - "WriteLog(Module,Access,SqlCommand) records the access-scoped audit entry without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AuditManager.WriteLog(Module,Access,SqlCommand) (NUnit harness)]
+    source_files: [2.0.x/Managers/AuditManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AuditManager.cs, line: 83, text: "void WriteLog(Module pModule, Access pAccessLevel, SqlCommand pSqlCmd)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # OrdersTipsManager  (2.0.x/Managers/OrdersTipsManager.cs)
+  # ------------------------------------------------------------------

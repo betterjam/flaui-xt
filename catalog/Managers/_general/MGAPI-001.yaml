@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAPI-001
+    title: "APIConfigurationManager.ConfigureExternal: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: setting-behavior, ui_area: APIConfigurationManager, entity: Configuration }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Arrange external API settings"
+      - "Call ConfigureExternal()"
+      - "Assert the configuration side-effect"
+    expected:
+      - "ConfigureExternal applies the external API configuration without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [APIConfigurationManager.ConfigureExternal (NUnit harness)]
+    source_files: [2.0.x/Managers/APIConfigurationManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/APIConfigurationManager.cs, line: 27, text: "void ConfigureExternal()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

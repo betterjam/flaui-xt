@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGO-001
+    title: "OrderManager.RequestRemoteReprint: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: OrderManager, entity: Order }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order"
+      - "Call RequestRemoteReprint(pOrderId)"
+      - "Assert the reprint request side-effect"
+    expected:
+      - "RequestRemoteReprint queues a remote reprint for the order without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [OrderManager.RequestRemoteReprint (NUnit harness)]
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/OrderManager.cs, line: 21, text: "void RequestRemoteReprint(int pOrderId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

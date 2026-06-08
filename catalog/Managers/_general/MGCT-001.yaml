@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCT-001
+    title: "CardTransactionManager.UpdateNumber: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CardTransactionManager, entity: CardTransaction }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a card transaction"
+      - "Call UpdateNumber(pCCTxId, pRawNumber)"
+      - "Assert the stored card number is updated"
+    expected:
+      - "UpdateNumber updates the card transaction number without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CardTransactionManager.UpdateNumber (NUnit harness)]
+    source_files: [2.0.x/Managers/CardTransactionManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CardTransactionManager.cs, line: 20, text: "void UpdateNumber(int pCCTxId, string pRawNumber)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ExternalCredentialsManager  (2.0.x/Managers/ExternalCredentialsManager.cs)
+  # ------------------------------------------------------------------

@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCRM-002
+    title: "CRMServiceManager.CreateCardOnFile: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CRMServiceManager, entity: CardOnFile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build CreateCardOnFileParameters"
+      - "Call CreateCardOnFile(pParameters)"
+      - "Assert the card-on-file side-effect"
+    expected:
+      - "CreateCardOnFile stores the card on file without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CRMServiceManager.CreateCardOnFile (NUnit harness)]
+    source_files: [2.0.x/Managers/CRMServiceManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CRMServiceManager.cs, line: 22, text: "void CreateCardOnFile(CreateCardOnFileParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

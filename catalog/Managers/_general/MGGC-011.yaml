@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-011
+    title: "GiftCardManager.RevertAnyGiftCardOrCertificate: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed a payment that issued a gift card/certificate"
+      - "Call RevertAnyGiftCardOrCertificate(pPaymentID, out pErrorMessages)"
+      - "Assert revert side-effect and error list"
+    expected:
+      - "RevertAnyGiftCardOrCertificate reverses issuance and populates error messages on failure"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.RevertAnyGiftCardOrCertificate (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 421, text: "void RevertAnyGiftCardOrCertificate(int pPaymentID, out List<string> pErrorMessages)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

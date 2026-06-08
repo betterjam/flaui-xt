@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCRM-003
+    title: "CRMServiceManager.CheckTenderEligibility: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: validation, ui_area: CRMServiceManager, entity: CardOnFile }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build CheckTenderEligibilityParameters"
+      - "Call CheckTenderEligibility(pParameters)"
+      - "Assert the CheckTenderEligibilityResult"
+    expected:
+      - "CheckTenderEligibility returns the eligibility result for the tender"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CRMServiceManager.CheckTenderEligibility (NUnit harness)]
+    source_files: [2.0.x/Managers/CRMServiceManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CRMServiceManager.cs, line: 65, text: "CheckTenderEligibilityResult CheckTenderEligibility(CheckTenderEligibilityParameters pParameters)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

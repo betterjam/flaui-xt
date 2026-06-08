@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGGC-016
+    title: "GiftCardManager.Redeem: integration behavior"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: GiftCardManager, entity: GiftCard }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a csGift with redeemable balance"
+      - "Call Redeem(pGift)"
+      - "Assert the GiftCardProcessResult"
+    expected:
+      - "Redeem returns a GiftCardProcessResult debiting the gift card"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [GiftCardManager.Redeem (NUnit harness)]
+    source_files: [2.0.x/Managers/GiftCardManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/GiftCardManager.cs, line: 581, text: "GiftCardProcessResult Redeem(csGift pGift)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CustomFieldsManager  (2.0.x/Managers/CustomFieldsManager.cs)
+  # ------------------------------------------------------------------

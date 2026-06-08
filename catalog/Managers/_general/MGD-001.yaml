@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGD-001
+    title: "DialogManager.Dialog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: DialogManager, entity: Dialog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a message and button configuration"
+      - "Call Dialog(pMsg, pButtons, pMessageBoxButtonsOverWrite)"
+      - "Assert the returned DialogResult"
+    expected:
+      - "Dialog shows the message with the requested buttons and returns the DialogResult"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [DialogManager.Dialog (NUnit harness)]
+    source_files: [2.0.x/Managers/DialogManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/DialogManager.cs, line: 9, text: "DialogResult Dialog(string pMsg, MessageBoxButtons pButtons = MessageBoxButtons.YesNo, MessageBoxButtonsOverWrite pMessageBoxButtonsOverWrite = default)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

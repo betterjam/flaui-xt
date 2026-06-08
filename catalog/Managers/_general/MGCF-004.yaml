@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCF-004
+    title: "CustomFieldsManager.Update: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Build a DataRow for an existing custom field"
+      - "Call Update(pRow)"
+      - "Assert the returned bool"
+    expected:
+      - "Update persists the row and returns true on success"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.Update (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 67, text: "bool Update(DataRow pRow)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

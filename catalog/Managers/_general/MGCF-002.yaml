@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCF-002
+    title: "CustomFieldsManager.GetByCustomFieldByCustomTypeEnum: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: CustomFieldsManager, entity: CustomField }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed custom fields of a given CustomType"
+      - "Call GetByCustomFieldByCustomTypeEnum(pCustomType)"
+      - "Assert the returned List<CustomField>"
+    expected:
+      - "GetByCustomFieldByCustomTypeEnum returns the custom fields for that type"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CustomFieldsManager.GetByCustomFieldByCustomTypeEnum (NUnit harness)]
+    source_files: [2.0.x/Managers/CustomFieldsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CustomFieldsManager.cs, line: 21, text: "List<CustomField> GetByCustomFieldByCustomTypeEnum(CustomType pCustomType)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

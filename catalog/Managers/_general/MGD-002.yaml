@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGD-002
+    title: "DialogManager.ClearAllDialog: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: error-guard, ui_area: DialogManager, entity: Dialog }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Open one or more dialogs"
+      - "Call ClearAllDialog()"
+      - "Assert the returned DialogResult"
+    expected:
+      - "ClearAllDialog dismisses open dialogs and returns the resulting DialogResult"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [DialogManager.ClearAllDialog (NUnit harness)]
+    source_files: [2.0.x/Managers/DialogManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/DialogManager.cs, line: 42, text: "DialogResult ClearAllDialog()" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # CryptoManager  (2.0.x/Managers/CryptoManager.cs)
+  # ------------------------------------------------------------------

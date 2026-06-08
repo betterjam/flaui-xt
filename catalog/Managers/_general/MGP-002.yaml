@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGP-002
+    title: "PaymentManager.GetPaymentsToVoid: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: PaymentManager, entity: Payment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an order with voidable payments"
+      - "Call GetPaymentsToVoid(pUnitOfWork, pOrderId)"
+      - "Assert the returned IEnumerable<Payment>"
+    expected:
+      - "GetPaymentsToVoid returns the payments eligible to be voided for the order"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [PaymentManager.GetPaymentsToVoid (NUnit harness)]
+    source_files: [2.0.x/Managers/PaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/PaymentManager.cs, line: 39, text: "IEnumerable<Payment> GetPaymentsToVoid(IUnitOfWork pUnitOfWork, int pOrderId)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

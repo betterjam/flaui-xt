@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGN-003
+    title: "NotificationsManager.GetActiveNotificationByNotificationType: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: NotificationsManager, entity: Notification }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an active notification of a given NotificationType"
+      - "Call GetActiveNotificationByNotificationType(pNotificationType)"
+      - "Assert the returned Notifications"
+    expected:
+      - "GetActiveNotificationByNotificationType returns the active notification of that type"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [NotificationsManager.GetActiveNotificationByNotificationType (NUnit harness)]
+    source_files: [2.0.x/Managers/NotificationsManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/NotificationsManager.cs, line: 42, text: "Notifications GetActiveNotificationByNotificationType(NotificationType pNotificationType)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

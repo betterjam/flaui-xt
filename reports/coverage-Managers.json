@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Managers",
+    "anchorsTotal":  0,
+    "covered":  0,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  98,
+    "atomic":  93,
+    "composite":  5,
+    "uncoveredAnchors":  [
+
+                         ]
+}

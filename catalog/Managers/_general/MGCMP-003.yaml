@@ -1,0 +1,27 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCMP-003
+    title: "OrderManager end-to-end: void then reprint flow"
+    kind: composite
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: OrderManager, entity: Order }
+    chains: [MGO-003, MGO-001, MGO-002, MGO-004]
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Void an order, request a remote reprint, confirm it is pending, update detail after gift cert"
+    expected:
+      - "Each chained OrderManager behavior succeeds in sequence"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files: [2.0.x/Managers/OrderManager.cs]
+    evidence: []
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

@@ -1,0 +1,32 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGAP-003
+    title: "AccountPaymentManager.UpdateAccountPaymentRate: integration behavior"
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: []
+    categories: { test_kind: happy-path, ui_area: AccountPaymentManager, entity: AccountPayment }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Seed an account payment"
+      - "Call UpdateAccountPaymentRate(pAccountPaymentId, pStars)"
+      - "Assert the persisted rating"
+    expected:
+      - "UpdateAccountPaymentRate stores the star rating without throwing"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [AccountPaymentManager.UpdateAccountPaymentRate (NUnit harness)]
+    source_files: [2.0.x/Managers/AccountPaymentManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/AccountPaymentManager.cs, line: 101, text: "void UpdateAccountPaymentRate(int pAccountPaymentId, short pStars)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+  # ------------------------------------------------------------------
+  # ScaleManager  (2.0.x/Managers/ScaleManager.cs)
+  # ------------------------------------------------------------------

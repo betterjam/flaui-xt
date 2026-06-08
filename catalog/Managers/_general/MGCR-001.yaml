@@ -1,0 +1,29 @@
+﻿# Generated from catalog/features/Managers.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Managers
+test_case:
+  - id: MGCR-001
+    title: "CryptoManager.EncryptString: integration permission"
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: []
+    categories: { test_kind: permission, ui_area: CryptoManager, entity: Secret }
+    preconditions: [Test DB seeded, manager instantiated]
+    steps:
+      - "Provide a plaintext string"
+      - "Call EncryptString(pTextToEncrypt)"
+      - "Assert the returned ciphertext"
+    expected:
+      - "EncryptString returns ciphertext that round-trips back via DecryptString"
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls: [CryptoManager.EncryptString (NUnit harness)]
+    source_files: [2.0.x/Managers/CryptoManager.cs]
+    evidence:
+      - { file: 2.0.x/Managers/CryptoManager.cs, line: 14, text: "string EncryptString(string pTextToEncrypt)" }
+    flow_hash: ""
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
