@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-068
+    title: Delete removes a work-schedule entry
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open with a schedule selected
+    steps:
+      - Open the work-schedule editor
+      - Select a schedule entry
+      - Press "Delete" (btnDelete)
+    expected:
+      - 'A success message is shown: "Deleted successfully."'
+      - The schedule entry is removed
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnDelete ("Delete")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 396, text: "btnDeleteClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

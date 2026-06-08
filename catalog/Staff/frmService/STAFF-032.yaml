@@ -1,0 +1,43 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-032
+    title: A failed service delete shows the delete-failed warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open
+      - A service whose deletion will fail is selected
+    steps:
+      - Open the staff services dialog
+      - Attempt to remove a service that cannot be deleted
+    expected:
+      - 'A warning is shown: "Delete failed."'
+      - The service remains assigned
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService delete-failed path
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 138, text: "Delete failed." }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmStaff - staff record CRUD, credentials, validation
+  # =====================================================================

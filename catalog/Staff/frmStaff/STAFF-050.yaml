@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-050
+    title: Save with an invalid email address is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Enter a malformed email address
+      - Save
+    expected:
+      - 'A warning is shown: "Email address invalid."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff email-format guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 439, text: "Email address invalid." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

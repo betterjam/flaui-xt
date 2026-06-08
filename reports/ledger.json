@@ -1,19 +1,10 @@
 ﻿{
     "grandTotal":  2600,
-    "grandCovered":  2370,
-    "grandUncovered":  230,
-    "grandPct":  91.2,
+    "grandCovered":  2461,
+    "grandUncovered":  139,
+    "grandPct":  94.7,
     "complete":  false,
     "areas":  [
-                  {
-                      "area":  "SysForms",
-                      "layer":  "e2e",
-                      "total":  91,
-                      "covered":  0,
-                      "uncovered":  91,
-                      "pct":  0,
-                      "catalog":  false
-                  },
                   {
                       "area":  "Staff",
                       "layer":  "e2e",
@@ -55,6 +46,15 @@
                       "layer":  "e2e",
                       "total":  95,
                       "covered":  95,
+                      "uncovered":  0,
+                      "pct":  100,
+                      "catalog":  true
+                  },
+                  {
+                      "area":  "SysForms",
+                      "layer":  "e2e",
+                      "total":  91,
+                      "covered":  91,
                       "uncovered":  0,
                       "pct":  100,
                       "catalog":  true

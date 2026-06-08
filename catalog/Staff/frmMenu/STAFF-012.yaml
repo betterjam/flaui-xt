@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-012
+    title: Reactivate Staff opens the reactivate-staff flow
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Staff
+    preconditions:
+      - The Staff menu (frmMenu) is open
+      - At least one terminated/inactive staff member exists
+    steps:
+      - Open the Staff menu
+      - Press the Reactivate Staff button (btnReactivateStaff)
+    expected:
+      - The reactivate-staff selection flow opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnReactivateStaff
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 22, text: "btnReactivateStaffClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

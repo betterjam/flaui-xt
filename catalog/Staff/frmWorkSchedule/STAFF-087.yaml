@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-087
+    title: Staff Report opens from the work-schedule editor
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press "Staff Report" (btnStaffReport)
+    expected:
+      - The staff schedule report opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnStaffReport ("Staff Report")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 723, text: "btnStaffReportClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

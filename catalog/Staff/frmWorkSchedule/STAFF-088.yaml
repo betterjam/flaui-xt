@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-088
+    title: Changing the Repeat selection updates schedule recurrence
+    kind: atomic
+    priority: P2
+    type: setting-behavior
+    flavors: [CFD]
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Change the Repeat selection (cboRepeat)
+    expected:
+      - The schedule recurrence behavior updates to match the selected Repeat option
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule cboRepeat
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 728, text: "cboRepeatSelectedIndexChanged" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # COMPOSITE end-to-end flows (chain atomic ids; add no new anchors)
+  # =====================================================================

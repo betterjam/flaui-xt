@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-089
+    title: Create a new staff member end-to-end (menu -> new -> save)
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    chains: [STAFF-016, STAFF-053]
+    preconditions:
+      - Logged in as admin with the Staff right
+    steps:
+      - From the Staff menu, press New Staff (STAFF-016)
+      - Enter valid name, contact, user type, and a unique PIN, then Save (STAFF-053)
+    expected:
+      - 'The new staff member is created and "Saved successfully." is shown'
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmStaff.cs
+    evidence: []
+    flow_hash: "F1D463AF132AC369"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

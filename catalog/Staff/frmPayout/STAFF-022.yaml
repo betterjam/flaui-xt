@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-022
+    title: Pay Now processes a valid staff payout
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open
+      - A staff member is selected with a valid payout amount
+    steps:
+      - Open the payout form
+      - Select a staff member and enter a valid amount
+      - Press Pay Now (btnPayNow)
+    expected:
+      - The payout is processed
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout btnPayNow
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 103, text: "btnPayNowClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-044
+    title: Save without an Access PIN or Access Card is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open with neither PIN nor access card set
+    steps:
+      - Open a staff record
+      - Leave both Access PIN and Access Card empty
+      - Save
+    expected:
+      - 'A warning is shown: "Either Access PIN or Access Card is required in order to save."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff PIN/card required guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 390, text: "Either Access PIN or Access Card\nis required in order to save." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

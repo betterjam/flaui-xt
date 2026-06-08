@@ -1,0 +1,654 @@
+﻿{
+    "feature":  "Staff",
+    "sourcePaths":  [
+                        "C:\\Dev\\Exatouch\\2.0.x\\Staff"
+                    ],
+    "formCount":  8,
+    "anchorTotal":  88,
+    "byType":  {
+                   "calc":  0,
+                   "permission":  3,
+                   "action":  47,
+                   "message":  35,
+                   "toggle":  3
+               },
+    "forms":  [
+                  {
+                      "form":  "frmList",
+                      "file":  "2.0.x\\Staff\\frmList.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  43,
+                                          "control":  "_AccessObj",
+                                          "right":  "Staff",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "permission",
+                                          "line":  44,
+                                          "control":  "btnReport",
+                                          "right":  "Report.Staff",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  110,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear\\r\\nSearch Results"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  129,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print List"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  143,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  148,
+                                          "handler":  "btnSearchClick",
+                                          "control":  "btnSearch",
+                                          "label":  "Advanced\\r\\nStaff Search"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  162,
+                                          "handler":  "dgvListCellClick",
+                                          "control":  "dgvList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  177,
+                                          "handler":  "dgvListColumnHeaderMouseClick",
+                                          "control":  "dgvListColumnHeaderMouse",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmListSearch",
+                      "file":  "2.0.x\\Staff\\frmListSearch.cs",
+                      "anchorCount":  2,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  62,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  67,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Search"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmMenu",
+                      "file":  "2.0.x\\Staff\\frmMenu.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  17,
+                                          "handler":  "btnFloorPlanClick",
+                                          "control":  "btnFloorPlan",
+                                          "label":  "Floor Plan"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  22,
+                                          "handler":  "btnReactivateStaffClick",
+                                          "control":  "btnReactivateStaff",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  29,
+                                          "handler":  "btnRenterPayoutClick",
+                                          "control":  "btnRenterPayout",
+                                          "label":  "Renter\\r\\nPay"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  36,
+                                          "handler":  "btnSchedulesClick",
+                                          "control":  "btnSchedules",
+                                          "label":  "Work\\r\\nSchedules"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  41,
+                                          "handler":  "btnStaffListClick",
+                                          "control":  "btnStaffList",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  46,
+                                          "handler":  "btnStaffNewClick",
+                                          "control":  "btnStaffNew",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  51,
+                                          "handler":  "btnStaffPayoutClick",
+                                          "control":  "btnStaffPayout",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  58,
+                                          "handler":  "btnTimeClockClick",
+                                          "control":  "btnTimeClock",
+                                          "label":  "Time Clock"
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmPayout",
+                      "file":  "2.0.x\\Staff\\frmPayout.cs",
+                      "anchorCount":  8,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  43,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  57,
+                                          "handler":  "btnFindStaffAltClick",
+                                          "control":  "btnFindStaffAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  76,
+                                          "handler":  "btnFindStaffClick",
+                                          "control":  "btnFindStaff",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  103,
+                                          "handler":  "btnPayNowClick",
+                                          "control":  "btnPayNow",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  107,
+                                          "kind":  "Warning",
+                                          "text":  "Error"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  209,
+                                          "kind":  "Success",
+                                          "text":  "Successful."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  216,
+                                          "handler":  "btnReportClick",
+                                          "control":  "btnReport",
+                                          "label":  "Report"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  223,
+                                          "handler":  "dgvPayoutCellClick",
+                                          "control":  "dgvPayout",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmService",
+                      "file":  "2.0.x\\Staff\\frmService.cs",
+                      "anchorCount":  6,
+                      "anchors":  [
+                                      {
+                                          "type":  "message",
+                                          "line":  68,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid price."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  103,
+                                          "handler":  "btnAddClick",
+                                          "control":  "btnAdd",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  110,
+                                          "kind":  "Warning",
+                                          "text":  "Service already added."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  126,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  131,
+                                          "handler":  "btnRemoveClick",
+                                          "control":  "btnRemove",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  138,
+                                          "kind":  "Warning",
+                                          "text":  "Delete failed."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmStaff",
+                      "file":  "2.0.x\\Staff\\frmStaff.cs",
+                      "anchorCount":  21,
+                      "anchors":  [
+                                      {
+                                          "type":  "permission",
+                                          "line":  147,
+                                          "control":  "btnDelete",
+                                          "right":  "Staff",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  255,
+                                          "handler":  "btnCardClick",
+                                          "control":  "btnCard",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  296,
+                                          "handler":  "btnDelClick",
+                                          "control":  "btnDel",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  311,
+                                          "kind":  "Warning",
+                                          "text":  "Existing appointments, delete failed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  321,
+                                          "kind":  "Success",
+                                          "text":  "Deleted successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  325,
+                                          "handler":  "btnReadCardAltClick",
+                                          "control":  "btnReadCardAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  331,
+                                          "handler":  "btnReadCardClick",
+                                          "control":  "btnReadCard",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  343,
+                                          "handler":  "btnServicesClick",
+                                          "control":  "btnServices",
+                                          "label":  "Services"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  350,
+                                          "handler":  "chkForceClockOutCheckedChanged",
+                                          "control":  "chkForceClockOut",
+                                          "label":  "Force Clock-Out"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  362,
+                                          "handler":  "ucNavOnSave",
+                                          "control":  "ucNav",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  380,
+                                          "kind":  "Warning",
+                                          "text":  "Phone number or email is required."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  390,
+                                          "kind":  "Warning",
+                                          "text":  "Either Access PIN or Access Card\\nis required in order to save."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  399,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid PIN length."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  405,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid PIN format."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  412,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid user type."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  427,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid date of birth."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  433,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid Termination date."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  439,
+                                          "kind":  "Warning",
+                                          "text":  "Email address invalid."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  448,
+                                          "kind":  "Warning",
+                                          "text":  "Invalid staff selection."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  494,
+                                          "kind":  "Warning",
+                                          "text":  "PIN or Access Card already in use."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  581,
+                                          "kind":  "Success",
+                                          "text":  "Saved successfully."
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmTCManager",
+                      "file":  "2.0.x\\Staff\\frmTCManager.cs",
+                      "anchorCount":  12,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  78,
+                                          "handler":  "btnCancelClick",
+                                          "control":  "btnCancel",
+                                          "label":  "Close"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  83,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  "Clear"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  105,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete\\r\\nRecord"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  129,
+                                          "kind":  "Success",
+                                          "text":  "Deleted successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  133,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  140,
+                                          "kind":  "Warning",
+                                          "text":  "Clock in is invalid."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  154,
+                                          "kind":  "Warning",
+                                          "text":  "Clock out is greater than current time."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  160,
+                                          "kind":  "Warning",
+                                          "text":  "Clock out is greater than clock in."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  166,
+                                          "kind":  "Warning",
+                                          "text":  "Range exceeds 24 hours."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  184,
+                                          "kind":  "Warning",
+                                          "text":  "Overlapping hours."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  235,
+                                          "handler":  "btnPrintClick",
+                                          "control":  "btnPrint",
+                                          "label":  "Print Shift "
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  241,
+                                          "handler":  "chkBreakCheckedChanged",
+                                          "control":  "chkBreak",
+                                          "label":  null
+                                      }
+                                  ]
+                  },
+                  {
+                      "form":  "frmWorkSchedule",
+                      "file":  "2.0.x\\Staff\\frmWorkSchedule.cs",
+                      "anchorCount":  23,
+                      "anchors":  [
+                                      {
+                                          "type":  "action",
+                                          "line":  339,
+                                          "handler":  "btnBusinessHoursClick",
+                                          "control":  "btnBusinessHours",
+                                          "label":  "Use Business\\r\\nHours"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  361,
+                                          "handler":  "btnClearClick",
+                                          "control":  "btnClear",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  396,
+                                          "handler":  "btnDeleteClick",
+                                          "control":  "btnDelete",
+                                          "label":  "Delete"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  415,
+                                          "kind":  "Warning",
+                                          "text":  "Staff has appoiments during this period, cannot proceed."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  423,
+                                          "kind":  "Success",
+                                          "text":  "Deleted successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  426,
+                                          "handler":  "btnFindSectionAltClick",
+                                          "control":  "btnFindSectionAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  436,
+                                          "handler":  "btnFindSectionClick",
+                                          "control":  "btnFindSection",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  456,
+                                          "handler":  "btnFindStaffAltClick",
+                                          "control":  "btnFindStaffAlt",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  486,
+                                          "handler":  "btnFindStaffClick",
+                                          "control":  "btnFindStaff",
+                                          "label":  null
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  505,
+                                          "handler":  "btnNextClick",
+                                          "control":  "btnNext",
+                                          "label":  "Next\\r\\nWeek"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  513,
+                                          "handler":  "btnPrevClick",
+                                          "control":  "btnPrev",
+                                          "label":  "Prev\\r\\nWeek"
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  521,
+                                          "handler":  "btnOKClick",
+                                          "control":  "btnOK",
+                                          "label":  "Save"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  552,
+                                          "kind":  "Warning",
+                                          "text":  "Section selected for "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  561,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times for "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  567,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times for "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  581,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times for "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  592,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times for "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  602,
+                                          "kind":  "Warning",
+                                          "text":  "Check start and end times."
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  647,
+                                          "kind":  "Warning",
+                                          "text":  "Staff member has appointments on "
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  687,
+                                          "kind":  "Warning",
+                                          "text":  "Staff member has appointments on\\n"
+                                      },
+                                      {
+                                          "type":  "message",
+                                          "line":  720,
+                                          "kind":  "Success",
+                                          "text":  "Updated successfully."
+                                      },
+                                      {
+                                          "type":  "action",
+                                          "line":  723,
+                                          "handler":  "btnStaffReportClick",
+                                          "control":  "btnStaffReport",
+                                          "label":  "Staff\\r\\nReport"
+                                      },
+                                      {
+                                          "type":  "toggle",
+                                          "line":  728,
+                                          "handler":  "cboRepeatSelectedIndexChanged",
+                                          "control":  "cboRepeat",
+                                          "label":  null
+                                      }
+                                  ]
+                  }
+              ]
+}

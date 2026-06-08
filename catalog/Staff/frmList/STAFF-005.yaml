@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-005
+    title: Report button opens the staff report
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open
+      - The current user holds the Report.Staff right
+    steps:
+      - Open the Staff list
+      - Press "Report" (btnReport)
+    expected:
+      - The staff report opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList btnReport ("Report")
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 143, text: "btnReportClick" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

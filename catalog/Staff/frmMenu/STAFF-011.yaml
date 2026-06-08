@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-011
+    title: Floor Plan button opens the floor plan
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Staff
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press "Floor Plan" (btnFloorPlan)
+    expected:
+      - The floor plan view opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnFloorPlan ("Floor Plan")
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 17, text: "btnFloorPlanClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

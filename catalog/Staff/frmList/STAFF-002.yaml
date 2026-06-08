@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-002
+    title: Staff Report button requires the Report.Staff access right
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: [CFD]
+    categories:
+      test_kind: permission
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open
+      - A user without the "Report.Staff" right and a user with it both exist
+    steps:
+      - Open the Staff list as a user lacking "Report.Staff"
+      - Observe the Report button (btnReport) availability
+      - Reopen as a user holding "Report.Staff"
+    expected:
+      - btnReport ("Report") is disabled/hidden without the Report.Staff right
+      - btnReport is enabled when the Report.Staff right is held
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList btnReport access gate (Report.Staff)
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 44, text: "perm:Report.Staff" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

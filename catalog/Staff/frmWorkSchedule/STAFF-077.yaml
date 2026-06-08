@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-077
+    title: Save persists a valid work schedule
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open with a valid entry
+    steps:
+      - Open the work-schedule editor
+      - Select a staff member and valid start/end times
+      - Press "Save" (btnOK)
+    expected:
+      - The schedule passes validation and is saved
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnOK ("Save")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 521, text: "btnOKClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

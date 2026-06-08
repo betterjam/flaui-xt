@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-036
+    title: Deleting a staff member with existing appointments is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+      - That staff member has existing appointments
+    steps:
+      - Open the staff record
+      - Press Delete (btnDel)
+    expected:
+      - 'A warning is shown: "Existing appointments, delete failed."'
+      - The staff member is not deleted
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff delete appointment-guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 311, text: "Existing appointments, delete failed." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

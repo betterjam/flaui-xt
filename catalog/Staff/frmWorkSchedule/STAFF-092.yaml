@@ -1,0 +1,43 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-092
+    title: Build a weekly work schedule end-to-end
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    chains: [STAFF-014, STAFF-074, STAFF-066, STAFF-077, STAFF-086]
+    preconditions:
+      - Logged in as admin
+      - A staff member exists and business hours are configured
+    steps:
+      - Open Work Schedules from the Staff menu (STAFF-014)
+      - Find and select the staff member (STAFF-074)
+      - Apply business hours (STAFF-066)
+      - Save the schedule (STAFF-077)
+    expected:
+      - 'The schedule is created and "Updated successfully." is shown (STAFF-086)'
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence: []
+    flow_hash: "DA914F92942889F7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

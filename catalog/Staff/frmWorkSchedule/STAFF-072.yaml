@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-072
+    title: Find Section selects a section for the schedule
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press Find Section (btnFindSection)
+      - Select a section
+    expected:
+      - The selected section is applied to the schedule entry
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnFindSection
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 436, text: "btnFindSectionClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

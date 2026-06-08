@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-020
+    title: Find Staff (alternate) selects a staff member for payout
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open
+    steps:
+      - Open the payout form
+      - Use the alternate Find Staff control (btnFindStaffAlt)
+      - Select a staff member
+    expected:
+      - The selected staff member is loaded into the payout form
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout btnFindStaffAlt
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 57, text: "btnFindStaffAltClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

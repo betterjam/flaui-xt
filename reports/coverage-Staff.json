@@ -1,0 +1,13 @@
+﻿{
+    "feature":  "Staff",
+    "anchorsTotal":  88,
+    "covered":  88,
+    "uncovered":  0,
+    "coveragePct":  100,
+    "caseCount":  93,
+    "atomic":  88,
+    "composite":  5,
+    "uncoveredAnchors":  [
+
+                         ]
+}

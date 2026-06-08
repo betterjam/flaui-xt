@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-084
+    title: Saving a schedule that conflicts with appointments (single day) is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+      - The staff member has appointments on the scheduled day
+    steps:
+      - Open the work-schedule editor
+      - Enter a schedule overlapping the staff member's appointments
+      - Press Save
+    expected:
+      - 'A warning is shown: "Staff member has appointments on "'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule save appointment-guard (single)
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 647, text: "Staff member has appointments on " }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

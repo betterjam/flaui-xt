@@ -1,0 +1,44 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-090
+    title: Open a staff member from the list and assign a service
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Service
+    chains: [STAFF-015, STAFF-007, STAFF-040, STAFF-028, STAFF-030]
+    preconditions:
+      - Logged in as admin
+      - At least one staff member and one service exist
+    steps:
+      - Open the staff list (STAFF-015)
+      - Click a staff row to open the record (STAFF-007)
+      - Open Services (STAFF-040)
+      - Add a service at a valid price (STAFF-028)
+      - Close the services dialog (STAFF-030)
+    expected:
+      - The service is assigned to the staff member
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmList.cs
+      - 2.0.x/Staff/frmStaff.cs
+      - 2.0.x/Staff/frmService.cs
+    evidence: []
+    flow_hash: "4CF3DF16BB5119DC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

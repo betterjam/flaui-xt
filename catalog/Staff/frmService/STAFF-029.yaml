@@ -1,0 +1,40 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-029
+    title: Adding a duplicate service is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open
+      - A service is already added to the staff member
+    steps:
+      - Open the staff services dialog
+      - Add a service that is already in the list
+    expected:
+      - 'A warning is shown: "Service already added."'
+      - The duplicate is not added
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService duplicate-service guard
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 110, text: "Service already added." }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

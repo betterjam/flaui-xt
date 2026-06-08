@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-065
+    title: Break checkbox toggles break handling on the shift
+    kind: atomic
+    priority: P2
+    type: setting-behavior
+    flavors: [CFD]
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Toggle the Break checkbox (chkBreak)
+    expected:
+      - The shift's break handling reflects the toggle state
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager chkBreak
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 241, text: "chkBreakCheckedChanged" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmWorkSchedule - weekly work-schedule editor
+  # =====================================================================

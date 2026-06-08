@@ -1,0 +1,45 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-053
+    title: A fully valid staff record saves successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open with all required, valid, unique fields
+    steps:
+      - Open a new staff record
+      - Enter valid name, phone/email, user type, and a unique PIN
+      - Save
+    expected:
+      - 'A success message is shown: "Saved successfully."'
+      - The staff record is persisted
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff save-success confirmation
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 581, text: "Saved successfully." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmTCManager - time-clock manager
+  # =====================================================================

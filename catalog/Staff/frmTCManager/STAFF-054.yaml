@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-054
+    title: Close dismisses the time-clock manager
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Press "Close" (btnCancel)
+    expected:
+      - The time-clock manager closes
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnCancel ("Close")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 78, text: "btnCancelClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

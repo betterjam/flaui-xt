@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-014
+    title: Work Schedules opens the weekly schedule editor
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: WorkSchedule
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press "Work Schedules" (btnSchedules)
+    expected:
+      - The work-schedule editor (frmWorkSchedule) opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnSchedules ("Work Schedules")
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 36, text: "btnSchedulesClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

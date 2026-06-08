@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-041
+    title: Force Clock-Out toggle changes the staff force-clock-out setting
+    kind: atomic
+    priority: P2
+    type: setting-behavior
+    flavors: [CFD]
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Toggle the "Force Clock-Out" checkbox (chkForceClockOut)
+    expected:
+      - The staff member's force-clock-out flag reflects the toggle state
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff chkForceClockOut ("Force Clock-Out")
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 350, text: "Force Clock-Out" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

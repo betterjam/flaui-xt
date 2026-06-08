@@ -1,0 +1,3414 @@
+﻿feature: Staff
+description: >
+  Staff management module: staff list/search, staff record CRUD (PIN/card credentials,
+  validation), per-staff services, staff & renter payouts, the time-clock manager, and
+  the weekly work-schedule editor. Grounded in 2.0.x/Staff. Every test case cites a code
+  anchor from catalog/_baseline/evidence-Staff.json verbatim.
+source_paths:
+  - 2.0.x/Staff
+flavors: [CFD, BO, DEMO, TRAINING]
+
+test_cases:
+
+  # =====================================================================
+  # frmList - staff list, search-result grid, print/report, permissions
+  # =====================================================================
+  - id: STAFF-001
+    title: Staff module requires the Staff access right to open
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: [CFD]
+    categories:
+      test_kind: permission
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - A staff/user account exists WITHOUT the "Staff" access right
+      - A staff/user account exists WITH the "Staff" access right
+    steps:
+      - Log in as a user lacking the "Staff" right
+      - Attempt to open the Staff list (frmList)
+      - Log in as a user holding the "Staff" right and reopen the Staff list
+    expected:
+      - Access is denied / the Staff list is blocked for the user without the right
+      - The Staff list opens for the user holding the "Staff" right
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList access-right gate on _AccessObj (Staff)
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 43, text: "perm:Staff" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-002
+    title: Staff Report button requires the Report.Staff access right
+    kind: atomic
+    priority: P2
+    type: integration
+    flavors: [CFD]
+    categories:
+      test_kind: permission
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open
+      - A user without the "Report.Staff" right and a user with it both exist
+    steps:
+      - Open the Staff list as a user lacking "Report.Staff"
+      - Observe the Report button (btnReport) availability
+      - Reopen as a user holding "Report.Staff"
+    expected:
+      - btnReport ("Report") is disabled/hidden without the Report.Staff right
+      - btnReport is enabled when the Report.Staff right is held
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList btnReport access gate (Report.Staff)
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 44, text: "perm:Report.Staff" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-003
+    title: Clear Search Results empties the staff list grid
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open with search results displayed
+    steps:
+      - Open the Staff list
+      - Perform a search so the grid is populated
+      - Press "Clear Search Results" (btnClear)
+    expected:
+      - The staff search-result grid is cleared
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList btnClear ("Clear Search Results")
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 110, text: "btnClearClick" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-004
+    title: Print List sends the staff list to the printer
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open and populated
+    steps:
+      - Open the Staff list
+      - Press "Print List" (btnPrint)
+    expected:
+      - The staff list is sent to the configured printer (print preview/job)
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList btnPrint ("Print List")
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 129, text: "btnPrintClick" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-005
+    title: Report button opens the staff report
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open
+      - The current user holds the Report.Staff right
+    steps:
+      - Open the Staff list
+      - Press "Report" (btnReport)
+    expected:
+      - The staff report opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList btnReport ("Report")
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 143, text: "btnReportClick" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-006
+    title: Advanced Staff Search opens the search dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open
+    steps:
+      - Open the Staff list
+      - Press "Advanced Staff Search" (btnSearch)
+    expected:
+      - The advanced staff search dialog (frmListSearch) opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList btnSearch ("Advanced Staff Search")
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 148, text: "btnSearchClick" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-007
+    title: Clicking a staff row opens that staff record
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open with at least one staff row
+    steps:
+      - Open the Staff list
+      - Click a staff row in the grid (dgvList)
+    expected:
+      - The selected staff member's record opens (frmStaff)
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList dgvList row-cell click
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 162, text: "dgvListCellClick" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-008
+    title: Clicking a grid column header sorts the staff list
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmList
+      entity: Staff
+    preconditions:
+      - The Staff list is open with multiple rows
+    steps:
+      - Open the Staff list
+      - Click a column header in the grid (dgvList)
+    expected:
+      - The staff list re-sorts by the clicked column
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmList dgvList column-header click (sort)
+    source_files:
+      - 2.0.x/Staff/frmList.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmList.cs, line: 177, text: "dgvListColumnHeaderMouseClick" }
+    flow_hash: "7C04DA30846F9F8C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmListSearch - advanced search dialog
+  # =====================================================================
+  - id: STAFF-009
+    title: Close cancels the advanced staff search dialog
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmListSearch
+      entity: Staff
+    preconditions:
+      - The advanced staff search dialog (frmListSearch) is open
+    steps:
+      - Open the advanced staff search dialog
+      - Press "Close" (btnCancel)
+    expected:
+      - The search dialog closes without applying a search
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmListSearch btnCancel ("Close")
+    source_files:
+      - 2.0.x/Staff/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmListSearch.cs, line: 62, text: "btnCancelClick" }
+    flow_hash: "7770DC68406D4BA2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-010
+    title: Search applies advanced criteria and returns matching staff
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmListSearch
+      entity: Staff
+    preconditions:
+      - The advanced staff search dialog (frmListSearch) is open
+    steps:
+      - Open the advanced staff search dialog
+      - Enter search criteria
+      - Press "Search" (btnOK)
+    expected:
+      - The dialog closes and the staff list grid shows the matching staff
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmListSearch btnOK ("Search")
+    source_files:
+      - 2.0.x/Staff/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmListSearch.cs, line: 67, text: "btnOKClick" }
+    flow_hash: "7770DC68406D4BA2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmMenu - Staff module landing menu
+  # =====================================================================
+  - id: STAFF-011
+    title: Floor Plan button opens the floor plan
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Staff
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press "Floor Plan" (btnFloorPlan)
+    expected:
+      - The floor plan view opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnFloorPlan ("Floor Plan")
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 17, text: "btnFloorPlanClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-012
+    title: Reactivate Staff opens the reactivate-staff flow
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Staff
+    preconditions:
+      - The Staff menu (frmMenu) is open
+      - At least one terminated/inactive staff member exists
+    steps:
+      - Open the Staff menu
+      - Press the Reactivate Staff button (btnReactivateStaff)
+    expected:
+      - The reactivate-staff selection flow opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnReactivateStaff
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 22, text: "btnReactivateStaffClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-013
+    title: Renter Pay opens the renter payout flow
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Payout
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press "Renter Pay" (btnRenterPayout)
+    expected:
+      - The renter payout flow opens (frmPayout in renter mode)
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnRenterPayout ("Renter Pay")
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 29, text: "btnRenterPayoutClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-014
+    title: Work Schedules opens the weekly schedule editor
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: WorkSchedule
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press "Work Schedules" (btnSchedules)
+    expected:
+      - The work-schedule editor (frmWorkSchedule) opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnSchedules ("Work Schedules")
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 36, text: "btnSchedulesClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-015
+    title: Staff List button opens the staff list
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Staff
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press the Staff List button (btnStaffList)
+    expected:
+      - The staff list (frmList) opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnStaffList
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 41, text: "btnStaffListClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-016
+    title: New Staff button opens a blank staff record
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Staff
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press the New Staff button (btnStaffNew)
+    expected:
+      - A new, blank staff record (frmStaff) opens for data entry
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnStaffNew
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 46, text: "btnStaffNewClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-017
+    title: Staff Payout opens the staff payout flow
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: Payout
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press the Staff Payout button (btnStaffPayout)
+    expected:
+      - The staff payout flow (frmPayout) opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnStaffPayout
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 51, text: "btnStaffPayoutClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-018
+    title: Time Clock opens the time-clock manager
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmMenu
+      entity: TimeClock
+    preconditions:
+      - The Staff menu (frmMenu) is open
+    steps:
+      - Open the Staff menu
+      - Press "Time Clock" (btnTimeClock)
+    expected:
+      - The time-clock manager (frmTCManager) opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmMenu btnTimeClock ("Time Clock")
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmMenu.cs, line: 58, text: "btnTimeClockClick" }
+    flow_hash: "6BC65C255C83AC3A"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmPayout - staff / renter payout
+  # =====================================================================
+  - id: STAFF-019
+    title: Clear resets the payout form
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open with data entered
+    steps:
+      - Open the payout form
+      - Enter payout data
+      - Press Clear (btnClear)
+    expected:
+      - The payout form fields are reset
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout btnClear
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 43, text: "btnClearClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-020
+    title: Find Staff (alternate) selects a staff member for payout
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open
+    steps:
+      - Open the payout form
+      - Use the alternate Find Staff control (btnFindStaffAlt)
+      - Select a staff member
+    expected:
+      - The selected staff member is loaded into the payout form
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout btnFindStaffAlt
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 57, text: "btnFindStaffAltClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-021
+    title: Find Staff selects a staff member for payout
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open
+    steps:
+      - Open the payout form
+      - Press Find Staff (btnFindStaff)
+      - Select a staff member
+    expected:
+      - The selected staff member's payout details load
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout btnFindStaff
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 76, text: "btnFindStaffClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-022
+    title: Pay Now processes a valid staff payout
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open
+      - A staff member is selected with a valid payout amount
+    steps:
+      - Open the payout form
+      - Select a staff member and enter a valid amount
+      - Press Pay Now (btnPayNow)
+    expected:
+      - The payout is processed
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout btnPayNow
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 103, text: "btnPayNowClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-023
+    title: Payout with invalid input shows the Error warning
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open
+    steps:
+      - Open the payout form
+      - Attempt Pay Now with invalid/missing payout input
+    expected:
+      - 'A warning is shown: "Error"'
+      - The payout is not processed
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout Pay Now error path
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 107, text: "Error" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-024
+    title: Successful payout shows the success confirmation
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open with a valid selected staff and amount
+    steps:
+      - Open the payout form
+      - Select a staff member and a valid amount
+      - Press Pay Now
+    expected:
+      - 'A success message is shown: "Successful."'
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout success confirmation
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 209, text: "Successful." }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-025
+    title: Payout Report button opens the payout report
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open
+    steps:
+      - Open the payout form
+      - Press "Report" (btnReport)
+    expected:
+      - The payout report opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout btnReport ("Report")
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 216, text: "btnReportClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-026
+    title: Clicking a payout grid row selects that payout entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    preconditions:
+      - The payout form (frmPayout) is open with payout history rows
+    steps:
+      - Open the payout form
+      - Click a row in the payout grid (dgvPayout)
+    expected:
+      - The clicked payout entry is selected / its details shown
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmPayout dgvPayout cell click
+    source_files:
+      - 2.0.x/Staff/frmPayout.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmPayout.cs, line: 223, text: "dgvPayoutCellClick" }
+    flow_hash: "CB89F3514CE849CC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmService - per-staff services
+  # =====================================================================
+  - id: STAFF-027
+    title: Adding a service with an invalid price is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open
+    steps:
+      - Open the staff services dialog
+      - Enter an invalid price for a service
+      - Press Add (btnAdd)
+    expected:
+      - 'A warning is shown: "Invalid price."'
+      - The service is not added
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService price field + Add validation
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 68, text: "Invalid price." }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-028
+    title: Add assigns a service to the staff member
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open
+    steps:
+      - Open the staff services dialog
+      - Choose a service and a valid price
+      - Press Add (btnAdd)
+    expected:
+      - The service is added to the staff member's service list
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService btnAdd
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 103, text: "btnAddClick" }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-029
+    title: Adding a duplicate service is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open
+      - A service is already added to the staff member
+    steps:
+      - Open the staff services dialog
+      - Add a service that is already in the list
+    expected:
+      - 'A warning is shown: "Service already added."'
+      - The duplicate is not added
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService duplicate-service guard
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 110, text: "Service already added." }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-030
+    title: Close dismisses the staff services dialog
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open
+    steps:
+      - Open the staff services dialog
+      - Press "Close" (btnOK)
+    expected:
+      - The services dialog closes
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService btnOK ("Close")
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 126, text: "btnOKClick" }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-031
+    title: Remove deletes a service from the staff member
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open with at least one service
+    steps:
+      - Open the staff services dialog
+      - Select a service
+      - Press Remove (btnRemove)
+    expected:
+      - The selected service is removed from the staff member
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService btnRemove
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 131, text: "btnRemoveClick" }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-032
+    title: A failed service delete shows the delete-failed warning
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmService
+      entity: Service
+    preconditions:
+      - The staff services dialog (frmService) is open
+      - A service whose deletion will fail is selected
+    steps:
+      - Open the staff services dialog
+      - Attempt to remove a service that cannot be deleted
+    expected:
+      - 'A warning is shown: "Delete failed."'
+      - The service remains assigned
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmService delete-failed path
+    source_files:
+      - 2.0.x/Staff/frmService.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmService.cs, line: 138, text: "Delete failed." }
+    flow_hash: "E3B46C704EEF403F"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmStaff - staff record CRUD, credentials, validation
+  # =====================================================================
+  - id: STAFF-033
+    title: Delete button requires the Staff access right
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: [CFD]
+    categories:
+      test_kind: permission
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+      - Users with and without the "Staff" right exist
+    steps:
+      - Open a staff record as a user lacking the "Staff" right
+      - Observe the Delete button (btnDelete)
+      - Reopen as a user holding the "Staff" right
+    expected:
+      - btnDelete ("Delete") is disabled/hidden without the Staff right
+      - btnDelete is enabled when the Staff right is held
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff btnDelete access gate (Staff)
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 147, text: "perm:Staff" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-034
+    title: Card button captures a staff access card
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Press the Card button (btnCard)
+    expected:
+      - The access-card capture flow runs and the card is associated with the staff
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff btnCard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 255, text: "btnCardClick" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-035
+    title: Delete (btnDel) initiates staff deletion
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+      - The current user holds the Staff right
+    steps:
+      - Open a staff record
+      - Press Delete (btnDel)
+    expected:
+      - The staff deletion is initiated (subject to appointment guards)
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff btnDel
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 296, text: "btnDelClick" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-036
+    title: Deleting a staff member with existing appointments is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+      - That staff member has existing appointments
+    steps:
+      - Open the staff record
+      - Press Delete (btnDel)
+    expected:
+      - 'A warning is shown: "Existing appointments, delete failed."'
+      - The staff member is not deleted
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff delete appointment-guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 311, text: "Existing appointments, delete failed." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-037
+    title: Deleting a staff member with no blockers succeeds
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+      - That staff member has no appointments and the user holds the Staff right
+    steps:
+      - Open the staff record
+      - Press Delete (btnDel) and confirm
+    expected:
+      - 'A success message is shown: "Deleted successfully."'
+      - The staff member is removed
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff delete success
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 321, text: "Deleted successfully." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-038
+    title: Read Card (alternate) reads a staff access card
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Use the alternate Read Card control (btnReadCardAlt)
+    expected:
+      - The access card is read into the staff record
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff btnReadCardAlt
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 325, text: "btnReadCardAltClick" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-039
+    title: Read Card reads a staff access card
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Press Read Card (btnReadCard)
+    expected:
+      - The access card value is read into the staff record
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff btnReadCard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 331, text: "btnReadCardClick" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-040
+    title: Services button opens the per-staff services dialog
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Service
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Press "Services" (btnServices)
+    expected:
+      - The staff services dialog (frmService) opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff btnServices ("Services")
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 343, text: "btnServicesClick" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-041
+    title: Force Clock-Out toggle changes the staff force-clock-out setting
+    kind: atomic
+    priority: P2
+    type: setting-behavior
+    flavors: [CFD]
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Toggle the "Force Clock-Out" checkbox (chkForceClockOut)
+    expected:
+      - The staff member's force-clock-out flag reflects the toggle state
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff chkForceClockOut ("Force Clock-Out")
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 350, text: "Force Clock-Out" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-042
+    title: Saving a valid staff record persists it
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A new/edited staff record (frmStaff) with all required, valid fields is open
+    steps:
+      - Open a staff record and enter valid required fields
+      - Trigger Save via the nav bar (ucNav OnSave)
+    expected:
+      - The save proceeds through validation to persistence
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff ucNav OnSave
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 362, text: "ucNavOnSave" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-043
+    title: Save without phone or email is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open with neither phone nor email entered
+    steps:
+      - Open a staff record
+      - Leave both phone and email blank
+      - Save
+    expected:
+      - 'A warning is shown: "Phone number or email is required."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff phone/email required guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 380, text: "Phone number or email is required." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-044
+    title: Save without an Access PIN or Access Card is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open with neither PIN nor access card set
+    steps:
+      - Open a staff record
+      - Leave both Access PIN and Access Card empty
+      - Save
+    expected:
+      - 'A warning is shown: "Either Access PIN or Access Card is required in order to save."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff PIN/card required guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 390, text: "Either Access PIN or Access Card\nis required in order to save." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-045
+    title: Save with an out-of-range PIN length is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Enter a PIN with an invalid length
+      - Save
+    expected:
+      - 'A warning is shown: "Invalid PIN length."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff PIN length guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 399, text: "Invalid PIN length." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-046
+    title: Save with a malformed PIN is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Enter a PIN with an invalid format (e.g. non-numeric)
+      - Save
+    expected:
+      - 'A warning is shown: "Invalid PIN format."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff PIN format guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 405, text: "Invalid PIN format." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-047
+    title: Save with no/invalid user type is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Leave the user type unset or set it to an invalid value
+      - Save
+    expected:
+      - 'A warning is shown: "Invalid user type."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff user-type guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 412, text: "Invalid user type." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-048
+    title: Save with an invalid date of birth is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Enter an invalid date of birth
+      - Save
+    expected:
+      - 'A warning is shown: "Invalid date of birth."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff date-of-birth guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 427, text: "Invalid date of birth." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-049
+    title: Save with an invalid termination date is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Enter an invalid termination date
+      - Save
+    expected:
+      - 'A warning is shown: "Invalid Termination date."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff termination-date guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 433, text: "Invalid Termination date." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-050
+    title: Save with an invalid email address is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Enter a malformed email address
+      - Save
+    expected:
+      - 'A warning is shown: "Email address invalid."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff email-format guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 439, text: "Email address invalid." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-051
+    title: Save with an invalid staff selection is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+    steps:
+      - Open a staff record
+      - Make an invalid staff selection (e.g. unselected related staff)
+      - Save
+    expected:
+      - 'A warning is shown: "Invalid staff selection."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff staff-selection guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 448, text: "Invalid staff selection." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-052
+    title: Save with a PIN or card already in use is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+      - Another staff member already uses the entered PIN or access card
+    steps:
+      - Open a staff record
+      - Enter a PIN or access card already assigned to another staff member
+      - Save
+    expected:
+      - 'A warning is shown: "PIN or Access Card already in use."'
+      - The record is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff PIN/card uniqueness guard
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 494, text: "PIN or Access Card already in use." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-053
+    title: A fully valid staff record saves successfully
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open with all required, valid, unique fields
+    steps:
+      - Open a new staff record
+      - Enter valid name, phone/email, user type, and a unique PIN
+      - Save
+    expected:
+      - 'A success message is shown: "Saved successfully."'
+      - The staff record is persisted
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff save-success confirmation
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 581, text: "Saved successfully." }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmTCManager - time-clock manager
+  # =====================================================================
+  - id: STAFF-054
+    title: Close dismisses the time-clock manager
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Press "Close" (btnCancel)
+    expected:
+      - The time-clock manager closes
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnCancel ("Close")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 78, text: "btnCancelClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-055
+    title: Clear resets the time-clock entry fields
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open with data entered
+    steps:
+      - Open the time-clock manager
+      - Enter clock in/out values
+      - Press "Clear" (btnClear)
+    expected:
+      - The time-clock entry fields are reset
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnClear ("Clear")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 83, text: "btnClearClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-056
+    title: Delete Record removes a time-clock shift
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open with a shift selected
+    steps:
+      - Open the time-clock manager
+      - Select a shift record
+      - Press "Delete Record" (btnDelete)
+    expected:
+      - 'A success message is shown: "Deleted successfully."'
+      - The shift record is removed
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnDelete ("Delete Record")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 105, text: "btnDeleteClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-057
+    title: Deleting a time-clock shift confirms with a success message
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open with a shift selected
+    steps:
+      - Open the time-clock manager
+      - Delete the selected shift
+    expected:
+      - 'A success message is shown: "Deleted successfully."'
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager delete-success confirmation
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 129, text: "Deleted successfully." }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-058
+    title: Save persists a time-clock shift edit
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open with valid clock in/out
+    steps:
+      - Open the time-clock manager
+      - Enter valid clock in and clock out times
+      - Press "Save" (btnOK)
+    expected:
+      - The shift is saved through validation to persistence
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnOK ("Save")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 133, text: "btnOKClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-059
+    title: Saving a shift with an invalid clock-in time is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Enter an invalid clock-in time
+      - Press Save
+    expected:
+      - 'A warning is shown: "Clock in is invalid."'
+      - The shift is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager clock-in validation
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 140, text: "Clock in is invalid." }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-060
+    title: Saving a shift with clock-out after current time is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Enter a clock-out time later than the current time
+      - Press Save
+    expected:
+      - 'A warning is shown: "Clock out is greater than current time."'
+      - The shift is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager clock-out-vs-now guard
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 154, text: "Clock out is greater than current time." }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-061
+    title: Saving a shift with clock-out before clock-in is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Enter a clock-out time earlier than the clock-in time
+      - Press Save
+    expected:
+      - 'A warning is shown: "Clock out is greater than clock in."'
+      - The shift is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager clock-out-vs-in guard
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 160, text: "Clock out is greater than clock in." }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-062
+    title: Saving a shift longer than 24 hours is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Enter a clock in/out range exceeding 24 hours
+      - Press Save
+    expected:
+      - 'A warning is shown: "Range exceeds 24 hours."'
+      - The shift is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager 24-hour range guard
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 166, text: "Range exceeds 24 hours." }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-063
+    title: Saving a shift that overlaps an existing one is rejected
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+      - The staff member already has a shift in the chosen window
+    steps:
+      - Open the time-clock manager
+      - Enter a shift that overlaps an existing shift
+      - Press Save
+    expected:
+      - 'A warning is shown: "Overlapping hours."'
+      - The shift is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager overlap guard
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 184, text: "Overlapping hours." }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-064
+    title: Print Shift prints the selected time-clock shift
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open with a shift selected
+    steps:
+      - Open the time-clock manager
+      - Select a shift
+      - Press "Print Shift" (btnPrint)
+    expected:
+      - The selected shift is sent to the printer
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnPrint ("Print Shift")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 235, text: "btnPrintClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-065
+    title: Break checkbox toggles break handling on the shift
+    kind: atomic
+    priority: P2
+    type: setting-behavior
+    flavors: [CFD]
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open
+    steps:
+      - Open the time-clock manager
+      - Toggle the Break checkbox (chkBreak)
+    expected:
+      - The shift's break handling reflects the toggle state
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager chkBreak
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 241, text: "chkBreakCheckedChanged" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # frmWorkSchedule - weekly work-schedule editor
+  # =====================================================================
+  - id: STAFF-066
+    title: Use Business Hours fills the schedule with business hours
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press "Use Business Hours" (btnBusinessHours)
+    expected:
+      - The schedule start/end times are populated from the configured business hours
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnBusinessHours ("Use Business Hours")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 339, text: "btnBusinessHoursClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-067
+    title: Clear resets the work-schedule entry
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open with data entered
+    steps:
+      - Open the work-schedule editor
+      - Enter schedule data
+      - Press Clear (btnClear)
+    expected:
+      - The work-schedule entry fields are reset
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnClear
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 361, text: "btnClearClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-068
+    title: Delete removes a work-schedule entry
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open with a schedule selected
+    steps:
+      - Open the work-schedule editor
+      - Select a schedule entry
+      - Press "Delete" (btnDelete)
+    expected:
+      - 'A success message is shown: "Deleted successfully."'
+      - The schedule entry is removed
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnDelete ("Delete")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 396, text: "btnDeleteClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-069
+    title: Deleting a schedule while staff has appointments in the period is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+      - The staff member has appointments during the schedule period
+    steps:
+      - Open the work-schedule editor
+      - Attempt to delete a schedule covering a period with appointments
+    expected:
+      - 'A warning is shown: "Staff has appoiments during this period, cannot proceed."'
+      - The schedule is not deleted
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule delete appointment-guard
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 415, text: "Staff has appoiments during this period, cannot proceed." }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-070
+    title: Deleting a schedule with no blockers confirms success
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open with a deletable schedule
+    steps:
+      - Open the work-schedule editor
+      - Delete a schedule with no overlapping appointments
+    expected:
+      - 'A success message is shown: "Deleted successfully."'
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule delete-success confirmation
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 423, text: "Deleted successfully." }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-071
+    title: Find Section (alternate) selects a section for the schedule
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Use the alternate Find Section control (btnFindSectionAlt)
+      - Select a section
+    expected:
+      - The selected section is applied to the schedule entry
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnFindSectionAlt
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 426, text: "btnFindSectionAltClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-072
+    title: Find Section selects a section for the schedule
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press Find Section (btnFindSection)
+      - Select a section
+    expected:
+      - The selected section is applied to the schedule entry
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnFindSection
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 436, text: "btnFindSectionClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-073
+    title: Find Staff (alternate) selects a staff member for the schedule
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Use the alternate Find Staff control (btnFindStaffAlt)
+      - Select a staff member
+    expected:
+      - The selected staff member is loaded into the schedule editor
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnFindStaffAlt
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 456, text: "btnFindStaffAltClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-074
+    title: Find Staff selects a staff member for the schedule
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press Find Staff (btnFindStaff)
+      - Select a staff member
+    expected:
+      - The selected staff member's schedule is loaded
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnFindStaff
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 486, text: "btnFindStaffClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-075
+    title: Next Week advances the schedule view
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press "Next Week" (btnNext)
+    expected:
+      - The schedule view advances to the following week
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnNext ("Next Week")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 505, text: "btnNextClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-076
+    title: Prev Week moves the schedule view back
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press "Prev Week" (btnPrev)
+    expected:
+      - The schedule view moves to the previous week
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnPrev ("Prev Week")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 513, text: "btnPrevClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-077
+    title: Save persists a valid work schedule
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open with a valid entry
+    steps:
+      - Open the work-schedule editor
+      - Select a staff member and valid start/end times
+      - Press "Save" (btnOK)
+    expected:
+      - The schedule passes validation and is saved
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnOK ("Save")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 521, text: "btnOKClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-078
+    title: Saving without a section selected for a day is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Set hours for a day but leave its section unselected
+      - Press Save
+    expected:
+      - 'A warning is shown indicating no section is selected: "Section selected for "'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule section-required guard
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 552, text: "Section selected for " }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-079
+    title: Saving with invalid start/end times (case A) is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Enter start/end times that fail the first time check
+      - Press Save
+    expected:
+      - 'A warning is shown: "Check start and end times for " (line 561 branch)'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule start/end time guard (branch 561)
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 561, text: "Check start and end times for " }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-080
+    title: Saving with invalid start/end times (case B) is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Enter start/end times that fail the second time check
+      - Press Save
+    expected:
+      - 'A warning is shown: "Check start and end times for " (line 567 branch)'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule start/end time guard (branch 567)
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 567, text: "Check start and end times for " }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-081
+    title: Saving with invalid start/end times (case C) is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Enter start/end times that fail the third time check
+      - Press Save
+    expected:
+      - 'A warning is shown: "Check start and end times for " (line 581 branch)'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule start/end time guard (branch 581)
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 581, text: "Check start and end times for " }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-082
+    title: Saving with invalid start/end times (case D) is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Enter start/end times that fail the fourth time check
+      - Press Save
+    expected:
+      - 'A warning is shown: "Check start and end times for " (line 592 branch)'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule start/end time guard (branch 592)
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 592, text: "Check start and end times for " }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-083
+    title: Saving with globally invalid start/end times is rejected
+    kind: atomic
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: validation
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Enter start/end times that fail the overall time check
+      - Press Save
+    expected:
+      - 'A warning is shown: "Check start and end times."'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule overall start/end time guard
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 602, text: "Check start and end times." }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-084
+    title: Saving a schedule that conflicts with appointments (single day) is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+      - The staff member has appointments on the scheduled day
+    steps:
+      - Open the work-schedule editor
+      - Enter a schedule overlapping the staff member's appointments
+      - Press Save
+    expected:
+      - 'A warning is shown: "Staff member has appointments on "'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule save appointment-guard (single)
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 647, text: "Staff member has appointments on " }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-085
+    title: Saving a schedule that conflicts with appointments (multi-day) is blocked
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: error-guard
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+      - The staff member has appointments spanning multiple scheduled days
+    steps:
+      - Open the work-schedule editor
+      - Enter a multi-day schedule overlapping the staff member's appointments
+      - Press Save
+    expected:
+      - 'A warning is shown listing the conflicting days: "Staff member has appointments on\n"'
+      - The schedule is not saved
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule save appointment-guard (multi-day)
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 687, text: "Staff member has appointments on\n" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-086
+    title: A valid work schedule update confirms success
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open with a valid, conflict-free entry
+    steps:
+      - Open the work-schedule editor
+      - Enter a valid, non-conflicting schedule
+      - Press Save
+    expected:
+      - 'A success message is shown: "Updated successfully."'
+      - The schedule is persisted
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule update-success confirmation
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 720, text: "Updated successfully." }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-087
+    title: Staff Report opens from the work-schedule editor
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Press "Staff Report" (btnStaffReport)
+    expected:
+      - The staff schedule report opens
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule btnStaffReport ("Staff Report")
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 723, text: "btnStaffReportClick" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-088
+    title: Changing the Repeat selection updates schedule recurrence
+    kind: atomic
+    priority: P2
+    type: setting-behavior
+    flavors: [CFD]
+    categories:
+      test_kind: setting-behavior
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    preconditions:
+      - The work-schedule editor (frmWorkSchedule) is open
+    steps:
+      - Open the work-schedule editor
+      - Change the Repeat selection (cboRepeat)
+    expected:
+      - The schedule recurrence behavior updates to match the selected Repeat option
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmWorkSchedule cboRepeat
+    source_files:
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmWorkSchedule.cs, line: 728, text: "cboRepeatSelectedIndexChanged" }
+    flow_hash: "A2E1151CFBFFBDEA"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  # =====================================================================
+  # COMPOSITE end-to-end flows (chain atomic ids; add no new anchors)
+  # =====================================================================
+  - id: STAFF-089
+    title: Create a new staff member end-to-end (menu -> new -> save)
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Staff
+    chains: [STAFF-016, STAFF-053]
+    preconditions:
+      - Logged in as admin with the Staff right
+    steps:
+      - From the Staff menu, press New Staff (STAFF-016)
+      - Enter valid name, contact, user type, and a unique PIN, then Save (STAFF-053)
+    expected:
+      - 'The new staff member is created and "Saved successfully." is shown'
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmStaff.cs
+    evidence: []
+    flow_hash: "F1D463AF132AC369"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-090
+    title: Open a staff member from the list and assign a service
+    kind: composite
+    priority: P2
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmStaff
+      entity: Service
+    chains: [STAFF-015, STAFF-007, STAFF-040, STAFF-028, STAFF-030]
+    preconditions:
+      - Logged in as admin
+      - At least one staff member and one service exist
+    steps:
+      - Open the staff list (STAFF-015)
+      - Click a staff row to open the record (STAFF-007)
+      - Open Services (STAFF-040)
+      - Add a service at a valid price (STAFF-028)
+      - Close the services dialog (STAFF-030)
+    expected:
+      - The service is assigned to the staff member
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmList.cs
+      - 2.0.x/Staff/frmStaff.cs
+      - 2.0.x/Staff/frmService.cs
+    evidence: []
+    flow_hash: "4CF3DF16BB5119DC"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-091
+    title: Edit and save a time-clock shift end-to-end
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    chains: [STAFF-018, STAFF-058]
+    preconditions:
+      - Logged in as admin
+      - A staff member with a shift exists
+    steps:
+      - Open the Time Clock manager from the Staff menu (STAFF-018)
+      - Enter valid clock in/out and Save (STAFF-058)
+    expected:
+      - The shift is saved with no validation warnings
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence: []
+    flow_hash: "18F2CC99BB3ADA76"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-092
+    title: Build a weekly work schedule end-to-end
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmWorkSchedule
+      entity: WorkSchedule
+    chains: [STAFF-014, STAFF-074, STAFF-066, STAFF-077, STAFF-086]
+    preconditions:
+      - Logged in as admin
+      - A staff member exists and business hours are configured
+    steps:
+      - Open Work Schedules from the Staff menu (STAFF-014)
+      - Find and select the staff member (STAFF-074)
+      - Apply business hours (STAFF-066)
+      - Save the schedule (STAFF-077)
+    expected:
+      - 'The schedule is created and "Updated successfully." is shown (STAFF-086)'
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmWorkSchedule.cs
+    evidence: []
+    flow_hash: "DA914F92942889F7"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
+  - id: STAFF-093
+    title: Process a staff payout end-to-end
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    chains: [STAFF-017, STAFF-021, STAFF-022, STAFF-024]
+    preconditions:
+      - Logged in as admin
+      - A staff member eligible for payout exists
+    steps:
+      - Open Staff Payout from the Staff menu (STAFF-017)
+      - Find and select the staff member (STAFF-021)
+      - Enter a valid amount and Pay Now (STAFF-022)
+    expected:
+      - 'The payout completes and "Successful." is shown (STAFF-024)'
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmPayout.cs
+    evidence: []
+    flow_hash: "9151EB9D9FDCCFB4"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

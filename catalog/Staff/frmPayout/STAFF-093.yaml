@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-093
+    title: Process a staff payout end-to-end
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmPayout
+      entity: Payout
+    chains: [STAFF-017, STAFF-021, STAFF-022, STAFF-024]
+    preconditions:
+      - Logged in as admin
+      - A staff member eligible for payout exists
+    steps:
+      - Open Staff Payout from the Staff menu (STAFF-017)
+      - Find and select the staff member (STAFF-021)
+      - Enter a valid amount and Pay Now (STAFF-022)
+    expected:
+      - 'The payout completes and "Successful." is shown (STAFF-024)'
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmPayout.cs
+    evidence: []
+    flow_hash: "9151EB9D9FDCCFB4"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery

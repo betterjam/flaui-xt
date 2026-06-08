@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-058
+    title: Save persists a time-clock shift edit
+    kind: atomic
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open with valid clock in/out
+    steps:
+      - Open the time-clock manager
+      - Enter valid clock in and clock out times
+      - Press "Save" (btnOK)
+    expected:
+      - The shift is saved through validation to persistence
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnOK ("Save")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 133, text: "btnOKClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

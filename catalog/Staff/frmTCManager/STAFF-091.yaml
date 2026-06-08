@@ -1,0 +1,41 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-091
+    title: Edit and save a time-clock shift end-to-end
+    kind: composite
+    priority: P1
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    chains: [STAFF-018, STAFF-058]
+    preconditions:
+      - Logged in as admin
+      - A staff member with a shift exists
+    steps:
+      - Open the Time Clock manager from the Staff menu (STAFF-018)
+      - Enter valid clock in/out and Save (STAFF-058)
+    expected:
+      - The shift is saved with no validation warnings
+    runner: ranorex
+    composes:
+      - GoToModule
+      - SaveRecord
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+      - SaveRecord
+    binding: needs-recording
+    matches_existing: null
+    new_controls: []
+    source_files:
+      - 2.0.x/Staff/frmMenu.cs
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence: []
+    flow_hash: "18F2CC99BB3ADA76"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

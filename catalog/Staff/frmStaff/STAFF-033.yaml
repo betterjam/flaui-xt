@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-033
+    title: Delete button requires the Staff access right
+    kind: atomic
+    priority: P1
+    type: integration
+    flavors: [CFD]
+    categories:
+      test_kind: permission
+      ui_area: frmStaff
+      entity: Staff
+    preconditions:
+      - A staff record (frmStaff) is open
+      - Users with and without the "Staff" right exist
+    steps:
+      - Open a staff record as a user lacking the "Staff" right
+      - Observe the Delete button (btnDelete)
+      - Reopen as a user holding the "Staff" right
+    expected:
+      - btnDelete ("Delete") is disabled/hidden without the Staff right
+      - btnDelete is enabled when the Staff right is held
+    runner: nunit
+    composes: []
+    reference_recordings: []
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmStaff btnDelete access gate (Staff)
+    source_files:
+      - 2.0.x/Staff/frmStaff.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmStaff.cs, line: 147, text: "perm:Staff" }
+    flow_hash: "7C613090967A3532"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

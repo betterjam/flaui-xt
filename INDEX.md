@@ -4,7 +4,7 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 
 ## Overall
 
-**91.2% complete** - 2370 / 2600 testable code anchors covered. Complete: **NO**.
+**94.7% complete** - 2461 / 2600 testable code anchors covered. Complete: **NO**.
 
 | Area | Layer | Covered | Total | % | Catalog |
 |------|-------|--------:|------:|--:|:-------:|
@@ -17,8 +17,8 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 | Managers | unit | 93 | 93 | 100% | yes |
 | Calendar | e2e | 51 | 51 | 100% | yes |
 | Customers | e2e | 95 | 95 | 100% | yes |
+| SysForms | e2e | 91 | 91 | 100% | yes |
 | Purchasing | e2e | 44 | 111 | 39.6% | yes |
-| SysForms | e2e | 0 | 91 | 0% | - |
 | Staff | e2e | 0 | 88 | 0% | - |
 | Utility | e2e | 0 | 56 | 0% | - |
 
@@ -1742,6 +1742,104 @@ _Auto-generated index of every area we cover with tests. Do not edit by hand; ru
 - `SET-0118` frmDelivery: action btnCancel (Close)  _( P3 / needs-recording )_
 - `SET-0116` frmCustomTender: Warning - At least one payment needs to be selected.  _( P2 / needs-recording )_
 - `SET-0117` frmCustomTender: Success - Saved successful.  _( P1 / needs-recording )_
+
+### Staff  (93 tests: 88 atomic, 5 composite)
+
+**(uncategorized)** (93)
+
+- `STAFF-063` Saving a shift that overlaps an existing one is rejected  _( P1 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-064` Print Shift prints the selected time-clock shift  _( P3 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-062` Saving a shift longer than 24 hours is rejected  _( P2 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-060` Saving a shift with clock-out after current time is rejected  _( P1 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-061` Saving a shift with clock-out before clock-in is rejected  _( P1 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-065` Break checkbox toggles break handling on the shift  _( P2 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-069` Deleting a schedule while staff has appointments in the period is blocked  _( P1 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-070` Deleting a schedule with no blockers confirms success  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-068` Delete removes a work-schedule entry  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-066` Use Business Hours fills the schedule with business hours  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-067` Clear resets the work-schedule entry  _( P3 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-059` Saving a shift with an invalid clock-in time is rejected  _( P1 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-051` Save with an invalid staff selection is rejected  _( P2 / frmStaff / Staff / needs-recording )_
+- `STAFF-052` Save with a PIN or card already in use is rejected  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-050` Save with an invalid email address is rejected  _( P2 / frmStaff / Staff / needs-recording )_
+- `STAFF-048` Save with an invalid date of birth is rejected  _( P2 / frmStaff / Staff / needs-recording )_
+- `STAFF-049` Save with an invalid termination date is rejected  _( P2 / frmStaff / Staff / needs-recording )_
+- `STAFF-053` A fully valid staff record saves successfully  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-057` Deleting a time-clock shift confirms with a success message  _( P2 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-058` Save persists a time-clock shift edit  _( P1 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-056` Delete Record removes a time-clock shift  _( P2 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-054` Close dismisses the time-clock manager  _( P3 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-055` Clear resets the time-clock entry fields  _( P3 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-086` A valid work schedule update confirms success  _( P1 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-087` Staff Report opens from the work-schedule editor  _( P3 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-085` Saving a schedule that conflicts with appointments (multi-day) is blocked  _( P1 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-083` Saving with globally invalid start/end times is rejected  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-084` Saving a schedule that conflicts with appointments (single day) is blocked  _( P1 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-088` Changing the Repeat selection updates schedule recurrence  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-092` Build a weekly work schedule end-to-end  _( P1 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-093` Process a staff payout end-to-end  _( P1 / frmPayout / Payout / needs-recording )_
+- `STAFF-091` Edit and save a time-clock shift end-to-end  _( P1 / frmTCManager / TimeClock / needs-recording )_
+- `STAFF-089` Create a new staff member end-to-end (menu -> new -> save)  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-090` Open a staff member from the list and assign a service  _( P2 / frmStaff / Service / needs-recording )_
+- `STAFF-082` Saving with invalid start/end times (case D) is rejected  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-074` Find Staff selects a staff member for the schedule  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-075` Next Week advances the schedule view  _( P3 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-073` Find Staff (alternate) selects a staff member for the schedule  _( P3 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-071` Find Section (alternate) selects a section for the schedule  _( P3 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-072` Find Section selects a section for the schedule  _( P3 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-076` Prev Week moves the schedule view back  _( P3 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-080` Saving with invalid start/end times (case B) is rejected  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-081` Saving with invalid start/end times (case C) is rejected  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-079` Saving with invalid start/end times (case A) is rejected  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-077` Save persists a valid work schedule  _( P1 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-078` Saving without a section selected for a day is rejected  _( P2 / frmWorkSchedule / WorkSchedule / needs-recording )_
+- `STAFF-047` Save with no/invalid user type is rejected  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-016` New Staff button opens a blank staff record  _( P1 / frmMenu / Staff / needs-recording )_
+- `STAFF-017` Staff Payout opens the staff payout flow  _( P2 / frmMenu / Payout / needs-recording )_
+- `STAFF-015` Staff List button opens the staff list  _( P1 / frmMenu / Staff / needs-recording )_
+- `STAFF-013` Renter Pay opens the renter payout flow  _( P2 / frmMenu / Payout / needs-recording )_
+- `STAFF-014` Work Schedules opens the weekly schedule editor  _( P1 / frmMenu / WorkSchedule / needs-recording )_
+- `STAFF-018` Time Clock opens the time-clock manager  _( P1 / frmMenu / TimeClock / needs-recording )_
+- `STAFF-022` Pay Now processes a valid staff payout  _( P1 / frmPayout / Payout / needs-recording )_
+- `STAFF-023` Payout with invalid input shows the Error warning  _( P1 / frmPayout / Payout / needs-recording )_
+- `STAFF-021` Find Staff selects a staff member for payout  _( P2 / frmPayout / Payout / needs-recording )_
+- `STAFF-019` Clear resets the payout form  _( P3 / frmPayout / Payout / needs-recording )_
+- `STAFF-020` Find Staff (alternate) selects a staff member for payout  _( P2 / frmPayout / Payout / needs-recording )_
+- `STAFF-012` Reactivate Staff opens the reactivate-staff flow  _( P2 / frmMenu / Staff / needs-recording )_
+- `STAFF-004` Print List sends the staff list to the printer  _( P2 / frmList / Staff / needs-recording )_
+- `STAFF-005` Report button opens the staff report  _( P2 / frmList / Staff / needs-recording )_
+- `STAFF-003` Clear Search Results empties the staff list grid  _( P2 / frmList / Staff / needs-recording )_
+- `STAFF-001` Staff module requires the Staff access right to open  _( P1 / frmList / Staff / needs-recording )_
+- `STAFF-002` Staff Report button requires the Report.Staff access right  _( P2 / frmList / Staff / needs-recording )_
+- `STAFF-006` Advanced Staff Search opens the search dialog  _( P2 / frmList / Staff / needs-recording )_
+- `STAFF-010` Search applies advanced criteria and returns matching staff  _( P2 / frmListSearch / Staff / needs-recording )_
+- `STAFF-011` Floor Plan button opens the floor plan  _( P2 / frmMenu / Staff / needs-recording )_
+- `STAFF-009` Close cancels the advanced staff search dialog  _( P3 / frmListSearch / Staff / needs-recording )_
+- `STAFF-007` Clicking a staff row opens that staff record  _( P1 / frmList / Staff / needs-recording )_
+- `STAFF-008` Clicking a grid column header sorts the staff list  _( P3 / frmList / Staff / needs-recording )_
+- `STAFF-039` Read Card reads a staff access card  _( P2 / frmStaff / Staff / needs-recording )_
+- `STAFF-040` Services button opens the per-staff services dialog  _( P2 / frmStaff / Service / needs-recording )_
+- `STAFF-038` Read Card (alternate) reads a staff access card  _( P3 / frmStaff / Staff / needs-recording )_
+- `STAFF-036` Deleting a staff member with existing appointments is blocked  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-037` Deleting a staff member with no blockers succeeds  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-041` Force Clock-Out toggle changes the staff force-clock-out setting  _( P2 / frmStaff / Staff / needs-recording )_
+- `STAFF-045` Save with an out-of-range PIN length is rejected  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-046` Save with a malformed PIN is rejected  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-044` Save without an Access PIN or Access Card is rejected  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-042` Saving a valid staff record persists it  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-043` Save without phone or email is rejected  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-035` Delete (btnDel) initiates staff deletion  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-027` Adding a service with an invalid price is rejected  _( P1 / frmService / Service / needs-recording )_
+- `STAFF-028` Add assigns a service to the staff member  _( P2 / frmService / Service / needs-recording )_
+- `STAFF-026` Clicking a payout grid row selects that payout entry  _( P3 / frmPayout / Payout / needs-recording )_
+- `STAFF-024` Successful payout shows the success confirmation  _( P1 / frmPayout / Payout / needs-recording )_
+- `STAFF-025` Payout Report button opens the payout report  _( P2 / frmPayout / Payout / needs-recording )_
+- `STAFF-029` Adding a duplicate service is rejected  _( P2 / frmService / Service / needs-recording )_
+- `STAFF-033` Delete button requires the Staff access right  _( P1 / frmStaff / Staff / needs-recording )_
+- `STAFF-034` Card button captures a staff access card  _( P2 / frmStaff / Staff / needs-recording )_
+- `STAFF-032` A failed service delete shows the delete-failed warning  _( P2 / frmService / Service / needs-recording )_
+- `STAFF-030` Close dismisses the staff services dialog  _( P3 / frmService / Service / needs-recording )_
+- `STAFF-031` Remove deletes a service from the staff member  _( P2 / frmService / Service / needs-recording )_
 
 ### SysForms  (95 tests: 91 atomic, 4 composite)
 

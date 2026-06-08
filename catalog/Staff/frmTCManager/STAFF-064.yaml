@@ -1,0 +1,39 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-064
+    title: Print Shift prints the selected time-clock shift
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmTCManager
+      entity: TimeClock
+    preconditions:
+      - The time-clock manager (frmTCManager) is open with a shift selected
+    steps:
+      - Open the time-clock manager
+      - Select a shift
+      - Press "Print Shift" (btnPrint)
+    expected:
+      - The selected shift is sent to the printer
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmTCManager btnPrint ("Print Shift")
+    source_files:
+      - 2.0.x/Staff/frmTCManager.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmTCManager.cs, line: 235, text: "btnPrintClick" }
+    flow_hash: "F4EF82FF9FFDF39C"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+

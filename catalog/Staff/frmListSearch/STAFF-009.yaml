@@ -1,0 +1,38 @@
+﻿# Generated from catalog/features/Staff.yaml by split.ps1 - do not hand-edit; edit the flat file.
+feature: Staff
+test_case:
+  - id: STAFF-009
+    title: Close cancels the advanced staff search dialog
+    kind: atomic
+    priority: P3
+    type: e2e
+    flavors: [CFD]
+    categories:
+      test_kind: happy-path
+      ui_area: frmListSearch
+      entity: Staff
+    preconditions:
+      - The advanced staff search dialog (frmListSearch) is open
+    steps:
+      - Open the advanced staff search dialog
+      - Press "Close" (btnCancel)
+    expected:
+      - The search dialog closes without applying a search
+    runner: ranorex
+    composes:
+      - GoToModule
+    reference_recordings:
+      - GoToModule
+      - LoginAsAdminUser
+    binding: needs-recording
+    matches_existing: null
+    new_controls:
+      - frmListSearch btnCancel ("Close")
+    source_files:
+      - 2.0.x/Staff/frmListSearch.cs
+    evidence:
+      - { file: 2.0.x\Staff\frmListSearch.cs, line: 62, text: "btnCancelClick" }
+    flow_hash: "7770DC68406D4BA2"
+    source_refs: { tickets: [], prs: [] }
+    origin: discovery
+
