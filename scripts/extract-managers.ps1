@@ -18,12 +18,12 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$ManagersDir = (Join-Path (Resolve-Path (Join-Path $PSScriptRoot '..\..\2.0.x')).Path 'Managers'),
+    [string]$ManagersDir = (Join-Path (Resolve-Path (Join-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } }) '2.0.x')).Path 'Managers'),
     [string]$OutDir      = (Join-Path $PSScriptRoot '..\catalog\_baseline')
 )
 $ErrorActionPreference = 'Stop'
 if (-not (Test-Path $OutDir)) { New-Item -ItemType Directory -Path $OutDir | Out-Null }
-$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
+$repoRoot = (Resolve-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } })).Path
 
 $calcWords = 'Tax|Total|Discount|Cost|Markup|Price|Subtotal|Gratuity|Tip|Fee|Refund|Change|Balance|Round'
 $managers = @(); $methodCount = 0; $calcCount = 0

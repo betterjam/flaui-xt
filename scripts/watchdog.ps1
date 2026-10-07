@@ -20,9 +20,14 @@ param(
     [double]$MaxUsd     = 50,
     [string]$Branch     = 'qa-ai-discovery',
     [string]$DeadlineUtc = '',
-    [string]$QaRoot     = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+    [string]$QaRoot     = ''
 )
 $ErrorActionPreference = 'Stop'
+# $PSScriptRoot is empty when Task Scheduler launches us via -File; resolve robustly.
+$scriptDir = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($scriptDir)) { $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path }
+if ([string]::IsNullOrWhiteSpace($scriptDir)) { $scriptDir = 'C:\Dev\exatouch-qa\scripts' }
+if ([string]::IsNullOrWhiteSpace($QaRoot))    { $QaRoot   = (Resolve-Path (Join-Path $scriptDir '..')).Path }
 $scripts   = Join-Path $QaRoot 'scripts'
 $heartbeat = Join-Path $QaRoot 'reports\heartbeat.json'
 $logFile   = Join-Path $QaRoot 'reports\watchdog.log'

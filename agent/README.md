@@ -8,7 +8,7 @@ working dir, and prints `COST_USD=<n>` so the weekend runner can enforce the $50
 
 Install once:
 ```powershell
-npm install --prefix C:\Dev\Exatouch\qa-ai\agent
+npm install --prefix C:\Dev\exatouch-qa\agent
 ```
 Key is read from `$env:ANTHROPIC_API_KEY` (never an argument, never logged).
 
@@ -28,6 +28,6 @@ until coverage is 100%. Writes only `qa-ai/catalog/features/<Area>.yaml`. Never 
 ## Smoke test (spends a small amount — rotate your key first if it was ever exposed)
 ```powershell
 $env:ANTHROPIC_API_KEY = "sk-ant-...new..."
-C:\Dev\Exatouch\qa-ai\scripts\run-agent.ps1 -Area Calendar -PromptFile C:\Dev\Exatouch\qa-ai\prompts\cover-area.md
+C:\Dev\exatouch-qa\scripts\run-agent.ps1 -Area Calendar -PromptFile C:\Dev\exatouch-qa\prompts\cover-area.md
 # Calendar is the smallest area (51 anchors) -> cheapest first real run.
 ```

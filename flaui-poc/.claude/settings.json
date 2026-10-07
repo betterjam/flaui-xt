@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "PowerShell(Get-Process testhost,dotnet -ErrorAction SilentlyContinue)",
+      "Bash(cd 'c:\\\\Dev\\\\Exatouch/MyFirstExatouchTest/MyFirstExatouchTest' && echo \"=== element <attribute> entries in GoToItems.rxrec \\(the locator pieces\\) ===\" && grep -A1 \"<attribute\" \"Home/GoToItems.rxrec\" | grep -iE \"name=|controlname|accessiblename|controltype|text|role\" | head -20; echo \"\"; echo \"=== repository file + sample RxPath ===\" && ls *.rxrep && grep -iE \"rxpath|name=|controlname|accessiblename\" *.rxrep 2>/dev/null | head -20)",
+      "Read(//c/Dev/Exatouch/MyFirstExatouchTest/MyFirstExatouchTest/**)",
+      "Bash(python3 import-ranorex.py)",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('../flaui-poc/TestResults/recording-GoToItems.json',encoding='utf-8'\\)\\);[print\\(' ',s['action'],'| key='+s['key'],'| parent='+s['parent'],'| type='+s['controlType'],'|',s['label'][:40]\\) for s in d]\")",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('../flaui-poc/TestResults/recording-GoToRegister.json',encoding='utf-8'\\)\\);[print\\(' ',s['action'],'| key='+s['key'],'| parent='+s['parent']\\) for s in d[:6]]\")",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('../flaui-poc/TestResults/recording-GoToItems.json',encoding='utf-8'\\)\\);[print\\(' ',s['action'],'key='+s['key'],'parent='+s['parent'],'|',s['label']\\) for s in d]\")",
+      "Bash(python3 -c \"import json,os;p='../flaui-poc/TestResults/recording-InsertCity.json';d=json.load\\(open\\(p,encoding='utf-8'\\)\\) if os.path.exists\\(p\\) else [];[print\\(' ',s['action'],'key='+s['key'],'val='+s['value'],'|',s['label'][:50]\\) for s in d]\")",
+      "Bash(sed -n '28,40p;845,860p' \"Home/GoToItems.rxrec\")",
+      "Bash(sed -n '1,40p' XTControlRepository.rxrep)",
+      "Bash(awk '/<keysequenceitem/,/<\\\\/keysequenceitem>/' \"Customers/InsertCity.rxrec\")",
+      "Bash(grep -ivE \"screenshot|/9j/|base64|^[A-Za-z0-9+/]{40,}\")",
+      "Bash(python3 -c \"import json,os;p='../flaui-poc/TestResults/recording-InsertCity.json';d=json.load\\(open\\(p,encoding='utf-8'\\)\\) if os.path.exists\\(p\\) else [];[print\\(' ',s['action'],'key='+s['key'],'val='+repr\\(s['value']\\),'|',s['label'][:45]\\) for s in d]\")",
+      "Bash(python3 -c \"import json,glob;n=sum\\(1 for f in glob.glob\\('../flaui-poc/TestResults/recording-*.json'\\) for s in json.load\\(open\\(f,encoding='utf-8'\\)\\) if s['action']=='set'\\);print\\('total set/typing actions captured:',n\\)\")",
+      "Bash(awk '/<path>/,/<\\\\/path>/' \"Customers/InsertCity.rxrec\")",
+      "Bash(python3 -c \"import json,os;p='../flaui-poc/TestResults/recording-InsertCity.json';d=json.load\\(open\\(p,encoding='utf-8'\\)\\) if os.path.exists\\(p\\) else [];[print\\(' ',s['action'],'key='+s['key'],'parent='+s['parent'],'val='+repr\\(s['value']\\)\\) for s in d]\")",
+      "Bash(python3 -c \"import json,os;p='../flaui-poc/TestResults/recording-InsertCity.json';d=json.load\\(open\\(p,encoding='utf-8'\\)\\) if os.path.exists\\(p\\) else [];[print\\(' ',s['action'],'key='+s['key'],'parent='+s['parent'],'type='+s['controlType'],'val='+repr\\(s['value']\\)\\) for s in d]\")",
+      "Bash(python3 -c \"import json,glob;print\\(sum\\(1 for f in glob.glob\\('../flaui-poc/TestResults/recording-*.json'\\) for s in json.load\\(open\\(f,encoding='utf-8'\\)\\) if s['action']=='set'\\)\\)\")",
+      "Bash(python3 roundtrip-ranorex.py)",
+      "Bash(curl -s --max-time 5 http://localhost:5099/api/uiversion)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" --max-time 4 http://localhost:5099/api/uiversion)",
+      "Bash(cd /c/Dev/exatouch-qa/flaui-poc/TestResults)",
+      "Bash(ls -1 recording-register_module.json)",
+      "Bash(ls -1 recording-*register*)",
+      "Bash(curl -s -o /dev/null -w \"scene=%{http_code}\\\\n\" --max-time 4 -X POST http://localhost:5200/scene)",
+      "Bash(curl -s --max-time 4 -X POST \"http://localhost:5200/record/extend?parent=__probe__\")",
+      "Bash(echo \"uiversion: $\\(curl -s --max-time 5 http://localhost:5099/api/uiversion\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' --max-time 5 -X POST -H 'Content-Length: 0' http://localhost:5099/api/creator/restart)",
+      "Bash(echo \"creator/restart route present? $\\(curl -s -o /dev/null -w '%{http_code}' --max-time 5 -X POST -H 'Content-Length: 0' http://localhost:5099/api/creator/restart\\) \\(200=yes, 404/other=route exists but may have acted\\)\")",
+      "Bash(curl -s -o /dev/null -w \"scene=%{http_code}\\\\n\" --max-time 5 -X POST -H \"Content-Length: 0\" http://localhost:5200/scene)",
+      "Bash(curl -s --max-time 5 -X POST -H \"Content-Length: 0\" \"http://localhost:5200/record/extend?parent=__probe__\")",
+      "Bash(curl -s --max-time 30 -X POST -H \"Content-Length: 0\" \"http://localhost:5200/record/extend?parent=register_module\")",
+      "Bash(code=$\\(curl -s -o /dev/null -w \"%{http_code}\" --max-time 4 http://localhost:5099/api/uiversion\\); echo \"5099: $code \\(000=free\\)\" *)",
+      "Read(//c/Dev/exatouch-qa/dashboard-ng/dist/dashboard-ng/browser/**)",
+      "Bash(curl -s --max-time 60 -X POST -H \"Content-Length: 0\" \"http://localhost:5200/record/extend?parent=register_module\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('ok=',d['ok'],'| note=',d.get\\('note',d.get\\('error'\\)\\)\\)\")",
+      "Bash(curl -s -o /dev/null --max-time 6 -X POST -H \"Content-Length: 0\" http://localhost:5200/record/clear)",
+      "Bash(curl -s --max-time 40 -X POST -H \"Content-Length: 0\" \"http://localhost:5200/record/extend?parent=Run_the_app\")",
+      "Bash(python -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('ok=',d['ok'],'| note=',d.get\\('note',d.get\\('error'\\)\\)\\)\")",
+      "Bash(curl -s --max-time 20 -X POST -H \"Content-Length: 0\" \"http://localhost:5099/api/regenerate?test=add_item_twice\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Dev\\Exatouch\\qa-ai\\scripts"
+    ]
+  }
+}

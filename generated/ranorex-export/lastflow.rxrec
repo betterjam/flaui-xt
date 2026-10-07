@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<recordtable embeddedrepository="False" id="deaafdd9-46ef-4bd9-a695-d3cdb5120f58" mode="Global">
+	<repeatcount>1</repeatcount>
+	<turbomode>False</turbomode>
+	<genreport>True</genreport>
+	<speedfactor>1</speedfactor>
+	<useDefaultItemLogging>True</useDefaultItemLogging>
+	<codegen classname="lastflow" namespace="MyFirstExatouchTest"></codegen>
+	<variables></variables>
+	<recorditems>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="c3f69beb-fb9b-4e38-a105-e66ea1dad750" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="fcec6613-3c75-48e6-bb91-e642ee14c594" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//form[@controlname='frmMenu']//element[@controlname='btnRegister']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="bda80658-0c1f-4705-9c92-84fa40b20a43" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="17629a15-6cda-4a30-8463-ce33e82af1e8" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvCat']//element[@accessiblename='CatCol Row 1']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="9af3b253-9b89-4fb0-bf36-73b29702b2f1" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="1119e346-defb-4fae-968f-7201b439bcee" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 1']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="d0155111-56ac-4cfe-8b93-7f93716f0d79" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="1fb4dc8b-dce6-44f8-9975-e1978191b646" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 1']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="b78f6a3c-263e-4e8a-ad24-2968f2888191" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="c1eff182-af7a-4a43-8016-97d50d541094" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 2']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="cf1595d5-ed8b-4a68-a6e0-7bc5c12347c0" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="0a382320-eee0-4d8f-99eb-9e0088a1335f" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 2']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="c6e19ab6-d8b8-413a-86da-2792323cdeac" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="597fa789-e18d-428b-9557-b0292865dd3e" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol3 Row 2']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="8521db81-8761-4404-82a1-39ab6ed395c9" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="c44e8007-2095-4bb9-a225-b4f522ad653b" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol4 Row 2']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="107e931c-0292-40cd-a945-019da2194401" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="4aaf70fa-9dc8-4e18-bca5-433f36d9ef7c" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 3']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="37ae548d-6c9c-4cf3-8d24-571474b3450e" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="6f3abcaa-b31c-4b94-aa62-f5344bef13f4" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 3']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="ae2b9154-5ff8-4451-a17c-25ecdf3f789b" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="8b9f63d9-5cba-4f62-a592-a3f5ef9a4ece" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol3 Row 3']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="81b2ccf5-ff4f-4372-8a0a-7fdb485b86d5" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="59cdf0cf-4e7c-403c-8551-aa981122192f" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol4 Row 3']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="f7423089-1933-45d8-9a94-e519bf2ef835" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="e68bc0a8-45d8-45e8-9460-11dda3e595d8" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//container[@controlname='tpgRegister']//element[@accessiblename='Cash']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="1489f53d-e2cf-47a4-98b6-bf21052f8ff0" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="de329979-d3f8-41c0-93b7-07d8015acf31" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//form[@controlname='frmCash']//element[@controlname='btnOK']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="f05866c8-92d2-4618-84ad-4563c30eb4b9" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="64af6a23-dd5c-4dcb-9b20-06b215dd313e" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//element[@controlname='btnCancel']
+				</path>
+			</info>
+		</mouseitem>
+		<mouseitem action="Click" button="Left" duration="300ms" enabled="True" loc="50;50" movetime="300ms" optional="False" searchpropertyid="c343984b-7a20-46ab-b015-31a01c105171" warnoutofbounds="False">
+			<comment></comment>
+			<bindings></bindings>
+			<info id="ab009d5d-ee4b-4c92-8821-74decb8861c4" sourcename="Recorder">
+				<path>
+					/form[@controlname='frmMain']//form[@controlname='frmPicture']//element[@controlname='btnCancel']
+				</path>
+			</info>
+		</mouseitem>
+	</recorditems>
+</recordtable>

@@ -1,0 +1,55 @@
+﻿<repository id="21c75572-c92c-4863-9d45-47547b8c8fbf" name="lastflowRepository">
+	<codegen classname="lastflowRepository" namespace="MyFirstExatouchTest"></codegen>
+	<rootfolder capname="unknown" id="194cc5af-6fc9-44fb-a51f-040377461878" isrooted="True" name="Root" searchtimeout="0ms" usecache="True">
+		<appfolder addcaps="form,control,nativewindow" capname="form" id="ac183d4f-413c-4322-a23d-d7d25e45fd02" isrooted="True" name="FrmMain" refpath="/form[@controlname='frmMain']" searchtimeout="30000ms" usecache="True">
+			<item addcaps="control,control,nativewindow" capname="control" id="c3f69beb-fb9b-4e38-a105-e66ea1dad750" name="Register" refpath="/form[@controlname='frmMain']//form[@controlname='frmMenu']//element[@controlname='btnRegister']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//form[@controlname='frmMenu']//element[@controlname='btnRegister']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="bda80658-0c1f-4705-9c92-84fa40b20a43" name="CatcolRow1" refpath="/form[@controlname='frmMain']//container[@controlname='dgvCat']//element[@accessiblename='CatCol Row 1']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvCat']//element[@accessiblename='CatCol Row 1']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="9af3b253-9b89-4fb0-bf36-73b29702b2f1" name="Itcol1Row1" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 1']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 1']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="d0155111-56ac-4cfe-8b93-7f93716f0d79" name="Itcol2Row1" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 1']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 1']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="b78f6a3c-263e-4e8a-ad24-2968f2888191" name="Itcol1Row2" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 2']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 2']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="cf1595d5-ed8b-4a68-a6e0-7bc5c12347c0" name="Itcol2Row2" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 2']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 2']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="c6e19ab6-d8b8-413a-86da-2792323cdeac" name="Itcol3Row2" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol3 Row 2']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol3 Row 2']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="8521db81-8761-4404-82a1-39ab6ed395c9" name="Itcol4Row2" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol4 Row 2']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol4 Row 2']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="107e931c-0292-40cd-a945-019da2194401" name="Itcol1Row3" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 3']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol1 Row 3']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="37ae548d-6c9c-4cf3-8d24-571474b3450e" name="Itcol2Row3" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 3']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol2 Row 3']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="ae2b9154-5ff8-4451-a17c-25ecdf3f789b" name="Itcol3Row3" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol3 Row 3']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol3 Row 3']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="81b2ccf5-ff4f-4372-8a0a-7fdb485b86d5" name="Itcol4Row3" refpath="/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol4 Row 3']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='dgvItems']//element[@accessiblename='ITCol4 Row 3']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="f7423089-1933-45d8-9a94-e519bf2ef835" name="Cash" refpath="/form[@controlname='frmMain']//container[@controlname='tpgRegister']//element[@accessiblename='Cash']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//container[@controlname='tpgRegister']//element[@accessiblename='Cash']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="1489f53d-e2cf-47a4-98b6-bf21052f8ff0" name="Pay" refpath="/form[@controlname='frmMain']//form[@controlname='frmCash']//element[@controlname='btnOK']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//form[@controlname='frmCash']//element[@controlname='btnOK']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="f05866c8-92d2-4618-84ad-4563c30eb4b9" name="Close" refpath="/form[@controlname='frmMain']//element[@controlname='btnCancel']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//element[@controlname='btnCancel']
+			</item>
+			<item addcaps="control,control,nativewindow" capname="control" id="c343984b-7a20-46ab-b015-31a01c105171" name="Close" refpath="/form[@controlname='frmMain']//form[@controlname='frmPicture']//element[@controlname='btnCancel']" searchtimeout="30000ms">
+				/form[@controlname='frmMain']//form[@controlname='frmPicture']//element[@controlname='btnCancel']
+			</item>
+		</appfolder>
+	</rootfolder>
+</repository>

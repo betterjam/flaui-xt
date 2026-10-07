@@ -17,7 +17,7 @@ param(
     [string]$ScriptDirOverride = ''
 )
 $ErrorActionPreference = 'Stop'
-$scriptDir = if ($ScriptDirOverride) { $ScriptDirOverride } elseif ($PSScriptRoot) { $PSScriptRoot } else { 'C:\Dev\Exatouch\qa-ai\scripts' }
+$scriptDir = if ($ScriptDirOverride) { $ScriptDirOverride } elseif ($PSScriptRoot) { $PSScriptRoot } else { 'C:\Dev\exatouch-qa\scripts' }
 if (-not $QaRoot) { $QaRoot = (Resolve-Path (Join-Path $scriptDir '..')).Path }
 $catalogDir = Join-Path $QaRoot 'catalog\features'
 $ledgerFile = Join-Path $QaRoot 'reports\ledger.json'

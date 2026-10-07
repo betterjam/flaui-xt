@@ -24,7 +24,7 @@
 param(
     [Parameter(Mandatory)] [string]$Feature,
     [string[]]$SourcePaths,                       # default 2.0.x\<Feature>; override for fuzzy names
-    [string]$AppRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..\2.0.x')).Path,
+    [string]$AppRoot = (Resolve-Path (Join-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } }) '2.0.x')).Path,
     [string]$OutDir  = (Join-Path $PSScriptRoot '..\catalog\_baseline')
 )
 $ErrorActionPreference = 'Stop'

@@ -1,0 +1,13 @@
+{
+  "_comment": "Agent inheritance: base -> area -> per-test. Each test names its area parent (the area .md adds only area-specific knowledge on top of base). area=null means base-only (no extra granularity needed). Add a per-test override file only if a test needs MORE than its area gives.",
+  "base": "review-prompt-base.md",
+  "tests": {
+    "Navigate_Home_to_Items_and_back":            { "area": "navigation", "report": "navigation-report.html" },
+    "Open_Item_List_from_Home":                   { "area": "items",      "report": "item-list-report.html" },
+    "Open_first_item_in_the_list":                { "area": "items",      "report": "open-item-report.html" },
+    "Edit_all_tabs_save_reopen_verify":           { "area": "items",      "report": "item-full-persistence-report.html" },
+    "Edit_save_reopen_and_verify_item_persistence": { "area": "items",    "report": "item-persistence-report.html" },
+    "Detect_and_learn_a_validation_warning":      { "area": "items",      "report": "modal-diagnostic-report.html" },
+    "Explore_item_detail_tabs_and_describe_what_we_find": { "area": "items", "report": "runtime-explorer-report.html" }
+  }
+}

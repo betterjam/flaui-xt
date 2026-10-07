@@ -1,0 +1,1 @@
+[{"n": 1, "action": "click", "by": "id", "key": "btnSettings", "value": "Settings", "controlType": "Button", "label": "Clicked button \"Settings\"", "file": "", "index": -1, "parent": "frmMenu", "keyboard": false}]

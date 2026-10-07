@@ -26,7 +26,7 @@ param(
     [string]$ScriptDirOverride = ''
 )
 $ErrorActionPreference = 'Stop'
-$scriptDir = if ($ScriptDirOverride) { $ScriptDirOverride } elseif ($PSScriptRoot) { $PSScriptRoot } else { 'C:\Dev\Exatouch\qa-ai\scripts' }
+$scriptDir = if ($ScriptDirOverride) { $ScriptDirOverride } elseif ($PSScriptRoot) { $PSScriptRoot } else { 'C:\Dev\exatouch-qa\scripts' }
 if (-not $QaRoot) { $QaRoot = (Resolve-Path (Join-Path $scriptDir '..')).Path }
 
 $flat = Join-Path $QaRoot ("catalog\features\{0}.yaml" -f $Area)

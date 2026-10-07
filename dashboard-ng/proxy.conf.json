@@ -1,0 +1,4 @@
+{
+  "/api": { "target": "http://localhost:5099", "secure": false },
+  "/report": { "target": "http://localhost:5099", "secure": false }
+}

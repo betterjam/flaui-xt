@@ -25,8 +25,8 @@ param(
     [string]$Feature,                                   # optional: validate one feature file
     [string]$CatalogDir  = (Join-Path $PSScriptRoot '..\catalog\features'),
     [string]$BaselineDir = (Join-Path $PSScriptRoot '..\catalog\_baseline'),
-    [string]$AppRoot     = (Join-Path $PSScriptRoot '..\..\2.0.x'),
-    [string]$ModulesDir  = (Join-Path $PSScriptRoot '..\..\MyFirstExatouchTest\MyFirstExatouchTest\Code Modules')
+    [string]$AppRoot     = (Join-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } }) '2.0.x'),
+    [string]$ModulesDir  = (Join-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } }) 'MyFirstExatouchTest\MyFirstExatouchTest\Code Modules')
 )
 
 $ErrorActionPreference = 'Stop'

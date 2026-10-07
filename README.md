@@ -12,12 +12,25 @@ Ranorex tests ┘   (deterministic)                       (AI brain)            
                                                                   (execute cases the catalog selects)
 ```
 
+## Location & prerequisites
+This repo is standalone (`C:\Dev\exatouch-qa`). It never contains the app; it reads the app source
+and the Ranorex suite from a separate Exatouch checkout and launches the app binary from there:
+- `EXATOUCH_ROOT` - the Exatouch checkout (default `C:\Dev\Exatouch`), expected to hold `2.0.x\` and
+  `MyFirstExatouchTest\`. Used by `scripts/*.ps1`, `scripts/*.py` and the FlaUI driver.
+- `EXATOUCH_EXE` - the binary the FlaUI tests launch (default `%EXATOUCH_ROOT%.0.xin\Exatouch.exe`).
+- `QA_POC_DIR` - only if the test assembly is run from outside `flaui-poc\` (see `flaui-poc/Paths.cs`).
+
 ## Layout
 - `catalog/SCHEMA.md` — the contract. Feature→cases→(maps to existing recordings).
 - `catalog/_baseline/` — generated coverage baseline (run reconcile.ps1; not hand-edited).
 - `catalog/features/*.yaml` — the catalog the AI writes (reviewed in PRs).
 - `scripts/reconcile.ps1` — deterministic Ranorex parser. No AI. Run first.
 - `prompts/discovery.md` — the discovery-agent instructions.
+- `flaui-poc/` — FlaUI + NUnit test engine, the recorder, and the live driver (`AutomationServer`, http://localhost:5200)
+  and step debugger (`DebugBridge`, :5201). `dashboard-server.ps1` serves the API on :5099.
+- `dashboard-ng/` — Angular dashboard (`npm start` proxies /api to :5099).
+- `agent/` — headless Claude Agent SDK runner used by `scripts/run-agent.ps1`.
+- `docs/` — findings (order persistence mechanism, runner comparison, FlaUI PoC results).
 
 ## Run discovery for one feature
 ```powershell

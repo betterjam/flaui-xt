@@ -1,4 +1,25 @@
-agent/node_modules/
+# dependencies / build output
+node_modules/
+dashboard-ng/dist/
+dashboard-ng/.angular/
+flaui-poc/bin/
+flaui-poc/obj/
+flaui-poc/.vs/
+__pycache__/
+*.pyc
+
+# run artifacts: screenshots, reports, logs, live state (recording maps are kept)
+flaui-poc/TestResults/*
+!flaui-poc/TestResults/recording-*.json
+!flaui-poc/TestResults/extends.json
+!flaui-poc/TestResults/import-folders.json
+flaui-poc/TestResults_backup_*/
+flaui-poc/*.log
 reports/*.log
 reports/heartbeat.json
 reports/runner.pid
+reports/launch-*.txt
+*.trx
+
+# local-only tool state
+.claude/settings.local.json

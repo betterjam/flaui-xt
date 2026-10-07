@@ -18,8 +18,8 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$AppRoot     = (Join-Path $PSScriptRoot '..\..\2.0.x'),
-    [string]$RanorexRoot = (Join-Path $PSScriptRoot '..\..\MyFirstExatouchTest\MyFirstExatouchTest'),
+    [string]$AppRoot     = (Join-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } }) '2.0.x'),
+    [string]$RanorexRoot = (Join-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } }) 'MyFirstExatouchTest\MyFirstExatouchTest'),
     [string]$OutDir      = (Join-Path $PSScriptRoot '..\catalog\_baseline')
 )
 

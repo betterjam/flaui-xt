@@ -30,7 +30,7 @@ param(
     [Parameter(ParameterSetName='Report')] [string]$GitRange = 'HEAD~1..HEAD',
     [Parameter(ParameterSetName='Stamp')]  [switch]$Stamp,
     [string]$CatalogDir = (Join-Path $PSScriptRoot '..\catalog\features'),
-    [string]$RepoRoot   = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path,
+    [string]$RepoRoot   = (Resolve-Path (&{ if ($env:EXATOUCH_ROOT) { $env:EXATOUCH_ROOT } else { 'C:\Dev\Exatouch' } })).Path,   # the Exatouch app checkout (EXATOUCH_ROOT)
     [string]$ReportsDir = (Join-Path $PSScriptRoot '..\reports')
 )
 

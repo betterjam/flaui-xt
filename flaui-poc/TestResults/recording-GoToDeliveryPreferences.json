@@ -1,0 +1,1 @@
+[{"n": 1, "action": "click", "by": "id", "key": "btnDelivery", "value": "Delivery hours", "controlType": "Button", "label": "Clicked button \"Delivery hours\"", "file": "", "index": -1, "parent": "frmRegPref", "keyboard": false}]

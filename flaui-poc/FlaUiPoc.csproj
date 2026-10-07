@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Prueba de concepto: automatizar Exatouch (WinForms) con FlaUI (open source, MIT)
+       + NUnit. Todo gratis via NuGet, sin licencia. net472 para correr en el mismo
+       runtime que la app (.NET Framework 4.7.2). -->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+
+  <!-- TestResults holds run artifacts AND the staging/ folder where drafted (not-yet-applied)
+       test versions are written. Those .cs files must NOT be compiled - the SDK auto-globs **/*.cs,
+       and a staged copy + its applied copy would define the same class twice (CS0111). Exclude the
+       whole TestResults tree from compilation. -->
+  <ItemGroup>
+    <Compile Remove="TestResults\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Screen.AllScreens (headless window move) + Graphics/Bitmap (click highlight) -->
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <!-- JavaScriptSerializer: the studio reads saved recording maps (extends/trunk replay) -->
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- FlaUI: la libreria open source de UI Automation -->
+    <PackageReference Include="FlaUI.Core" Version="4.0.0" />
+    <PackageReference Include="FlaUI.UIA3" Version="4.0.0" />
+    <!-- NUnit: el runner de tests (gratis) -->
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+  </ItemGroup>
+
+</Project>

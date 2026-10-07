@@ -1,0 +1,1 @@
+[{"n": 1, "action": "click", "by": "id", "key": "cboState", "value": "New Customer", "controlType": "ComboBox", "label": "Clicked combobox \"New Customer\"", "file": "", "index": -1, "parent": "frmCustomers", "keyboard": false}]

@@ -1,0 +1,29 @@
+﻿using NUnit.Framework;
+
+namespace FlaUiPoc
+{
+    /// <summary>Auto-generated from a RECORDED user session (regenerated from its saved map). A THIN test:
+    /// it just declares the steps; resolution + self-healing retry live in the UiSession engine.</summary>
+    [TestFixture]
+    public class GoToItemsTest
+    {
+        private static readonly string OutDir = Paths.OutDir;
+        private static readonly string ExePath = Paths.ExePath;
+        private UiSession _s;
+
+        [OneTimeSetUp] public void Setup() => _s = UiSession.Launch(ExePath, OutDir, "GoToItems", "Recorded flow: GoToItems", autoDismiss: false);
+        [OneTimeTearDown] public void Teardown() { _s?.WriteReport("Recorded - GoToItems", "GoToItems-report.html"); _s?.Dispose(); }
+
+        [Test]
+        public void GoToItems()
+        {
+            _s.Report.NewCase("Replay of recorded session (1 steps)");
+            var flow = new System.Collections.Generic.List<UiSession.FlowStep>();
+            flow.Add(new UiSession.FlowStep { Label = "Clicked button \"Items\"", Act = () => _s.ClickEl("id", "btnItems", "Items", -1, "frmMenu", "Button") });
+            int failed = _s.RunFlow(flow);
+            _s.Step(failed == 0 ? "Recorded flow replayed faithfully - every step matched." : failed + " step(s) could not be replayed - the flow diverged.");
+            _s.Report.SetStatus(failed == 0 ? "PASS" : "FAIL"); _s.Finish(failed == 0 ? "PASS" : "FAIL");
+            Assert.That(failed, Is.EqualTo(0), failed + " recorded step(s) could not be replayed - the app flow diverged from the recording.");
+        }
+    }
+}
